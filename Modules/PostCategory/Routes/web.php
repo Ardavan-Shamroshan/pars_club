@@ -18,7 +18,8 @@ use Modules\PostCategory\Http\Controllers\PostCategoryController;
 // admin post category
 Route::prefix('admin')->group(function () {
     Route::prefix('postcategory')->group(function () {
-        Route::get('/', [AdminPostCategoryController::class, 'index'])->name('admin.postcategory.index');
+        Route::get('/', [AdminPostCategoryController::class, 'index'])->name('admin.postcategory');
+        Route::get('/show', [AdminPostCategoryController::class, 'show'])->name('admin.postcategory.show');
     });
 });
 

@@ -38,4 +38,24 @@
 <script src="{{ asset('modules/admin/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js') }}"></script>
 <script src="{{ asset('modules/admin/assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script><!-- custom js -->
 
+
+
+<!-- Internal Data tables -->
+<script src="{{ asset('modules/admin/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/datatable/datatables.min.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/datatable/js/dataTables.bootstrap5.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/datatable/js/buttons.bootstrap5.min.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/datatable/js/jszip.min.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/datatable/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/datatable/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/datatable/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/datatable/pdfmake/vfs_fonts.js') }}"></script>
+
+<!--Internal  Datatable js -->
+<script src="{{ asset('modules/admin/assets/js/table-data.js') }}"></script>
+
+
+
 <!-- scripts --><!-- Back-to-top --><a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>

@@ -54,7 +54,7 @@
                                     <div class="main-toggle main-toggle-success"><span></span></div>
                                 </td>
                                 <td class="d-flex justify-content-start">
-                                    <a href="" class="btn-sm"><i class="fe fe-eye"></i> نمایش</a>
+                                    <a href="{{ route('admin.postcategory.show') }}" class="btn-sm"><i class="fe fe-eye"></i> نمایش</a>
                                     <a href="" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
                                     <form action="" method="post">
                                         <button type="submit" class="btn btn-sm btn-link"><i class="fe fe-trash-2"></i> پاک کردن</button>

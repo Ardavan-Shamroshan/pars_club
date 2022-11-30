@@ -12,8 +12,7 @@ class AdminPostCategoryController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
-    {
+    public function index() {
         return view('postcategory::admin.index');
     }
 
@@ -21,8 +20,7 @@ class AdminPostCategoryController extends Controller
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function create()
-    {
+    public function create() {
         return view('postcategory::create');
     }
 
@@ -31,8 +29,7 @@ class AdminPostCategoryController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -41,9 +38,8 @@ class AdminPostCategoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
-    {
-        return view('postcategory::show');
+    public function show() {
+        return view('postcategory::admin.show');
     }
 
     /**
@@ -51,8 +47,7 @@ class AdminPostCategoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         return view('postcategory::edit');
     }
 
@@ -62,8 +57,7 @@ class AdminPostCategoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -72,8 +66,7 @@ class AdminPostCategoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
 }
