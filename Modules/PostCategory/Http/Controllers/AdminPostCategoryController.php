@@ -21,7 +21,7 @@ class AdminPostCategoryController extends Controller
      * @return Renderable
      */
     public function create() {
-        return view('postcategory::create');
+        return view('postcategory::admin.create');
     }
 
     /**
@@ -64,9 +64,10 @@ class AdminPostCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      * @param int $id
-     * @return Renderable
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id) {
-        //
+    public function destroy() {
+        toast('داده مورد نظر با موفقیت حذف شد','success');
+        return redirect()->route('admin.postcategory');
     }
 }

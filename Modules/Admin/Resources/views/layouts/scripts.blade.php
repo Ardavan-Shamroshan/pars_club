@@ -38,8 +38,6 @@
 <script src="{{ asset('modules/admin/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js') }}"></script>
 <script src="{{ asset('modules/admin/assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script><!-- custom js -->
 
-
-
 <!-- Internal Data tables -->
 <script src="{{ asset('modules/admin/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('modules/admin/assets/plugins/datatable/datatables.min.js') }}"></script>
@@ -56,6 +54,31 @@
 <!--Internal  Datatable js -->
 <script src="{{ asset('modules/admin/assets/js/table-data.js') }}"></script>
 
+<!-- Sweetalert js -->
+<script src="{{ asset('modules/admin/assets/sweetalert/sweetalert2.min.js') }}"></script>
 
 
+<!--Internal Fileuploads js-->
+<script src="{{ asset('modules/admin/assets/plugins/fileuploads/js/fileupload.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/fileuploads/js/file-upload.js') }}"></script>
+
+
+<!--Internal Fancy uploader js-->
+<script src="{{ asset('modules/admin/assets/plugins/fancyuploder/jquery.ui.widget.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/fancyuploder/jquery.fileupload.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/fancyuploder/jquery.iframe-transport.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/fancyuploder/jquery.fancy-fileupload.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/fancyuploder/fancy-uploader.js') }}"></script>
+
+<!--Internal  Form-elements js-->
+<script src="{{ asset('modules/admin/assets/js/advanced-form-elements.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/js/select2.js') }}"></script>
+
+
+<!-- Internal TelephoneInput js-->
+<script src="{{ asset('modules/admin/assets/plugins/telephoneinput/telephoneinput.js') }}"></script>
+<script src="{{ asset('modules/admin/assets/plugins/telephoneinput/inttelephoneinput.js') }}"></script>
+
+<!--Internal Sumoselect js-->
+<script src="{{ asset('modules/admin/assets/plugins/sumoselect/jquery.sumoselect.js') }}"></script>
 <!-- scripts --><!-- Back-to-top --><a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>

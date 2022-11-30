@@ -14,7 +14,6 @@
 </head>
 
 <body class="main-body app sidebar-mini">
-
     <!-- switcher -->
     @include('admin::layouts.switcher')
     <!-- switcher -->
@@ -55,6 +54,8 @@
     @include('admin::layouts.scripts')
     @yield('script')
 
+    {{-- sweetalert2 from realrashid.github.io --}}
+    @include('sweetalert::alert')
 </body>
 
 </html>

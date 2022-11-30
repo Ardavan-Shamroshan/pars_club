@@ -23,3 +23,31 @@
 <link href="{{ asset('modules/admin/assets/css-rtl/animate.css') }}" rel="stylesheet"><!---Switcher css-->
 <link href="{{ asset('modules/admin/assets/switcher/css/switcher-rtl.css') }}" rel="stylesheet">
 <link href="{{ asset('modules/admin/assets/switcher/demo.css') }}" rel="stylesheet">
+<link href="{{ asset('modules/admin/assets/sweetalert/sweetalert2.css') }}" rel="stylesheet"/>
+
+<!-- Internal Select2 css -->
+<link href="{{ asset('modules/admin/assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+
+<!--Internal  Datetimepicker-slider css -->
+<link href="{{ asset('modules/admin/assets/plugins/amazeui-datetimepicker/css/amazeui.datetimepicker.css') }}" rel="stylesheet">
+<link href="{{ asset('modules/admin/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.css') }}" rel="stylesheet">
+<link href="{{ asset('modules/admin/assets/plugins/pickerjs/picker.min.css') }}" rel="stylesheet">
+
+<!-- Internal Spectrum-colorpicker css -->
+<link href="{{ asset('modules/admin/assets/plugins/spectrum-colorpicker/spectrum.css') }}" rel="stylesheet">
+
+
+<!--Internal Sumoselect css-->
+<link rel="stylesheet" href="{{ asset('modules/admin/assets/plugins/sumoselect/sumoselect-rtl.css') }}">
+
+
+
+<!---Internal Fileupload css-->
+<link href="{{ asset('modules/admin/assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css"/>
+
+<!---Internal Fancy uploader css-->
+<link href="{{ asset('modules/admin/assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
+
+
+<!--Internal  TelephoneInput css-->
+<link rel="stylesheet" href="{{ asset('modules/admin/assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">

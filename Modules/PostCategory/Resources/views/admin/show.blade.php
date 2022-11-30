@@ -8,7 +8,7 @@
         <div class="my-auto">
             <div class="d-flex justify-content-between">
                 <span class="text-muted mt-1 tx-13 mb-0">مجله و خبرنامه<span class="text-muted ms-1">/</span></span>
-                <span class="mt-1 tx-13 mb-0"><a href="#">دسته بندی اخبار</a><span class="text-muted ms-1">/</span></span>
+                <span class="mt-1 tx-13 mb-0"><a href="{{ route('admin.postcategory') }}">دسته بندی اخبار</a><span class="text-muted ms-1">/</span></span>
                 <h4 class="content-title mb-0 my-auto">نمایش دسته بندی اخبار</h4>
             </div>
         </div>
@@ -24,23 +24,19 @@
                     <div class="d-flex gap-2">
                         <h4 class="card-title mg-b-0">دسته بندی اخبار</h4>
                         <p class="tx-12 tx-gray-500 mb-2">نمایش دسته بندی.
-                            <a href="#" id="m-l-c-05"><i class="fe fe-chevrons-right  "></i>بازگشت به لیست دسته بندی ها</a>
+                            <a href="{{ route('admin.postcategory') }}" id="m-l-c-05"><i class="fe fe-chevrons-right  "></i>بازگشت به لیست دسته بندی ها</a>
                         </p>
                     </div>
 
                     <div class="dt-buttons btn-group flex-wrap">
-                        <button class="btn buttons-copy" tabindex="0" aria-controls="example" type="button">
-                            <span><i class="fe fe-copy"></i></span></button>
-                        <button class="btn buttons-excel" tabindex="0" aria-controls="example" type="button">
-                            <span><i class="fa fa-file-excel"></i></span></button>
-                        <button class="btn buttons-pdf" tabindex="0" aria-controls="example" type="button">
-                            <span><i class="fe fe-printer"></i></span></button>
+                        <a class="btn buttons-pdf" id="print" tabindex="0" aria-controls="example" type="button">
+                            <span><i class="fe fe-printer"></i></span></a>
                     </div>
                 </div>
             </div>
 
             <div class="col-8">
-                <div class="card">
+                <div class="card" id="printable">
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped mg-b-0 text-md-nowrap">
@@ -93,4 +89,20 @@
     </div>
     <!-- /row -->
 
+@endsection
+@section('script')
+    <script>
+        var printBtn = document.getElementById('print');
+        printBtn.addEventListener('click', function () {
+            printContent('printable');
+        })
+
+        function printContent(el) {
+            var restorePage = $('body').html();
+            var printContent = $('#' + el).clone();
+            $('body').empty().html(printContent);
+            window.print();
+            $('body').empty().html(restorePage);
+        }
+    </script>
 @endsection

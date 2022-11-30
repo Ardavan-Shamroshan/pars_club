@@ -22,12 +22,11 @@
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-2">
                         <h4 class="card-title mg-b-0">دسته بندی اخبار</h4>
-                        <p class="tx-12 tx-gray-500 mb-2">نمایش 2 از 10 مورد. <a href="#"  id="m-l-c-05">تازه سازی </a></p>
+                        <p class="tx-12 tx-gray-500 mb-2">نمایش 2 از 10 مورد. <a href="#" id="m-l-c-05">تازه سازی </a>
+                        </p>
                     </div>
                 </div>
-                <div class="mb-xl-0">
-                    <button type="button" class="btn btn-primary"><i class="fe fe-plus"></i> ساخت دسته بندی</button>
-                </div>
+                <a href="{{ route('admin.postcategory.create') }}" class="btn p-2 btn-primary"><i class="fe fe-plus"></i> ساخت دسته بندی</a>
             </div>
 
             <div class="card">
@@ -56,8 +55,11 @@
                                 <td class="d-flex justify-content-start">
                                     <a href="{{ route('admin.postcategory.show') }}" class="btn-sm"><i class="fe fe-eye"></i> نمایش</a>
                                     <a href="" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
-                                    <form action="" method="post">
-                                        <button type="submit" class="btn btn-sm btn-link"><i class="fe fe-trash-2"></i> پاک کردن</button>
+                                    <form action="{{ route('admin.postcategory.destroy') }}" method="post">
+                                        @csrf @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-link delete">
+                                            <i class="fe fe-trash-2"></i> پاک کردن
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
@@ -72,8 +74,11 @@
                                 <td class="d-flex justify-content-start">
                                     <a href="" class="btn-sm"><i class="fe fe-eye"></i> نمایش</a>
                                     <a href="" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
-                                    <form action="" method="post">
-                                        <button type="submit" class="btn btn-sm btn-link"><i class="fe fe-trash-alt"></i> پاک کردن</button>
+                                    <form action="{{ route('admin.postcategory.destroy') }}" method="post">
+                                        @csrf @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-link">
+                                            <i class="fe fe-trash-2"></i> پاک کردن
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
@@ -88,8 +93,11 @@
                                 <td class="d-flex justify-content-start">
                                     <a href="" class="btn-sm"><i class="fe fe-eye"></i> نمایش</a>
                                     <a href="" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
-                                    <form action="" method="post">
-                                        <button type="submit" class="btn btn-sm btn-link"><i class="fe fe-trash-alt"></i> پاک کردن</button>
+                                    <form action="{{ route('admin.postcategory.destroy') }}" method="post">
+                                        @csrf @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-link">
+                                            <i class="fe fe-trash-2"></i> پاک کردن
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
@@ -104,8 +112,11 @@
                                 <td class="d-flex justify-content-start">
                                     <a href="" class="btn-sm"><i class="fe fe-eye"></i> نمایش</a>
                                     <a href="" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
-                                    <form action="" method="post">
-                                        <button type="submit" class="btn btn-sm btn-link"><i class="fe fe-trash-alt"></i> پاک کردن</button>
+                                    <form action="{{ route('admin.postcategory.destroy') }}" method="post">
+                                        @csrf @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-link">
+                                            <i class="fe fe-trash-2"></i> پاک کردن
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
@@ -120,8 +131,11 @@
                                 <td class="d-flex justify-content-start">
                                     <a href="" class="btn-sm"><i class="fe fe-eye"></i> نمایش</a>
                                     <a href="" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
-                                    <form action="" method="post">
-                                        <button type="submit" class="btn btn-sm btn-link"><i class="fe fe-trash-alt"></i> پاک کردن</button>
+                                    <form action="{{ route('admin.postcategory.destroy') }}" method="post">
+                                        @csrf @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-link delete">
+                                            <i class="fe fe-trash-2"></i> پاک کردن
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
@@ -133,12 +147,11 @@
         </div>
         <!--/div-->
 
-
-
-
-
-
     </div>
     <!-- /row -->
 
+@endsection
+
+@section('script')
+    @include('sweetalert::confirmation', ['className' => 'delete'])
 @endsection
