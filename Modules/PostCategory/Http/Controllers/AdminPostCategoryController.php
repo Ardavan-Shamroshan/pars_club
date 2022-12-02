@@ -1,10 +1,12 @@
-<?php
+<?php /** @noinspection ALL */
 
 namespace Modules\PostCategory\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\PostCategory\Entities\PostCategory;
+use Modules\PostCategory\Http\Requests\PostCategoryRequest;
 
 class AdminPostCategoryController extends Controller
 {
@@ -13,7 +15,10 @@ class AdminPostCategoryController extends Controller
      * @return Renderable
      */
     public function index() {
-        return view('postcategory::admin.index');
+        // Categories
+        $categoriesCount = PostCategory::count();
+        $categories = PostCategory::query()->simplePaginate(10);
+        return view('postcategory::admin.index', compact('categories', 'categoriesCount'));
     }
 
     /**
@@ -21,16 +26,21 @@ class AdminPostCategoryController extends Controller
      * @return Renderable
      */
     public function create() {
-        return view('postcategory::admin.create');
+        // All categories for parent selection
+        $categories = PostCategory::all();
+        return view('postcategory::admin.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      * @param Request $request
-     * @return Renderable
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request) {
-        //
+    public function store(PostCategoryRequest $request) {
+        $inputs = $request->all();
+        $postcategory = PostCategory::query()->create($inputs);
+        toast('داده با موفقیت ایجاد شد', 'success');
+        return redirect()->route('admin.postcategory');
     }
 
     /**
@@ -38,8 +48,8 @@ class AdminPostCategoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show() {
-        return view('postcategory::admin.show');
+    public function show(PostCategory $postcategory) {
+        return view('postcategory::admin.show', compact('postcategory'));
     }
 
     /**
@@ -47,8 +57,10 @@ class AdminPostCategoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id) {
-        return view('postcategory::edit');
+    public function edit(PostCategory $postcategory) {
+        // All categories for parent selection
+        $categories = PostCategory::all();
+        return view('postcategory::admin.edit', compact('categories', 'postcategory'));
     }
 
     /**
@@ -57,8 +69,11 @@ class AdminPostCategoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id) {
-        //
+    public function update(PostCategoryRequest $request, PostCategory $postcategory) {
+        $inputs = $request->all();
+        $postcategory->update($inputs);
+        toast('داده مورد نظر با موفقیت ویرایش شد', 'success');
+        return redirect()->route('admin.postcategory');
     }
 
     /**
@@ -66,8 +81,27 @@ class AdminPostCategoryController extends Controller
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy() {
-        toast('داده مورد نظر با موفقیت حذف شد','success');
+    public function destroy(PostCategory $postcategory) {
+        $postcategory->delete();
+        toast('داده مورد نظر با موفقیت حذف شد', 'success');
         return redirect()->route('admin.postcategory');
+    }
+
+    public function status(PostCategory $postcategory) {
+        $postcategory->status = $postcategory->status == 0 ? 1 : 0;
+        $result = $postcategory->save();
+        if ($result) {
+            if ($postcategory->status == 0) {
+                return response()->json([
+                    'status' => true,
+                    'checked' => false,
+                ]);
+            } else
+                return response()->json([
+                    'status' => true,
+                    'checked' => true,
+                ]);
+        } else
+            return response()->json(['status' => false]);
     }
 }

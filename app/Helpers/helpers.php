@@ -5,7 +5,7 @@ use Morilog\Jalali\Jalalian;
 /**
  * @param $date
  * @param $format
- * @return void
+ * @return string
  *
  * Jalali calendar is a solar calendar that was used in Persia, variants of which today are still in use in Iran as well as Afghanistan. Read more on Wikipedia or see Calendar Converter.
  * Calendar conversion is based on the algorithm provided by Kazimierz M. Borkowski and has a very good performance.
@@ -21,8 +21,8 @@ function jalaliDate($date = 'today', $format = '%A, %d %B %Y', $ago = false) {
         return Jalalian::forge($date)->format($format);
 }
 
-function jalaliTime($date = 'today') {
-    return Jalalian::forge($date)->getTimestamp();
+function jalaliTime($date = 'today', $format = 'H:i:s') {
+    return Jalalian::forge($date)->format($format);
 }
 
 function convertPersianToEnglish($number) {

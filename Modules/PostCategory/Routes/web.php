@@ -19,9 +19,13 @@ use Modules\PostCategory\Http\Controllers\PostCategoryController;
 Route::prefix('admin')->group(function () {
     Route::prefix('postcategory')->group(function () {
         Route::get('/', [AdminPostCategoryController::class, 'index'])->name('admin.postcategory');
-        Route::get('/show', [AdminPostCategoryController::class, 'show'])->name('admin.postcategory.show');
         Route::get('/create', [AdminPostCategoryController::class, 'create'])->name('admin.postcategory.create');
-        Route::delete('/destroy', [AdminPostCategoryController::class, 'destroy'])->name('admin.postcategory.destroy');
+        Route::post('/store', [AdminPostCategoryController::class, 'store'])->name('admin.postcategory.store');
+        Route::get('/show/{postcategory:slug}', [AdminPostCategoryController::class, 'show'])->name('admin.postcategory.show');
+        Route::get('/edit/{postcategory:slug}', [AdminPostCategoryController::class, 'edit'])->name('admin.postcategory.edit');
+        Route::put('/update/{postcategory}', [AdminPostCategoryController::class, 'update'])->name('admin.postcategory.update');
+        Route::delete('/destroy/{postcategory}', [AdminPostCategoryController::class, 'destroy'])->name('admin.postcategory.destroy');
+        Route::get('/status/{postcategory}', [AdminPostCategoryController::class, 'status'])->name('admin.postcategory.status');
     });
 });
 

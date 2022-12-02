@@ -43,11 +43,11 @@
                                 <tbody>
                                 <tr>
                                     <th class="font-weight-bold">نام :</th>
-                                    <td>جوآن پاول</td>
+                                    <td>{{ $postcategory->name }}</td>
                                 </tr>
                                 <tr>
                                     <th class="font-weight-bold">اسلاگ :</th>
-                                    <td>گاوین-گیبسون</td>
+                                    <td>{{ $postcategory->slug }}</td>
                                 </tr>
                                 <tr>
                                     <th class="font-weight-bold">زیر دسته :</th>
@@ -59,18 +59,19 @@
                                 </tr>
                                 <tr>
                                     <th class="font-weight-bold">زمان ایجاده شده :</th>
-                                    <td>چهارشنبه 9 آذر - 13:21</td>
+                                    <td>{{ jalaliDate($postcategory->created_at) }} {{ jalaliTime($postcategory->created_at, 'H:i') }}</td>
                                 </tr>
                                 <tr>
                                     <th class="font-weight-bold">ویرایش شده در :</th>
-                                    <td>چهارشنبه 9 آذر - 13:21</td>
+                                    <td>{{ jalaliDate($postcategory->updated_at) }} {{ jalaliTime($postcategory->updated_at, 'H:i') }}</td>
                                 </tr>
                                 <tr>
                                     <th class="font-weight-bold">عملیات :</th>
                                     <td class="d-flex justify-content-start">
-                                        <a href="" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
-                                        <form action="" method="post">
-                                            <button type="submit" class="btn btn-sm btn-link">
+                                        <a href="{{ route('admin.postcategory.edit', $postcategory) }}" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
+                                        <form action="{{ route('admin.postcategory.destroy', $postcategory) }}" method="post">
+                                            @csrf @method('delete')
+                                            <button type="submit" class="btn btn-sm btn-link delete">
                                                 <i class="fe fe-trash-2"></i> پاک کردن
                                             </button>
                                         </form>
@@ -105,4 +106,7 @@
             $('body').empty().html(restorePage);
         }
     </script>
+
+    @include('sweetalert::toast')
+    @include('sweetalert::confirmation', ['className' => 'delete'])
 @endsection
