@@ -17,7 +17,7 @@ class AdminPostCategoryController extends Controller
     public function index() {
         // Categories
         $categoriesCount = PostCategory::count();
-        $categories = PostCategory::query()->simplePaginate(10);
+        $categories = PostCategory::query()->paginate(3);
         return view('postcategory::admin.index', compact('categories', 'categoriesCount'));
     }
 

@@ -22,7 +22,7 @@
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-2">
                         <h4 class="card-title mg-b-0">دسته بندی اخبار</h4>
-                        <p class="tx-12 tx-gray-500 mb-2">نمایش {{ $categoriesCount }} از {{ $categories->perPage() * $categories->currentPage() }} مورد درصفحه.
+                        <p class="tx-12 tx-gray-500 mb-2">نمایش {{ $categories->currentPage() }} از {{ $categories->lastPage() }} صفحه از همه {{ $categoriesCount }} مورد .
                             <a href="{{ route('admin.postcategory') }}" id="m-l-c-05">تازه سازی </a>
                         </p>
                     </div>
