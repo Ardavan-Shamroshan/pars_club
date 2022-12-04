@@ -26,6 +26,8 @@ Route::prefix('admin')->group(function () {
         Route::put('/update/{post}', [AdminPostController::class, 'update'])->name('admin.post.update');
         Route::delete('/destroy/{post}', [AdminPostController::class, 'destroy'])->name('admin.post.destroy');
         Route::get('/status/{post}', [AdminPostController::class, 'status'])->name('admin.post.status');
+        Route::get('/commentable/{post}', [AdminPostController::class, 'commentable'])->name('admin.post.commentable');
+
     });
 });
 

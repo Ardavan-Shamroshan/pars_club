@@ -18,3 +18,6 @@
 .datepicker-plot-area  {
     font: 12px iransans !important;
 }
+.ck-editor__editable {
+    min-height: 40em;
+}

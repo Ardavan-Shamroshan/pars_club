@@ -1,6 +1,6 @@
 @extends('admin::layouts.master')
 @section('title')
-     اخبار | داشبورد مدیریت
+    اخبار | داشبورد مدیریت
 @endsection
 @section('content')
     <!-- breadcrumb -->
@@ -27,7 +27,8 @@
                         </p>
                     </div>
                 </div>
-                <a href="{{ route('admin.post.create') }}" class="btn p-2 btn-primary"><i class="fe fe-plus"></i> ساخت اخبار </a>
+                <a href="{{ route('admin.post.create') }}" class="btn p-2 btn-primary"><i class="fe fe-plus"></i> ساخت اخبار
+                </a>
             </div>
 
             <div class="card">
@@ -82,8 +83,8 @@
                                             <th class="wd-15p border-bottom-0 sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="نام کوچک: activate to sort column descending" style="width: 101.667px;">عنوان</th>
                                             <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="نویسنده: activate to sort column ascending" style="width: 101.667px;">نویسنده</th>
                                             <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="دسته بندی: activate to sort column ascending" style="width: 101.667px;">دسته بندی</th>
-                                            <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="برچسب: activate to sort column ascending" style="width: 101.667px;">برچسب</th>
                                             <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="نام خانوادگی: activate to sort column ascending" style="width: 101.667px;">اسلاگ</th>
+                                            <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="برچسب: activate to sort column ascending" style="width: 101.667px;">برچسب</th>
                                             <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="اسلاگ: activate to sort column ascending" style="width: 101.667px;">تاریخ انتشار</th>
                                             <th class="wd-10p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="امکان نظر دهی: activate to sort column ascending" style="width: 54.4375px;">امکان نظر دهی</th>
                                             <th class="wd-10p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="وضعیت: activate to sort column ascending" style="width: 54.4375px;">وضعیت</th>
@@ -94,15 +95,19 @@
 
                                         @foreach($posts as $post)
                                             <tr>
-                                                <td>{{ $post->title }}</td>
-                                                <td>{{ $post->author_id ?? '-' }}</td>
-                                                <td>{{ $post->category_id ?? '-' }}</td>
+                                                <td>{{ Str::limit($post->title, 20) }}</td>
+                                                <td>{{ $post->author->fullname ?? '-' }}</td>
+                                                <td>{{ $post->category->name ?? '-' }}</td>
                                                 <td>{{ $post->slug ?? '-' }}</td>
-                                                <td>{{ $post->label ?? '-' }}</td>
-                                                <td>{{ $post->published_at ?? '-' }}</td>
+                                                @empty($post->label)
+                                                    <td><small class="badge badge-light">بدون برچسب</small></td>
+                                                @else
+                                                    <td class="badge badge-primary-transparent"><small>{{ $post->label }}</small></td>
+                                                @endempty
+                                                <td>{{ jalaliDate($post->published_at, '%B %d، %Y') ?? '-' }}</td>
                                                 <td>
                                                     <label for="{{ $post->id }}-commentable">
-                                                        <input type="checkbox" id="{{ $post->id }}-commentable" onchange="commentable({{ $post->id }})" data-url="{{ route('admin.content.post.commentable', $post->id) }}" @if ($post->commentable === 1)checked @endif>
+                                                        <input type="checkbox" id="{{ $post->id }}-commentable" onchange="commentable({{ $post->id }})" data-url="{{ route('admin.post.commentable', $post->id) }}"  data-value="{{ $post->commentable }}"  @if ($post->commentable === 1) checked @endif>
                                                     </label>
                                                 </td>
                                                 <td>

@@ -2,6 +2,7 @@
 
 namespace Modules\Post\Http\Controllers;
 
+use App\Http\Services\Image\ImageService;
 use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -40,9 +41,32 @@ class AdminPostController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(PostRequest $request) {
+    public function store(PostRequest $request, ImageService $imageService) {
         $inputs = $request->all();
-        dd($inputs);
+
+        // Convert timestamp to Y-m-d H:i:s format
+        $realTimestampStart = substr($request->published_at, 0, 10);
+        $inputs['published_at'] = date('Y-m-d H:i:s', (int)$realTimestampStart);
+
+
+        // Image upload
+        if ($request->hasFile('image')) {
+            // Set image directory
+            $imageService->setExclusiveDirectory('modules' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'post');
+            // Create image in 3 indexes and save
+            $result = $imageService->createIndexAndSave($request->file('image'));
+            // If createIndexAndSize failed
+            if ($result === false) {
+                toast('آپلود تصویر با خطا مواجه شد', 'error');
+                return redirect()->route('admin.post');
+            }
+            $inputs['image'] = $result;
+            Post::query()->create($inputs);
+            toast('خبر با موفقیت ایجاد شد', 'success');
+            return redirect()->route('admin.post');
+        }
+
+
     }
 
     /**
@@ -50,7 +74,8 @@ class AdminPostController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show(Post $post) {
+    public
+    function show(Post $post) {
         return view('post::show');
     }
 
@@ -59,7 +84,8 @@ class AdminPostController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id) {
+    public
+    function edit($id) {
         return view('post::edit');
     }
 
@@ -69,7 +95,8 @@ class AdminPostController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id) {
+    public
+    function update(Request $request, $id) {
         //
     }
 
@@ -78,25 +105,35 @@ class AdminPostController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id) {
+    public
+    function destroy($id) {
         //
     }
 
-    public function status(Post $post) {
+    public
+    function status(Post $post) {
         $post->status = $post->status == 0 ? 1 : 0;
         $result = $post->save();
 
         if ($result) {
-            if ($post->status == 0) {
-                return response()->json([
-                    'status' => true,
-                    'checked' => false,
+            if ($post->status == 0)
+                return response()->json(['status' => true, 'checked' => false,
                 ]);
-            } else
-                return response()->json([
-                    'status' => true,
-                    'checked' => true,
-                ]);
+            else
+                return response()->json(['status' => true, 'checked' => true,]);
+        } else
+            return response()->json(['status' => false]);
+    }
+
+
+    public function commentable(Post $post) {
+        $post->commentable = $post->commentable == 0 ? 1 : 0;
+        $result = $post->save();
+        if ($result) {
+            if ($post->commentable == 0)
+                return response()->json(['status' => true, 'checked' => false]);
+            else
+                return response()->json(['status' => true, 'checked' => true]);
         } else
             return response()->json(['status' => false]);
     }

@@ -21,7 +21,7 @@ class PostRequest extends FormRequest
                 'body' => ['required', 'max:20480', 'min:2'],
                 'category_id' => ['required', Rule::exists('post_categories', 'id')],
                 'author_id' => ['required', Rule::exists('users', 'id')],
-                'image' => ['nullable', 'image', 'mimes:png,jpg,jpeg,gif'],
+                'image' => ['required', 'image', 'mimes:jpg,jpeg,bmp,png,gif'],
                 'tags' => ['nullable'],
                 'published_at' => ['required','numeric'],
 
@@ -49,5 +49,14 @@ class PostRequest extends FormRequest
     public function authorize()
     {
         return true;
+    }
+
+    /**
+     * messages
+     */
+    public function attributes() {
+        return [
+            'author_id' => 'نویسنده'
+        ];
     }
 }

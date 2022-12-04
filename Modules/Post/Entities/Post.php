@@ -2,6 +2,7 @@
 
 namespace Modules\Post\Entities;
 
+use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,11 +25,13 @@ class Post extends Model
         // TODO: Implement sluggable() method.
         return [
             'slug' => [
-                'source' => ['name', 'id'],
+                'source' => ['title', 'id'],
                 'includeTrashed' => true,
             ]
         ];
     }
+
+    protected $casts = ['image' => 'array'];
 
     protected $fillable = [
         'author_id', 'category_id', 'title', 'label', 'summary', 'body', 'image', 'slug', 'status', 'commentable', 'tags', 'published_at'
@@ -37,7 +40,14 @@ class Post extends Model
     /**
      * relations
      */
+
+    // category
     public function category() {
         return $this->belongsTo(PostCategory::class);
+    }
+
+    // author
+    public function author() {
+        return $this->belongsTo(User::class);
     }
 }

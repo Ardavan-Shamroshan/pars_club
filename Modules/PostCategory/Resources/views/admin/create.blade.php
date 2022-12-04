@@ -54,6 +54,7 @@
                         <div class="card-body pt-0">
                             <div>
 
+                                {{-- name --}}
                                 <div class="form-group">
                                     <label class="form-label @error('name') tx-danger @enderror">نام دسته بندی:
                                         <span class="tx-danger">*</span></label>
@@ -61,9 +62,9 @@
                                     @error('name') <small class="tx-danger">نام را خالی رها نکنید</small> @enderror
                                 </div>
 
+                                {{-- category parent id --}}
                                 <div class="mb-4">
                                     <label class="form-label">دسته بندی پدر</label>
-
                                     <div class="SumoSelect sumo_somename" tabindex="0" role="button" aria-expanded="false">
                                         <select name="parent_id" class="form-control SlectBox SumoUnder" onclick="console.log($(this).val())" onchange="console.log('change is firing')" tabindex="-1">
                                             <option value="">-</option>
@@ -75,18 +76,21 @@
                                     </div>
                                 </div>
 
+                                {{-- slug(url) --}}
                                 <div class="form-group">
                                     <label class="form-label">اسلاگ (نمایش در url):</label>
                                     <input type="text" name="slug" class="form-control" value="{{ old('slug') }}">
                                     <small class="tx-gray-600">اگر خالی رها کنید، بصورت خودکار از روی نام دسته بندی تولید خواهد شد.</small>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
+
+                    {{-- submit --}}
                     <button type="submit" class="btn btn-primary mb-3"><i class="fe fe-save"></i> ذخیره و بازگشت
                     </button>
+
+                    {{-- cancel --}}
                     <a href="{{ route('admin.postcategory') }}" class="btn btn-secondary mb-3"><i class="fe fe-slash"></i> لغو</a>
                 </form>
             </div>
