@@ -3,6 +3,7 @@
     اخبار | داشبورد مدیریت
 @endsection
 @section('content')
+
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
@@ -11,7 +12,6 @@
                 <h4 class="content-title mb-0 my-auto"> اخبار</h4>
             </div>
         </div>
-
     </div>
     <!-- breadcrumb -->
 
@@ -27,49 +27,12 @@
                         </p>
                     </div>
                 </div>
-                <a href="{{ route('admin.post.create') }}" class="btn p-2 btn-primary"><i class="fe fe-plus"></i> ساخت اخبار
+                <a href="{{ route('admin.post.create') }}" class="btn p-2 btn-primary"><i class="fe fe-plus"></i> ساخت خبر
                 </a>
             </div>
 
             <div class="card">
                 <div class="card-body">
-                    {{--                    <div class="table-responsive">--}}
-                    {{--                        <table class="table mg-b-0 text-md-nowrap">--}}
-                    {{--                            <thead>--}}
-                    {{--                            <tr>--}}
-                    {{--                                <th>نام</th>--}}
-                    {{--                                <th>اسلاگ</th>--}}
-                    {{--                                <th>زیر دسته</th>--}}
-                    {{--                                <th>مقالات</th>--}}
-                    {{--                                <th>وضعیت</th>--}}
-                    {{--                                <th>عملیات</th>--}}
-                    {{--                            </tr>--}}
-                    {{--                            </thead>--}}
-                    {{--                            <tbody>--}}
-                    {{--                            <tr>--}}
-                    {{--                                <td>ورزشی</td>--}}
-                    {{--                                <td>ورزشی</td>--}}
-                    {{--                                <td>-</td>--}}
-                    {{--                                <td><a href="" class="btn-sm">0 مورد</a></td>--}}
-                    {{--                                <td>--}}
-                    {{--                                    <div class="main-toggle main-toggle-success"><span></span></div>--}}
-                    {{--                                </td>--}}
-                    {{--                                <td class="d-flex justify-content-start">--}}
-                    {{--                                    <a href="" class="btn-sm"><i class="fe fe-eye"></i> نمایش</a>--}}
-                    {{--                                    <a href="" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>--}}
-                    {{--                                    <form action="" method="post">--}}
-                    {{--                                        @csrf @method('delete')--}}
-                    {{--                                        <button type="submit" class="btn btn-sm btn-link delete">--}}
-                    {{--                                            <i class="fe fe-trash-2"></i> پاک کردن--}}
-                    {{--                                        </button>--}}
-                    {{--                                    </form>--}}
-                    {{--                                </td>--}}
-                    {{--                            </tr>--}}
-
-                    {{--                            </tbody>--}}
-                    {{--                        </table>--}}
-                    {{--                    </div>--}}
-
                     <div class="table-responsive d-inline">
                         <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                             <div class="row">
@@ -81,12 +44,9 @@
                                         <thead>
                                         <tr role="row">
                                             <th class="wd-15p border-bottom-0 sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="نام کوچک: activate to sort column descending" style="width: 101.667px;">عنوان</th>
-                                            <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="نویسنده: activate to sort column ascending" style="width: 101.667px;">نویسنده</th>
-                                            <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="دسته بندی: activate to sort column ascending" style="width: 101.667px;">دسته بندی</th>
-                                            <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="نام خانوادگی: activate to sort column ascending" style="width: 101.667px;">اسلاگ</th>
                                             <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="برچسب: activate to sort column ascending" style="width: 101.667px;">برچسب</th>
                                             <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="اسلاگ: activate to sort column ascending" style="width: 101.667px;">تاریخ انتشار</th>
-                                            <th class="wd-10p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="امکان نظر دهی: activate to sort column ascending" style="width: 54.4375px;">امکان نظر دهی</th>
+                                            <th class="wd-10p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="امکان نظر دهی: activate to sort column ascending" style="width: 54.4375px;">درج نظر</th>
                                             <th class="wd-10p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="وضعیت: activate to sort column ascending" style="width: 54.4375px;">وضعیت</th>
                                             <th class="wd-25p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="عملیات: activate to sort column ascending" style="width: 196.135px;">عملیات</th>
                                         </tr>
@@ -95,19 +55,23 @@
 
                                         @foreach($posts as $post)
                                             <tr>
-                                                <td>{{ Str::limit($post->title, 20) }}</td>
-                                                <td>{{ $post->author->fullname ?? '-' }}</td>
-                                                <td>{{ $post->category->name ?? '-' }}</td>
-                                                <td>{{ $post->slug ?? '-' }}</td>
+                                                <td class="text-nowrap">
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#dataModal-{{ $post->id }}">{{ Str::limit($post->title, 50) }}</a>
+                                                </td>
                                                 @empty($post->label)
                                                     <td><small class="badge badge-light">بدون برچسب</small></td>
                                                 @else
-                                                    <td class="badge badge-primary-transparent"><small>{{ $post->label }}</small></td>
+                                                    <td>
+                                                        @foreach(explode(',', $post->label) as $label)
+                                                            <small class="badge badge-dark"><i class="fe fe-tag"></i> {{ $post->labelname($label) }}
+                                                            </small>
+                                                        @endforeach
+                                                    </td>
                                                 @endempty
-                                                <td>{{ jalaliDate($post->published_at, '%B %d، %Y') ?? '-' }}</td>
+                                                <td>{{ jalaliDate($post->published_at, '%d %B، %Y') ?? '-' }}</td>
                                                 <td>
                                                     <label for="{{ $post->id }}-commentable">
-                                                        <input type="checkbox" id="{{ $post->id }}-commentable" onchange="commentable({{ $post->id }})" data-url="{{ route('admin.post.commentable', $post->id) }}"  data-value="{{ $post->commentable }}"  @if ($post->commentable === 1) checked @endif>
+                                                        <input type="checkbox" id="{{ $post->id }}-commentable" onchange="commentable({{ $post->id }})" data-url="{{ route('admin.post.commentable', $post->id) }}" data-value="{{ $post->commentable }}" @if ($post->commentable === 1) checked @endif>
                                                     </label>
                                                 </td>
                                                 <td>
@@ -117,6 +81,7 @@
                                                 </td>
                                                 <td class="d-flex justify-content-start">
                                                     <a href="{{ route('admin.post.show', $post) }}" class="btn-sm"><i class="fe fe-eye"></i> نمایش</a>
+                                                    <a href="{{ route('admin.post.clone', $post) }}" class="btn-sm"><i class="fe fe-copy"></i> شبیه سازی</a>
                                                     <a href="{{ route('admin.post.edit', $post) }}" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
                                                     <form action="{{ route('admin.post.destroy', $post) }}" method="post">
                                                         @csrf @method('delete')
@@ -126,6 +91,132 @@
                                                     </form>
                                                 </td>
                                             </tr>
+
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="dataModal-{{ $post->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" style="max-width: 45%">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $post->title }}</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body p-0">
+                                                            <div class="row">
+                                                                <div class="col-12 mg-b-0 text-md-nowrap pb-1">
+                                                                    <div class="d-flex">
+                                                                        <ul class="list-unstyled text-nowrap">
+                                                                            <li class="d-flex justify-content-start gap-3 m-0 p-3">
+                                                                                <div class="font-weight-bold">عنوان :</div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 bg-light m-0 p-3">
+                                                                                <div class="font-weight-bold">نویسنده :</div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 m-0 p-3">
+                                                                                <div class="font-weight-bold">دسته بندی :</div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 bg-light m-0 p-3">
+                                                                                <div class="font-weight-bold">اسلاگ :</div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 m-0 p-3">
+                                                                                <div class="font-weight-bold">برچسب :</div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start  bg-light gap-3 m-0 p-3">
+                                                                                <div class="font-weight-bold">تگ ها :</div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 m-0 p-3">
+                                                                                <div class="font-weight-bold">زمان انتشار :</div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 bg-light m-0 p-3">
+                                                                                <div class="font-weight-bold">زمان ایجاده شده :</div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 m-0 p-3">
+                                                                                <div class="font-weight-bold">ویرایش شده در :</div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 bg-light m-0 p-3">
+                                                                                <div class="font-weight-bold">عملیات :</div>
+                                                                            </li>
+                                                                        </ul>
+                                                                        <ul class="list-unstyled w-100 text-nowrap">
+                                                                            <li class="d-flex justify-content-start gap-3 m-0 p-3">
+                                                                                <div>{{ $post->title ?? '-' }}</div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 bg-light m-0 p-3">
+                                                                                <div>
+                                                                                    <a href="#">{{ $post->author->fullname ?? '-' }}</a>
+                                                                                </div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 m-0 p-3">
+                                                                                <div>
+                                                                                    <a href="{{ route('admin.postcategory.show', $post->category) }}">{{ $post->category->name ?? '-' }}</a>
+                                                                                </div>
+                                                                            </li>
+
+                                                                            <li class="d-flex justify-content-start gap-3 bg-light m-0 p-3">
+                                                                                <div>{{ $post->slug }}</div>
+                                                                            </li>
+
+                                                                            <li class="d-flex justify-content-start gap-3 m-0 p-3">
+                                                                                @empty($post->label)
+                                                                                    <div class="bg-light rounded px-1">
+                                                                                        <small>بدون برچسب</small></div>
+                                                                                @else
+                                                                                    <div>
+                                                                                        @foreach(explode(',', $post->label) as $label)
+                                                                                            <small class="bg-dark rounded mx-1 p-1 text-white"><i class="fe fe-tag"></i> {{ $post->labelname($label) }}
+                                                                                            </small>
+                                                                                        @endforeach
+                                                                                    </div>
+                                                                                @endempty
+                                                                            </li>
+
+                                                                            <li class="d-flex justify-content-start bg-light gap-3 m-0 p-3">
+                                                                                @empty($post->tags)
+                                                                                    <div class="bg-light rounded px-1">
+                                                                                        <small>بدون تگ</small></div>
+                                                                                @else
+                                                                                    <div>
+                                                                                        @foreach(explode(',', $post->tags) as $tag)
+                                                                                            <small class="bg-gray-100 rounded mx-1 p-1"><i class="fe fe-hash"></i> {{ $tag }}
+                                                                                            </small>
+                                                                                        @endforeach
+                                                                                    </div>
+                                                                                @endempty
+                                                                            </li>
+
+                                                                            <li class="d-flex justify-content-start gap-3 m-0 p-3">
+                                                                                {{ jalaliDate($post->published_at) ?? '-' }} {{ jalaliTime($post->published_at, 'H:i') }}
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 bg-light m-0 p-3">
+                                                                                <div>{{ jalaliDate($post->created_at) }} {{ jalaliTime($post->created_at, 'H:i') }}</div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 m-0 p-3">
+                                                                                <div>{{ jalaliDate($post->updated_at) }} {{ jalaliTime($post->updated_at, 'H:i') }}</div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 bg-light m-0 p-3">
+                                                                                <div class="d-flex justify-content-start">
+                                                                                    <a href="{{ route('admin.post.show', $post) }}" class="btn-sm"><i class="fe fe-eye"></i> نمایش</a>
+                                                                                    <a href="{{ route('admin.post.clone', $post) }}" class="btn-sm"><i class="fe fe-copy"></i> شبیه سازی</a>
+                                                                                    <a href="{{ route('admin.post.edit', $post) }}" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
+                                                                                    <form action="{{ route('admin.post.destroy', $post) }}" method="post">
+                                                                                        @csrf @method('delete')
+                                                                                        <button type="submit" class="btn btn-sm btn-link delete">
+                                                                                            <i class="fe fe-trash-2"></i> پاک کردن
+                                                                                        </button>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </li>
+
+                                                                        </ul>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div><!-- bd -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         @endforeach
 
                                         </tbody>

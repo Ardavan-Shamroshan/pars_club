@@ -15,7 +15,7 @@
 
 <body class="main-body app sidebar-mini">
     <!-- switcher -->
-    @include('admin::layouts.switcher')
+{{--    @include('admin::layouts.switcher')--}}
     <!-- switcher -->
 
     <!-- Loader -->

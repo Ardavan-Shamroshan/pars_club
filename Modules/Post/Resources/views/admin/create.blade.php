@@ -35,7 +35,7 @@
             </div>
 
             {{-- form --}}
-            <form action="{{ route('admin.post.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.post.store') }}" id="form" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row">
@@ -58,20 +58,24 @@
                             <div class="card-header"></div>
                             <div class="card-body pt-0">
                                 <div>
-                                    {{-- author id --}}
-                                    <div class="form-group mb-4">
-                                        <label class="form-label @error('author_id') tx-danger @enderror">نویسنده
-                                            <span class="tx-danger">*</span></label>
-                                        <div class="SumoSelect sumo_somename" tabindex="0" role="button" aria-expanded="false">
-                                            <select name="author_id" class="form-control SlectBox SumoUnder @error('author_id') border-danger @enderror" onclick="console.log($(this).val())" onchange="console.log('change is firing')" tabindex="-1">
-                                                <option value="">-</option>
-                                                @foreach($users as $user)
-                                                    <option value="{{ $user->id }}" @selected(old('author_id') == $user->id)>{{ $user->fullname }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('author_id')
-                                            <small class="tx-danger">{{ $message }}</small> @enderror
-                                        </div>
+                                    {{--                                    --}}{{-- author id --}}
+                                    {{--                                    <div class="form-group mb-4">--}}
+                                    {{--                                        <label class="form-label @error('author_id') tx-danger @enderror">نویسنده--}}
+                                    {{--                                            <span class="tx-danger">*</span></label>--}}
+                                    {{--                                        <div class="SumoSelect sumo_somename" tabindex="0" role="button" aria-expanded="false">--}}
+                                    {{--                                            <select name="author_id" class="form-control SlectBox SumoUnder @error('author_id') border-danger @enderror" onclick="console.log($(this).val())" onchange="console.log('change is firing')" tabindex="-1">--}}
+                                    {{--                                                <option value="">-</option>--}}
+                                    {{--                                                @foreach($users as $user)--}}
+                                    {{--                                                    <option value="{{ $user->id }}" @selected(old('author_id') == $user->id)>{{ $user->fullname }}</option>--}}
+                                    {{--                                                @endforeach--}}
+                                    {{--                                            </select>--}}
+                                    {{--                                            @error('author_id')--}}
+                                    {{--                                            <small class="tx-danger">{{ $message }}</small> @enderror--}}
+                                    {{--                                        </div>--}}
+                                    {{--                                    </div>--}}
+
+                                    <div class="form-group">
+                                        <label for="">نویسنده: {{ auth()->user()->fullname ?? 'وارد نشده اید' }}</label>
                                     </div>
 
                                     {{-- category id --}}
@@ -116,6 +120,14 @@
                                                 <option value="3">ویدیو</option>
                                             </select>
                                         </div>
+                                    </div>
+
+                                    {{-- tags --}}
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">تگ:</label>
+                                        <input type="hidden" class="form-control form-control-sm @error('tags') border border-danger @enderror" name="tags" id="tags" value="{{ old('tags') }}">
+                                        <select id="select_tags" class="select2 form-control form-control-sm @error('tags') border border-danger @enderror" multiple></select>
+                                        <small class="tx-gray-600">تگ های خود را وارد کنید و با زدن دکمه<span class="badge badge-light border shadow-base">Enter</span> تگ را ایجاد کنید</small>
                                     </div>
 
                                     {{-- summary --}}
@@ -188,6 +200,7 @@
     <script src="{{ asset('modules/admin/assets/plugins/jalalidatepicker/persian-date.min.js') }}"></script>
     <script src="{{ asset('modules/admin/assets/plugins/jalalidatepicker/persian-datepicker.min.js') }}"></script>
 
+    {{-- ckeditor5 --}}
     <script>
         ClassicEditor.create(document.querySelector('#editor'), {
             language: {
@@ -204,6 +217,7 @@
     </script>
 
 
+    {{-- datepicker --}}
     <script>
         $(document).ready(function () {
             $('#published_at_view').persianDatepicker({
@@ -211,6 +225,36 @@
                 altField: '#published_at'
             })
         });
+    </script>
+
+
+    {{-- select2 select tags --}}
+    <script>
+        $(document).ready(function () {
+            var tags_input = $('#tags');
+            var select_tags = $('#select_tags');
+            var default_tags = tags_input.val();
+            var default_data = null;
+
+            console.log(tags_input, select_tags, default_tags, default_data)
+
+            if (tags_input.val() !== null && tags_input.val().length > 0)
+                default_data = default_tags.split(',');
+
+            select_tags.select2({
+                tags: true,
+                data: default_data,
+                theme: "classic",
+                dir: "rtl"
+            });
+            select_tags.children('option').attr('selected', true).trigger('change');
+            $('#form').submit(function () {
+                if (select_tags.val() !== null && select_tags.val().length > 0) {
+                    var selectedSource = select_tags.val().join(',');
+                    tags_input.val(selectedSource)
+                }
+            })
+        })
     </script>
 
 @endsection

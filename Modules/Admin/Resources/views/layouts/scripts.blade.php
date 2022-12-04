@@ -70,8 +70,12 @@
 
 <!--Internal  Form-elements js-->
 <script src="{{ asset('modules/admin/assets/js/advanced-form-elements.js') }}"></script>
-<script src="{{ asset('modules/admin/assets/js/select2.js') }}"></script>
 
 <!--Internal Sumoselect js-->
 <script src="{{ asset('modules/admin/assets/plugins/sumoselect/jquery.sumoselect.js') }}"></script><!-- scripts --><!-- Back-to-top -->
 <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
+
+
+<!-- Back-to-top -->
+<a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a><!-- Jquery js-->
+<script src="{{ asset('modules/admin/assets/js/sticky.js') }}"></script><!-- sidemenu js -->

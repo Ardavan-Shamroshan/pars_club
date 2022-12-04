@@ -27,7 +27,7 @@ Route::prefix('admin')->group(function () {
         Route::delete('/destroy/{post}', [AdminPostController::class, 'destroy'])->name('admin.post.destroy');
         Route::get('/status/{post}', [AdminPostController::class, 'status'])->name('admin.post.status');
         Route::get('/commentable/{post}', [AdminPostController::class, 'commentable'])->name('admin.post.commentable');
-
+        Route::get('/clone/{post}', [AdminPostController::class, 'clone'])->name('admin.post.clone');
     });
 });
 

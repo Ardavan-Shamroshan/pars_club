@@ -48,6 +48,8 @@ class AdminPostController extends Controller
         $realTimestampStart = substr($request->published_at, 0, 10);
         $inputs['published_at'] = date('Y-m-d H:i:s', (int)$realTimestampStart);
 
+        // $inputs['author_id'] = Auth::id();
+        $inputs['author_id'] = User::query()->first()->id;
 
         // Image upload
         if ($request->hasFile('image')) {
@@ -61,12 +63,12 @@ class AdminPostController extends Controller
                 return redirect()->route('admin.post');
             }
             $inputs['image'] = $result;
+
+
             Post::query()->create($inputs);
             toast('خبر با موفقیت ایجاد شد', 'success');
             return redirect()->route('admin.post');
         }
-
-
     }
 
     /**
@@ -74,9 +76,8 @@ class AdminPostController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public
-    function show(Post $post) {
-        return view('post::show');
+    public function show(Post $post) {
+        return view('post::admin.show', compact('post'));
     }
 
     /**
@@ -84,9 +85,12 @@ class AdminPostController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public
-    function edit($id) {
-        return view('post::edit');
+    public function edit(Post $post) {
+        // All categories for parent selection
+        $categories = PostCategory::query()->where('status', 1)->get();
+        // All authors for author selection
+        $authors = User::query()->where('status', 1)->get();
+        return view('post::admin.edit', compact('post', 'authors', 'categories'));
     }
 
     /**
@@ -96,8 +100,42 @@ class AdminPostController extends Controller
      * @return Renderable
      */
     public
-    function update(Request $request, $id) {
-        //
+    function update(PostRequest $request, Post $post, ImageService $imageService) {
+        $inputs = $request->all();
+
+        // Convert timestamp to Y-m-d H:i:s format
+        $realTimestampStart = substr($request->published_at, 0, 10);
+        $inputs['published_at'] = date('Y-m-d H:i:s', (int)$realTimestampStart);
+
+
+        // $inputs['author_id'] = Auth::id();
+        $inputs['author_id'] = User::query()->first()->id;
+
+        // Image upload
+        if ($request->hasFile('image')) {
+            if (!empty($post->image))
+                $imageService->deleteDirectoryAndFiles($post->image['directory']);
+            $imageService->setExclusiveDirectory('modules' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'post');
+            $result = $imageService->createIndexAndSave($request->file('image'));
+            // If createIndexAndSize failed
+            if ($result === false) {
+                toast('آپلود تصویر با خطا مواجه شد', 'error');
+                return redirect()->route('admin.post');
+            }
+            $inputs['image'] = $result;
+        } // Change image current index size
+        else
+            if (isset($inputs['currentImage']) && !empty($post->image)) {
+                $image = $post->image;
+                $image['currentImage'] = $inputs['currentImage'];
+                $inputs['image'] = $image;
+            }
+
+        $post->slug = null;
+        $post->update($inputs);
+        toast('خبر با موفقیت ویرایش شد', 'success');
+        return redirect()->route('admin.post');
+
     }
 
     /**
@@ -105,13 +143,22 @@ class AdminPostController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public
-    function destroy($id) {
-        //
+    public function destroy(Post $post) {
+        $post->delete();
+        toast('داده مورد نظر با موفقیت حذف شد', 'success');
+        return redirect()->route('admin.post');
     }
 
-    public
-    function status(Post $post) {
+
+    // Duplicate or clone a database record
+    public function clone(Post $post) {
+        $clonedPost = $post->replicate();
+        $clonedPost->save();
+        toast('داده با موفقیت شبیه سازی شد', 'success');
+        return redirect()->route('admin.post');
+    }
+
+    public function status(Post $post) {
         $post->status = $post->status == 0 ? 1 : 0;
         $result = $post->save();
 

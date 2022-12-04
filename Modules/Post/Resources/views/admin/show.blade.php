@@ -1,6 +1,6 @@
 @extends('admin::layouts.master')
 @section('title')
-    نمایش دسته بندی اخبار | داشبورد مدیریت
+    نمایش خبر | داشبورد مدیریت
 @endsection
 @section('content')
     <!-- breadcrumb -->
@@ -8,8 +8,8 @@
         <div class="my-auto">
             <div class="d-flex justify-content-between">
                 <span class="text-muted mt-1 tx-13 mb-0">مجله و خبرنامه<span class="text-muted ms-1">/</span></span>
-                <span class="mt-1 tx-13 mb-0"><a href="{{ route('admin.postcategory') }}">دسته بندی اخبار</a><span class="text-muted ms-1">/</span></span>
-                <h4 class="content-title mb-0 my-auto">نمایش دسته بندی اخبار</h4>
+                <span class="mt-1 tx-13 mb-0"><a href="{{ route('admin.post') }}">لیست اخبار</a><span class="text-muted ms-1">/</span></span>
+                <h4 class="content-title mb-0 my-auto">نمایش خبر</h4>
             </div>
         </div>
 
@@ -24,7 +24,7 @@
                     <div class="d-flex gap-2">
                         <h4 class="card-title mg-b-0">دسته بندی اخبار</h4>
                         <p class="tx-12 tx-gray-500 mb-2">نمایش دسته بندی.
-                            <a href="{{ route('admin.postcategory') }}" id="m-l-c-05"><i class="fe fe-chevrons-right  "></i>بازگشت به لیست دسته بندی ها</a>
+                            <a href="{{ route('admin.post') }}" id="m-l-c-05"><i class="fe fe-chevrons-right  "></i>بازگشت به لیست دسته بندی ها</a>
                         </p>
                     </div>
 
@@ -35,41 +35,78 @@
                 </div>
             </div>
 
-            <div class="col-8">
+            <div class="col-9">
                 <div class="card" id="printable">
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped mg-b-0 text-md-nowrap">
-                                <tbody>
+                                <div class="table-header w-100 mb-3 d-flex gap-2">
+                                    <img class="img-thumbnail" src="{{ asset($post->image['indexArray']['medium']) }}" alt="{{ $post->title ?? 'تصویر' }}">
+                                    <div>
+                                        <h6 class="font-weight-bold">خلاصه :</h6>
+                                        <p>{{ $post->summary ?? '-' }}</p>
+                                    </div>
+                                </div>
+                                <tbody class="text-nowrap">
                                 <tr>
-                                    <th class="font-weight-bold">نام :</th>
-                                    <td>{{ $postcategory->name }}</td>
+                                    <th class="font-weight-bold">عنوان :</th>
+                                    <td>{{ $post->title ?? '-' }}</td>
+                                </tr>
+                                <tr class="text-wrap">
+                                    <th class="font-weight-bold">متن :</th>
+                                    <td>
+                                        {!! html_entity_decode($post->body) ?? '-' !!}
+                                        @foreach(explode(',', $post->tags) as $tag)
+                                            <small class="badge badge-light"><i class="fe fe-hash"></i> {{ $tag }}
+                                            </small>
+                                        @endforeach
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th class="font-weight-bold">اسلاگ :</th>
-                                    <td>{{ $postcategory->slug }}</td>
+                                    <td>{{ $post->slug }}</td>
                                 </tr>
                                 <tr>
-                                    <th class="font-weight-bold">زیر دسته :</th>
-                                    <td>-</td>
+                                    <th class="font-weight-bold">نویسنده :</th>
+                                    <td><a href="#">{{ $post->author->fullname ?? '-' }}</a></td>
                                 </tr>
                                 <tr>
-                                    <th class="font-weight-bold">مقالات :</th>
-                                    <td><a href="" class="btn-sm">0 مورد</a></td>
+                                    <th class="font-weight-bold">دسته بندی :</th>
+                                    <td>
+                                        <a href="{{ route('admin.post.show', $post->category) }}">{{ $post->category->name ?? '-' }}</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="font-weight-bold">برچسب :</th>
+                                    @empty($post->label)
+                                        <td><small class="badge badge-light">بدون برچسب</small></td>
+                                    @else
+                                        <td>
+                                            @foreach(explode(',', $post->label) as $label)
+                                                <small class="badge badge-dark"><i class="fe fe-tag"></i> {{ $post->labelname($label) }}
+                                                </small>
+                                            @endforeach
+                                        </td>
+                                    @endempty
+                                </tr>
+                                <tr>
+                                    <th class="font-weight-bold">زمان انتشار :</th>
+                                    <td> {{ jalaliDate($post->published_at) ?? '-' }} {{ jalaliTime($post->published_at, 'H:i') }} </td>
                                 </tr>
                                 <tr>
                                     <th class="font-weight-bold">زمان ایجاده شده :</th>
-                                    <td>{{ jalaliDate($postcategory->created_at) }} {{ jalaliTime($postcategory->created_at, 'H:i') }}</td>
+                                    <td>{{ jalaliDate($post->created_at) }} {{ jalaliTime($post->created_at, 'H:i') }}</td>
                                 </tr>
                                 <tr>
                                     <th class="font-weight-bold">ویرایش شده در :</th>
-                                    <td>{{ jalaliDate($postcategory->updated_at) }} {{ jalaliTime($postcategory->updated_at, 'H:i') }}</td>
+                                    <td>{{ jalaliDate($post->updated_at) }} {{ jalaliTime($post->updated_at, 'H:i') }}</td>
                                 </tr>
                                 <tr>
                                     <th class="font-weight-bold">عملیات :</th>
                                     <td class="d-flex justify-content-start">
-                                        <a href="{{ route('admin.postcategory.edit', $postcategory) }}" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
-                                        <form action="{{ route('admin.postcategory.destroy', $postcategory) }}" method="post">
+                                        <a href="{{ route('admin.post.clone', $post) }}" class="btn-sm"><i class="fe fe-copy"></i> شبیه سازی</a>
+                                        <a href="{{ route('admin.post.edit', $post) }}" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
+                                        <form action="{{ route('admin.post.destroy', $post) }}" method="post">
                                             @csrf @method('delete')
                                             <button type="submit" class="btn btn-sm btn-link delete">
                                                 <i class="fe fe-trash-2"></i> پاک کردن

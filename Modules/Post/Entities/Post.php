@@ -4,6 +4,7 @@ namespace Modules\Post\Entities;
 
 use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -38,7 +39,34 @@ class Post extends Model
     ];
 
     /**
-     * relations
+     * Accessors & Mutators
+     */
+    protected function label(): Attribute {
+        return Attribute::make(
+            set: fn($value) => implode(',', $value),
+        );
+    }
+
+    public function labelName($label) {
+        switch ($label) {
+            case 0:
+                $result = 'پیشنهاد سردبیر';
+                break;
+            case 1:
+                $result = 'مطالب داغ';
+                break;
+            case 2:
+                $result = 'نقل و انتقالات';
+                break;
+            default:
+                $result = 'ویدیو';
+                break;
+        }
+        return $result;
+    }
+
+    /**
+     * Relations
      */
 
     // category
