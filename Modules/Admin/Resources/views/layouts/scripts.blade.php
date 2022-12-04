@@ -27,16 +27,11 @@
 <script src="{{ asset('modules/admin/assets/switcher/js/switcher-rtl.js') }}"></script>
 
 <!--Internal  Datepicker js -->
-<script src="{{ asset('modules/admin/assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script><!--Internal  jquery.maskedinput js -->
-<script src="{{ asset('modules/admin/assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script><!--Internal  spectrum-colorpicker js -->
 <script src="{{ asset('modules/admin/assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script><!-- Internal Select2.min js -->
 <script src="{{ asset('modules/admin/assets/plugins/select2/js/select2.min.js') }}"></script><!--Internal Ion.rangeSlider.min js -->
 <script src="{{ asset('modules/admin/assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js') }}"></script><!--Internal  jquery-simple-datetimepicker js -->
-<script src="{{ asset('modules/admin/assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js') }}"></script><!--Internal  pickerjs js -->
 <script src="{{ asset('modules/admin/assets/plugins/pickerjs/picker.min.js') }}"></script><!-- Internal form-elements js -->
 <script src="{{ asset('modules/admin/assets/js/form-elements.js') }}"></script><!-- Ionicons js -->
-<script src="{{ asset('modules/admin/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js') }}"></script>
-<script src="{{ asset('modules/admin/assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script><!-- custom js -->
 
 <!-- Internal Data tables -->
 <script src="{{ asset('modules/admin/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>

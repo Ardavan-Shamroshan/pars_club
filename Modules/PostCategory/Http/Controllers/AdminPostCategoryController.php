@@ -17,7 +17,7 @@ class AdminPostCategoryController extends Controller
     public function index() {
         // Categories
         $categoriesCount = PostCategory::count();
-        $categories = PostCategory::query()->paginate(3);
+        $categories = PostCategory::query()->paginate(10);
         return view('postcategory::admin.index', compact('categories', 'categoriesCount'));
     }
 
@@ -26,8 +26,8 @@ class AdminPostCategoryController extends Controller
      * @return Renderable
      */
     public function create() {
-        // All categories for parent selection
-        $categories = PostCategory::all();
+        // All active categories for parent selection
+        $categories = PostCategory::query()->where('status', 1)->get();
         return view('postcategory::admin.create', compact('categories'));
     }
 

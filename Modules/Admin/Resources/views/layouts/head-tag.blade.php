@@ -23,7 +23,7 @@
 <link href="{{ asset('modules/admin/assets/css-rtl/animate.css') }}" rel="stylesheet"><!---Switcher css-->
 <link href="{{ asset('modules/admin/assets/switcher/css/switcher-rtl.css') }}" rel="stylesheet">
 <link href="{{ asset('modules/admin/assets/switcher/demo.css') }}" rel="stylesheet">
-<link href="{{ asset('modules/admin/assets/sweetalert/sweetalert2.css') }}" rel="stylesheet"/>
+<link href="{{ asset('modules/admin/assets/sweetalert/sweetalert2.css') }}" rel="stylesheet" />
 
 <!-- Internal Select2 css -->
 <link href="{{ asset('modules/admin/assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
@@ -36,18 +36,59 @@
 <!-- Internal Spectrum-colorpicker css -->
 <link href="{{ asset('modules/admin/assets/plugins/spectrum-colorpicker/spectrum.css') }}" rel="stylesheet">
 
-
 <!--Internal Sumoselect css-->
 <link rel="stylesheet" href="{{ asset('modules/admin/assets/plugins/sumoselect/sumoselect-rtl.css') }}">
 
-
-
 <!---Internal Fileupload css-->
-<link href="{{ asset('modules/admin/assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('modules/admin/assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
 
 <!---Internal Fancy uploader css-->
 <link href="{{ asset('modules/admin/assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
 
+<!--Internal  Quill css -->
+<link href="{{ asset('modules/admin/assets/plugins/quill/quill.snow.css') }}" rel="stylesheet">
+<link href="{{ asset('modules/admin/assets/plugins/quill/quill.bubble.css') }}" rel="stylesheet">
 
-<!--Internal  TelephoneInput css-->
-<link rel="stylesheet" href="{{ asset('modules/admin/assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">
+<link rel="icon" href="{{ asset('modules/admin/assets/img/brand/favicon.png') }}" type="image/x-icon" />
+
+<!-- Icons css -->
+<link href="{{ asset('modules/admin/assets/plugins/icons/icons.css') }}" rel="stylesheet">
+
+<!-- Bootstrap css -->
+<link href="{{ asset('modules/admin/assets/plugins/bootstrap/css/bootstrap.rtl.min.css') }}" rel="stylesheet">
+
+<!--  Right-sidemenu css -->
+<link href="{{ asset('modules/admin/assets/plugins/sidebar/sidebar.css') }}" rel="stylesheet">
+
+<!-- P-scroll bar css-->
+<link href="{{ asset('modules/admin/assets/plugins/perfect-scrollbar/p-scrollbar.css') }}" rel="stylesheet" />
+
+<!--  Sidemenu css -->
+<link id="theme" rel="stylesheet" href="{{ asset('modules/admin/assets/css-rtl/sidemenu.css') }}">
+
+<!-- Internal Select2 css -->
+<link href="{{ asset('modules/admin/assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+
+<!--Internal  Datetimepicker-slider css -->
+<link href="{{ asset('modules/admin/assets/plugins/amazeui-datetimepicker/css/amazeui.datetimepicker.css') }}" rel="stylesheet">
+<link href="{{ asset('modules/admin/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.css') }}" rel="stylesheet">
+<link href="{{ asset('modules/admin/assets/plugins/pickerjs/picker.min.css') }}" rel="stylesheet">
+
+<!-- Internal Spectrum-colorpicker css -->
+<link href="{{ asset('modules/admin/assets/plugins/spectrum-colorpicker/spectrum.css') }}" rel="stylesheet">
+
+<!--- Style css --->
+<link href="{{ asset('modules/admin/assets/css-rtl/style.css') }}" rel="stylesheet">
+<link href="{{ asset('modules/admin/assets/css-rtl/style-dark.css') }}" rel="stylesheet">
+<link href="{{ asset('modules/admin/assets/css-rtl/boxed.css') }}" rel="stylesheet">
+<link href="{{ asset('modules/admin/assets/css-rtl/dark-boxed.css') }}" rel="stylesheet">
+
+<!---Skinmodes css-->
+<link href="{{ asset('modules/admin/assets/css-rtl/skin-modes.css') }}" rel="stylesheet" />
+
+<!--- Animations css-->
+<link href="{{ asset('modules/admin/assets/css-rtl/animate.css') }}" rel="stylesheet">
+
+<!---Switcher css-->
+<link href="{{ asset('modules/admin/assets/switcher/css/switcher-rtl.css') }}" rel="stylesheet">
+<link href="{{ asset('modules/admin/assets/switcher/demo.css') }}" rel="stylesheet">

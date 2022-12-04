@@ -6,6 +6,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Post\Entities\Post;
 
 class PostCategory extends Model
 {
@@ -15,7 +16,6 @@ class PostCategory extends Model
         return \Modules\PostCategory\Database\factories\PostCategoryFactory::new();
     }
 
-
     /**
      * Generate slug from defined source field
      */
@@ -23,7 +23,7 @@ class PostCategory extends Model
         // TODO: Implement sluggable() method.
         return [
             'slug' => [
-                'source' => ['name', 'id'],
+                'source' => ['title', 'id'],
                 'includeTrashed' => true,
             ]
         ];
@@ -49,5 +49,9 @@ class PostCategory extends Model
         return $this->hasMany($this, 'parent_id')->with('children');
     }
 
+    // posts
+    public function posts() {
+        return $this->hasMany(Post::class);
+    }
 
 }

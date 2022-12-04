@@ -1,0 +1,35 @@
+<?php
+
+use Modules\Post\Http\Controllers\AdminPostController;
+use Modules\Post\Http\Controllers\PostController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+
+// admin post
+Route::prefix('admin')->group(function () {
+    Route::prefix('post')->group(function () {
+        Route::get('/', [AdminPostController::class, 'index'])->name('admin.post');
+        Route::get('/create', [AdminPostController::class, 'create'])->name('admin.post.create');
+        Route::post('/store', [AdminPostController::class, 'store'])->name('admin.post.store');
+        Route::get('/show/{post:slug}', [AdminPostController::class, 'show'])->name('admin.post.show');
+        Route::get('/edit/{post:slug}', [AdminPostController::class, 'edit'])->name('admin.post.edit');
+        Route::put('/update/{post}', [AdminPostController::class, 'update'])->name('admin.post.update');
+        Route::delete('/destroy/{post}', [AdminPostController::class, 'destroy'])->name('admin.post.destroy');
+        Route::get('/status/{post}', [AdminPostController::class, 'status'])->name('admin.post.status');
+    });
+});
+
+// post
+Route::prefix('post')->group(function () {
+    Route::get('/',  [PostController::class, 'index'])->name('post');
+});

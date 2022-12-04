@@ -1,0 +1,174 @@
+@extends('admin::layouts.master')
+@section('title')
+    ساخت خبر | داشبورد مدیریت
+@endsection
+@section('head-tag')
+    <link rel="stylesheet" href="{{ asset('modules/admin/assets/plugins/jalalidatepicker/persian-datepicker.min.css') }}">
+
+@endsection
+@section('content')
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex justify-content-between">
+                <span class="text-muted mt-1 tx-13 mb-0">مجله و خبرنامه<span class="text-muted ms-1">/</span></span>
+                <span class="mt-1 tx-13 mb-0"><a href="{{ route('admin.post') }}"> اخبار</a><span class="text-muted ms-1">/</span></span>
+                <h4 class="content-title mb-0 my-auto">ساخت خبر</h4>
+            </div>
+        </div>
+
+    </div>
+    <!-- breadcrumb -->
+
+
+    <!-- row -->
+    <div class="row row-sm">
+        <div class="col-xl-12">
+            <div class="pb-0 mb-2">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex gap-2">
+                        <h4 class="card-title mg-b-0">اخبار</h4>
+                        <p class="tx-12 tx-gray-500 mb-2">ساخت خبر.
+                            <a href="{{ route('admin.post') }}" id="m-l-c-05"><i class="fe fe-chevrons-right  "></i>بازگشت به لیست اخبار</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-8">
+
+                {{-- validation errors alert --}}
+                @if ($errors->any())
+                    <div class="alert alert-solid-danger mg-b-0 rounded mb-2" role="alert">
+                        <button aria-label="بستن" class="close" data-dismiss="alert" type="button">
+                            <span aria-hidden="true">×</span></button>
+
+                        @foreach($errors->all() as $error)
+                            <div><span class="alert-inner--icon"><i class="fe fe-info"></i></span> {{ $error }} </div>
+                        @endforeach
+
+                    </div>
+                @endif
+
+                {{-- form --}}
+                <form action="{{ route('admin.post.store') }}" method="post">
+                    @csrf
+                    <div class="card box-shadow-0">
+                        <div class="card-header"></div>
+                        <div class="card-body pt-0">
+                            <div>
+
+                                <div class="mb-4">
+                                    <label class="form-label">نویسنده
+                                        <span class="tx-danger">*</span></label>
+                                    <div class="SumoSelect sumo_somename" tabindex="0" role="button" aria-expanded="false">
+                                        <select name="author_id" class="form-control SlectBox SumoUnder" onclick="console.log($(this).val())" onchange="console.log('change is firing')" tabindex="-1">
+                                            <option value="">-</option>
+                                            @foreach($users as $user)
+                                                <option value="{{ $user->id }}" @selected(old('author_id') == $user->id)>{{ $user->fullname }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label">دسته بندی
+                                        <span class="tx-danger">*</span></label>
+                                    <div class="SumoSelect sumo_somename" tabindex="0" role="button" aria-expanded="false">
+                                        <select name="parent_id" class="form-control SlectBox SumoUnder" onclick="console.log($(this).val())" onchange="console.log('change is firing')" tabindex="-1">
+                                            <option value="">-</option>
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}" @selected(old('parent_id') == $category->id)>{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label @error('title') tx-danger @enderror">عنوان خبر:
+                                        <span class="tx-danger">*</span></label>
+                                    <input type="text" name="title" class="form-control @error('title') border-danger @enderror" value="{{ old('title') }}">
+                                    @error('title') <small class="tx-danger">نام را خالی رها نکنید</small> @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">اسلاگ (نمایش در url):</label>
+                                    <input type="text" name="slug" class="form-control" value="{{ old('slug') }}">
+                                    <small class="tx-gray-600">اگر خالی رها کنید، بصورت خودکار از روی عنوان تولید خواهد شد.</small>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label">برچسب</label>
+                                    <div class="SumoSelect" tabindex="0" role="button" aria-expanded="true">
+                                        <select multiple="multiple" class="testselect2 SumoUnder" tabindex="-1" name="label">
+                                            <option value="">بدون برچسب</option>
+                                            <option value="0">پیشنهاد سردبیر</option>
+                                            <option value="1">مطالب داغ</option>
+                                            <option value="2">نقل و انتقالات</option>
+                                            <option value="3">ویدیو</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="summary">خلاصه
+                                        <span class="tx-danger">*</span></label>
+                                    <textarea class="form-control" name="summary" rows="3" style="height: 7rem; resize: none"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="body">متن
+                                        <span class="tx-danger">*</span></label>
+                                    <div class="ql-wrapper ql-wrapper-demo bg-gray-100">
+                                        <div id="quillEditor" class="ql-container ql-snow" name="body">
+                                            <div class="ql-editor" data-gramm="false" contenteditable="true"></div>
+                                            <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
+                                            <div class="ql-tooltip ql-hidden">
+                                                <a class="ql-preview" target="_blank" href="about:blank"></a><input type="text" data-formula="e=mc^2" data-link="https://quilljs.com" data-video="Embed URL"><a class="ql-action"></a><a class="ql-remove"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="published_at">زمان انتشار</label>
+                                    <div class="input-group col-md-4">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
+                                            </div>
+                                        </div>
+
+                                            <input type="text" name="published_at" id="published_at" class="form-control form-control-sm d-none">
+                                        <input type="text" id="published_at_view" class="form-control form-control-sm @error('published_at') border border-danger @enderror">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-3"><i class="fe fe-save"></i> ذخیره و بازگشت
+                    </button>
+                    <a href="{{ route('admin.postcategory') }}" class="btn btn-secondary mb-3"><i class="fe fe-slash"></i> لغو</a>
+                </form>
+            </div>
+        </div>
+        <!--/div-->
+    </div>
+    <!-- /row -->
+@endsection
+@section('script')
+
+    <script src="{{ asset('modules/admin/assets/plugins/jalalidatepicker/persian-date.min.js') }}"></script>
+    <script src="{{ asset('modules/admin/assets/plugins/jalalidatepicker/persian-datepicker.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#published_at_view').persianDatepicker({
+                format: 'YYYY/MM/DD',
+                altField: '#published_at'
+            })
+        });
+    </script>
+
+@endsection
