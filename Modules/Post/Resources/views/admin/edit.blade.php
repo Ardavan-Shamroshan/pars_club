@@ -8,18 +8,15 @@
 
 @section('content')
     <!-- breadcrumb -->
-    <div class="breadcrumb-header justify-content-between">
-        <div class="my-auto">
-            <div class="d-flex justify-content-between">
-                <span class="text-muted mt-1 tx-13 mb-0">مجله و خبرنامه<span class="text-muted ms-1">/</span></span>
-                <span class="mt-1 tx-13 mb-0"><a href="{{ route('admin.post') }}"> اخبار</a><span class="text-muted ms-1">/</span></span>
-                <h4 class="content-title mb-0 my-auto">ویرایش خبر</h4>
-            </div>
-        </div>
-
-    </div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('admin') }}">مدیریت</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.post') }}">مجله و خبرنامه</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.post') }}">اخبار</a></li>
+            <li class="breadcrumb-item">ویرایش خبر</li>
+        </ol>
+    </nav>
     <!-- breadcrumb -->
-
 
     <!-- row -->
     <div class="row row-sm">
@@ -27,10 +24,13 @@
             <div class="pb-0 mb-2">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-2">
-                        <h4 class="card-title mg-b-0">اخبار</h4>
+                        <h4 class="card-title mg-b-0">{{ $post->title ?? '-' }}</h4>
                         <p class="tx-12 tx-gray-500 mb-2">ویرایش خبر.
-                            <a href="{{ route('admin.post') }}" id="m-l-c-05"><i class="fe fe-chevrons-right  "></i>بازگشت به لیست اخبار</a>
+                            <a href="{{ route('admin.post') }}" id="m-l-c-05"><i class="fe fe-chevrons-right"></i>بازگشت به لیست اخبار</a>
                         </p>
+                    </div>
+                    <div class="tag tag-rounded tag-blue ">
+                        <a href="#" class="text-white"><i class="fe fe-chevron-right"></i> مشاهده در وبگاه</a>
                     </div>
                 </div>
             </div>
@@ -46,13 +46,11 @@
                             <div class="alert alert-solid-danger mg-b-0 rounded mb-2" role="alert">
                                 <button aria-label="بستن" class="close" data-dismiss="alert" type="button">
                                     <span aria-hidden="true">×</span></button>
-
                                 @foreach($errors->all() as $error)
                                     <div>
                                         <span class="alert-inner--icon"><i class="fe fe-info"></i></span> {{ $error }}
                                     </div>
                                 @endforeach
-
                             </div>
                         @endif
 
@@ -128,10 +126,11 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">تگ:</label>
                                         <input type="hidden" class="form-control form-control-sm @error('tags') border border-danger @enderror" name="tags" id="tags" value="{{ old('tags', $post->tags) }}">
-                                        <select id="select_tags" class="select2 form-control form-control-sm @error('tags') border border-danger @enderror" multiple></select>
+                                        <select id="select_tags" class="select2 form-control form-control-sm @error('tags') border border-danger @enderror" name="tags" multiple></select>
                                         <small class="tx-gray-600">تگ های خود را وارد کنید و با زدن دکمه
                                             <span class="badge badge-light border shadow-base">Enter</span> تگ را ایجاد کنید</small>
                                     </div>
+
 
                                     {{-- summary --}}
                                     <div class="form-group mb-4">
@@ -194,7 +193,7 @@
                             @foreach ($post->image['indexArray'] as $key => $value)
                                 <div class="form-check">
                                     <input type="radio" class="form-check-input" value="{{ $key }}" id="{{ $number }}" name="currentImage" @if($post->image['currentImage'] == $key) checked @endif>
-                                    <label for="{{ $number }}" class="badge badge-primary p-2">
+                                    <label for="{{ $number }}" class="badge badge-secondary p-2">
                                         <span class="text-capitalize">{{$key}}</span>
                                         {{ Config::get('image.index-images-size.' . $key . '.width') }} X {{ Config::get('image.index-images-size.' . $key . '.height')}}
                                     </label>
@@ -213,7 +212,7 @@
                 </button>
 
                 {{-- cancel --}}
-                <a href="{{ route('admin.postcategory') }}" class="btn btn-secondary mb-3"><i class="fe fe-slash"></i> لغو</a>
+                <a href="{{ route('admin.post') }}" class="btn btn-secondary mb-3"><i class="fe fe-slash"></i> لغو</a>
             </form>
         </div>
         <!-- /row -->
@@ -259,17 +258,19 @@
             var default_tags = tags_input.val();
             var default_data = null;
 
-            console.log(tags_input, select_tags, default_tags, default_data)
 
             if (tags_input.val() !== null && tags_input.val().length > 0)
                 default_data = default_tags.split(',');
 
             select_tags.select2({
+                multiple: true,
                 tags: true,
                 data: default_data,
                 theme: "classic",
                 dir: "rtl"
             });
+
+
             select_tags.children('option').attr('selected', true).trigger('change');
             $('#form').submit(function () {
                 if (select_tags.val() !== null && select_tags.val().length > 0) {
@@ -277,7 +278,7 @@
                     tags_input.val(selectedSource)
                 }
             })
-        })
+        });
     </script>
 
 @endsection

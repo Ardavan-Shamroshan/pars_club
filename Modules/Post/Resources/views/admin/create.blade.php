@@ -7,18 +7,15 @@
 @endsection
 @section('content')
     <!-- breadcrumb -->
-    <div class="breadcrumb-header justify-content-between">
-        <div class="my-auto">
-            <div class="d-flex justify-content-between">
-                <span class="text-muted mt-1 tx-13 mb-0">مجله و خبرنامه<span class="text-muted ms-1">/</span></span>
-                <span class="mt-1 tx-13 mb-0"><a href="{{ route('admin.post') }}"> اخبار</a><span class="text-muted ms-1">/</span></span>
-                <h4 class="content-title mb-0 my-auto">ساخت خبر</h4>
-            </div>
-        </div>
-
-    </div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('admin') }}">مدیریت</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.post') }}">مجله و خبرنامه</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.post') }}">اخبار</a></li>
+            <li class="breadcrumb-item">ساخت خبر</li>
+        </ol>
+    </nav>
     <!-- breadcrumb -->
-
 
     <!-- row -->
     <div class="row row-sm">
@@ -83,7 +80,7 @@
                                         <label class="form-label @error('category_id') tx-danger @enderror">دسته بندی
                                             <span class="tx-danger">*</span></label>
                                         <div class="SumoSelect sumo_somename" tabindex="0" role="button" aria-expanded="false">
-                                            <select name="category_id" class="form-control SlectBox SumoUnder @error('category_id') border-danger @enderror" onclick="console.log($(this).val())" onchange="console.log('change is firing')" tabindex="-1">
+                                            <select name="category_id" id="category_id" class="form-control SlectBox SumoUnder @error('category_id') border-danger @enderror" tabindex="-1">
                                                 <option value="">-</option>
                                                 @foreach($categories as $category)
                                                     <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>{{ $category->name }}</option>
@@ -189,7 +186,7 @@
                 </button>
 
                 {{-- cancel --}}
-                <a href="{{ route('admin.postcategory') }}" class="btn btn-secondary mb-3"><i class="fe fe-slash"></i> لغو</a>
+                <a href="{{ route('admin.post') }}" class="btn btn-secondary mb-3"><i class="fe fe-slash"></i> لغو</a>
             </form>
         </div>
         <!-- /row -->
@@ -256,5 +253,4 @@
             })
         })
     </script>
-
 @endsection

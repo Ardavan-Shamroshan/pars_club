@@ -5,14 +5,18 @@
 @section('content')
 
     <!-- breadcrumb -->
-    <div class="breadcrumb-header justify-content-between">
-        <div class="my-auto">
-            <div class="d-flex">
-                <span class="text-muted mt-1 tx-13 ms-2 mb-0">مجله و خبرنامه /</span>
-                <h4 class="content-title mb-0 my-auto"> اخبار</h4>
-            </div>
-        </div>
-    </div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('admin') }}">مدیریت</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{ route('admin.post') }}">مجله و خبرنامه</a>
+            </li>
+            <li class="breadcrumb-item">اخبار
+            </li>
+        </ol>
+    </nav>
     <!-- breadcrumb -->
 
     <!-- row -->
@@ -43,7 +47,7 @@
                                     <table class="table text-md-nowrap dataTable no-footer" id="example1" role="grid" aria-describedby="example1_info">
                                         <thead>
                                         <tr role="row">
-                                            <th class="wd-15p border-bottom-0 sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="نام کوچک: activate to sort column descending" style="width: 101.667px;">عنوان</th>
+                                            <th class="wd-15p border-bottom-0 sorting sorting_asc w-25" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="نام کوچک: activate to sort column descending" style="width: 101.667px;">عنوان</th>
                                             <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="برچسب: activate to sort column ascending" style="width: 101.667px;">برچسب</th>
                                             <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="اسلاگ: activate to sort column ascending" style="width: 101.667px;">تاریخ انتشار</th>
                                             <th class="wd-10p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="امکان نظر دهی: activate to sort column ascending" style="width: 54.4375px;">درج نظر</th>
@@ -55,9 +59,7 @@
 
                                         @foreach($posts as $post)
                                             <tr>
-                                                <td class="text-nowrap">
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#dataModal-{{ $post->id }}">{{ Str::limit($post->title, 50) }}</a>
-                                                </td>
+                                                <td><a href="" data-bs-toggle="modal" data-bs-target="#dataModal-{{ $post->id }}">{{ Str::limit($post->title, 50) ?? '-' }}</a></td>
                                                 @empty($post->label)
                                                     <td><small class="badge badge-light">بدون برچسب</small></td>
                                                 @else
@@ -92,13 +94,12 @@
                                                 </td>
                                             </tr>
 
-
                                             <!-- Modal -->
                                             <div class="modal fade" id="dataModal-{{ $post->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" style="max-width: 45%">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $post->title }}</h1>
+{{--                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $post->title }}</h1>--}}
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body p-0">

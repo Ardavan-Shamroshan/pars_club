@@ -4,16 +4,14 @@
 @endsection
 @section('content')
     <!-- breadcrumb -->
-    <div class="breadcrumb-header justify-content-between">
-        <div class="my-auto">
-            <div class="d-flex justify-content-between">
-                <span class="text-muted mt-1 tx-13 mb-0">مجله و خبرنامه<span class="text-muted ms-1">/</span></span>
-                <span class="mt-1 tx-13 mb-0"><a href="{{ route('admin.postcategory') }}">دسته بندی اخبار</a><span class="text-muted ms-1">/</span></span>
-                <h4 class="content-title mb-0 my-auto">ساخت دسته بندی اخبار</h4>
-            </div>
-        </div>
-
-    </div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('admin') }}">مدیریت</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.postcategory') }}">مجله و خبرنامه</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.postcategory') }}">دسته بندی اخبار</a></li>
+            <li class="breadcrumb-item">ساخت دسته بندی</li>
+        </ol>
+    </nav>
     <!-- breadcrumb -->
 
 

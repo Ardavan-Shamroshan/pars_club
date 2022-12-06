@@ -14,7 +14,7 @@
             </div>
             <div class="main-header-center mr-3 d-sm-none d-md-none d-lg-block">
                 <input class="form-control" placeholder="هر چیزی را جستجو کنید ..." type="search">
-                <button class="btn"><i class="fas fa-search d-none d-md-block"></i></button>
+                <button class="btn" role="button"><i class="fas fa-search d-none d-md-block"></i></button>
             </div>
         </div>
         <div class="main-header-right">

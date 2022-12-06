@@ -5,7 +5,6 @@
 <meta name="Description" content="Valex – Laravel Admin & Dashboard Template">
 <meta name="Author" content="SPRUKO™">
 <meta name="Keywords" content="laravel admin panel, laravel admin panel template, laravel admin dashboard template, laravel bootstrap admin template, laravel ui, laravel dashboard, laravel dashboard template, admin, admin template, bootstrap dashboard, bootstrap 5 admin template, laravel blade, laravel blade template bootstrap, php laravel, laravel mix" />
-
 <!-- styles -->
 
 <!-- Favicon -->
@@ -16,9 +15,18 @@
 <link href="{{ asset('modules/admin/assets/plugins/bootstrap/css/bootstrap.rtl.min.css') }}" rel="stylesheet">
 
 <!--  Right-sidemenu css -->
-<link href="{{ asset('modules/admin/assets/plugins/perfect-scrollbar/p-scrollbar.css') }}" rel="stylesheet" /><!--  Sidemenu css -->
-<link id="theme" rel="stylesheet" href="{{ asset('modules/admin/assets/css-rtl/sidemenu.css') }}"><!--  Owl-carousel css-->
-<link href="{{ asset('modules/admin/assets/plugins/owl-carousel/owl.carousel.css') }}" rel="stylesheet" /><!-- Maps css -->
+<link href="{{ asset('modules/admin/assets/plugins/sidebar/sidebar.css') }}" rel="stylesheet">
+
+<!-- P-scroll bar css-->
+<link href="{{ asset('modules/admin/assets/plugins/perfect-scrollbar/p-scrollbar.css') }}" rel="stylesheet" />
+
+<!--  Sidemenu css -->
+<link id="theme" rel="stylesheet" href="{{ asset('modules/admin/assets/css-rtl/sidemenu.css') }}">
+
+<!--  Owl-carousel css-->
+<link href="{{ asset('modules/admin/assets/plugins/owl-carousel/owl.carousel.css') }}" rel="stylesheet" />
+
+<!-- Maps css -->
 <link href="{{ asset('modules/admin/assets/plugins/jqvmap/jqvmap.min.css') }}" rel="stylesheet">
 
 <!--- Style css --->

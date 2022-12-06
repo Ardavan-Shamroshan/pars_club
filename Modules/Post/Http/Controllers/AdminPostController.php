@@ -31,9 +31,7 @@ class AdminPostController extends Controller
     public function create() {
         // All active categories for post category_id selection
         $categories = PostCategory::query()->where('status', 1)->get();
-        // All active users for post author_id selection
-        $users = User::query()->where(['user_type' => 1], ['status' => 1])->get();
-        return view('post::admin.create', compact('categories', 'users'));
+        return view('post::admin.create', compact('categories'));
     }
 
     /**
@@ -64,7 +62,6 @@ class AdminPostController extends Controller
             }
             $inputs['image'] = $result;
 
-
             Post::query()->create($inputs);
             toast('خبر با موفقیت ایجاد شد', 'success');
             return redirect()->route('admin.post');
@@ -88,9 +85,7 @@ class AdminPostController extends Controller
     public function edit(Post $post) {
         // All categories for parent selection
         $categories = PostCategory::query()->where('status', 1)->get();
-        // All authors for author selection
-        $authors = User::query()->where('status', 1)->get();
-        return view('post::admin.edit', compact('post', 'authors', 'categories'));
+        return view('post::admin.edit', compact('post', 'categories'));
     }
 
     /**
@@ -102,6 +97,7 @@ class AdminPostController extends Controller
     public
     function update(PostRequest $request, Post $post, ImageService $imageService) {
         $inputs = $request->all();
+        dd($inputs);
 
         // Convert timestamp to Y-m-d H:i:s format
         $realTimestampStart = substr($request->published_at, 0, 10);
