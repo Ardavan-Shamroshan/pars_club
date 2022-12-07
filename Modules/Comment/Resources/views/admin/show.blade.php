@@ -1,15 +1,15 @@
 @extends('admin::layouts.master')
 @section('title')
-    نمایش دسته بندی اخبار | داشبورد مدیریت
+    نمایش نظر اخبار | داشبورد مدیریت
 @endsection
 @section('content')
     <!-- breadcrumb -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin') }}">مدیریت</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.postcategory') }}">مجله و خبرنامه</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.postcategory') }}">دسته بندی اخبار</a></li>
-            <li class="breadcrumb-item">نمایش دسته بندی</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.comment') }}">مجله و خبرنامه</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.comment') }}">نظر اخبار</a></li>
+            <li class="breadcrumb-item">نمایش نظر</li>
         </ol>
     </nav>
     <!-- breadcrumb -->
@@ -20,9 +20,9 @@
             <div class="pb-0 mb-2">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-2">
-                        <h4 class="card-title mg-b-0">{{ $postcategory->name }}</h4>
-                        <p class="tx-12 tx-gray-500 mb-2">نمایش دسته بندی.
-                            <a href="{{ route('admin.postcategory') }}" id="m-l-c-05"><i class="fe fe-chevrons-right  "></i>بازگشت به لیست دسته بندی ها</a>
+                        <h4 class="card-title mg-b-0">{{ $comment->name }}</h4>
+                        <p class="tx-12 tx-gray-500 mb-2">نمایش نظر.
+                            <a href="{{ route('admin.comment') }}" id="m-l-c-05"><i class="fe fe-chevrons-right  "></i>بازگشت به لیست نظر ها</a>
                         </p>
                     </div>
 
@@ -45,34 +45,53 @@
                             <table class="table table-striped mg-b-0 text-md-nowrap">
                                 <tbody>
                                 <tr>
-                                    <th class="font-weight-bold">نام :</th>
-                                    <td>{{ $postcategory->name }}</td>
+                                    <th class="font-weight-bold">متن نظر :</th>
+                                    <td>
+                                        <div> {{ $comment->body ?? '-' }}</div>
+                                        @if($comment->parent)
+                                            <br>
+                                            <div>
+                                                <small class="font-weight-bold">پاسخ به: </small>
+                                                <small><a href="{{ route('admin.comment.show', $comment->parent) }}">{{ $comment->parent->body ?? '-' }}</a></small>
+                                            </div>
+                                        @endif
+
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <th class="font-weight-bold">اسلاگ :</th>
-                                    <td>{{ $postcategory->slug }}</td>
+                                    <th class="font-weight-bold">کاربر :</th>
+                                    <td><a href="#">{{ $comment->author->fullname }}</a></td>
                                 </tr>
                                 <tr>
-                                    <th class="font-weight-bold">زیر دسته :</th>
-                                    <td>-</td>
+                                    <th class="font-weight-bold">نوع نظر :</th>
+                                    <td>{{ $comment->commentable_type ?? '-' }}</td>
                                 </tr>
                                 <tr>
-                                    <th class="font-weight-bold">مقالات :</th>
-                                    <td><a href="" class="btn-sm">0 مورد</a></td>
+                                    <th class="font-weight-bold">خبر / کد خبر / دسته بندی :</th>
+                                    <td>
+                                        <a href="{{ route('admin.post.show', $comment->commentable) }}" class="tx-12">{{ $comment->commentable->title ?? '-' }}</a>:
+                                        <span class="badge badge-light border">{{ $comment->commentable->id }}</span>
+                                        <span class="badge badge-light border">{{ $comment->commentable->category->name }}</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th class="font-weight-bold">زمان ایجاده شده :</th>
-                                    <td>{{ jalaliDate($postcategory->created_at) }} {{ jalaliTime($postcategory->created_at, 'H:i') }}</td>
+                                    <td>{{ jalaliDate($comment->created_at) }} {{ jalaliTime($comment->created_at, 'H:i') }}</td>
                                 </tr>
                                 <tr>
                                     <th class="font-weight-bold">ویرایش شده در :</th>
-                                    <td>{{ jalaliDate($postcategory->updated_at) }} {{ jalaliTime($postcategory->updated_at, 'H:i') }}</td>
+                                    <td>{{ jalaliDate($comment->updated_at) }} {{ jalaliTime($comment->updated_at, 'H:i') }}</td>
                                 </tr>
                                 <tr>
+
                                     <th class="font-weight-bold">عملیات :</th>
                                     <td class="d-flex justify-content-start">
-                                        <a href="{{ route('admin.postcategory.edit', $postcategory) }}" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
-                                        <form action="{{ route('admin.postcategory.destroy', $postcategory) }}" method="post">
+                                        @if($comment->approval)
+                                            <a href="{{ route('admin.comment.approve', $comment) }}" class="btn-sm text-success"><i class="fe fe-check-circle"></i> تایید شده</a>
+                                        @else
+                                            <a href="{{ route('admin.comment.approve', $comment) }}" class="btn-sm text-warning"><i class="fe fe-clock"></i> در انتظار تایید</a>
+                                        @endif
+                                        <form action="{{ route('admin.comment.destroy', $comment) }}" method="post">
                                             @csrf @method('delete')
                                             <button type="submit" class="btn btn-sm btn-link delete">
                                                 <i class="fe fe-trash-2"></i> پاک کردن

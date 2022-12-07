@@ -1,5 +1,6 @@
 {
     "Admin": true,
     "PostCategory": true,
-    "Post": true
+    "Post": true,
+    "Comment": true
 }

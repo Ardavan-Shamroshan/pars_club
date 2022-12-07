@@ -4,8 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9" />
 <meta name="Description" content="Valex – Laravel Admin & Dashboard Template">
 <meta name="Author" content="SPRUKO™">
-<meta name="Keywords" content="laravel admin panel, laravel admin panel template, laravel admin dashboard template, laravel bootstrap admin template, laravel ui, laravel dashboard, laravel dashboard template, admin, admin template, bootstrap dashboard, bootstrap 5 admin template, laravel blade, laravel blade template bootstrap, php laravel, laravel mix" />
-<!-- styles -->
+<meta name="Keywords" content="laravel admin panel, laravel admin panel template, laravel admin dashboard template, laravel bootstrap admin template, laravel ui, laravel dashboard, laravel dashboard template, admin, admin template, bootstrap dashboard, bootstrap 5 admin template, laravel blade, laravel blade template bootstrap, php laravel, laravel mix" /><!-- styles -->
 
 <!-- Favicon -->
 <link rel="icon" href="{{ asset('modules/admin/assets/img/brand/favicon.png') }}" type="image/x-icon" /><!-- Icons css -->

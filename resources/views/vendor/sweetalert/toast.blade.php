@@ -1,3 +1,4 @@
+{{-- change status --}}
 <script>
     function changeStatus(id) {
         var element = $('#' + id);
@@ -71,6 +72,7 @@
     }
 </script>
 
+{{-- change posts commentable --}}
 <script>
     function commentable(id) {
         var element = $("#" + id + '-commentable')
