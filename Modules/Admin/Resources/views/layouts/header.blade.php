@@ -73,13 +73,13 @@
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="جستجو کردن">
                             <span class="input-group-btn">
-										<button type="reset" class="btn btn-default">
-											<i class="fas fa-times"></i>
-										</button>
-										<button type="submit" class="btn btn-default nav-link resp-btn">
-											<svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-										</button>
-									</span>
+                                <button type="reset" class="btn btn-default">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <button type="submit" class="btn btn-default nav-link resp-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                </button>
+                            </span>
                         </div>
                     </form>
                 </div>
@@ -249,9 +249,9 @@
                     <div class="dropdown main-profile-menu nav nav-item nav-link">
                         <a class="profile-user avatar bg-info rounded-circle text-white">
                             @if(auth()->user()->profile_photo_path)
-                                <img alt="{{ auth()->user()->fullname }}" src="{{ asset(auth()->user()->profile_photo_path) }}">
+                                <img alt="{{ auth()->user()->fullname ?? auth()->user()->name }}" src="{{ asset(auth()->user()->profile_photo_path) }}">
                             @else
-                                <small>{{ auth()->user()->first_name[0] ?? 'م' }}</small>
+                                <small>{{ auth()->user()->fullname[0] ?? 'م' }}</small>
                             @endif
                         </a>
                         <div class="dropdown-menu">
@@ -259,13 +259,13 @@
                                 <div class="d-flex wd-100p">
                                     <div class="profile-user avatar bg-info rounded-circle text-white">
                                         @if(auth()->user()->profile_photo_path)
-                                            <img alt="{{ auth()->user()->fullname }}" src="{{ asset(auth()->user()->profile_photo_path) }}">
+                                            <img alt="{{ auth()->user()->fullname ?? auth()->user()->name }}" src="{{ asset(auth()->user()->profile_photo_path) }}">
                                         @else
-                                            <small>{{ auth()->user()->first_name[0] ?? 'م' }}</small>
+                                            <small>{{ auth()->user()->fullname[0] ?? 'م' }}</small>
                                         @endif
                                     </div>
                                     <div class="ms-3 my-auto">
-                                        <h6>{{ auth()->user()->fullname ?? 'وارد نشده اید' }}</h6><span>مدیریت</span>
+                                        <h6>{{ auth()->user()->fullname ?? auth()->user()->name ?? 'وارد نشده اید' }}</h6><span>مدیریت</span>
                                     </div>
                                 </div>
                             </div>
@@ -283,7 +283,7 @@
                 @guest
                     <div class="dropdown main-profile-menu nav nav-item nav-link">
                         <a class="profile-user avatar bg-info rounded-circle text-white">
-                                <small>م</small>
+                            <small>م</small>
                         </a>
                         <div class="dropdown-menu">
                             <div class="main-header-profile bg-primary p-3">
@@ -298,7 +298,6 @@
                         </div>
                     </div>
                 @endguest
-
 
             </div>
         </div>

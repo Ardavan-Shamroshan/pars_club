@@ -17,7 +17,7 @@ class AdminController extends Controller
     public function index()
     {
         $user = User::query()->first();
-        if($user) Auth::logout($user);
+        if($user) Auth::login($user);
 
         return view('admin::index');
     }
