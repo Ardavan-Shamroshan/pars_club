@@ -25,7 +25,6 @@
                         </p>
                     </div>
                 </div>
-                {{--                <a href="{{ route('admin.comment.create') }}" class="btn p-2 btn-primary"><i class="fe fe-plus"></i> ساخت دسته بندی</a>--}}
             </div>
 
             <div class="card">

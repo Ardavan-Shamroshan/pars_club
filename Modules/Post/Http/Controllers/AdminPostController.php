@@ -17,9 +17,9 @@ class AdminPostController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index() {
+    public function index(Request $request) {
         // Posts
-        $posts = Post::query()->paginate(10);
+        $posts = Post::query()->filter($request)->paginate(10);
         $postsCount = Post::query()->count();
         return view('post::admin.index', compact('postsCount', 'posts'));
     }

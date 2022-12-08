@@ -44,6 +44,41 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
+
+                                    {{-- filters --}}
+                                    <div class="filters d-flex justify-content-between align-items-center tx-12">
+                                        {{-- filter items --}}
+                                        <div class="filter-items  d-flex justify-content-start align-items-center gap-1">
+                                            <div><i class="fe fe-filter"></i></div>
+
+                                            {{-- filter 1 --}}
+                                            <a href="#" data-bs-toggle="dropdown" class="btn-link text-black-50 rounded p-1 @if((str_contains(request()->getUri(), '?status'))) border bg-primary-transparent @endif">وضعیت<i class="fe fe-chevron-down"></i></a>
+
+                                            <div class="dropdown-menu rounded shadow tx-12" id="myDropdown">
+                                                <input type="text" placeholder="جستجو" id="myInput" class="border m-1 rounded" onkeyup="filterFunction()" style="outline: none">
+                                                <a href="{{ route('admin.post') }}" class="dropdown-item">همه</a>
+                                                <a href="{{ route('admin.post','status=1') }}" class="dropdown-item @if((str_contains(request()->getUri(), '?status=1'))) bg-primary-transparent @endif">فعال</a>
+                                                <a href="{{ route('admin.post','status=0') }}" class="dropdown-item @if((str_contains(request()->getUri(), '?status=0'))) bg-primary-transparent @endif">غیر فعال</a>
+                                                  </div>
+
+                                             filter 2
+                                            <a href="#" data-bs-toggle="dropdown" class="btn-link text-black-50 rounded p-1 @if((str_contains(request()->getUri(), '?commentable_id'))) border bg-primary-transparent @endif">سته بندی<i class="fe fe-chevron-down"></i></a>
+                                            <div class="dropdown-menu rounded shadow tx-12" id="myDropdown2">
+                                                <input type="text" placeholder="جستجو" id="myInput2" class="border m-1 rounded" onkeyup="filterFunction2()" style="outline: none">
+                                                @foreach($posts as $post)
+                                                    <a href="{{ route('admin.comment', 'commentable_id=' . $post->id) }}" class="dropdown-item @if((str_contains(request()->getUri(), '?commentable_id=' . $post->id))) bg-primary-transparent @endif" data-bs-placement="left" data-bs-toggle="tooltip" title="{{ $post->title }}">{{ Str::limit($post->title, 25) }}</a>
+                                                @endforeach
+                                            </div>
+
+                                            {{-- filter clearing --}}
+                                            @if(str_contains(request()->getUri(), '?') && str_contains(request()->getUri(), '='))
+                                                <a href="{{ route('admin.post') }}" class="btn-link text-black-50">پاکسازی<i class="la la-eraser"></i></a>
+                                            @endif
+                                        </div>
+                                        {{-- filter guid --}}
+                                    </div>
+
+
                                     <table class="table text-md-nowrap dataTable no-footer" id="example1" role="grid" aria-describedby="example1_info">
                                         <thead>
                                         <tr role="row">
@@ -247,4 +282,39 @@
 @section('script')
     @include('sweetalert::toast')
     @include('sweetalert::confirmation', ['className' => 'delete'])
+
+
+    <script>
+        function filterFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            div = document.getElementById("myDropdown");
+            a = div.getElementsByTagName("a");
+            for (i = 0; i < a.length; i++) {
+                txtValue = a[i].textContent || a[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+        }
+
+        function filterFunction2() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("myInput2");
+            filter = input.value.toUpperCase();
+            div = document.getElementById("myDropdown2");
+            a = div.getElementsByTagName("a");
+            for (i = 0; i < a.length; i++) {
+                txtValue = a[i].textContent || a[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 @endsection

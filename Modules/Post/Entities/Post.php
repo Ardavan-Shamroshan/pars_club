@@ -4,11 +4,13 @@ namespace Modules\Post\Entities;
 
 use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Comment\Entities\Comment;
+use Modules\Post\Filters\PostFilter;
 use Modules\PostCategory\Entities\PostCategory;
 
 class Post extends Model
@@ -39,6 +41,14 @@ class Post extends Model
     protected $fillable = [
         'author_id', 'category_id', 'title', 'label', 'summary', 'body', 'image', 'slug', 'status', 'commentable', 'tags', 'published_at'
     ];
+
+    /**
+     * Filter
+     */
+    public function scopeFilter(Builder $builder, $request)
+    {
+        return (new PostFilter($request))->filter($builder);
+    }
 
     /**
      * Accessors & Mutators
