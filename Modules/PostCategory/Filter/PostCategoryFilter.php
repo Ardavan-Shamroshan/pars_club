@@ -1,20 +1,18 @@
 <?php
 
-namespace Modules\Post\Filters;
+namespace Modules\PostCategory\Filter;
 
 use App\Filters\AbstractFilter;
-use Modules\Post\Filters\StatusFilter;
-use Modules\Post\Filters\CategoryFilter;
 
 /**
  * In this file, we will define the actual filter class.
  * I am only using a type filter for this example, but you have more than one filter
  * like age, demographics, price, etc.
  */
-class PostFilter extends AbstractFilter
+class PostCategoryFilter extends AbstractFilter
 {
     protected $filters = [
         'status' => StatusFilter::class,
-        'category_id' => CategoryFilter::class,
+        'parent_id' => ParentCategoryFilter::class,
     ];
 }

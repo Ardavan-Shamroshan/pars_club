@@ -3,10 +3,13 @@
 namespace Modules\PostCategory\Entities;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Post\Entities\Post;
+use Modules\Post\Filters\PostFilter;
+use Modules\PostCategory\Filter\PostCategoryFilter;
 
 class PostCategory extends Model
 {
@@ -35,6 +38,14 @@ class PostCategory extends Model
     ];
 
     protected $casts = ['image' => 'array'];
+
+
+    /**
+     * Filter
+     */
+    public function scopeFilter(Builder $builder, $request) {
+        return (new PostCategoryFilter($request))->filter($builder);
+    }
 
     /**
      * relations

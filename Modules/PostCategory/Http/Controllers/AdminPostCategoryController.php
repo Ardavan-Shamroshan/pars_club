@@ -14,10 +14,10 @@ class AdminPostCategoryController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index() {
-        // Categories
+    public function index(Request $request) {
+        // All Categories
+        $categories = PostCategory::query()->filter($request)->paginate(10);
         $categoriesCount = PostCategory::count();
-        $categories = PostCategory::query()->paginate(10);
         return view('postcategory::admin.index', compact('categories', 'categoriesCount'));
     }
 

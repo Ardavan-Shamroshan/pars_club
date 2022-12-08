@@ -20,8 +20,9 @@ class AdminPostController extends Controller
     public function index(Request $request) {
         // Posts
         $posts = Post::query()->filter($request)->paginate(10);
+        $categories = PostCategory::query()->where('status', 1)->get();
         $postsCount = Post::query()->count();
-        return view('post::admin.index', compact('postsCount', 'posts'));
+        return view('post::admin.index', compact('postsCount', 'posts', 'categories'));
     }
 
     /**
