@@ -22,13 +22,18 @@
                 <li class="">
                     <div class="dropdown  nav-itemd-none d-md-flex">
                         <a href="#" class="d-flex  nav-item country-flag1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="avatar country-Flag me-0 align-self-center bg-transparent"><img src="{{ asset('modules/admin/assets/img/flags/us_flag.jpg') }}" alt="img"></span>
+                            <span class="avatar country-Flag me-0 align-self-center bg-transparent"><img src="{{ asset('modules/admin/assets/img/flags/iran_flag.png') }}" alt="img"></span>
                             <div class="my-auto">
-                                <strong class="me-2 ms-2 my-auto">انگلیسی</strong>
+                                <strong class="me-2 ms-2 my-auto">فارسی</strong>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
                             <a href="#" class="dropdown-item d-flex ">
+                                <span class="avatar  m-e-c-3 align-self-center bg-transparent"><img src="{{ asset('modules/admin/assets/img/flags/us_flag.jpg') }}" alt="img"></span>
+                                <div class="d-flex">
+                                    <span class="mt-2">انگلیسی</span>
+                                </div>
+                            </a><a href="#" class="dropdown-item d-flex ">
                                 <span class="avatar  m-e-c-3 align-self-center bg-transparent"><img src="{{ asset('modules/admin/assets/img/flags/french_flag.jpg') }}" alt="img"></span>
                                 <div class="d-flex">
                                     <span class="mt-2">فرانسوی</span>
@@ -95,7 +100,7 @@
                         </div>
                         <div class="main-message-list chat-scroll">
                             <a href="#" class="p-3 d-flex border-bottom">
-                                <div class="  drop-img  cover-image  " data-bs-image-src="{{ asset('modules/admin/assets/img/faces/3.jpg') }}">
+                                <div class="  drop-img  cover-image " data-bs-image-src="{{ asset('modules/admin/assets/img/faces/1.jpg') }}">
                                     <span class="avatar-status bg-teal"></span>
                                 </div>
                                 <div class="wd-90p">
@@ -237,37 +242,65 @@
                         </svg>
                     </a>
                 </div>
-                <div class="dropdown main-profile-menu nav nav-item nav-link">
-                    <a class="profile-user d-flex" href="#"><img alt="" src="{{ asset('modules/admin/assets/img/faces/6.jpg') }}"></a>
-                    <div class="dropdown-menu">
-                        <div class="main-header-profile bg-primary p-3">
-                            <div class="d-flex wd-100p">
-                                <div class="main-img-user">
-                                    <img alt="" src="{{ asset('modules/admin/assets/img/faces/6.jpg') }}" class=""></div>
-                                <div class="ms-3 my-auto">
-                                    <h6>پتی کروزر</h6><span>مدیریت</span>
+
+                {{-- header profile --}}
+                {{-- Authenticated --}}
+                @auth
+                    <div class="dropdown main-profile-menu nav nav-item nav-link">
+                        <a class="profile-user avatar bg-info rounded-circle text-white">
+                            @if(auth()->user()->profile_photo_path)
+                                <img alt="{{ auth()->user()->fullname }}" src="{{ asset(auth()->user()->profile_photo_path) }}">
+                            @else
+                                <small>{{ auth()->user()->first_name[0] ?? 'م' }}</small>
+                            @endif
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="main-header-profile bg-primary p-3">
+                                <div class="d-flex wd-100p">
+                                    <div class="profile-user avatar bg-info rounded-circle text-white">
+                                        @if(auth()->user()->profile_photo_path)
+                                            <img alt="{{ auth()->user()->fullname }}" src="{{ asset(auth()->user()->profile_photo_path) }}">
+                                        @else
+                                            <small>{{ auth()->user()->first_name[0] ?? 'م' }}</small>
+                                        @endif
+                                    </div>
+                                    <div class="ms-3 my-auto">
+                                        <h6>{{ auth()->user()->fullname ?? 'وارد نشده اید' }}</h6><span>مدیریت</span>
+                                    </div>
                                 </div>
                             </div>
+                            <a class="dropdown-item" href="#"><i class="bx bx-user-circle"></i>مشخصات</a>
+                            <a class="dropdown-item" href="#"><i class="bx bx-cog"></i> ویرایش نمایه</a>
+                            <a class="dropdown-item" href="#"><i class="bx bxs-inbox"></i>صندوق ورودی</a>
+                            <a class="dropdown-item" href="#"><i class="bx bx-envelope"></i>پیام ها</a>
+                            <a class="dropdown-item" href="#"><i class="bx bx-slider-alt"></i> تنظیمات حساب</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"><i class="bx bx-log-out"></i> خروج از سیستم</a>
                         </div>
-                        <a class="dropdown-item" href="#"><i class="bx bx-user-circle"></i>مشخصات</a>
-                        <a class="dropdown-item" href="#"><i class="bx bx-cog"></i> ویرایش نمایه</a>
-                        <a class="dropdown-item" href="#"><i class="bx bxs-inbox"></i>صندوق ورودی</a>
-                        <a class="dropdown-item" href="#"><i class="bx bx-envelope"></i>پیام ها</a>
-                        <a class="dropdown-item" href="#"><i class="bx bx-slider-alt"></i> تنظیمات حساب</a>
-                        <a class="dropdown-item" href="signin.html"><i class="bx bx-log-out"></i> خروج از سیستم</a>
                     </div>
-                </div>
-                <div class="dropdown main-header-message right-toggle">
-                    <a class="nav-link pe-0" data-bs-toggle="sidebar-left" data-bs-target=".sidebar-left">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="3" y1="12" x2="21" y2="12"></line>
-                            <line x1="3" y1="6" x2="21" y2="6"></line>
-                            <line x1="3" y1="18" x2="21" y2="18"></line>
-                        </svg>
-                    </a>
-                </div>
+                @endauth
+
+                {{-- Unauthenticated GUEST --}}
+                @guest
+                    <div class="dropdown main-profile-menu nav nav-item nav-link">
+                        <a class="profile-user avatar bg-info rounded-circle text-white">
+                                <small>م</small>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="main-header-profile bg-primary p-3">
+                                <div class="d-flex wd-100p">
+                                    <a class="profile-user avatar bg-info rounded-circle text-white"><small>م</small></a>
+                                    <div class="ms-3 my-auto">
+                                        <h6>وارد نشده اید</h6><span>مدیریت</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="dropdown-item" href="{{ route('login') }}"><i class="bx bx-log-out"></i>وارد شوید</a>
+                        </div>
+                    </div>
+                @endguest
+
+
             </div>
         </div>
     </div>
-</div>
-<!-- /main-header -->
+</div><!-- /main-header -->

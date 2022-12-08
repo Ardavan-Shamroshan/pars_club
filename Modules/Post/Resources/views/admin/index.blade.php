@@ -52,7 +52,7 @@
 
                                             {{-- filter 1 --}}
                                             <a href="#" data-bs-toggle="dropdown" class="btn-link text-black-50 rounded p-1 @if((str_contains(request()->getUri(), '?status'))) border bg-primary-transparent @endif">وضعیت<i class="fe fe-chevron-down"></i></a>
-                                            <div class="dropdown-menu rounded shadow tx-12" id="myDropdown">
+                                            <div class="dropdown-menu dropdown-menu-filter rounded shadow tx-12" id="myDropdown">
                                                 <input type="text" placeholder="جستجو" id="myInput" class="border m-1 rounded" onkeyup="filterFunction()" style="outline: none">
                                                 <a href="{{ route('admin.post') }}" class="dropdown-item">همه</a>
                                                 <a href="{{ route('admin.post','status=1') }}" class="dropdown-item @if((str_contains(request()->getUri(), '?status=1'))) bg-primary-transparent @endif">فعال</a>
@@ -61,7 +61,7 @@
 
                                             {{-- filter 2 --}}
                                             <a href="#" data-bs-toggle="dropdown" class="btn-link text-black-50 rounded p-1 @if((str_contains(request()->getUri(), '?category_id'))) border bg-primary-transparent @endif">دسته بندی<i class="fe fe-chevron-down"></i></a>
-                                            <div class="dropdown-menu rounded shadow tx-12" id="myDropdown2">
+                                            <div class="dropdown-menu dropdown-menu-filter rounded shadow tx-12" id="myDropdown2">
                                                 <input type="text" placeholder="جستجو" id="myInput2" class="border m-1 rounded" onkeyup="filterFunction2()" style="outline: none">
                                                 @foreach($categories as $category)
                                                     <a href="{{ route('admin.post', 'category_id=' . $category->id) }}" class="dropdown-item @if((str_contains(request()->getUri(), '?category_id=' . $category->id))) bg-primary-transparent @endif" data-bs-placement="left" data-bs-toggle="tooltip" title="{{ $category->name }}">{{ Str::limit($category->name, 25) }}</a>

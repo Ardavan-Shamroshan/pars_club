@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "09b3cf64518ebac62e615899f74f25d0",
+    "content-hash": "99a8cfcf7a7e7da088bab16ee65d8e13",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1682,16 +1682,16 @@
         },
         {
             "name": "laravel/jetstream",
-            "version": "v2.12.5",
+            "version": "v2.12.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/jetstream.git",
-                "reference": "78a3f7d182a4e91c74af8fd62c42eb68c65b8ee2"
+                "reference": "bfed92ddacb22053ddfe1208f098fbd9d9404d89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/jetstream/zipball/78a3f7d182a4e91c74af8fd62c42eb68c65b8ee2",
-                "reference": "78a3f7d182a4e91c74af8fd62c42eb68c65b8ee2",
+                "url": "https://api.github.com/repos/laravel/jetstream/zipball/bfed92ddacb22053ddfe1208f098fbd9d9404d89",
+                "reference": "bfed92ddacb22053ddfe1208f098fbd9d9404d89",
                 "shasum": ""
             },
             "require": {
@@ -1706,7 +1706,7 @@
                 "laravel/framework": "<9.37.0"
             },
             "require-dev": {
-                "inertiajs/inertia-laravel": "^0.6.3",
+                "inertiajs/inertia-laravel": "^0.6.4",
                 "laravel/sanctum": "^3.0",
                 "mockery/mockery": "^1.0",
                 "orchestra/testbench": "^7.0",
@@ -1748,7 +1748,7 @@
                 "issues": "https://github.com/laravel/jetstream/issues",
                 "source": "https://github.com/laravel/jetstream"
             },
-            "time": "2022-10-26T08:15:07+00:00"
+            "time": "2022-12-05T15:16:43+00:00"
         },
         {
             "name": "laravel/sanctum",

@@ -2,9 +2,11 @@
 
 namespace Modules\Admin\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -14,6 +16,9 @@ class AdminController extends Controller
      */
     public function index()
     {
+        $user = User::query()->first();
+        if($user) Auth::logout($user);
+
         return view('admin::index');
     }
 

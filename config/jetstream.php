@@ -16,7 +16,6 @@ return [
     |
     */
 
-//    'stack' => 'inertia',
     'stack' => 'livewire',
 
     /*

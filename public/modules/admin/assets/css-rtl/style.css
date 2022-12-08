@@ -22,7 +22,7 @@
     min-height: 40em;
 }
 
-.dropdown-menu {
+.dropdown-menu-filter {
     max-height: 14rem;
     overflow-y: scroll;
 }
