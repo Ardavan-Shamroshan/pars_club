@@ -20,6 +20,7 @@ class PostCategoryRequest extends FormRequest
             'image' => ['nullable', 'image', 'mimes:png,jpg,jpeg,gif'],
             'status' => ['numeric', Rule::in([0, 1])],
             'tags' => ['nullable', 'string'],
+            'slug' => [Rule::unique('post_categories', 'slug')]
         ];
     }
 

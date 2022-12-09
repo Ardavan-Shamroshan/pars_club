@@ -19,7 +19,9 @@ Route::prefix('admin')->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('/', [AdminUserController::class, 'index'])->name('admin.user');
         Route::get('/create', [AdminUserController::class, 'create'])->name('admin.user.create');
+        Route::post('/store', [AdminUserController::class, 'store'])->name('admin.user.store');
         Route::get('/edit/{user}', [AdminUserController::class, 'edit'])->name('admin.user.edit');
+        Route::put('/update/{user}', [AdminUserController::class, 'update'])->name('admin.user.update');
         Route::delete('/destroy/{user}', [AdminUserController::class, 'destroy'])->name('admin.user.destroy');
         Route::get('/activate/{user}', [AdminUserController::class, 'activate'])->name('admin.user.activate');
     });

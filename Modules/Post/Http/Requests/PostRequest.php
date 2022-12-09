@@ -23,7 +23,7 @@ class PostRequest extends FormRequest
                 'tags' => ['nullable'],
                 'label' => ['nullable'],
                 'published_at' => ['required', 'numeric'],
-
+                'slug' => [Rule::unique('posts', 'slug')],
             ];
         else
             return [
@@ -35,6 +35,7 @@ class PostRequest extends FormRequest
                 'tags' => ['nullable'],
                 'label' => ['nullable'],
                 'published_at' => ['required', 'numeric'],
+                'slug' => [Rule::unique('posts', 'slug')]
             ];
     }
 

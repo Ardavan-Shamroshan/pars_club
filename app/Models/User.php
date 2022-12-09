@@ -14,6 +14,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Modules\User\Filter\UserFilter;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -24,6 +25,7 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
     use SoftDeletes;
     use Sluggable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -32,8 +34,14 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
+        'mobile',
+        'profile_photo_path',
+        'activation',
+        'slug',
     ];
 
     /**
@@ -83,8 +91,7 @@ class User extends Authenticatable
     /**
      * Filter
      */
-    public function scopeFilter(Builder $builder, $request)
-    {
+    public function scopeFilter(Builder $builder, $request) {
         return (new UserFilter($request))->filter($builder);
     }
 

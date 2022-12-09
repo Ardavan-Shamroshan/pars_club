@@ -95,11 +95,8 @@ class AdminPostController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public
-    function update(PostRequest $request, Post $post, ImageService $imageService) {
+    public function update(PostRequest $request, Post $post, ImageService $imageService) {
         $inputs = $request->all();
-        dd($inputs);
-
         // Convert timestamp to Y-m-d H:i:s format
         $realTimestampStart = substr($request->published_at, 0, 10);
         $inputs['published_at'] = date('Y-m-d H:i:s', (int)$realTimestampStart);

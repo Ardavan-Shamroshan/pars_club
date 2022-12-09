@@ -26,7 +26,7 @@ class PostCategory extends Model
         // TODO: Implement sluggable() method.
         return [
             'slug' => [
-                'source' => ['title', 'id'],
+                'source' => ['name', 'id'],
                 'includeTrashed' => true,
             ]
         ];
