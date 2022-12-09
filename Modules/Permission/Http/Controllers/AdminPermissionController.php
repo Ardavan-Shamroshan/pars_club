@@ -5,6 +5,7 @@ namespace Modules\Permission\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Permission\Entities\PermissionGroup;
 use Spatie\Permission\Models\Permission;
 
 class AdminPermissionController extends Controller
@@ -25,7 +26,7 @@ class AdminPermissionController extends Controller
      * @return Renderable
      */
     public function create() {
-        return view('permission::create');
+        return view('permission::admin.create');
     }
 
     /**
@@ -34,7 +35,8 @@ class AdminPermissionController extends Controller
      * @return Renderable
      */
     public function store(Request $request) {
-        //
+        $inputs = $request->all();
+        dd($inputs);
     }
 
     /**

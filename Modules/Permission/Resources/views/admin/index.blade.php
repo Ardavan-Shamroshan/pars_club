@@ -1,6 +1,6 @@
 @extends('admin::layouts.master')
 @section('title')
-    نقش ها | داشبورد مدیریت
+    دسترسی ها | داشبورد مدیریت
 @endsection
 @section('content')
     <!-- breadcrumb -->
@@ -8,7 +8,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin') }}">مدیریت</a></li>
             <li class="breadcrumb-item"><a href="{{ route('admin.permission') }}">احراز هویت</a></li>
-            <li class="breadcrumb-item">نقش ها</li>
+            <li class="breadcrumb-item">دسترسی ها</li>
         </ol>
     </nav>
     <!-- breadcrumb -->
@@ -19,13 +19,13 @@
             <div class="pb-0 mb-2">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-2">
-                        <h4 class="card-title mg-b-0">نقش ها</h4>
+                        <h4 class="card-title mg-b-0">دسترسی ها</h4>
                         <p class="tx-12 tx-gray-500 mb-2">نمایش {{ $permissions->currentPage() }} از {{ $permissions->lastPage() }} صفحه از همه {{ $permissionsCount }} مورد .
                             <a href="{{ route('admin.permission') }}" id="m-l-c-05">تازه سازی </a>
                         </p>
                     </div>
                 </div>
-                <a href="{{ route('admin.permission.create') }}" class="btn p-2 btn-primary"><i class="fe fe-plus"></i> ساخت نقش ها</a>
+                <a href="{{ route('admin.permission.create') }}" class="btn p-2 btn-primary"><i class="fe fe-plus"></i> ساخت دسترسی ها</a>
             </div>
 
             <div class="card">
