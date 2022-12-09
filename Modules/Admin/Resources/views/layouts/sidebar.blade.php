@@ -65,7 +65,7 @@
                 </a>
             </li>
             <li class="slide">
-                <a class="side-menu__item" href="icons.html">
+                <a class="side-menu__item" href="{{ route('admin.permission') }}">
                     <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-key"></i></span> دسترسی ها</span>
                 </a>
             </li>

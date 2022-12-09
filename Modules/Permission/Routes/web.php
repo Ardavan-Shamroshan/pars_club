@@ -1,5 +1,7 @@
 <?php
 
+use Modules\Permission\Http\Controllers\AdminPermissionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,17 @@
 |
 */
 
-Route::prefix('permission')->group(function() {
+// admin permission
+Route::prefix('admin')->group(function () {
+    Route::prefix('permission')->group(function () {
+        Route::get('/', [AdminPermissionController::class, 'index'])->name('admin.permission');
+        Route::get('/create', [AdminPermissionController::class, 'create'])->name('admin.permission.create');
+        Route::get('/edit/{permission}', [AdminPermissionController::class, 'edit'])->name('admin.permission.edit');
+        Route::delete('/destroy/{permission}', [AdminPermissionController::class, 'destroy'])->name('admin.permission.destroy');
+    });
+});
+
+// permission
+Route::prefix('permission')->group(function () {
     Route::get('/', 'PermissionController@index');
 });
