@@ -2,7 +2,7 @@
 
 namespace Modules\Post\Filters;
 
-use App\Filters\AbstractFilter;
+use Modules\Admin\Filters\AbstractFilter;
 use Modules\Post\Filters\StatusFilter;
 use Modules\Post\Filters\CategoryFilter;
 

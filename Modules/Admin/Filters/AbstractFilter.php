@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Filters;
+namespace Modules\Admin\Filters;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;

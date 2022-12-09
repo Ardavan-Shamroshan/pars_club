@@ -13,8 +13,8 @@
             @auth
                 <div class="dropdown user-pro-body">
                     <div>
-                        @if(auth()->user()->profile_photo_path)
-                            <img alt="{{ auth()->user()->fullname ?? auth()->user()->name }}" src="{{ asset(auth()->user()->profile_photo_path) }}" class="avatar avatar-xl brround">
+                        @if(auth()->user()->profile_photo_url)
+                            <img alt="{{ auth()->user()->fullname ?? auth()->user()->name }}" src="{{ (auth()->user()->profile_photo_url) }}" class="avatar avatar-xl brround">
                             <span class="avatar-status profile-status bg-green"></span>
                         @else
                             <div class="profile-user avatar avatar-lg bg-info rounded-circle text-white mx-auto">

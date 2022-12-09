@@ -2,7 +2,7 @@
 
 namespace Modules\Comment\Filters;
 
-use App\Filters\AbstractFilter;
+use Modules\Admin\Filters\AbstractFilter;
 
 /**
  * In this file, we will define the actual filter class.
