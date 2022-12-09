@@ -248,7 +248,7 @@
                 @auth
                     <div class="dropdown main-profile-menu nav nav-item nav-link">
                         <a class="profile-user avatar bg-info rounded-circle text-white">
-                            @if(auth()->user()->profile_photo_url)
+                            @if(auth()->user()->profile_photo_path)
                                 <img alt="{{ auth()->user()->fullname ?? auth()->user()->name }}" src="{{ (auth()->user()->profile_photo_url) }}">
                             @else
                                 <small>{{ auth()->user()->fullname[0] ?? 'م' }}</small>

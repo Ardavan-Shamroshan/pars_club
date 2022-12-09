@@ -2,5 +2,8 @@
     "Admin": true,
     "PostCategory": true,
     "Post": true,
-    "Comment": true
+    "Comment": true,
+    "User": true,
+    "Role": true,
+    "Permission": true
 }

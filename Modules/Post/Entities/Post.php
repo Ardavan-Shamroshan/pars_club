@@ -31,7 +31,6 @@ class Post extends Model
             'slug' => [
                 'source' => ['title', 'id'],
                 'includeTrashed' => true,
-                'maxLength' => 1
             ]
         ];
     }
