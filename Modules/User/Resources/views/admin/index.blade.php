@@ -99,8 +99,24 @@
                                                 <td>
                                                     <small><a href="mailto:{{ $user->email }}">{{ $user->email ?? '-' }}</a></small>
                                                 </td>
-                                                <td>{{ $user->roles ?? '-' }}</td>
-                                                <td>{{ $user->permissions ?? '-' }}</td>
+                                                <td>
+                                                    @if($user->roles->isEmpty())
+                                                        <small class="badge badge-light">تعریف نشده است</small>
+                                                    @else
+                                                        @foreach($user->roles as $role)
+                                                            <small class="badge badge-dark">{{ $role->name ?? '-' }} <i class="la la-user"></i> </small>
+                                                        @endforeach
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if($user->permissions->isEmpty())
+                                                        <small class="badge badge-light">تعریف نشده است</small>
+                                                    @else
+                                                        @foreach($user->permissions as $permission)
+                                                            <small class="badge badge-dark">{{ $permission->name ?? '-' }} <i class="la la-key"></i> </small>
+                                                        @endforeach
+                                                    @endif
+                                                </td>
                                                 <td class="d-flex justify-content-start">
                                                     @if($user->activeUser)
                                                         <a href="{{ route('admin.user.activate', $user) }}"><span class="label text-success d-flex"><div class="dot-label bg-success ml-1 mt-lg-n1"></div>فعال</span></a>

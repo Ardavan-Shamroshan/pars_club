@@ -70,7 +70,9 @@
                                             <span class="tx-danger">* <small class="tx-primary">درصورت خالی بودن نام و نام خانوادگی، الزامی است</small></span></label>
                                         <input type="text" name="name" class="form-control @error('name') border-danger @enderror" value="{{ old('name') }}">
                                         @error('name') <small class="tx-danger">{{ $message }}</small> @enderror
-                                        <div><small class="text-muted">نام کاربری بهتر است انگلیسی و ترکیب نام و نام خانوادگی شما باشد. برای مثال: KavehRezaei ،MajidHoseini</small></div>
+                                        <div>
+                                            <small class="text-muted">نام کاربری بهتر است انگلیسی و ترکیب نام و نام خانوادگی شما باشد. برای مثال: KavehRezaei ،MajidHoseini</small>
+                                        </div>
                                     </div>
 
                                     {{-- first_name --}}
@@ -111,7 +113,9 @@
                                             <span class="tx-danger">*</span></label>
                                         <input type="password" name="password" class="form-control @error('password') border-danger @enderror" value="{{ old('password') }}">
                                         @error('password') <small class="tx-danger">{{ $message }}</small> @enderror
-                                        <div><small class="text-muted">کلمه عبور باید حداقل 8 کاراکتر و شامل حروف انگلیسی بزرگ و کوچک، یک عدد و یک نماد !@#$%^&*)( باشد. </small></div>
+                                        <div>
+                                            <small class="text-muted">کلمه عبور باید حداقل 8 کاراکتر و شامل حروف انگلیسی بزرگ و کوچک، یک عدد و یک نماد !@#$%^&*)( باشد. </small>
+                                        </div>
                                     </div>
 
                                     {{-- password confirmation --}}
@@ -121,6 +125,65 @@
                                         <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') border-danger @enderror" value="{{ old('password') }}">
                                         @error('password_confirmation')
                                         <small class="tx-danger">{{ $message }}</small> @enderror
+                                    </div>
+
+                                    <div class="alert alert-primary" role="alert">
+                                        <span class="alert-inner--icon"><i class="fe fe-check-square"></i></span>
+                                        <span class="alert-inner--text"><strong>راهنمایی!</strong> هر نقش دارای چندین دسترسی است که با انتخاب هر نقش، دسترسی های آن نقش هم انتخاب می شوند. اگر علاوه بر دسترسی های نقش، دسترسی های اضافه ای هم میخواهید اختصاص بدهید میتوانید از بخش دسترسی ها، آنها را تیک بزنید. </span>
+                                    </div>
+
+                                    {{-- user role permission --}}
+                                    <div class="form-group col-sm-12 checklist_dependency" data-entity="user_role_permission" data-init-function="bpFieldInitChecklistDependencyElement" element="div" bp-field-wrapper="true" bp-field-name="roles,permissions" bp-field-type="checklist_dependency" data-initialized="true">
+
+                                        <label class="font-weight-bold form-label my-3 text-center">نقش ها و دسترسی های کاربر</label>
+
+                                        <div class="container">
+
+                                            {{-- roles --}}
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <label class="form-label font-weight-bold">نقش ها</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                @foreach($roles as $role)
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox">
+                                                            <label class="font-weight-normal">
+                                                                <input type="checkbox" data-id="{{ $role->id }}" onclick="isChecked({{ $role->id }})" class="primary_list" label="Roles" name="roles_show[]" entity="roles" entity_secondary="permissions" attribute="name" model="Spatie\Permission\Models\Role" pivot="1" number_columns="3" parentfieldname="" relation_type="MorphToMany" multiple value="{{ $role->id }}">
+                                                                {{ $role->name }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            {{-- end roles --}}
+
+                                            {{-- permissions --}}
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <label class="form-label font-weight-bold">دسترسی ها</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                @foreach($permissions as $permission)
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox">
+                                                            <label class="font-weight-normal">
+                                                                <input type="checkbox" class="secondary_list" data-id="{{ $permission->id }}" label="Permissions" name="permissions_show[]" entity="permissions" entity_primary="roles" attribute="name" model="Spatie\Permission\Models\Permission" pivot="1" number_columns="3" parentfieldname="" relation_type="MorphToMany" multiple value="{{ $permission->id }}">
+                                                                {{ $permission->name }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+
+                                            </div>
+                                            {{-- end permissions --}}
+                                        </div>
                                     </div>
 
                                 </div>
@@ -141,3 +204,32 @@
         <!-- /row -->
     </div>
 @endsection
+@section('script')
+    <script>
+        function isChecked($id) {
+            var rolesChk = $("input[type='checkbox'][name='roles_show[]']:checked");
+            fetchRecords($id);
+        }
+
+        function fetchRecords(id) {
+            $.ajax({
+                url: '/admin/user/get-permissions/' + id,
+                type: 'get',
+                dataType: 'json',
+                success: function (response) {
+                    $.each(response['data'], function (index, value) {
+                        var permissionChk = $("input[type='checkbox'][name='permissions_show[]'][data-id='" + value.id + "']");
+                        if (permissionChk.is(':checked')) {
+                            permissionChk.prop('checked', false).removeAttr("disabled");
+                        } else
+                            permissionChk.prop('checked', true).attr("disabled", true);
+                    });
+
+
+                }
+            });
+        }
+
+    </script>
+@endsection
+

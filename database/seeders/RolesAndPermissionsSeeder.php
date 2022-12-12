@@ -53,7 +53,7 @@ class RolesAndPermissionsSeeder extends Seeder
         ]);
 
         // super admin has high access level
-        $superAdmin = Role::create(['name' => 'super-admin']);
+        $superAdmin = Role::create(['name' => 'super admin']);
         $superAdmin->givePermissionTo(Permission::all());
     }
 }

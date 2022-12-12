@@ -59,11 +59,16 @@
                             <div class="card-body pt-0">
                                 <div>
 
+                                    <div class="alert alert-primary" role="alert">
+                                        <span class="alert-inner--icon"><i class="fe fe-check-square"></i></span>
+                                        <span class="alert-inner--text"><strong>توجه!</strong> از بین (نام کاربری) و (نام و نام خانوادگی) فقط یکی را نیاز است پر کنید</span>
+                                    </div>
+
                                     {{-- name --}}
                                     <div class="form-group mb-4">
                                         <label class="form-label @error('name') tx-danger @enderror">کاربر:
-                                        <input type="text" name="name" class="form-control @error('name') border-danger @enderror" value="{{ old('name', $user->name) }}">
-                                        @error('name') <small class="tx-danger">{{ $message }}</small> @enderror
+                                            <input type="text" name="name" class="form-control @error('name') border-danger @enderror" value="{{ old('name', $user->name) }}">
+                                            @error('name') <small class="tx-danger">{{ $message }}</small> @enderror
                                     </div>
 
                                     {{-- first_name --}}
@@ -77,8 +82,9 @@
                                     {{-- last_name --}}
                                     <div class="form-group mb-4">
                                         <label class="form-label @error('last_name') tx-danger @enderror">نام خانوادگی:
-                                        <input type="text" name="last_name" class="form-control @error('last_name') border-danger @enderror" value="{{ old('last_name', $user->last_name) }}">
-                                        @error('last_name') <small class="tx-danger">{{ $message }}</small> @enderror
+                                            <input type="text" name="last_name" class="form-control @error('last_name') border-danger @enderror" value="{{ old('last_name', $user->last_name) }}">
+                                            @error('last_name')
+                                            <small class="tx-danger">{{ $message }}</small> @enderror
                                     </div>
 
                                     <div class="form-group mb-4">
@@ -103,7 +109,6 @@
                                         @error('password') <small class="tx-danger">{{ $message }}</small> @enderror
                                     </div>
 
-
                                     {{-- password confirmation --}}
                                     <div class="form-group mb-4">
                                         <label class="form-label @error('password_confirmation') tx-danger @enderror">تکرار کلمه عبور:
@@ -113,13 +118,70 @@
                                         <small class="tx-danger">{{ $message }}</small> @enderror
                                     </div>
 
+
+                                    <div class="alert alert-primary" role="alert">
+                                        <span class="alert-inner--icon"><i class="fe fe-check-square"></i></span>
+                                        <span class="alert-inner--text"><strong>راهنمایی!</strong> هر نقش دارای چندین دسترسی است که با انتخاب هر نقش، دسترسی های آن نقش هم انتخاب می شوند. اگر علاوه بر دسترسی های نقش، دسترسی های اضافه ای هم میخواهید اختصاص بدهید میتوانید از بخش دسترسی ها، آنها را تیک بزنید. </span>
+                                    </div>
+
+                                    {{-- user role permission --}}
+                                    <div class="form-group col-sm-12 checklist_dependency" data-entity="user_role_permission" data-init-function="bpFieldInitChecklistDependencyElement" element="div" bp-field-wrapper="true" bp-field-name="roles,permissions" bp-field-type="checklist_dependency" data-initialized="true">
+                                        <label class="font-weight-bold form-label my-3 text-center">نقش ها و دسترسی های کاربر</label>
+
+                                        <div class="container">
+
+                                            {{-- roles --}}
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <label class="form-label font-weight-bold">نقش ها</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                @foreach($roles as $role)
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox">
+                                                            <label class="font-weight-normal">
+                                                                <input type="checkbox" data-id="{{ $role->id }}" @checked($user->roles->contains($role)) onclick="isChecked({{ $role->id }})" class="primary_list" label="Roles" name="roles_show[]" entity="roles" entity_secondary="permissions" attribute="name" model="Spatie\Permission\Models\Role" pivot="1" number_columns="3" parentfieldname="" relation_type="MorphToMany" multiple value="{{ $role->id }}">
+                                                                {{ $role->name }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            {{-- end roles --}}
+
+                                            {{-- permissions --}}
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <label class="form-label font-weight-bold">دسترسی ها</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                @foreach($permissions as $permission)
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox">
+                                                            <label class="font-weight-normal">
+                                                                <input type="checkbox" class="secondary_list" @if($user->getPermissionsViaRoles()->contains($permission)) checked disabled @endif @if($user->getAllPermissions()->contains($permission)) checked @endif data-id="{{ $permission->id }}" label="Permissions" name="permissions_show[]" entity="permissions" entity_primary="roles" attribute="name" model="Spatie\Permission\Models\Permission" pivot="1" number_columns="3" parentfieldname="" relation_type="MorphToMany" multiple value="{{ $permission->id }}">
+                                                                {{ $permission->name }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+
+                                            </div>
+                                            {{-- end permissions --}}
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
                 {{-- submit --}}
                 <button type="submit" class="btn btn-primary mb-3"><i class="fe fe-save"></i> ذخیره و بازگشت
                 </button>
@@ -130,4 +192,30 @@
         </div>
         <!-- /row -->
     </div>
+@endsection
+@section('script')
+    <script>
+        function isChecked($id) {
+            fetchRecords($id);
+        }
+
+        function fetchRecords(id) {
+            $.ajax({
+                url: '/admin/user/get-permissions/' + id,
+                type: 'get',
+                dataType: 'json',
+                success: function (response) {
+                    $.each(response['data'], function (index, value) {
+                        var permissionChk = $("input[type='checkbox'][name='permissions_show[]'][data-id='" + value.id + "']");
+                        if (permissionChk.is(':checked')) {
+                            permissionChk.prop('checked', false).removeAttr("disabled");
+                        } else
+                            permissionChk.prop('checked', true).attr("disabled", true);
+                    });
+
+
+                }
+            });
+        }
+    </script>
 @endsection

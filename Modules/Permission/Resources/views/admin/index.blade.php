@@ -79,7 +79,6 @@
                                                 <td>{{ $permission->name }}</td>
                                                 <td>{{ $permission->guard_name ?? '-' }}</td>
                                                 <td class="d-flex justify-content-start">
-                                                    <a href="{{ route('admin.permission.show', $permission) }}" class="btn-sm"><i class="fe fe-eye"></i> نمایش</a>
                                                     <a href="{{ route('admin.permission.edit', $permission) }}" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
                                                     <form action="{{ route('admin.permission.destroy', $permission) }}" method="post">
                                                         @csrf @method('delete')

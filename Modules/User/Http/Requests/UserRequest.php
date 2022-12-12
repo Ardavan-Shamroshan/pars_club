@@ -15,15 +15,16 @@ class UserRequest extends FormRequest
      */
     public function rules() {
         if ($this->isMethod('post'))
-
             return [
                 'name' => ['nullable', 'max:120', 'min:1', 'required_without:first_name,last_name'],
                 'first_name' => ['nullable', 'max:120', 'min:1','required_without:name'],
                 'last_name' => ['nullable', 'max:120', 'min:1','required_without:name'],
                 'mobile' => ['nullable', 'digits:11', 'unique:users'],
                 'email' => ['required', 'string', 'email', Rule::unique('users', 'email')],
-                'password' => [Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised(), 'confirmed'],
-                'password_confirmation' => [Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised(),],
+                'password' => ['confirmed'],
+//                'password' => [Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised(), 'confirmed'],
+//                'password_confirmation' => [Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised(),],
+                'password_confirmation' => [],
                 'profile_photo_path' => ['nullable', 'image', 'mimes:png,jpg,jpeg,gif'],
                 'activation' => ['numeric', Rule::in(['0', '1'])],
                 'slug' => [Rule::unique('users', 'slug')]
@@ -36,8 +37,10 @@ class UserRequest extends FormRequest
                 'last_name' => ['nullable', 'max:120', 'min:1'],
                 'mobile' => ['nullable', 'digits:11', 'unique:users'],
                 'email' => ['required', 'string', 'email', Rule::unique('users', 'email')->ignore($this->user->id)],
-                'password' => [Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised(), 'confirmed'],
-                'password_confirmation' => [Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised(),],
+                'password' => ['confirmed'],
+//                'password' => [Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised(), 'confirmed'],
+//                'password_confirmation' => [Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised(),],
+                'password_confirmation' => [],
                 'profile_photo_path' => ['nullable', 'image', 'mimes:png,jpg,jpeg,gif'],
                 'activation' => ['numeric', Rule::in(['0', '1'])],
                 'slug' => [Rule::unique('users', 'slug')->ignore($this->user->id)]

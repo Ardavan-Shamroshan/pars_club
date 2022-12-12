@@ -6,8 +6,11 @@ use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Modules\User\Http\Requests\UserRequest;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class AdminUserController extends Controller
 {
@@ -26,7 +29,9 @@ class AdminUserController extends Controller
      * @return Renderable
      */
     public function create() {
-        return view('user::admin.create');
+        $roles = Role::all();
+        $permissions = Permission::all();
+        return view('user::admin.create', compact('roles', 'permissions'));
     }
 
     /**
@@ -58,7 +63,9 @@ class AdminUserController extends Controller
      * @return Renderable
      */
     public function edit(User $user) {
-        return view('user::admin.edit', compact('user'));
+        $roles = Role::all();
+        $permissions = Permission::all();
+        return view('user::admin.edit', compact('user', 'roles', 'permissions'));
     }
 
     /**
@@ -69,9 +76,23 @@ class AdminUserController extends Controller
      */
     public function update(UserRequest $request, User $user) {
         $inputs = $request->all();
+
         // Hashing password
         $inputs['password'] = Hash::make($request->password);
-        $user->update($inputs);
+
+        DB::transaction(function () use ($inputs, $user) {
+            $user->update($inputs);
+
+            // roles assign
+            if (array_key_exists('roles_show', $inputs)) {
+                $user->roles()->sync($inputs['roles_show']);
+            } else $user->syncRoles([]);
+            // permissions assign
+            if (array_key_exists('permissions_show', $inputs)) {
+                $user->permissions()->sync($inputs['permissions_show']);
+            } else $user->syncPermissions([]);
+        });
+
         toast('کاربر با موفقیت ویرایش شد', 'success');
         return redirect()->route('admin.user');
     }
@@ -97,5 +118,13 @@ class AdminUserController extends Controller
             toast('عملیات با خطا مواجه شد، دوباره تلاش کنید', 'error');
             return back();
         }
+    }
+
+    public function getPermissions($id) {
+        $role = Role::query()->find($id);
+        // Fetch all students
+        $permission['data'] = $role->permissions;
+        echo json_encode($permission, JSON_THROW_ON_ERROR);
+        exit;
     }
 }

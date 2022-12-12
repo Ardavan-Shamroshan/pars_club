@@ -24,6 +24,8 @@ Route::prefix('admin')->group(function () {
         Route::put('/update/{user}', [AdminUserController::class, 'update'])->name('admin.user.update');
         Route::delete('/destroy/{user}', [AdminUserController::class, 'destroy'])->name('admin.user.destroy');
         Route::get('/activate/{user}', [AdminUserController::class, 'activate'])->name('admin.user.activate');
+        // get permissions for ajax
+        Route::get('/get-permissions/{id}', [AdminUserController::class, 'getPermissions'])->name('admin.user.get-permissions');
     });
 });
 
