@@ -57,7 +57,7 @@
                 <a class="side-menu__item" data-bs-toggle="slide" href="#">
                     <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-pager"></i></span> محتوا</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="chart-morris.html">منو ها</a></li>
+                    <li><a class="slide-item" href="{{ route('admin.menu') }}">منو ها</a></li>
                     <li><a class="slide-item" href="chart-flot.html">صفحه ساز</a></li>
                 </ul>
             </li>
