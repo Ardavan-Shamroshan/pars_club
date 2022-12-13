@@ -75,7 +75,7 @@
                                     {{--                                        </div>--}}
 
                                     <div class="form-group">
-                                        <label for="">نویسنده: {{ auth()->user()->fullname ?? 'وارد نشده اید' }}</label>
+                                        <label for="">نویسنده: {{ auth()->user()->fullname ?? auth()->user()->name ?? 'وارد نشده اید' }}</label>
                                     </div>
 
                                     {{-- category id --}}
@@ -113,7 +113,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">برچسب:</label>
                                         <div class="SumoSelect" tabindex="0" role="button" aria-expanded="true">
-                                            <select multiple="multiple" class="testselect2 SumoUnder" tabindex="-1" name="label[]">
+                                            <select class="testselect2 SumoUnder" tabindex="-1" name="label[]">
                                                 <option value="0" @selected(Str::contains($post->label, '0'))>پیشنهاد سردبیر</option>
                                                 <option value="1" @selected(Str::contains($post->label, '1'))>مطالب داغ</option>
                                                 <option value="2" @selected(Str::contains($post->label, '2'))>نقل و انتقالات</option>

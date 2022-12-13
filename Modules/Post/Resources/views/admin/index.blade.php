@@ -94,7 +94,7 @@
                                                 <td>
                                                     <a href="" data-bs-toggle="modal" data-bs-target="#dataModal-{{ $post->id }}">{{ Str::limit($post->title, 50) ?? '-' }}</a>
                                                 </td>
-                                                @empty($post->label)
+                                                @if(is_null($post->label))
                                                     <td><small class="badge badge-light">بدون برچسب</small></td>
                                                 @else
                                                     <td>
@@ -103,7 +103,7 @@
                                                             </small>
                                                         @endforeach
                                                     </td>
-                                                @endempty
+                                                @endif
                                                 <td>{{ jalaliDate($post->published_at, '%d %B، %Y') ?? '-' }}</td>
                                                 <td>
                                                     <label for="{{ $post->id }}-commentable">

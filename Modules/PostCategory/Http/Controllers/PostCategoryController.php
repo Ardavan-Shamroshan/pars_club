@@ -5,6 +5,8 @@ namespace Modules\PostCategory\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Post\Entities\Post;
+use Modules\PostCategory\Entities\PostCategory;
 
 class PostCategoryController extends Controller
 {
@@ -12,7 +14,7 @@ class PostCategoryController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('postcategory::index');
     }
@@ -41,8 +43,9 @@ class PostCategoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
+    public function show(PostCategory $postcategory)
     {
+        dd($postcategory->posts);
         return view('postcategory::show');
     }
 
@@ -75,5 +78,8 @@ class PostCategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function posts(PostCategory $postcategory) {
     }
 }

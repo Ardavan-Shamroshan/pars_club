@@ -16,5 +16,6 @@ class PostFilter extends AbstractFilter
     protected $filters = [
         'status' => StatusFilter::class,
         'category_id' => CategoryFilter::class,
+        'label' => PostLabelFilter::class
     ];
 }

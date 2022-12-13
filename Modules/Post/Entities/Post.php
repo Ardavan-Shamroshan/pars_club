@@ -52,11 +52,11 @@ class Post extends Model
     /**
      * Accessors & Mutators
      */
-    protected function label(): Attribute {
-        return Attribute::make(
-            set: fn($value) => implode(',', $value),
-        );
-    }
+//    protected function label(): Attribute {
+//        return Attribute::make(
+//            set: fn($value) => is_array($value) ? implode(',', $value) : $value,
+//        );
+//    }
 
     public function labelName($label) {
         switch ($label) {

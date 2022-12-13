@@ -6,5 +6,6 @@
     "User": true,
     "Role": true,
     "Permission": true,
-    "Menu": true
+    "Menu": true,
+    "Home": true
 }

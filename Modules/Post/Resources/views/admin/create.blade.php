@@ -55,24 +55,9 @@
                             <div class="card-header"></div>
                             <div class="card-body pt-0">
                                 <div>
-                                    {{--                                    --}}{{-- author id --}}
-                                    {{--                                    <div class="form-group mb-4">--}}
-                                    {{--                                        <label class="form-label @error('author_id') tx-danger @enderror">نویسنده--}}
-                                    {{--                                            <span class="tx-danger">*</span></label>--}}
-                                    {{--                                        <div class="SumoSelect sumo_somename" tabindex="0" role="button" aria-expanded="false">--}}
-                                    {{--                                            <select name="author_id" class="form-control SlectBox SumoUnder @error('author_id') border-danger @enderror" onclick="console.log($(this).val())" onchange="console.log('change is firing')" tabindex="-1">--}}
-                                    {{--                                                <option value="">-</option>--}}
-                                    {{--                                                @foreach($users as $user)--}}
-                                    {{--                                                    <option value="{{ $user->id }}" @selected(old('author_id') == $user->id)>{{ $user->fullname }}</option>--}}
-                                    {{--                                                @endforeach--}}
-                                    {{--                                            </select>--}}
-                                    {{--                                            @error('author_id')--}}
-                                    {{--                                            <small class="tx-danger">{{ $message }}</small> @enderror--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
 
                                     <div class="form-group">
-                                        <label for="">نویسنده: {{ auth()->user()->fullname ?? 'وارد نشده اید' }}</label>
+                                        <label for="">نویسنده: {{ auth()->user()->fullname ?? auth()->user()->name ?? 'وارد نشده اید' }}</label>
                                     </div>
 
                                     {{-- category id --}}
@@ -110,7 +95,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">برچسب</label>
                                         <div class="SumoSelect" tabindex="0" role="button" aria-expanded="true">
-                                            <select multiple="multiple" class="testselect2 SumoUnder" tabindex="-1" name="label">
+                                            <select class="testselect2 SumoUnder" tabindex="-1" name="label">
                                                 <option value="0">پیشنهاد سردبیر</option>
                                                 <option value="1">مطالب داغ</option>
                                                 <option value="2">نقل و انتقالات</option>
