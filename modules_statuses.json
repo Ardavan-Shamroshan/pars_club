@@ -5,5 +5,6 @@
     "Comment": true,
     "User": true,
     "Role": true,
-    "Permission": true
+    "Permission": true,
+    "Menu": true
 }

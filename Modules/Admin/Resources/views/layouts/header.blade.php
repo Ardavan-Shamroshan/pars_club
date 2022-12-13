@@ -258,7 +258,7 @@
                             <div class="main-header-profile bg-primary p-3">
                                 <div class="d-flex wd-100p">
                                     <div class="profile-user avatar bg-info rounded-circle text-white">
-                                        @if(auth()->user()->profile_photo_url)
+                                        @if(auth()->user()->profile_photo_path)
                                             <img alt="{{ auth()->user()->fullname ?? auth()->user()->name }}" src="{{ (auth()->user()->profile_photo_url) }}">
                                         @else
                                             <small>{{ auth()->user()->fullname[0] ?? 'م' }}</small>

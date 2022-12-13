@@ -5,6 +5,7 @@ namespace Modules\Role\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Spatie\Permission\Models\Role;
 
 class AdminRoleController extends Controller
 {
@@ -14,7 +15,10 @@ class AdminRoleController extends Controller
      */
     public function index()
     {
-        return view('role::index');
+        // All Permissions
+        $roles = Role::query()->paginate(10);
+        $rolesCount = Role::query()->count();
+        return view('role::admin.index', compact('roles', 'rolesCount'));
     }
 
     /**

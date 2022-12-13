@@ -13,7 +13,7 @@
             @auth
                 <div class="dropdown user-pro-body">
                     <div>
-                        @if(auth()->user()->profile_photo_url)
+                        @if(auth()->user()->profile_photo_path)
                             <img alt="{{ auth()->user()->fullname ?? auth()->user()->name }}" src="{{ (auth()->user()->profile_photo_url) }}" class="avatar avatar-xl brround">
                             <span class="avatar-status profile-status bg-green"></span>
                         @else
@@ -53,22 +53,41 @@
                 </a>
             </li>
 
-            <li class="side-item side-item-category">احراز هویت</li>
             <li class="slide">
-                <a class="side-menu__item" href={{ route('admin.user') }}>
-                    <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-user"></i></span> کاربران</span>
-                </a>
+                <a class="side-menu__item" data-bs-toggle="slide" href="#">
+                    <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-pager"></i></span> محتوا</span><i class="angle fe fe-chevron-down"></i></a>
+                <ul class="slide-menu">
+                    <li><a class="slide-item" href="chart-morris.html">منو ها</a></li>
+                    <li><a class="slide-item" href="chart-flot.html">صفحه ساز</a></li>
+                </ul>
             </li>
-            <li class="slide">
-                <a class="side-menu__item" href="icons.html">
-                    <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-users"></i></span> نقش ها</span>
-                </a>
-            </li>
-            <li class="slide">
-                <a class="side-menu__item" href="{{ route('admin.permission') }}">
-                    <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-key"></i></span> دسترسی ها</span>
-                </a>
-            </li>
+
+            @admin
+            @if(auth()->user()->role('super admin') || auth()->user()->canany(['manage roles','manage permissions','manage users']))
+                <li class="side-item side-item-category">احراز هویت</li>
+                @can('manage users')
+                    <li class="slide">
+                        <a class="side-menu__item" href={{ route('admin.user') }}>
+                            <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-user"></i></span> کاربران</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('manage roles')
+                    <li class="slide">
+                        <a class="side-menu__item" href="{{ route('admin.role') }}">
+                            <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-users"></i></span> نقش ها</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('manage permissions')
+                    <li class="slide">
+                        <a class="side-menu__item" href="{{ route('admin.permission') }}">
+                            <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-key"></i></span> دسترسی ها</span>
+                        </a>
+                    </li>
+                @endcan
+            @endif
+            @endadmin
 
             <li class="side-item side-item-category">تنظیمات</li>
             <li class="slide">
@@ -83,21 +102,6 @@
                     <li><a class="slide-item" href="chart-peity.html">چارت گرایی</a></li>
                 </ul>
             </li>
-            <li class="slide">
-                <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
-                        <path d="M0 0h24v24H0V0z" fill="none" />
-                        <path d="M3.31 11l2.2 8.01L18.5 19l2.2-8H3.31zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" opacity=".3" />
-                        <path d="M22 9h-4.79l-4.38-6.56c-.19-.28-.51-.42-.83-.42s-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1zM12 4.8L14.8 9H9.2L12 4.8zM18.5 19l-12.99.01L3.31 11H20.7l-2.2 8zM12 13c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
-                    </svg>
-                    <span class="side-menu__label">تجارت الکترونیک</span><i class="angle fe fe-chevron-down"></i></a>
-                <ul class="slide-menu">
-                    <li><a class="slide-item" href="products.html">محصولات</a></li>
-                    <li><a class="slide-item" href="product-details.html">مشخصات محصول</a></li>
-                    <li><a class="slide-item" href="product-cart.html">سبد</a></li>
-                </ul>
-            </li>
-
         </ul>
     </div>
 </aside><!-- main-sidebar -->

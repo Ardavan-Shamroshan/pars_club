@@ -125,7 +125,7 @@
                                                     @endif
 
                                                     <a href="{{ route('admin.user.edit', $user) }}" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
-                                                    <form action="{{ route('admin.user.destroy', $user) }}" method="user">
+                                                    <form action="{{ route('admin.user.destroy', $user) }}" method="post">
                                                         @csrf @method('delete')
                                                         <button type="submit" class="btn btn-sm btn-link delete">
                                                             <i class="fe fe-trash-2"></i> پاک کردن

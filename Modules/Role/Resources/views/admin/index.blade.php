@@ -1,14 +1,14 @@
 @extends('admin::layouts.master')
 @section('title')
-    دسترسی ها | داشبورد مدیریت
+    نقش ها | داشبورد مدیریت
 @endsection
 @section('content')
     <!-- breadcrumb -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin') }}">مدیریت</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.permission') }}">احراز هویت</a></li>
-            <li class="breadcrumb-item">دسترسی ها</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.role') }}">احراز هویت</a></li>
+            <li class="breadcrumb-item">نقش ها</li>
         </ol>
     </nav>
     <!-- breadcrumb -->
@@ -19,13 +19,13 @@
             <div class="pb-0 mb-2">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-2">
-                        <h4 class="card-title mg-b-0">دسترسی ها</h4>
-                        <p class="tx-12 tx-gray-500 mb-2">نمایش {{ $permissions->currentPage() }} از {{ $permissions->lastPage() }} صفحه از همه {{ $permissionsCount }} مورد .
-                            <a href="{{ route('admin.permission') }}" id="m-l-c-05">تازه سازی </a>
+                        <h4 class="card-title mg-b-0">نقش ها</h4>
+                        <p class="tx-12 tx-gray-500 mb-2">نمایش {{ $roles->currentPage() }} از {{ $roles->lastPage() }} صفحه از همه {{ $rolesCount }} مورد .
+                            <a href="{{ route('admin.role') }}" id="m-l-c-05">تازه سازی </a>
                         </p>
                     </div>
                 </div>
-                <a href="{{ route('admin.permission.create') }}" class="btn p-2 btn-primary disabled"><i class="fe fe-plus"></i> ساخت دسترسی ها</a>
+                <a href="{{ route('admin.role.create') }}" class="btn p-2 btn-primary disabled"><i class="fe fe-plus"></i> ساخت نقش ها</a>
             </div>
 
             <div class="card">
@@ -45,20 +45,20 @@
 {{--                                            <a href="#" data-bs-toggle="dropdown" class="btn-link text-black-50 rounded p-1 @if((str_contains(request()->getUri(), '?status'))) border bg-primary-transparent @endif">وضعیت<i class="fe fe-chevron-down"></i></a>--}}
 {{--                                            <div class="dropdown-menu dropdown-menu-filter rounded shadow tx-12" id="myDropdown">--}}
 {{--                                                <input type="text" placeholder="جستجو" id="myInput" class="border m-1 rounded" onkeyup="filterFunction()" style="outline: none">--}}
-{{--                                                <a href="{{ route('admin.permission','status=1') }}" class="dropdown-item @if((str_contains(request()->getUri(), '?status=1'))) bg-primary-transparent @endif">فعال</a>--}}
-{{--                                                <a href="{{ route('admin.permission','status=0') }}" class="dropdown-item @if((str_contains(request()->getUri(), '?status=0'))) bg-primary-transparent @endif">غیر فعال</a>--}}
+{{--                                                <a href="{{ route('admin.role','status=1') }}" class="dropdown-item @if((str_contains(request()->getUri(), '?status=1'))) bg-primary-transparent @endif">فعال</a>--}}
+{{--                                                <a href="{{ route('admin.role','status=0') }}" class="dropdown-item @if((str_contains(request()->getUri(), '?status=0'))) bg-primary-transparent @endif">غیر فعال</a>--}}
 {{--                                            </div>--}}
 
 {{--                                            --}}{{-- filter 2 --}}
 {{--                                            <a href="#" data-bs-toggle="dropdown" class="btn-link text-black-50 rounded p-1 @if((str_contains(request()->getUri(), '?parent_id'))) border bg-primary-transparent @endif">پدر، فرزند<i class="fe fe-chevron-down"></i></a>--}}
 {{--                                            <div class="dropdown-menu dropdown-menu-filter rounded shadow tx-12" id="myDropdown">--}}
-{{--                                                <a href="{{ route('admin.permission','parent_id=0') }}" class="dropdown-item @if((str_contains(request()->getUri(), '?parent_id=0'))) bg-primary-transparent @endif">دسته های پدر</a>--}}
-{{--                                                <a href="{{ route('admin.permission','parent_id=1') }}" class="dropdown-item @if((str_contains(request()->getUri(), '?parent_id=1'))) bg-primary-transparent @endif">زیر دسته ها</a>--}}
+{{--                                                <a href="{{ route('admin.role','parent_id=0') }}" class="dropdown-item @if((str_contains(request()->getUri(), '?parent_id=0'))) bg-primary-transparent @endif">دسته های پدر</a>--}}
+{{--                                                <a href="{{ route('admin.role','parent_id=1') }}" class="dropdown-item @if((str_contains(request()->getUri(), '?parent_id=1'))) bg-primary-transparent @endif">زیر دسته ها</a>--}}
 {{--                                            </div>--}}
 
 {{--                                            --}}{{-- filter clearing --}}
 {{--                                            @if(str_contains(request()->getUri(), '?') && str_contains(request()->getUri(), '='))--}}
-{{--                                                <a href="{{ route('admin.permission') }}" class="btn-link text-black-50">پاکسازی<i class="la la-eraser"></i></a>--}}
+{{--                                                <a href="{{ route('admin.role') }}" class="btn-link text-black-50">پاکسازی<i class="la la-eraser"></i></a>--}}
 {{--                                            @endif--}}
 {{--                                        </div>--}}
 {{--                                        --}}{{-- filter guid --}}
@@ -74,13 +74,13 @@
                                         </thead>
                                         <tbody>
 
-                                        @foreach($permissions as $permission)
+                                        @foreach($roles as $role)
                                             <tr>
-                                                <td>{{ $permission->name }}</td>
-                                                <td>{{ $permission->guard_name ?? '-' }}</td>
+                                                <td>{{ $role->name }}</td>
+                                                <td>{{ $role->guard_name ?? '-' }}</td>
                                                 <td class="d-flex justify-content-start">
-                                                    <a href="{{ route('admin.permission.edit', $permission) }}" class="btn-sm" style="color: #737f9e;pointer-events: none;"><i class="fe fe-edit"></i> ویرایش</a>
-                                                    <form action="{{ route('admin.permission.destroy', $permission) }}" method="post">
+                                                    <a href="{{ route('admin.role.edit', $role) }}" class="btn-sm" style="color: #737f9e;pointer-events: none;"><i class="fe fe-edit"></i> ویرایش</a>
+                                                    <form action="{{ route('admin.role.destroy', $role) }}" method="post">
                                                         @csrf @method('delete')
                                                         <button type="submit" class="btn btn-sm btn-link delete disabled">
                                                             <i class="fe fe-trash-2"></i> پاک کردن
@@ -95,7 +95,7 @@
                                     </table>
 
                                     <div class="col-12 mt-4 text-left">
-                                        {{ $permissions->links('vendor.pagination.bootstrap-5', ['elements' => $permissions]) }}
+                                        {{ $roles->links('vendor.pagination.bootstrap-5', ['elements' => $roles]) }}
                                     </div>
 
                                 </div>

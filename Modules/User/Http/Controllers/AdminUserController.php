@@ -43,7 +43,12 @@ class AdminUserController extends Controller
         $inputs = $request->all();
         // Hashing password
         $inputs['password'] = Hash::make('password');
-        User::query()->create($inputs);
+
+        DB::transaction(function () use ($inputs) {
+            $user = User::query()->create($inputs);
+            // assign member role to the user
+            $user->assignRole('member');
+        });
         toast('کاربر جدید با موفقیت ثبت شد', 'success');
         return redirect()->route('admin.user');
     }

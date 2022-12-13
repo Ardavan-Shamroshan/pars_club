@@ -1,5 +1,7 @@
 <?php
 
+use Modules\Role\Http\Controllers\AdminRoleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,19 @@
 |
 */
 
+// admin role
+Route::prefix('admin')->group(function () {
+    Route::prefix('role')->group(function () {
+        Route::get('/', [AdminRoleController::class, 'index'])->name('admin.role');
+        Route::get('/create', [AdminRoleController::class, 'create'])->name('admin.role.create');
+        Route::post('/store', [AdminRoleController::class, 'store'])->name('admin.role.store');
+        Route::get('/edit/{role}', [AdminRoleController::class, 'edit'])->name('admin.role.edit');
+        Route::delete('/destroy/{role}', [AdminRoleController::class, 'destroy'])->name('admin.role.destroy');
+    });
+});
+
+
+// role
 Route::prefix('role')->group(function() {
     Route::get('/', 'RoleController@index');
 });
