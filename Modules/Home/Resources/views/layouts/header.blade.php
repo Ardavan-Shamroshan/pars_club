@@ -8,7 +8,7 @@
     <div class="header-alert p-2 ">
         <div class="col col-xl-6">
             <a href="index.html" title="Return Home">
-                <img src="{{ asset('modules/home/img/clubs-logos/fc.png') }}" alt="Logo" class="logo_img" width="50">
+                <img src="{{ asset('modules/home/img/clubs-logos/club_logo.jpg') }}" alt="Logo" class="logo_img rounded-circle border" width="50">
             </a>
         </div>
     </div>
@@ -30,51 +30,71 @@
                                         <div class="sf-mega">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <h5><i class="fa fa-trophy" aria-hidden="true"></i>مقالات </h5>
+                                                    <h5><i class="fa fa-trophy" aria-hidden="true"></i>دسته بندی ها
+                                                    </h5>
                                                     <ul>
                                                         @foreach($categories as $category)
-                                                            <li><a href="{{ route('postcategory.posts', $category) }}">{{ $category->name }}</a></li>
+                                                            <li>
+                                                                <a href="{{ route('postcategory.posts', $category) }}">{{ $category->name }}</a>
+                                                            </li>
                                                         @endforeach
                                                     </ul>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <h5><i class="fa fa-pencils" aria-hidden="true"></i>لیست تیم ها
+                                                <div class="col-md-9">
+                                                    <h5><i class="fa fa-pencils" aria-hidden="true"></i>آخرین مقالات
                                                     </h5>
-                                                    <div class="img-hover">
-                                                        <img src="{{ asset('modules/home/img/blog/1.jpg') }}" alt="" class="img-responsive">
-                                                        <div class="overlay"><a href="teams.html">+</a></div>
+                                                    <div class="row" style="padding: 0px; margin: 0;">
+                                                        @foreach($latestPosts as $post)
+                                                            <div class="col-md-4">
+                                                                <div class="img-hover rounded border">
+                                                                    <img src="{{ asset($post->image['indexArray']['medium']) ?? asset('modules/home/img/blog/1.jpg') }}" alt="{{ $post->title }}" class="img-responsive rounded">
+                                                                    <a href="{{ route('post.show', $post) }}">
+                                                                        <div class="overlay text-white">
+                                                                            {{ $post->title }}
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <h5><i class="fa fa-futbol-o" aria-hidden="true"></i>لیست
-                                                        بازیکنان</h5>
-                                                    <div class="img-hover">
-                                                        <img src="{{ asset('modules/home/img/blog/2.jpg') }}" alt="" class="img-responsive">
-                                                        <div class="overlay"><a href="players.html">+</a></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <h5><i class="fa fa-gamepad" aria-hidden="true"></i>اطلاعات
-                                                        نتایج</h5>
-                                                    <div class="img-hover">
-                                                        <img src="{{ asset('modules/home/img/blog/3.jpg') }}" alt="" class="img-responsive">
-                                                        <div class="overlay"><a href="results.html">+</a></div>
-                                                    </div>
-                                                </div>
+
+                                                {{--                                                <div class="col-md-3">--}}
+                                                {{--                                                    <h5><i class="fa fa-futbol-o" aria-hidden="true"></i>لیست--}}
+                                                {{--                                                        بازیکنان</h5>--}}
+                                                {{--                                                    <div class="img-hover">--}}
+                                                {{--                                                        <img src="{{ asset('modules/home/img/blog/2.jpg') }}" alt="" class="img-responsive">--}}
+                                                {{--                                                        <div class="overlay"><a href="players.html">+</a></div>--}}
+                                                {{--                                                    </div>--}}
+                                                {{--                                                </div>--}}
+                                                {{--                                                <div class="col-md-3">--}}
+                                                {{--                                                    <h5><i class="fa fa-gamepad" aria-hidden="true"></i>اطلاعات--}}
+                                                {{--                                                        نتایج</h5>--}}
+                                                {{--                                                    <div class="img-hover">--}}
+                                                {{--                                                        <img src="{{ asset('modules/home/img/blog/3.jpg') }}" alt="" class="img-responsive">--}}
+                                                {{--                                                        <div class="overlay"><a href="results.html">+</a></div>--}}
+                                                {{--                                                    </div>--}}
+                                                {{--                                                </div>--}}
                                             </div>
                                         </div>
                                     </li>
-                                    {{--                                    <li class="current">--}}
-                                    {{--                                        <a href="teams.html">تیم</a>--}}
-                                    {{--                                        <ul class="sub-current">--}}
-                                    {{--                                            <li>--}}
-                                    {{--                                                <a href="teams.html">لیست تیم ها</a>--}}
-                                    {{--                                            </li>--}}
-                                    {{--                                            <li>--}}
-                                    {{--                                                <a href="single-team.html">تیم تک</a>--}}
-                                    {{--                                            </li>--}}
-                                    {{--                                        </ul>--}}
-                                    {{--                                    </li>--}}
+                                    <li class="current">
+                                        <a href="#">درباره ما</a>
+                                    </li>
+                                    <li class="current">
+                                        <a href="#">تماس ما</a>
+                                    </li>
+                                    <li class="current">
+                                        <a href="teams.html">روابط عمومی</a>
+                                        <ul class="sub-current">
+                                            <li>
+                                                <a href="teams.html">تبلیغات</a>
+                                            </li>
+                                            <li>
+                                                <a href="single-team.html">شرایط استفاده</a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                     {{--                                    <li class="current">--}}
                                     {{--                                        <a href="players.html">بازیکنان</a>--}}
                                     {{--                                        <ul class="sub-current rounded">--}}
@@ -181,14 +201,25 @@
                                     {{--                                    </li>--}}
                                 </ul>
 
-                                <ul class="sf-menu w-25 text-left">
-                                    <li class="bg-white m-0">
-                                        <a href="#" class="text-dark-sky">ورود</a>
-                                    </li>
-                                    <li class="bg-success m-0">
-                                        <a href="index.html" class="">عضویت</a>
-                                    </li>
-                                </ul>
+                                @auth
+                                    @admin
+                                    <ul class="sf-menu w-25 text-left">
+                                        <li class="bg-white m-0">
+                                            <a href="#" class="text-dark-sky">پیشخوان</a>
+                                        </li>
+                                    </ul>
+                                    @endadmin
+                                @endauth
+                                @guest
+                                    <ul class="sf-menu w-25 text-left">
+                                        <li class="bg-white m-0">
+                                            <a href="{{ route('login') }}" class="text-dark-sky">ورود</a>
+                                        </li>
+                                        <li class="bg-success m-0">
+                                            <a href="{{ route('register') }}" class="">عضویت</a>
+                                        </li>
+                                    </ul>
+                                @endguest
                             </div>
                         </div>
                     </nav>

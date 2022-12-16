@@ -54,6 +54,18 @@
             </li>
 
             <li class="slide">
+                <a class="side-menu__item" href="{{ route('admin.slide') }}">
+                    <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-picture-o"></i></span> اسلاید شو </span>
+                </a>
+            </li>
+
+            <li class="slide">
+                <a class="side-menu__item" href="{{ route('admin.videogallery') }}">
+                    <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-video"></i></span> گالری ویدیو </span>
+                </a>
+            </li>
+
+            <li class="slide">
                 <a class="side-menu__item" data-bs-toggle="slide" href="#">
                     <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-pager"></i></span> محتوا</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">

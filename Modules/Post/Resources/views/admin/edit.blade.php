@@ -114,10 +114,11 @@
                                         <label class="form-label">برچسب:</label>
                                         <div class="SumoSelect" tabindex="0" role="button" aria-expanded="true">
                                             <select class="testselect2 SumoUnder" tabindex="-1" name="label[]">
-                                                <option value="0" @selected(Str::contains($post->label, '0'))>پیشنهاد سردبیر</option>
-                                                <option value="1" @selected(Str::contains($post->label, '1'))>مطالب داغ</option>
-                                                <option value="2" @selected(Str::contains($post->label, '2'))>نقل و انتقالات</option>
-                                                <option value="3" @selected(Str::contains($post->label, '3'))>ویدیو</option>
+                                                <option value="" @selected($post->label == '0')>بدون برچسب</option>
+                                                <option value="0" @selected($post->label == '0')>پیشنهاد سردبیر</option>
+                                                <option value="1" @selected($post->label == '1'))>مطالب داغ</option>
+                                                <option value="2" @selected($post->label == '2'))>نقل و انتقالات</option>
+                                                <option value="3" @selected($post->label == '3'))>ویدیو</option>
                                             </select>
                                         </div>
                                     </div>

@@ -8482,7 +8482,7 @@ body{direction:rtl;text-align:right}
     }
 
     .sf-menu .sub-current li {
-        border-bottom: 1px solid #eee
+        /*border-bottom: 1px solid #eee*/
     }
 
         .sf-menu .sub-current li a {
@@ -8665,6 +8665,10 @@ ul.sub-current .current .sf-with-ul:after {
 .is-sticky .sf-menu > li {
     margin: 0 15px 0 0;
     padding: 10px 10px 8px
+}
+
+.is-sticky > div.container > div.justify-content-between {
+    width: 100% !important;
 }
 
 .is-sticky .mainmenu {
@@ -9790,7 +9794,7 @@ blockquote > a, .text-resalt, .post-item h4 a:hover, .post-item p a, .links li i
 }
 
 .sf-menu li:hover > .sf-mega, .sf-menu li.sfHover > .sf-mega, .mainmenu, .sf-menu .sub-current, .header-2 {
-    border-bottom: 3px solid #01d099
+    /*border-bottom: 3px solid #01d099*/
 }
 
     .header-2 .is-sticky {
@@ -9798,7 +9802,7 @@ blockquote > a, .text-resalt, .post-item h4 a:hover, .post-item p a, .links li i
     }
 
 header, .overlay-player, .crumbs {
-    border-top: 3px solid #01d099
+    /*border-top: 3px solid #01d099*/
 }
 
 .sf-arrows > li > .sf-with-ul:focus:after, .sf-arrows > li:hover > .sf-with-ul:after, .sf-arrows > .sfHover > .sf-with-ul:after {

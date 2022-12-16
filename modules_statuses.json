@@ -7,5 +7,7 @@
     "Role": true,
     "Permission": true,
     "Menu": true,
-    "Home": true
+    "Home": true,
+    "Slide": true,
+    "VideoGallery": true
 }

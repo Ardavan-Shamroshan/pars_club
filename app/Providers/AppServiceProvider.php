@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Modules\Post\Entities\Post;
 use Modules\PostCategory\Entities\PostCategory;
 
 class AppServiceProvider extends ServiceProvider
@@ -40,8 +41,10 @@ class AppServiceProvider extends ServiceProvider
 
         // view composer
         view()->composer('home::layouts.header', function ($view) {
+            // All active categories
             $view->with('categories', PostCategory::query()->where('status', 1)->get());
+            // 3 latest posts
+            $view->with('latestPosts', Post::query()->where('status', 1)->latest()->take(3)->get());
         });
-
     }
 }

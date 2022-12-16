@@ -23,7 +23,7 @@ class PostRequest extends FormRequest
                 'tags' => ['nullable'],
                 'label' => ['nullable'],
                 'published_at' => ['required', 'numeric'],
-                'slug' => [Rule::unique('posts', 'slug')->ignore($this->post->id)],
+                'slug' => [Rule::unique('posts', 'slug')],
             ];
         else
             return [

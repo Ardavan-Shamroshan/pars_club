@@ -63,8 +63,6 @@ class AdminPostController extends Controller
             }
             $inputs['image'] = $result;
 
-            dd($inputs);
-
             Post::query()->create($inputs);
             toast('خبر با موفقیت ایجاد شد', 'success');
             return redirect()->route('admin.post');

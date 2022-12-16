@@ -96,6 +96,7 @@
                                         <label class="form-label">برچسب</label>
                                         <div class="SumoSelect" tabindex="0" role="button" aria-expanded="true">
                                             <select class="testselect2 SumoUnder" tabindex="-1" name="label">
+                                                <option value="">بدون برچسب</option>
                                                 <option value="0">پیشنهاد سردبیر</option>
                                                 <option value="1">مطالب داغ</option>
                                                 <option value="2">نقل و انتقالات</option>
