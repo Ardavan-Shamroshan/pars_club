@@ -87,7 +87,7 @@ class VideoService extends VideoToolsService
     }
 
     public function deleteVideo($videoPath) {
-        if (file_exists($videoPath)) unlink($videoPath);
+        if (file_exists($videoPath)) dd(unlink($videoPath));
     }
 
     public function deleteIndex($video) {
@@ -96,8 +96,16 @@ class VideoService extends VideoToolsService
     }
 
     public function deleteDirectoryAndFiles($directory) {
-        if (!is_dir($directory))
+        // is_dir($directory) returns false instead of true, because $directory is file path not a directory so filename.ext should be removed form $directory
+        $directory = explode('\\', $directory);
+        $lastIndex = (array_key_last($directory));
+        unset($directory[$lastIndex]);
+        $directory = implode(DIRECTORY_SEPARATOR, $directory);
+
+        if (!is_dir($directory)) {
             return false;
+        }
+
         $files = glob($directory . DIRECTORY_SEPARATOR . '*', GLOB_MARK);
         foreach ($files as $file)
             if (is_dir($file))

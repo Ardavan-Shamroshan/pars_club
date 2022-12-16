@@ -72,8 +72,8 @@ class AdminVideoGalleryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id) {
-        return view('videogallery::edit');
+    public function edit(VideoGallery $video) {
+        return view('videogallery::admin.edit', compact('video'));
     }
 
     /**
@@ -82,8 +82,30 @@ class AdminVideoGalleryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id) {
-        //
+    public function update(VideoGalleryRequest $request, VideoGallery $video, VideoService $videoService) {
+        $inputs = $request->all();
+
+        // Video upload
+        if ($request->hasFile('video')) {
+            if (!empty($video->video)) {
+                $videoService->deleteDirectoryAndFiles($video->video);
+            }
+            // Set video directory
+            $videoService->setExclusiveDirectory('modules' . DIRECTORY_SEPARATOR . 'gallery' . DIRECTORY_SEPARATOR . 'video');
+            // Save video in the exclusive directory
+            $result = $videoService->save($request->file('video'));
+
+            // If save failed
+            if ($result === false) {
+                toast('آپلود ویدیو با خطا مواجه شد', 'error');
+                return redirect()->route('admin.videogallery');
+            }
+            $inputs['video'] = $result;
+        }
+
+        $video->update($inputs);
+        toast('گالری ویدیو با موفقیت ویرایش شد', 'success');
+        return redirect()->route('admin.videogallery');
     }
 
     /**

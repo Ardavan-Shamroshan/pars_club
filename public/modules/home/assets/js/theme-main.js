@@ -4,12 +4,15 @@ $(document).ready(function ($) {
     $("#hero-slider").slick({
         lazyLoad: 'ondemand',
         infinite: true, slidesToScroll: 1, autoplay: true, mobileFirst: true,
-        autoplaySpeed: 4000, speed: 500, fade: true, cssEase: 'linear'
-    }); $("#hero-slider-2").slick({
+        autoplaySpeed: 4000, speed: 200, cssEase: 'linear'
+    });
+
+    $("#hero-slider-2").slick({
         lazyLoad: 'ondemand',
         infinite: true, slidesToScroll: 1, autoplay: true, mobileFirst: true,
-        autoplaySpeed: 4000, speed: 500, fade: true, cssEase: 'linear'
+        autoplaySpeed: 4000, speed: 200, cssEase: 'linear'
     });
+
     $("#events-carousel").slick({ rtl: true, lazyLoad: 'progressive', arrows: false, infinite: true, slidesToShow: 3, slidesToScroll: 3 });
     $(".sponsors-carousel").slick({ rtl: true, lazyLoad: 'progressive', arrows: true, infinite: true, slidesToShow: 5, slidesToScroll: 1, mobileFirst: true, autoplaySpeed: 3000, autoplay: true, speed: 500, responsive: [{ breakpoint: 1024, settings: { slidesToShow: 5, slidesToScroll: 1 } }, { breakpoint: 900, settings: { slidesToShow: 3, slidesToScroll: 1 } }, { breakpoint: 0, settings: { slidesToShow: 2, slidesToScroll: 1 } }] });
     $(".testimonials-carousel").slick({ rtl: true, lazyLoad: 'progressive', arrows: false, infinite: true, slidesToShow: 3, slidesToScroll: 1, mobileFirst: true, autoplaySpeed: 2500, autoplay: true, speed: 500, responsive: [{ breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 1 } }, { breakpoint: 900, settings: { slidesToShow: 2, slidesToScroll: 1 } }, { breakpoint: 0, settings: { slidesToShow: 1, slidesToScroll: 1 } }] }); $('#event-one').countdown('2018/12/14', function (event) {

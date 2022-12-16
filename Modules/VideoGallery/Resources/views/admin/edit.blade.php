@@ -1,15 +1,15 @@
 @extends('admin::layouts.master')
 @section('title')
-    ویرایش دسته بندی اخبار | داشبورد مدیریت
+    ویرایش گالری ویدیو | داشبورد مدیریت
 @endsection
 @section('content')
     <!-- breadcrumb -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin') }}">مدیریت</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.postcategory') }}">مجله و خبرنامه</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.postcategory') }}">دسته بندی اخبار</a></li>
-            <li class="breadcrumb-item">ویرایش دسته بندی</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.videogallery') }}">مجله و خبرنامه</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.videogallery') }}">گالری ویدیو</a></li>
+            <li class="breadcrumb-item">ویرایش گالری ویدیو</li>
         </ol>
     </nav>
     <!-- breadcrumb -->
@@ -21,14 +21,10 @@
             <div class="pb-0 mb-2">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-2">
-                        <h4 class="card-title mg-b-0">{{ $postcategory->name ?? '-' }}</h4>
-                        <p class="tx-12 tx-gray-500 mb-2">ویرایش دسته بندی.
-                            <a href="{{ route('admin.postcategory') }}" id="m-l-c-05"><i class="fe fe-chevrons-right  "></i>بازگشت به لیست دسته بندی ها</a>
+                        <h4 class="card-title mg-b-0">گالری ویدیو</h4>
+                        <p class="tx-12 tx-gray-500 mb-2">ویرایش گالری ویدیو.
+                            <a href="{{ route('admin.videogallery') }}" id="m-l-c-05"><i class="fe fe-chevrons-right  "></i>بازگشت به لیست گالری ویدیو ها</a>
                         </p>
-                    </div>
-
-                    <div class="tag tag-rounded tag-blue ">
-                        <a href="#" class="text-white"><i class="fe fe-chevron-right"></i> مشاهده در وبگاه</a>
                     </div>
                 </div>
             </div>
@@ -49,47 +45,79 @@
                 @endif
 
                 {{-- form --}}
-                <form action="{{ route('admin.postcategory.update', $postcategory) }}" method="post">
-                    @csrf @method('put')
+                <form action="{{ route('admin.videogallery.update', $video) }}" method="post" enctype="multipart/form-data">
+                    @csrf @method('PUT')
+
                     <div class="card box-shadow-0">
                         <div class="card-header"></div>
                         <div class="card-body pt-0">
-                            <div class="">
-                                <div class="form-group">
-                                    <label class="form-label @error('name') tx-danger @enderror">نام دسته بندی:
-                                        <span class="tx-danger">*</span></label>
-                                    <input type="text" name="name" class="form-control @error('name') border-danger @enderror" value="{{ old('name', $postcategory->name) }}">
-                                    @error('name') <small class="tx-danger">نام را خالی رها نکنید</small> @enderror
-                                </div>
+                            <div>
 
-                                <div class="form-group">
-                                    <label class="form-label">اسلاگ (نمایش در url):</label>
-                                    <input type="text" name="slug" class="form-control" value="{{ old('slug', $postcategory->slug) }}">
-                                    <small class="tx-gray-600">اگر خالی رها کنید، بصورت خودکار از روی نام دسته بندی تولید خواهد شد.</small>
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label">زیر دسته</label>
-
-                                    <div class="SumoSelect sumo_somename" tabindex="0" role="button" aria-expanded="false">
-                                        <select name="parent_id" class="form-control SlectBox SumoUnder" onclick="console.log($(this).val())" onchange="console.log('change is firing')" tabindex="-1">
-                                            <option value="">-</option>
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->id }}" @selected(old('parent_id', $postcategory->parent_id) == $category->id)>{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
+                                {{-- video --}}
+                                <div class="form-group mb-4">
+                                    <input type="file" name="video" class="dropify" data-height="200" data-default-file="{{ asset($video->video) }}">
+                                    <div class="dropify-preview" style="display: none;">
+                                        <span class="dropify-render"></span>
+                                        <div class="dropify-infos">
+                                            <div class="dropify-infos-inner"><p class="dropify-filename">
+                                                    <span class="dropify-filename-inner"></span></p>
+                                                <p class="dropify-infos-message">Drag and drop or click to replace</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
+
+                                {{-- title --}}
+                                <div class="form-group">
+                                    <label class="form-label @error('title') tx-danger @enderror">عنوان گالری ویدیو:
+                                        <span class="tx-danger">*</span></label>
+                                    <input type="text" name="title" class="form-control @error('title') border-danger @enderror" value="{{ old('title', $video->title) }}">
+                                    @error('title') <small class="tx-danger">عنوان را خالی رها نکنید</small> @enderror
+                                </div>
+
+                                {{-- description --}}
+                                <div class="form-group mb-4">
+                                    <label for="body" class="@error('description') tx-danger @enderror">متن
+                                        <span class="tx-danger">*</span></label>
+                                    <textarea type="text" class="form-control form-control-sm @error('description') border border-danger @enderror" name="description" id="editor">{{ old('description', $video->description) }}</textarea>
+                                    @error('description') <small class="tx-danger">{{ $message }}</small> @enderror
+                                </div>
+
                             </div>
                         </div>
                     </div>
+
+                    {{-- submit --}}
                     <button type="submit" class="btn btn-primary mb-3"><i class="fe fe-save"></i> ذخیره و بازگشت
                     </button>
-                    <a href="{{ route('admin.postcategory') }}" class="btn btn-secondary mb-3"><i class="fe fe-slash"></i> لغو</a>
+
+                    {{-- cancel --}}
+                    <a href="{{ route('admin.videogallery') }}" class="btn btn-secondary mb-3"><i class="fe fe-slash"></i> لغو</a>
                 </form>
             </div>
         </div>
         <!--/div-->
     </div>
     <!-- /row -->
+@endsection
+
+@section('script')
+    <script src="{{ asset('modules/admin/assets/plugins/ckeditor5-build-classic/ckeditor.js') }}"></script>
+
+    {{-- ckeditor5 --}}
+    <script>
+        ClassicEditor.create(document.querySelector('#editor'), {
+            language: {
+                // The UI will be English.
+                ui: 'en',
+                // But the content will be edited in persian.
+                content: 'fa'
+            }
+        }).then(editor => {
+            window.editor = editor;
+        }).catch(err => {
+            console.error(err.stack);
+        });
+    </script>
 @endsection

@@ -77,22 +77,28 @@
                             <div class="col-10">
                                 <div class="carousel-inner my-2">
 
-                                    @foreach($latestPosts as $key => $latest)
-                                        <div class="carousel-item {{ $key != 0 ?: 'active'}}">
+                                    @forelse($latestPosts as $key => $latest)
+                                        <div class="carousel-item {{ $key != 0 ?: 'active'}}"">
                                             <a href="{{ route('post.show', $latest) }}" class="text-dark">
                                                 <span>{{ $latest->title }}</span>
                                             </a>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                        <div class="carousel-item active">
+                                            <span href="#" class="text-muted">
+                                                <span><small>درحال حاضر خبری برای نمایش وجود ندارد! @admin <a href="{{ route('admin.post') }}" class="btn-link links links-footer text-primary">وارد کردن خبر</a> @endadmin</small></span>
+                                            </span>
+                                        </div>
+                                    @endforelse
 
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <a class="carousel-control-prev text-dark" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <a class="carousel-control-prev text-dark" href="#prev" role="button" data-slide="prev">
                                     <span class="aria-hidden=" true><i class="fa fa-angle-left"></i></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
-                                <a class="carousel-control-next text-dark" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <a class="carousel-control-next text-dark" href="#next" role="button" data-slide="next">
                                     <span class="aria-hidden=" true><i class="fa fa-angle-right"></i></span>
                                     <span class="sr-only">Next</span>
                                 </a>
@@ -116,9 +122,9 @@
                     <div class="hero-header">
                         <div id="hero-slider-2" class="hero-slider rounded">
 
-                            @foreach($recommendedPosts as $recommendedPost)
+                            @forelse($recommendedPosts as $recommendedPost)
                                 <a href="{{ route('post.show', $recommendedPost) }}">
-                                    <div class="item-slider" style="background:url({{  asset(str_replace("\\", '/', $recommendedPost->image['indexArray']['large'])) }}">
+                                    <div class="item-slider" style="background:url({{  asset(str_replace("\\", '/', $recommendedPost->image['indexArray']['large'])) }});">
                                         <div class="container">
                                             <div class="row align-items-center justify-content-center text-center">
                                                 <div class="col-lg-7">
@@ -132,7 +138,11 @@
                                         </div>
                                     </div>
                                 </a>
-                            @endforeach
+                            @empty
+                                <a href="#">
+                                    <div class="item-slider relative" style="background:url({{ asset('modules/home/img/404-football.gif') }})"></div>
+                                </a>
+                            @endforelse
 
                         </div>
                     </div>
@@ -156,11 +166,15 @@
                     </div>
                     <div class="info-panel py-1">
                         <ul class="list-news">
-                            @foreach($recommendedPosts as $recommended)
+                            @forelse($recommendedPosts as $recommended)
                                 <li>
                                     <small><i class="fa fa-circle"></i><a href="{{ route('post.show', $recommended) }}"> {{ $recommended->title }} </a></small>
                                 </li>
-                            @endforeach
+                            @empty
+                                <li class="text-muted"><small>درحال حاضر خبری برای نمایش وجود ندارد! @admin
+                                        <a href="{{ route('admin.post') }}" class="btn-link links links-footer text-primary">وارد کردن خبر</a> @endadmin
+                                    </small></li>
+                            @endforelse
                         </ul>
                     </div>
                 </div>
@@ -234,11 +248,15 @@
                         </div>
                         <div class="info-panel py-1">
                             <ul class="list-news">
-                                @foreach($hotPosts as $hot)
+                                @forelse($hotPosts as $hot)
                                     <li>
                                         <small><i class="fa fa-circle"></i><a href="{{ route('post.show', $hot) }}">{{ $hot->title }}</a></small>
                                     </li>
-                                @endforeach
+                                @empty
+                                    <li class="text-muted"><small>درحال حاضر خبری برای نمایش وجود ندارد! @admin
+                                            <a href="{{ route('admin.post') }}" class="btn-link links links-footer text-primary">وارد کردن خبر</a> @endadmin
+                                        </small></li>
+                                @endforelse
 
                             </ul>
                         </div>
@@ -335,7 +353,7 @@
                             <h4><i class="fa fa-newspaper-o"></i>آخرین اخبار</h4>
                         </div>
 
-                        @foreach($posts as $post)
+                        @forelse($posts as $post)
                             <div class="post-item">
                                 <div class="row">
                                     <div class="col-12">
@@ -364,7 +382,39 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="post-item">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h4 class="font-weight-bold">
+                                            <a href="#">عنوان خبر</a>
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-4 col-4">
+                                        <div class="img-hover rounded">
+                                            <img src="{{ asset('modules/home/img/404-football.gif') }}" alt="عنوان" class="img-responsive">
+                                            <div class="overlay"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 pt-sm-2 col-8">
+                                        <small>
+                                            درحال حاضر خبری برای نمایش وجود ندارد! @admin
+                                            <a href="{{ route('admin.post') }}" class="btn-link links links-footer text-primary">وارد کردن خبر</a> @endadmin
+                                        </small>
+                                        <span class="data-info d-flex justify-content-between mt-4">
+                                            <small class="font-weight-bold">
+                                                <i class="fa fa-pen text-navy"></i>نویسنده
+                                            </small> <small class="font-weight-bold">
+                                                <i class="fa fa-clock text-navy"></i>تاریخ انتشار
+                                            </small>
+                                            <small class="font-weight-bold">
+                                                <i class="fa fa-comment text-navy"></i> نظرات
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforelse
 
                     </div>
 
@@ -375,7 +425,7 @@
                         <div class="row">
                             <div id="hero-slider" class="hero-slider">
 
-                                @foreach($slides as $slide)
+                                @forelse($slides as $slide)
                                     <div class="item-slider" style="background:url({{ asset(str_replace("\\", '/', $slide->image['indexArray']['large'])) }}">
                                         <div class="container">
                                             <div class="row align-items-center">
@@ -389,7 +439,22 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
+                                @empty
+                                    <div class="item-slider" style="background:url({{ asset('modules/home/img/404-football.gif') }}">
+                                        <div class="container">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-7">
+                                                    <div class="info-slider p-2">
+                                                        <h1>عنوان اسلاید</h1>
+                                                        <p>درحال حاضر اسلایدی برای نمایش وجود ندارد! @admin
+                                                            <a href="{{ route('admin.slide') }}" class="btn-link links links-footer text-primary">وارد کردن اسلاید</a> @endadmin
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforelse
 
                             </div>
 
@@ -559,9 +624,8 @@
 
                         <div class="info-results">
                             <ul>
-                                <li>
-                                                        <span class="head">
-                                                            پرتغال مقابل اسپانیا<span class="date">27 ژوئن 2017</span>
+                                <li><span class="head">
+                                        پرتغال مقابل اسپانیا<span class="date">27 ژوئن 2017</span>
                                                         </span>
                                     <div class="goals-result">
                                         <a href="single-team.html">
@@ -725,35 +789,30 @@
                 </div>
                 <div class="pt-2">
                     <div class="row">
-                        <div class="video-item mx-auto">
-                            <video controls="controls">
-                                <div class="info-panel">
-                                    <h4>ریو دو ژانیرو</h4>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم ا</p>
-                                </div>
-                            </video>
-                            <div class="video-caption">Lorem ipsum dolor sit amet, consectetur</div>
-                        </div>
-                        <div class="video-item mx-auto">
-                            <video controls="controls">
-                                <div class="info-panel">
-                                    <h4>ریو دو ژانیرو</h4>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم ا</p>
-                                </div>
-                            </video>
-                            <div class="video-caption">Lorem ipsum dolor sit amet, consectetur</div>
+                        @forelse($videos as $video)
+                            <div class="video-item mx-auto border mb-3 rounded">
+                                <video controls class="rounded-top" width="350" src="{{ asset($video->video) }}">
+                                    <div class="info-panel">
+                                        <h4>{{ $video->title }}</h4>
+                                        <p>{{ $video->description }}</p>
+                                    </div>
+                                </video>
+                                <div class="video-caption p-2">{{ $video->title }}</div>
+                            </div>
+                        @empty
+                            <div class="video-item mx-auto border my-3 rounded">
+                                <video controls class="rounded-top">
+                                    <div class="info-panel">
+                                        <h4>عنوان ویدیو</h4>
+                                        <p>توضیحات ویدیو</p>
+                                    </div>
+                                </video>
+                                <div class="video-caption text-mute text-center"><small>
+                                        درحال حاضر ویدیویی برای نمایش وجود ندارد! @admin <a href="{{ route('admin.videogallery') }}" class="btn-link links links-footer text-primary">وارد کردن ویدیو</a> @endadmin
+                                    </small></div>
+                            </div>
+                        @endforelse
 
-                        </div>
-                        <div class="video-item mx-auto">
-                            <video controls="controls">
-                                <div class="info-panel">
-                                    <h4>ریو دو ژانیرو</h4>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم ا</p>
-                                </div>
-                            </video>
-                            <div class="video-caption">Lorem ipsum dolor sit amet, consectetur</div>
-
-                        </div>
                     </div>
                 </div>
             </div>
@@ -762,44 +821,44 @@
         <!-- end gallery -->
 
         <!-- news letter -->
-        <div class="section-newsletter no-margin rounded">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="text-center">
-                            <h2>ایمیل خود را وارد کنید و<span class="text-resalt"> مشترک </span> خبرنامه ما شوید. </h2>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                                گرافیک است. چاپ</p>
-                        </div>
-                        <form id="newsletterForm" action="php/mailchip/newsletter-subscribe.php">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-envelope"></i>
-                                            </span>
-                                        <input class="form-control" placeholder="اسم شما" name="name" type="text" required="required">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-envelope"></i>
-                                            </span>
-                                        <input class="form-control" placeholder="ایمیل شما" name="email" type="email" required="required">
-                                        <span class="input-group-btn">
-                                                <button class="btn btn-primary" type="submit" name="subscribe">ثبت
-                                                    نام</button>
-                                            </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        <div id="result-newsletter"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+{{--        <div class="section-newsletter no-margin rounded">--}}
+{{--            <div class="container">--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col-md-12">--}}
+{{--                        <div class="text-center">--}}
+{{--                            <h2>ایمیل خود را وارد کنید و<span class="text-resalt"> مشترک </span> خبرنامه ما شوید. </h2>--}}
+{{--                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان--}}
+{{--                                گرافیک است. چاپ</p>--}}
+{{--                        </div>--}}
+{{--                        <form id="newsletterForm" action="php/mailchip/newsletter-subscribe.php">--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-md-6">--}}
+{{--                                    <div class="input-group">--}}
+{{--                                            <span class="input-group-addon">--}}
+{{--                                                <i class="fa fa-envelope"></i>--}}
+{{--                                            </span>--}}
+{{--                                        <input class="form-control" placeholder="اسم شما" name="name" type="text" required="required">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-6">--}}
+{{--                                    <div class="input-group">--}}
+{{--                                            <span class="input-group-addon">--}}
+{{--                                                <i class="fa fa-envelope"></i>--}}
+{{--                                            </span>--}}
+{{--                                        <input class="form-control" placeholder="ایمیل شما" name="email" type="email" required="required">--}}
+{{--                                        <span class="input-group-btn">--}}
+{{--                                                <button class="btn btn-primary" type="submit" name="subscribe">ثبت--}}
+{{--                                                    نام</button>--}}
+{{--                                            </span>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </form>--}}
+{{--                        <div id="result-newsletter"></div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
     </section>
 @endsection

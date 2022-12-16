@@ -24,7 +24,7 @@ class VideoGalleryRequest extends FormRequest
             return [
                 'title' => ['required', 'max:255', 'min:5'],
                 'description' => ['required', 'max:2048', 'min:5'],
-                'video' => ['file', 'mimetypes:video/mp4', 'mimetypes:video/avi', 'video/mpeg', 'video/quicktime'],
+                'video' => ['file', 'mimetypes:video/mp4,video/avi,video/mpeg,video/quicktime'],
                 'status' => ['numeric', Rule::in(['0', '1'])],
             ];
     }

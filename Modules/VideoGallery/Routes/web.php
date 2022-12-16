@@ -17,13 +17,13 @@ use Modules\VideoGallery\Http\Controllers\AdminVideoGalleryController;
 Route::prefix('admin')->group(function () {
     Route::prefix('videogallery')->group(function () {
         Route::get('/', [AdminVideoGalleryController::class, 'index'])->name('admin.videogallery');
-        Route::get('/show/{videogallery}', [AdminVideoGalleryController::class, 'show'])->name('admin.videogallery.show');
+        Route::get('/show/{video}', [AdminVideoGalleryController::class, 'show'])->name('admin.videogallery.show');
         Route::get('/create', [AdminVideoGalleryController::class, 'create'])->name('admin.videogallery.create');
         Route::post('/store', [AdminVideoGalleryController::class, 'store'])->name('admin.videogallery.store');
-        Route::get('/edit/{videogallery}', [AdminVideoGalleryController::class, 'edit'])->name('admin.videogallery.edit');
-        Route::put('/update/{videogallery}', [AdminVideoGalleryController::class, 'update'])->name('admin.videogallery.update');
-        Route::delete('/destroy/{videogallery}', [AdminVideoGalleryController::class, 'destroy'])->name('admin.videogallery.destroy');
-        Route::get('/status/{videogallery}', [AdminVideoGalleryController::class, 'status'])->name('admin.videogallery.status');
+        Route::get('/edit/{video}', [AdminVideoGalleryController::class, 'edit'])->name('admin.videogallery.edit');
+        Route::put('/update/{video}', [AdminVideoGalleryController::class, 'update'])->name('admin.videogallery.update');
+        Route::delete('/destroy/{video}', [AdminVideoGalleryController::class, 'destroy'])->name('admin.videogallery.destroy');
+        Route::get('/status/{video}', [AdminVideoGalleryController::class, 'status'])->name('admin.videogallery.status');
     });
 });
 

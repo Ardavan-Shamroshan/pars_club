@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Post\Entities\Post;
 use Modules\Slide\Entities\Slide;
+use Modules\VideoGallery\Entities\VideoGallery;
 
 class HomeController extends Controller
 {
@@ -18,6 +19,7 @@ class HomeController extends Controller
         // recommended posts
         $recommendedPosts = Post::query()
             ->where('published_at', '<=', now())
+            ->where('status', 1)
             ->filter($request)
             ->get();
 
@@ -49,7 +51,13 @@ class HomeController extends Controller
             ->latest()
             ->get();
 
-        return view('home::index', compact('recommendedPosts', 'latestPosts', 'hotPosts', 'posts', 'slides'));
+        // slides
+        $videos = VideoGallery::query()->where('status', 1)
+            ->latest()
+            ->take(3)
+            ->get();
+
+        return view('home::index', compact('recommendedPosts', 'latestPosts', 'hotPosts', 'posts', 'slides', 'videos'));
     }
 
     /**

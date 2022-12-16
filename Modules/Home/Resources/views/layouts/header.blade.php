@@ -46,31 +46,47 @@
                                                     <h5><i class="fa fa-trophy" aria-hidden="true"></i>دسته بندی ها
                                                     </h5>
                                                     <ul>
-                                                        @foreach($categories as $category)
+                                                        @forelse($categories as $category)
                                                             <li>
                                                                 <a href="{{ route('postcategory.posts', $category) }}">{{ $category->name }}</a>
                                                             </li>
-                                                        @endforeach
+                                                        @empty
+                                                            <li><small>درحال حاضر دسته بندی برای نمایش وجود ندارد! @admin <a href="{{ route('admin.postcategory') }}" class="btn-link links links-footer text-primary">وارد کردن دسته بندی</a> @endadmin</small></li>
+                                                        @endforelse
                                                     </ul>
                                                 </div>
-                                                <div class="col-md-9">
-                                                    <h5><i class="fa fa-pencils" aria-hidden="true"></i>آخرین مقالات
-                                                    </h5>
-                                                    <div class="row" style="padding: 0; margin: 0;">
-                                                        @foreach($latestPosts as $post)
-                                                            <div class="col-md-4">
-                                                                <div class="img-hover rounded border">
-                                                                    <img src="{{ asset($post->image['indexArray']['medium']) ?? asset('modules/home/img/blog/1.jpg') }}" alt="{{ $post->title }}" class="img-responsive rounded">
-                                                                    <a href="{{ route('post.show', $post) }}">
-                                                                        <div class="overlay text-white">
-                                                                            {{ $post->title }}
-                                                                        </div>
-                                                                    </a>
+
+                                                    <div class="col-md-9">
+                                                        <h5><i class="fa fa-pencils" aria-hidden="true"></i>آخرین مقالات</h5>
+                                                        <div class="row" style="padding: 0; margin: 0;">
+                                                            @forelse($latestPosts as $post)
+                                                                <div class="col-md-4">
+                                                                    <div class="img-hover rounded border">
+                                                                        <img src="{{ asset($post->image['indexArray']['medium']) ?? asset('modules/home/img/blog/1.jpg') }}" alt="{{ $post->title }}" class="img-responsive rounded">
+                                                                        <a href="{{ route('post.show', $post) }}">
+                                                                            <div class="overlay text-white">
+                                                                                {{ $post->title }}
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        @endforeach
+                                                            @empty
+                                                                <div class="col-md-4">
+                                                                    <div class="img-hover rounded border">
+                                                                        <img src="{{ asset('modules/home/img/404-football.gif') }}" alt="یافت نشد" class="img-responsive rounded">
+                                                                    </div>
+                                                                </div><div class="col-md-4">
+                                                                    <div class="img-hover rounded border">
+                                                                        <img src="{{ asset('modules/home/img/404-football.gif') }}" alt="یافت نشد" class="img-responsive rounded">
+                                                                    </div>
+                                                                </div><div class="col-md-4">
+                                                                    <div class="img-hover rounded border">
+                                                                        <img src="{{ asset('modules/home/img/404-football.gif') }}" alt="یافت نشد" class="img-responsive rounded">
+                                                                    </div>
+                                                                </div>
+                                                            @endforelse
+                                                        </div>
                                                     </div>
-                                                </div>
 
                                                 {{--                                                <div class="col-md-3">--}}
                                                 {{--                                                    <h5><i class="fa fa-futbol-o" aria-hidden="true"></i>لیست--}}

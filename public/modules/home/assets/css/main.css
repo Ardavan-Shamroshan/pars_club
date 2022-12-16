@@ -15257,7 +15257,7 @@ iframe.big-video {
 }
 
 .hero-slider {
-    height: 100%;
+    height: 70vh;
     overflow: hidden;
     width: 100%;
     direction: ltr;
@@ -15318,12 +15318,12 @@ iframe.big-video {
 }
 
 .hero-slider .item-slider .info-slider h1:before {
-    /* content: ''; */
-    position: absolute;
-    right: 0;
-    top: -15px;
-    height: 8px;
-    width: 100px
+    /*!* content: ''; *!*/
+    /*position: absolute;*/
+    /*right: 0;*/
+    /*top: -15px;*/
+    /*height: 8px;*/
+    /*width: 100px*/
 }
 
 .hero-slider .item-slider .info-slider p {
@@ -16393,9 +16393,9 @@ footer {
 }
 
 footer.footer-2 {
-    background: url(../../img/slide/3.jpg);
+    background: url(../../img/locations/4.jpg);
     background-size: cover;
-    background-position: top center;
+    background-position: center;
     position: relative;
     padding: 0
 }
