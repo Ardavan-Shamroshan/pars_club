@@ -35,7 +35,7 @@ class VideoToolsService
         $this->setFinalVideoDirectory($finalVideoDirectory);
 
         // set final video name
-        $this->setFinalVideoName($this->getVideoName() . '.' . $this->getVideoFormat());
+        $this->setFinalVideoName($this->getVideoName());
 
         // check and create final video directory
         $this->checkDirectory($this->getFinalVideoDirectory());
@@ -120,5 +120,9 @@ class VideoToolsService
 
     public function getVideoAddress() {
         return $this->finalVideoDirectory . DIRECTORY_SEPARATOR . $this->finalVideoName;
+    }
+
+    public function getVideoFinalAddress() {
+        return $this->finalVideoDirectory . DIRECTORY_SEPARATOR . $this->finalVideoName . DIRECTORY_SEPARATOR . $this->finalVideoName . '.' . $this->videoFormat;
     }
 }

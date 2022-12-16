@@ -5,11 +5,24 @@
         <a href="#" class="text-dark font-weight-bold"><span class="">اخبار رده های پایه تا جوانان تیم فوتبال پارس را دنبال کنید</span></a>
     </div>
     <!-- header -->
-    <div class="header-alert p-2 ">
-        <div class="col col-xl-6">
-            <a href="index.html" title="Return Home">
-                <img src="{{ asset('modules/home/img/clubs-logos/club_logo.jpg') }}" alt="Logo" class="logo_img rounded-circle border" width="50">
-            </a>
+    <div class="header-alert">
+        <div class="container">
+            <div class="col-12">
+                <div class="row justify-content-between">
+                    <div class="col-6 py-2">
+                        <a href="{{ route('home') }}" title="Return Home">
+                            <img src="{{ asset('modules/home/img/clubs-logos/club_logo.jpg') }}" alt="Logo" class="logo_img rounded-circle border" width="50">
+                        </a>
+                    </div>
+                    <div class="col-6 text-left py-2" style="background: linear-gradient(to right,rgba(37,169,224,1) 0,rgba(37,169,224,1) 30%,rgba(37,169,224,0) 100%);">
+                        <a href="{{ route('home') }}" class="d-flex justify-content-end gap-1" title="Return Home">
+                            <p class="text-wrap text-white my-auto" style="width: 30%">مسابقه رایگان پیش‌بینی
+                                بازی‌های جام جهانی بارسانیوز</p>
+                            <img src="{{ asset('modules/admin/assets/img/symbol.png') }}" alt="Logo" class="logo_img" width="50">
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -43,7 +56,7 @@
                                                 <div class="col-md-9">
                                                     <h5><i class="fa fa-pencils" aria-hidden="true"></i>آخرین مقالات
                                                     </h5>
-                                                    <div class="row" style="padding: 0px; margin: 0;">
+                                                    <div class="row" style="padding: 0; margin: 0;">
                                                         @foreach($latestPosts as $post)
                                                             <div class="col-md-4">
                                                                 <div class="img-hover rounded border">

@@ -20,11 +20,11 @@ class VideoService extends VideoToolsService
          * Laravel : $video->getRealPath() ~ php : $_FILES['video']['tmp_name']
          */
 
-        $filename = $video->getClientOriginalName();
+        $filename = $this->getFinalVideoName() . '.' . $this->getVideoFormat();
         $path = public_path($this->getVideoAddress());
         $result = $video->move($path, $filename);
 
-        return $result ? $this->getVideoAddress() : false;
+        return $result ? $this->getVideoFinalAddress() : false;
     }
 
     public function fitAndSave($video, $width, $height) {
