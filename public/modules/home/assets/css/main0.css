@@ -3837,43 +3837,35 @@ tbody.collapse.show {
     }
 }
 
-.breadcrumb {
-    padding: .75rem 1rem;
-    margin-bottom: 1rem;
-    list-style: none;
-    background-color: #e9ecef;
-    border-radius: .25rem
-}
+/*.breadcrumb::before {*/
+/*    display: block;*/
+/*    clear: both;*/
+/*    content: ""*/
+/*}*/
 
-.breadcrumb::after {
-    display: block;
-    clear: both;
-    content: ""
-}
+/*.breadcrumb-item {*/
+/*    float: right*/
+/*}*/
 
-.breadcrumb-item {
-    float: left
-}
+/*.breadcrumb-item + .breadcrumb-item::before {*/
+/*    display: inline-block;*/
+/*    padding-right: .5rem;*/
+/*    padding-left: .5rem;*/
+/*    color: #868e96;*/
+/*    content: "/"*/
+/*}*/
 
-.breadcrumb-item + .breadcrumb-item::before {
-    display: inline-block;
-    padding-right: .5rem;
-    padding-left: .5rem;
-    color: #868e96;
-    content: "/"
-}
+/*.breadcrumb-item + .breadcrumb-item:hover::before {*/
+/*    text-decoration: underline*/
+/*}*/
 
-.breadcrumb-item + .breadcrumb-item:hover::before {
-    text-decoration: underline
-}
+/*.breadcrumb-item + .breadcrumb-item:hover::before {*/
+/*    text-decoration: none*/
+/*}*/
 
-.breadcrumb-item + .breadcrumb-item:hover::before {
-    text-decoration: none
-}
-
-.breadcrumb-item.active {
-    color: #868e96
-}
+/*.breadcrumb-item.active {*/
+/*    color: #868e96*/
+/*}*/
 
 .pagination {
     display: flex;
@@ -14811,28 +14803,6 @@ iframe.big-video {
     }
 }
 
-.breadcrumbs ul {
-    list-style: none;
-    padding: 0;
-    text-align: right
-}
-
-.breadcrumbs ul li {
-    display: inline-block;
-    color: #fff;
-    font-size: 12px
-}
-
-.breadcrumbs ul li:after {
-    font-family: fontawesome;
-    content: "\f101";
-    padding: 0 5px 0 7px
-}
-
-.breadcrumbs ul li:last-child:after {
-    display: none
-}
-
 .btn-iw {
     padding: 10px 30px;
     background: #01d099;
@@ -14869,6 +14839,7 @@ iframe.big-video {
     background-color: #fff;
     margin: 0 0 40px;
     padding: 0;
+    border-radius: 6px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1)
 }
 
@@ -15045,6 +15016,7 @@ iframe.big-video {
 
 .dark-home {
     background: #18191b
+    border-radius: 6px !important;
 }
 
 .dark-home.above {

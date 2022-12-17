@@ -15,13 +15,28 @@ class HomeController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index(Request $request) {
+    public function index() {
         // recommended posts
         $recommendedPosts = Post::query()
             ->where('published_at', '<=', now())
             ->where('status', 1)
-            ->filter($request)
+            ->where('label', 0)
             ->get();
+
+        // transfer posts
+        $transferPosts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->where('label', 2)
+            ->get();
+
+        // video posts
+        $videoPosts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->whereNotIn('label', [0, 1, 2])
+            ->get();
+
 
         // latest posts
         $latestPosts = Post::query()
@@ -29,14 +44,6 @@ class HomeController extends Controller
             ->where('status', 1)
             ->latest()
             ->take(5)
-            ->get();
-
-        // hot posts
-        $hotPosts = Post::query()
-            ->where('published_at', '<=', now())
-            ->where(['status' => 1], ['label' => 1])
-            ->latest()
-            ->take(8)
             ->get();
 
         // posts
@@ -57,7 +64,7 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
-        return view('home::index', compact('recommendedPosts', 'latestPosts', 'hotPosts', 'posts', 'slides', 'videos'));
+        return view('home::index', compact('recommendedPosts', 'transferPosts', 'videoPosts', 'latestPosts', 'posts', 'slides', 'videos'));
     }
 
     /**

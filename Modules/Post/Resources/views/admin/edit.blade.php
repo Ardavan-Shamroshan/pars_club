@@ -113,7 +113,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">برچسب:</label>
                                         <div class="SumoSelect" tabindex="0" role="button" aria-expanded="true">
-                                            <select class="testselect2 SumoUnder" tabindex="-1" name="label[]">
+                                            <select class="testselect2 SumoUnder" tabindex="-1" name="label">
                                                 <option value="" @selected($post->label == '0')>بدون برچسب</option>
                                                 <option value="0" @selected($post->label == '0')>پیشنهاد سردبیر</option>
                                                 <option value="1" @selected($post->label == '1'))>مطالب داغ</option>

@@ -44,8 +44,7 @@ class Post extends Model
     /**
      * Filter
      */
-    public function scopeFilter(Builder $builder, $request)
-    {
+    public function scopeFilter(Builder $builder, $request) {
         return (new PostFilter($request))->filter($builder);
     }
 
@@ -57,6 +56,12 @@ class Post extends Model
 //            set: fn($value) => is_array($value) ? implode(',', $value) : $value,
 //        );
 //    }
+
+    public function checkCommentable(): Attribute {
+        return Attribute::make(
+            get: fn() => $this->commentable == 1,
+        );
+    }
 
     public function labelName($label) {
         switch ($label) {

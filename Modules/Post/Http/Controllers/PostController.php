@@ -5,6 +5,7 @@ namespace Modules\Post\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Post\Entities\Post;
 
 class PostController extends Controller
 {
@@ -41,9 +42,17 @@ class PostController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        return view('post::show');
+        // related posts
+        $relatedPosts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->latest()
+            ->take(3)
+            ->get();
+
+        return view('post::show', compact('post', 'relatedPosts'));
     }
 
     /**

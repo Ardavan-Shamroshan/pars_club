@@ -17,7 +17,7 @@
                     <div class="col-6 text-left py-2" style="background: linear-gradient(to right,rgba(37,169,224,1) 0,rgba(37,169,224,1) 30%,rgba(37,169,224,0) 100%);">
                         <a href="{{ route('home') }}" class="d-flex justify-content-end gap-1" title="Return Home">
                             <p class="text-wrap text-white my-auto" style="width: 30%">مسابقه رایگان پیش‌بینی
-                                بازی‌های جام جهانی بارسانیوز</p>
+                                بازی‌های جام جهانی پارس</p>
                             <img src="{{ asset('modules/admin/assets/img/symbol.png') }}" alt="Logo" class="logo_img" width="50">
                         </a>
                     </div>

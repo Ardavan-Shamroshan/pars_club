@@ -7,10 +7,15 @@
 <link href="{{ asset('modules/home/assets/fontawesome/css/all.min.css') }}" rel="stylesheet" media="screen">
 
 <!-- CSS only -->
-<link rel="stylesheet" href="{{ asset('modules/home/assets/css/bootstrap.min.css') }}"
+<link rel="stylesheet" href="{{ asset('modules/admin/assets/plugins/bootstrap/css/bootstrap.rtl.min.css') }}"
       integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 
+<!-- Favicon -->
+<link rel="icon" href="{{ asset('modules/admin/assets/img/brand/favicon.png') }}" type="image/x-icon" /><!-- Icons css -->
+<link href="{{ asset('modules/admin/assets/plugins/icons/icons.css') }}" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ asset('modules/admin/assets/css-rtl/style.css') }}">
 <link href="{{ asset('modules/home/assets/css/main0.css') }}" rel="stylesheet" media="screen">
 <link href="{{ asset('modules/home/assets/css/main.css') }}" rel="stylesheet" media="screen">
 {{--<link rel="shortcut icon" href="{{ asset('modules/home/img/icons/favicon.ico') }}">--}}
