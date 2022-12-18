@@ -15089,7 +15089,7 @@ iframe.big-video {
 
 .hero-header.hero-bg {
     background-size: cover !important;
-    background-position: top center !important;
+    background-position: center !important;
     background-repeat: no-repeat !important;
     position: relative;
     height: 470px
@@ -16340,7 +16340,7 @@ footer {
 footer.footer-2 {
     background: url(../../img/locations/4.jpg);
     background-size: cover;
-    background-position: center;
+    background-position: top;
     position: relative;
     padding: 0
 }

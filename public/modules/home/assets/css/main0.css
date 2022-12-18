@@ -15275,9 +15275,9 @@ footer {
 }
 
 footer.footer-2 {
-    background: url(../../img/slide/3.jpg);
+    background: url(../../img/locations/4.jpg);
     background-size: cover;
-    background-position: top center;
+    background-position: center;
     position: relative;
     padding: 0
 }

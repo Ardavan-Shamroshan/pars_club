@@ -9,5 +9,6 @@
     "Menu": true,
     "Home": true,
     "Slide": true,
-    "VideoGallery": true
+    "VideoGallery": true,
+    "Setting": true
 }
