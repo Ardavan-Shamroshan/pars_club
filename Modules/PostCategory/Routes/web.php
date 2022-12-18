@@ -31,6 +31,5 @@ Route::prefix('admin')->group(function () {
 
 // post category
 Route::prefix('postcategory')->group(function () {
-    Route::get('/', [PostCategoryController::class, 'index'])->name('postcategory');
-    Route::get('/{postcategory:slug}', [PostCategoryController::class, 'show'])->name('postcategory.posts');
+    Route::get('/{postcategory:slug}', [PostCategoryController::class, 'index'])->name('postcategory');
 });

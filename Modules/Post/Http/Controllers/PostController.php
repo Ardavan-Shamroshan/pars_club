@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Post\Entities\Post;
+use Modules\PostCategory\Entities\PostCategory;
 
 class PostController extends Controller
 {
@@ -13,17 +14,17 @@ class PostController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
-    {
-        return view('post::index');
+    public function index() {
+        $posts = Post::query()->where('published_at', '<=', now())->where('status', 1)->paginate(10);
+        $categories = PostCategory::query()->where('status', 1)->get();
+        return view('post::index', compact('posts', 'categories'));
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function create()
-    {
+    public function create() {
         return view('post::create');
     }
 
@@ -32,8 +33,7 @@ class PostController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -42,8 +42,7 @@ class PostController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show(Post $post)
-    {
+    public function show(Post $post) {
         // related posts
         $relatedPosts = Post::query()
             ->where('published_at', '<=', now())
@@ -60,8 +59,7 @@ class PostController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         return view('post::edit');
     }
 
@@ -71,8 +69,7 @@ class PostController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -81,8 +78,7 @@ class PostController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
 }

@@ -14,9 +14,13 @@ class PostCategoryController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index(Request $request)
+    public function index(PostCategory $postcategory)
     {
-        return view('postcategory::index');
+        $posts = $postcategory->posts()->where('published_at', '<=', now())->where('status', 1)->paginate(10);
+        $categories = PostCategory::query()->where('status', 1)->get();
+//        return view('postcategory::index', compact('posts'));
+        return view('post::index', compact('posts', 'categories'))
+            ->with('postcategory', $postcategory);
     }
 
     /**

@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // home left sidebar
-        view()->composer('home::layouts.left-sidebar', function ($view) {
+        view()->composer('home::layouts.right-sidebar', function ($view) {
             // hot posts
             $view->with('hotPosts',  // hot posts
                 Post::query()

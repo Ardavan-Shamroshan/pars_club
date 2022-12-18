@@ -17,7 +17,10 @@
     <div class="container paddin-mini">
         <div class="row">
 
-            @include('home::layouts.left-sidebar')
+            <!-- right aside -->
+            <aside class="col-sm-12 col-lg-4 col-xl-3 px-0 h-100">
+                @include('home::layouts.right-sidebar')
+            </aside>
 
             <div class="col-lg-5 col-xl-6 col-sm-12 ">
                 <div class="panel-box">
@@ -109,7 +112,6 @@
                     </div>
                 </div>
 
-
                 @if($post->checkCommentable)
                     @if($post->comments->isNotEmpty())
                         <div class="panel-box">
@@ -169,7 +171,10 @@
 
             </div>
 
-            @include('home::layouts.right-sidebar')
+            <!-- left aside -->
+            <aside class="col-sm-12 col-lg-3 col-xl-3 dark-home py-2 rounded h-100">
+                @include('home::layouts.left-sidebar')
+            </aside>
         </div>
     </div>
 

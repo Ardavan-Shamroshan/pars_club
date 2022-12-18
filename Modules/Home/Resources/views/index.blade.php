@@ -65,8 +65,6 @@
     </section>
 
 
-
-
     <!-- breaking news -->
     <section>
         <div class="col-12">
@@ -98,11 +96,11 @@
                             </div>
                             <div class="col-auto">
                                 <a class="carousel-control-prev text-dark" href="#prev" role="button" data-slide="prev">
-                                    <span class="aria-hidden=" true><i class="fa fa-angle-left"></i></span>
+                                    <span class="aria-hidden=" true><i class="fe fe-chevron-left"></i></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
                                 <a class="carousel-control-next text-dark" href="#next" role="button" data-slide="next">
-                                    <span class="aria-hidden=" true><i class="fa fa-angle-right"></i></span>
+                                    <span class="aria-hidden=" true><i class="fe fe-chevron-left"></i></span>
                                     <span class="sr-only">Next</span>
                                 </a>
 
@@ -153,7 +151,7 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="">
-                    <div class="my-3 titles"><h4 class="border-0"><i class="fa fa-list-alt"></i> مطالب پیشنهادی</h4>
+                    <div class="my-3 titles"><h4 class="border-0"><i class="fe fe-list"></i> مطالب پیشنهادی</h4>
                     </div>
                     {{--                    <div class="filters px-3 my-3">--}}
                     {{--                        <ul class="list-filter d-flex flex-wrap justify-content-start">--}}
@@ -177,7 +175,7 @@
                                             <a href="#tab11" data-bs-toggle="tab" class="active px-2 py-1 "> آخرین اخبار</a>
                                         </li>
                                         <li class="">
-                                             <a href="#tab12" data-bs-toggle="tab" class="px-2 py-1"> پیشنهاد سردبیر</a>
+                                            <a href="#tab12" data-bs-toggle="tab" class="px-2 py-1"> پیشنهاد سردبیر</a>
                                         </li>
                                         <li class="">
                                             <a href="#tab13" data-bs-toggle="tab" class="px-2 py-1"> نقل و انتقالات</a>
@@ -187,10 +185,9 @@
                                         </li>
                                     </ul>
 
-
                                 </div>
                             </div>
-                            <div class="panel-body tabs-menu-body">
+                            <div class="panel-body tabs-menu-body p-0">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab11">
                                         <ul class="list-news">
@@ -209,34 +206,34 @@
                                     </div>
 
                                     <div class="tab-pane" id="tab12">
-                                     <ul class="list-news">
-                                         @forelse($recommendedPosts as $recommendedNews)
-                                             <li>
-                                                 <small><i class="fa fa-circle"></i><a href="{{ route('post.show', $recommendedNews) }}"> {{ $recommendedNews->title }} </a></small>
-                                             </li>
-                                         @empty
-                                             <li class="text-muted">
-                                                 <small>درحال حاضر خبری برای نمایش وجود ندارد! @admin
-                                                     <a href="{{ route('admin.post') }}" class="btn-link links links-footer text-primary">وارد کردن خبر</a> @endadmin
-                                                 </small></li>
-                                         @endforelse
-                                     </ul>
+                                        <ul class="list-news">
+                                            @forelse($recommendedPosts as $recommendedNews)
+                                                <li>
+                                                    <small><i class="fa fa-circle"></i><a href="{{ route('post.show', $recommendedNews) }}"> {{ $recommendedNews->title }} </a></small>
+                                                </li>
+                                            @empty
+                                                <li class="text-muted">
+                                                    <small>درحال حاضر خبری برای نمایش وجود ندارد! @admin
+                                                        <a href="{{ route('admin.post') }}" class="btn-link links links-footer text-primary">وارد کردن خبر</a> @endadmin
+                                                    </small></li>
+                                            @endforelse
+                                        </ul>
 
                                     </div>
                                     <div class="tab-pane" id="tab13">
-                                            <ul class="list-news">
-                                                @forelse($transferPosts as $transfer)
-                                                    <li>
+                                        <ul class="list-news">
+                                            @forelse($transferPosts as $transfer)
+                                                <li>
 
-                                                        <small><i class="fa fa-circle"></i><a href="{{ route('post.show', $transfer) }}"> {{ $transfer->title }} </a></small>
-                                                    </li>
-                                                @empty
-                                                    <li class="text-muted">
-                                                        <small>درحال حاضر خبری برای نمایش وجود ندارد! @admin
-                                                            <a href="{{ route('admin.post') }}" class="btn-link links links-footer text-primary">وارد کردن خبر</a> @endadmin
-                                                        </small></li>
-                                                @endforelse
-                                            </ul>
+                                                    <small><i class="fa fa-circle"></i><a href="{{ route('post.show', $transfer) }}"> {{ $transfer->title }} </a></small>
+                                                </li>
+                                            @empty
+                                                <li class="text-muted">
+                                                    <small>درحال حاضر خبری برای نمایش وجود ندارد! @admin
+                                                        <a href="{{ route('admin.post') }}" class="btn-link links links-footer text-primary">وارد کردن خبر</a> @endadmin
+                                                    </small></li>
+                                            @endforelse
+                                        </ul>
                                     </div>
                                     <div class="tab-pane" id="tab14">
                                         <ul class="list-news">
@@ -265,14 +262,12 @@
     </section>
     <!-- end main news -->
 
-
-
     <!-- ads banner -->
     <div class="ads-banner">
         <div class="row my-2 shadow panel-box">
             <div>
                 <div class="titles no-margin bg-light">
-                    <h4><i class="fa fa-link"></i>تبلیغات</h4>
+                    <h4><i class="fe fe-link"></i>تبلیغات</h4>
                 </div>
                 <div class="col-12 pt-2 text-cener">
                     <a rel="nofollow noopener" href="https://ck.yektanet.com/b/click?VERSION=2&amp;impression=6dgrYKYxe%2FA%2BbLRzf0bfLemo7ux%2BHCe0lH2wvTYocV%2BsGDe42UMfRuVNbOIlgHVMXoWeZuw%2FOP1aZGDEKetA1mU5RYsXmxGgaxZdEwaYMRGTvxLTS4HdNtIcsnv44ph3IojM2N95Ov0rIjYf5Kk283psac44xb5DuCnyi1AC6WWWcQLHIhWkIpMEE89mbx7QtKwXbQfIwC8ErixEN4cddFqS34a%2BNVmXFEnxHKRa1pxMe%2BzFR6J8QqwwuztxWnDC1bzKNnX5BiPKWLyClcV3P681d7d5FcWc2Q%2FQoAUw9WAc4SfF1VR9JgwSe11cwm7Xicji76NfWCyhDkus3McguJUARqi567sRZzafyrUpQqcqoAukzKq9yFH%2FuBu1SjdZGQBc3UYqju6v0e8YcW%2B2%2FPoQyUehAophkbSvuHeJAixN4AqW5kulwW77blaYzCxfWmXNN7apXx2ic5TWWFPTq3F1Mazjhq5PhZsvoStxIyI%3D%3APEdK5vgry0HZF%2F5PefALnnHfb1p3pbEgS4RMXr1P4a%2FCeFSs3CyLNVrKQyWt%2F2pOomPQtwTmGgaPbEVoZQ1lmf9XZ6wYb7J%2FOG50UIaxIiwkYs0TQEE40UnlDVj%2Bld%2FLZBniPv63W8ynabzt2KRC0yoGJEJW0knjgYf9Q8H2wvPt44ikyI%2Fwe0S64t9GPmd2%2FJhKzoqkepdKz5roIDNm2ocsXQYvTiBvboL%2F09GExc1L5t8SIiRa8jHy3XASOeBSHCSgmKa9b5ImAXW7HaOUqE3UszKL4Qn6%2Bvb%2BhH7mH%2FtNgW1Qgj5HvtOXyYn3ElzmM%2Bb6RcIXxzoV0vmpB4KHPQ%3D%3D&amp;redirect=https%3A%2F%2Ffaradars.org%2Flanding%2Fdsh55&amp;ab&amp;vts=1671025101.629" target="_blank" style="position: relative;display: inline-block;">
@@ -312,14 +307,16 @@
         <div class="container my-2">
             <div class="row">
                 <!-- right aside -->
-                @include('home::layouts.left-sidebar')
+                <aside class="col-sm-12 col-lg-4 col-xl-3 px-0 h-100">
+                    @include('home::layouts.right-sidebar')
+                </aside>
                 <!-- end right aside -->
                 <!-- center -->
                 <div class="col-lg-5 col-xl-6 col-sm-12 h-100">
                     <!-- last news -->
                     <div class="panel-box rounded">
                         <div class="titles bg-light">
-                            <h4><i class="fa fa-newspaper-o"></i>آخرین اخبار</h4>
+                            <h4><i class="fe fe-bookmark"></i>آخرین اخبار</h4>
                         </div>
 
                         @forelse($posts as $post)
@@ -340,12 +337,12 @@
                                         <small>{{ $post->summary }}</small>
                                         <span class="data-info d-flex justify-content-between mt-4">
                                             <small class="font-weight-bold">
-                                                <i class="fa fa-pen text-navy"></i>{{ $post->author->fullname ?? $post->author->name }}
+                                                <i class="fe fe-edit text-navy"></i>{{ $post->author->fullname ?? $post->author->name }}
                                             </small> <small class="font-weight-bold">
-                                                <i class="fa fa-clock text-navy"></i>{{ jalaliDate($post->published_at, 'H:i - Y/m/d') }}
+                                                <i class="fe fe-clock text-navy"></i>{{ jalaliDate($post->published_at, 'H:i - Y/m/d') }}
                                             </small>
                                             <small class="font-weight-bold">
-                                                <i class="fa fa-comment text-navy"></i> {{ $post->comments()->count() }}
+                                                <i class="fe fe-message-circle text-navy"></i> {{ $post->comments()->count() }}
                                             </small>
                                         </span>
                                     </div>
@@ -372,12 +369,12 @@
                                         </small>
                                         <span class="data-info d-flex justify-content-between mt-4">
                                             <small class="font-weight-bold">
-                                                <i class="fa fa-pen text-navy"></i>نویسنده
+                                                <i class="fe fe-edit text-navy"></i>نویسنده
                                             </small> <small class="font-weight-bold">
-                                                <i class="fa fa-clock text-navy"></i>تاریخ انتشار
+                                                <i class="fe fe-clock text-navy"></i>تاریخ انتشار
                                             </small>
                                             <small class="font-weight-bold">
-                                                <i class="fa fa-comment text-navy"></i> نظرات
+                                                <i class="fe fe-message-circle text-navy"></i> نظرات
                                             </small>
                                         </span>
                                     </div>
@@ -402,7 +399,7 @@
                                                     <div class="info-slider p-2">
                                                         <h1>{{ $slide->title }}</h1>
                                                         <p>{!! Str::limit($slide->body, 40) !!}</p>
-                                                        <a href="#" class="btn-iw outline">بیشتر بخوانید<i class="fa fa-long-arrow-left"></i></a>
+                                                        <a href="#" class="btn-iw outline">بیشتر بخوانید<i class="fe fe-chevron-left"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -587,7 +584,9 @@
                 </div>
                 <!-- end center -->
                 <!-- left aside -->
-                @include('home::layouts.right-sidebar')
+                <aside class="col-sm-12 col-lg-3 col-xl-3 dark-home py-2 rounded h-100">
+                    @include('home::layouts.left-sidebar')
+                </aside>
                 <!-- end left side -->
             </div>
         </div>
@@ -597,7 +596,7 @@
         <div class="col-12">
             <div class="panel-box">
                 <div class="titles no-margin">
-                    <h4>گالری ویدیو</h4>
+                    <h4><i class="fe fe-video"></i>گالری ویدیو</h4>
                 </div>
                 <div class="pt-2">
                     <div class="row">
