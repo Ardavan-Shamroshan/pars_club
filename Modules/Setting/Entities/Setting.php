@@ -9,7 +9,9 @@ class Setting extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $fillable = [
+        'title', 'description', 'keywords','email','mobile','phone','address','copyright','google_map', 'terms', 'logo', 'icon'
+    ];
     
     protected static function newFactory()
     {

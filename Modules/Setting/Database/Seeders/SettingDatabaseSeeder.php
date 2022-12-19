@@ -29,8 +29,6 @@ class SettingDatabaseSeeder extends Seeder
             'phone' => '012 - 1234567',
             'address' => 'آدرس',
             'copyright' => 'کپی رایت',
-            'icon' => 'logo.png',
-            'logo' => 'icon.png',
         ]);
     }
 }

@@ -97,7 +97,7 @@
                                         </div>
                                     </li>
                                     <li class="current">
-                                        <a href="#">درباره ما</a>
+                                        <a href="{{ route('home.about-us') }}">درباره ما</a>
                                     </li>
                                     <li class="current">
                                         <a href="#">تماس ما</a>

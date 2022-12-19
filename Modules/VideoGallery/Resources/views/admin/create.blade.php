@@ -72,7 +72,7 @@
                                     <label class="form-label @error('title') tx-danger @enderror">عنوان گالری ویدیو:
                                         <span class="tx-danger">*</span></label>
                                     <input type="text" name="title" class="form-control @error('title') border-danger @enderror" value="{{ old('title') }}">
-                                    @error('title') <small class="tx-danger">عنوان را خالی رها نکنید</small> @enderror
+                                    @error('title') <small class="tx-danger">{{ $message }}</small> @enderror
                                 </div>
 
                                 {{-- description --}}

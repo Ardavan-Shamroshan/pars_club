@@ -1,5 +1,7 @@
 <?php
 
+use Modules\Setting\Http\Controllers\AdminSettingController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,17 @@
 |
 */
 
-Route::prefix('setting')->group(function() {
+// admin setting
+Route::prefix('admin')->group(function () {
+    Route::prefix('setting')->group(function () {
+        Route::get('/', [AdminSettingController::class, 'index'])->name('admin.setting');
+        Route::get('/show/{setting}', [AdminSettingController::class, 'show'])->name('admin.setting.show');
+        Route::get('/edit/{setting}', [AdminSettingController::class, 'edit'])->name('admin.setting.edit');
+        Route::put('/update/{setting}', [AdminSettingController::class, 'update'])->name('admin.setting.update');
+    });
+});
+
+// setting
+Route::prefix('setting')->group(function () {
     Route::get('/', 'SettingController@index');
 });

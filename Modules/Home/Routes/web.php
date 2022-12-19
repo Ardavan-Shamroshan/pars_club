@@ -15,3 +15,4 @@ use Modules\Home\Http\Controllers\HomeController;
 
 // Route::prefix('home')->group(function() {
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about-us', [HomeController::class, 'aboutUs'])->name('home.about-us');

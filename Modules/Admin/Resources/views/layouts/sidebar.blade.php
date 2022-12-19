@@ -106,12 +106,8 @@
                 <a class="side-menu__item" data-bs-toggle="slide" href="#">
                     <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-cogs"></i></span> پیشرفته</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="chart-morris.html">نمودار موریس</a></li>
-                    <li><a class="slide-item" href="chart-flot.html">نمودار های فلوت</a></li>
-                    <li><a class="slide-item" href="chart-chartjs.html">نمودار JS</a></li>
-                    <li><a class="slide-item" href="chart-echart.html">اچارت</a></li>
-                    <li><a class="slide-item" href="chart-sparkline.html">شكلر</a></li>
-                    <li><a class="slide-item" href="chart-peity.html">چارت گرایی</a></li>
+                    <li><a class="slide-item" href="{{ route('admin.setting') }}">تنظیمات</a></li>
+
                 </ul>
             </li>
         </ul>

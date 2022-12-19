@@ -6,6 +6,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Post\Entities\Post;
+use Modules\Setting\Entities\Setting;
+use Modules\Setting\Http\Requests\SettingRequest;
 use Modules\Slide\Entities\Slide;
 use Modules\VideoGallery\Entities\VideoGallery;
 
@@ -64,7 +66,10 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
-        return view('home::index', compact('recommendedPosts', 'transferPosts', 'videoPosts', 'latestPosts', 'posts', 'slides', 'videos'));
+        // setting
+        $setting = Setting::query()->first();
+
+        return view('home::index', compact('recommendedPosts', 'transferPosts', 'videoPosts', 'latestPosts', 'posts', 'slides', 'videos', 'setting'));
     }
 
     /**
@@ -119,5 +124,10 @@ class HomeController extends Controller
      */
     public function destroy($id) {
         //
+    }
+
+    public function aboutUs() {
+        $setting = Setting::query()->first();
+        return view('home::about-us', compact('setting'));
     }
 }

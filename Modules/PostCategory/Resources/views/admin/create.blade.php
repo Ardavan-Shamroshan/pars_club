@@ -57,7 +57,7 @@
                                     <label class="form-label @error('name') tx-danger @enderror">نام دسته بندی:
                                         <span class="tx-danger">*</span></label>
                                     <input type="text" name="name" class="form-control @error('name') border-danger @enderror" value="{{ old('name') }}">
-                                    @error('name') <small class="tx-danger">نام را خالی رها نکنید</small> @enderror
+                                    @error('name') <small class="tx-danger">{{ $message }}</small> @enderror
                                 </div>
 
                                 {{-- category parent id --}}

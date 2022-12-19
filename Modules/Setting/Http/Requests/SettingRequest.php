@@ -14,7 +14,17 @@ class SettingRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => ['nullable','max:150', 'min:2'],
+            'terms' => ['nullable','max:20480', 'min:2'],
+            'keywords' => ['nullable','max:100', 'min:2'],
+            'copyright' => ['nullable','max:100', 'min:2'],
+            'description' => ['nullable','max:20480', 'min:2'],
+            'address' => ['nullable', 'max:20480', 'min:2'],
+            'phone' => ['nullable', 'string'],
+            'mobile' => ['nullable','numeric', 'digits:11'],
+            'google_map' => ['nullable', 'url'],
+            'logo' => ['nullable','image', 'mimes:png,jpg,jpeg,gif'],
+            'icon' => ['nullable','image', 'mimes:png,jpg,jpeg,gif'],
         ];
     }
 

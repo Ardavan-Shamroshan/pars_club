@@ -2,9 +2,12 @@
 
 namespace Modules\Setting\Http\Controllers;
 
+use App\Http\Services\Image\ImageService;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Setting\Entities\Setting;
+use Modules\Setting\Http\Requests\SettingRequest;
 
 class AdminSettingController extends Controller
 {
@@ -12,17 +15,16 @@ class AdminSettingController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
-    {
-        return view('setting::index');
+    public function index() {
+        $setting = Setting::query()->first();
+        return view('setting::admin.index', compact('setting'));
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function create()
-    {
+    public function create() {
         return view('setting::create');
     }
 
@@ -31,8 +33,7 @@ class AdminSettingController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -41,8 +42,7 @@ class AdminSettingController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
-    {
+    public function show($id) {
         return view('setting::show');
     }
 
@@ -51,9 +51,8 @@ class AdminSettingController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
-    {
-        return view('setting::edit');
+    public function edit(Setting $setting) {
+        return view('setting::admin.edit', compact('setting'));
     }
 
     /**
@@ -62,9 +61,48 @@ class AdminSettingController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(SettingRequest $request, Setting $setting, ImageService $imageService) {
+        $inputs = $request->all();
+
+        // logo upload
+        if ($request->hasFile('logo')) {
+            if (!empty($setting->logo))
+            {
+                $imageService->deleteDirectoryAndFiles($setting->logo);
+            }
+
+            // Set image directory
+            $imageService->setExclusiveDirectory('modules' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'setting');
+            // Create image in 3 indexes and save
+            $result = $imageService->fitAndSave($request->file('logo'), 1080, 1080);
+            // If createIndexAndSize failed
+            if ($result === false) {
+                toast('آپلود تصویر با خطا مواجه شد', 'error');
+                return redirect()->route('admin.setting');
+            }
+            $inputs['logo'] = $result;
+        }
+
+            // icon upload
+            if ($request->hasFile('icon')) {
+                if (!empty($setting->icon))
+                    $imageService->deleteDirectoryAndFiles($setting->icon);
+                // Set image directory
+                $imageService->setExclusiveDirectory('modules' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'setting');
+                // Create image in 3 indexes and save
+                $result = $imageService->fitAndSave($request->file('icon'), 1080, 1080);
+                // If createIndexAndSize failed
+                if ($result === false) {
+                    toast('آپلود تصویر با خطا مواجه شد', 'error');
+                    return redirect()->route('admin.setting');
+                }
+                $inputs['icon'] = $result;
+            }
+
+        $setting->update($inputs);
+        toast('تنظیمات با موفقیت ویرایش شد', 'success');
+        return redirect()->route('admin.setting');
+
     }
 
     /**
@@ -72,8 +110,7 @@ class AdminSettingController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
 }

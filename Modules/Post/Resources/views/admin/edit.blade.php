@@ -259,19 +259,17 @@
             var default_tags = tags_input.val();
             var default_data = null;
 
+            console.log(tags_input, select_tags, default_tags, default_data)
 
             if (tags_input.val() !== null && tags_input.val().length > 0)
                 default_data = default_tags.split(',');
 
             select_tags.select2({
-                multiple: true,
                 tags: true,
                 data: default_data,
                 theme: "classic",
                 dir: "rtl"
             });
-
-
             select_tags.children('option').attr('selected', true).trigger('change');
             $('#form').submit(function () {
                 if (select_tags.val() !== null && select_tags.val().length > 0) {
@@ -279,7 +277,7 @@
                     tags_input.val(selectedSource)
                 }
             })
-        });
+        })
     </script>
 
 @endsection

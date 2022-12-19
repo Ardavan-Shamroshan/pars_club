@@ -1,4 +1,7 @@
 @extends('home::layouts.master')
+@section('title')
+    {{ $setting->title }}
+@endsection
 @section('content')
 
     <!-- hero banner -->
@@ -7,7 +10,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 no-margin">
-                        <h1>باشگاه ورزشی پارس برازجان</h1>
+                        <h1>{{ $setting->title }}</h1>
                     </div>
                     <div class="col-lg-12 text-center">
                         <div class="box-start rounded">
@@ -54,7 +57,11 @@
                             {{--                                </div>--}}
                             {{--                            </div>--}}
 
-                            <img src="{{ asset('modules/home/img/clubs-logos/club_logo.jpg') }}" alt="Logo" class="log_img rounded-circle border" width="150">
+                            @if($setting->logo)
+                                <img src="{{ asset($setting->logo) }}" alt="Logo" class="log_img rounded-circle border" width="150">
+                            @else
+                                <img src="{{ asset('modules/home/img/clubs-logos/club_logo.jpg') }}" alt="Logo" class="log_img rounded-circle border" width="150">
+                            @endif
 
                         </div>
                     </div>
@@ -100,7 +107,7 @@
                                     <span class="sr-only">Previous</span>
                                 </a>
                                 <a class="carousel-control-next text-dark" href="#next" role="button" data-slide="next">
-                                    <span class="aria-hidden=" true><i class="fe fe-chevron-left"></i></span>
+                                    <span class="aria-hidden=" true><i class="fe fe-chevron-right"></i></span>
                                     <span class="sr-only">Next</span>
                                 </a>
 
@@ -673,6 +680,7 @@
         {{--        </div>--}}
 
     </section>
+
 @endsection
 @section('script')
     <!--- Tabs JS-->
