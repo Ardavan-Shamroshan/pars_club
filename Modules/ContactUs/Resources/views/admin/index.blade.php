@@ -71,17 +71,20 @@
 
                                         @foreach($contacts as $contact)
                                             <tr>
-                                                <td><small>{{ $contact->name ?? '-' }}</small></td>
-                                                <td><small>{{ $contact->email ?? '-' }}</small></td>
-                                                <td>{{ $contact->subject ?? '-' }}</td>
+                                                <td>{{ $contact->name ?? '-' }}</td>
+                                                <td>{{ $contact->email ?? '-' }}</td>
+                                                <td>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#dataModal-{{ $contact->id }}">{{ $contact->subject ?? '-' }}</a>
+                                                </td>
                                                 <td>
                                                     <small class="tag @if($contact->is_read == 1) bg-success-transparent text-success @else bg-warning-transparent text-warning  @endif">
                                                         {{ $contact->read }}
                                                     </small>
                                                 </td>
                                                 <td class="d-flex justify-content-start">
-                                                    <a href="{{ route('admin.contact-us.store') }}" class="btn-sm"><i class="fe fe-message-square"></i> پاسخ</a>
-                                                    <a href="{{ route('admin.contact-us.edit', $contact) }}" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
+                                                    @if($contact->is_read == 0)
+                                                        <a href="" data-bs-toggle="modal" data-bs-target="#dataModalAnswer-{{ $contact->id }}" class="btn-sm"><i class="fe fe-message-square"></i> پاسخ</a>
+                                                    @endif
                                                     <form action="{{ route('admin.contact-us.destroy', $contact) }}" method="post">
                                                         @csrf @method('delete')
                                                         <button type="submit" class="btn btn-sm btn-link delete">
@@ -90,6 +93,148 @@
                                                     </form>
                                                 </td>
                                             </tr>
+
+
+
+                                            <!-- Show Modal -->
+                                            <div class="modal fade" id="dataModal-{{ $contact->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" style="max-width: 45%">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body p-0">
+                                                            <div class="row">
+                                                                <div class="col-12 mg-b-0 pb-1">
+                                                                    <div class="d-flex">
+                                                                        <ul class="list-unstyled w-100">
+                                                                            <li class="d-flex justify-content-start gap-3 m-0 p-3">
+                                                                                <div class="font-weight-bold">موضوع تماس :</div>
+                                                                                <div>
+                                                                                    {{ $contact->subject ?? '-' }}
+                                                                                </div>
+                                                                            </li>
+
+                                                                            <li class="d-flex justify-content-start gap-3 bg-light m-0 p-3">
+                                                                                <div class="font-weight-bold">متن تماس :</div>
+                                                                                <div>
+                                                                                    {!! $contact->message ?? '-' !!}
+                                                                                </div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 m-0 p-3">
+                                                                                <div class="font-weight-bold">تماس گیرنده :</div>
+                                                                                <div>{{ $contact->name ?? '-' }}</div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 bg-light m-0 p-3">
+                                                                                <div class="font-weight-bold">ایمیل تماس گیرنده :</div>
+                                                                                <div class="">
+                                                                                    <a href="mailto:{{ $contact->email }}">{{ $contact->email ?? '-' }}</a>
+                                                                                </div>
+                                                                            </li>
+
+                                                                            <li class="d-flex justify-content-start gap-3 m-0 p-3">
+                                                                                <div class="font-weight-bold">پاسخ :</div>
+
+                                                                                <div>
+                                                                                    @if($contact->is_read == 1)
+                                                                                        {!!  $contact->response !!}
+                                                                                    @else
+                                                                                        <small class="tag bg-warning-transparent text-warning">
+                                                                                            {{ $contact->read }}
+                                                                                        </small>
+                                                                                    @endif
+                                                                                </div>
+
+                                                                            </li>
+
+                                                                            <li class="d-flex justify-content-start gap-3 bg-light m-0 p-3">
+                                                                                <div class="font-weight-bold">زمان ایجاده شده :</div>
+                                                                                <div>{{ jalaliDate($contact->created_at) }} {{ jalaliTime($contact->created_at, 'H:i') }}</div>
+
+                                                                            </li>
+
+                                                                            <li class="d-flex justify-content-start gap-3 m-0 p-3">
+                                                                                <div class="font-weight-bold">ویرایش شده در :</div>
+                                                                                <div>{{ jalaliDate($contact->updated_at) }} {{ jalaliTime($contact->updated_at, 'H:i') }}</div>
+                                                                            </li>
+                                                                            <li class="d-flex justify-content-start gap-3 bg-light m-0 p-3">
+                                                                                <div class="font-weight-bold">عملیات :</div>
+                                                                                <div class="d-flex justify-content-start">
+                                                                                    @if($contact->is_read == 0)
+                                                                                        <a href="" data-bs-toggle="modal" data-bs-target="#dataModalAnswer-{{ $contact->id }}" class="btn-sm"><i class="fe fe-message-square"></i> پاسخ</a>
+                                                                                    @endif
+                                                                                    <form action="{{ route('admin.contact-us.destroy', $contact) }}" method="post">
+                                                                                        @csrf @method('delete')
+                                                                                        <button type="submit" class="btn btn-sm btn-link delete">
+                                                                                            <i class="fe fe-trash-2"></i> پاک کردن
+                                                                                        </button>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div><!-- bd -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @if($contact->is_read == 0)
+                                                <!-- Answer Modal -->
+                                                <div class="modal fade " id="dataModalAnswer-{{ $contact->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" style="max-width: 45%">
+                                                        <form action="{{ route('admin.contact-us.update', $contact) }}" method="post">
+                                                            @csrf @method('PUT')
+
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="mb-0 desc text-body">{{ $contact->subject }}</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body p-0">
+                                                                    <div class="row">
+                                                                        <div class="col-12 mg-b-0 pb-1">
+                                                                            <div class="p-3 my-2">
+
+                                                                                <a class="p-3 d-flex border-bottom gap-3">
+                                                                                    <div class="drop-img cover-image " data-bs-image-src="{{ asset('modules/admin/assets/img/faces/no-profile.jpg') }}">
+                                                                                        <span class="avatar-status bg-teal"></span>
+                                                                                    </div>
+                                                                                    <div class="wd-90p">
+                                                                                        <div class="d-flex">
+                                                                                            <h5 class="mb-1 name text-body">{{ $contact->name }}</h5>
+                                                                                        </div>
+                                                                                        <p class="mb-0 desc tx-gray-600 my-2">{!! $contact->message !!}</p>
+                                                                                        <p class="time mb-0 text-left float-right mr-2 mt-2 tx-gray-500">{{ jalaliDate($contact->created_at, '%d %B، %Y') }}</p>
+                                                                                    </div>
+                                                                                </a>
+
+                                                                                {{-- response --}}
+                                                                                <div class="form-group my-4">
+                                                                                    <label for="response" class="@error('response') tx-danger @enderror">پاسخ
+                                                                                        <span class="tx-danger">*</span></label>
+                                                                                    <textarea class="form-control @error('response') border-danger @enderror" name="response" rows="3" style="height: 7rem; resize: none">{{ old('response') }}</textarea>
+                                                                                    @error('response')
+                                                                                    <small class="tx-danger">{{ $message }}</small> @enderror
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div><!-- bd -->
+                                                                </div>
+
+                                                                <div class="modal-footer text-center dropdown-footer">
+                                                                    <button type="submit" class="btn btn-sm btn-warning mx-auto">ارسال پاسخ</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            @endif
+
                                         @endforeach
 
                                         </tbody>

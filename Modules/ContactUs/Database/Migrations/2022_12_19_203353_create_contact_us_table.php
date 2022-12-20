@@ -15,8 +15,8 @@ return new class extends Migration {
             $table->id();
             $table->string('name')->nullable();
             $table->string('email')->nullable();
-            $table->string('subject');
-            $table->string('message');
+            $table->text('subject');
+            $table->text('message');
             $table->string('response')->nullable();
             $table->tinyInteger('is_read')->default(0);
             $table->timestamps();

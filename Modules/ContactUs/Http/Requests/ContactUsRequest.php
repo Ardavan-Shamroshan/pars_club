@@ -13,13 +13,15 @@ class ContactUsRequest extends FormRequest
      * @return array
      */
     public function rules() {
-        return [
-            'name' => ['sometimes', 'max:50'],
-            'subject' => ['required', 'max:255'],
-            'email' => ['sometimes', 'email'],
-            'message' => ['required', 'max:20480'],
+        if ($this->isMethod('post'))
+            return [
+                'name' => ['sometimes', 'max:50'],
+                'subject' => ['required', 'max:255'],
+                'email' => ['sometimes', 'email'],
+                'message' => ['required', 'max:20480'],
+            ];
+        else return [
             'response' => ['sometimes', 'max:20480'],
-            'is_read' => ['sometimes', 'numeric', Rule::in([0, 1])],
         ];
     }
 

@@ -10,6 +10,7 @@ class MessageService
 
     public function __construct(MessageInterface $message) {
         $this->message = $message;
+
     }
 
     public function send() {

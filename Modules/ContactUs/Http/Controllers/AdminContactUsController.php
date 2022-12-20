@@ -2,10 +2,13 @@
 
 namespace Modules\ContactUs\Http\Controllers;
 
+use App\Http\Services\Message\Email\EmailService;
+use App\Http\Services\Message\MessageService;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\ContactUs\Entities\ContactUs;
+use Modules\ContactUs\Http\Requests\ContactUsRequest;
 use Modules\Setting\Entities\Setting;
 
 class AdminContactUsController extends Controller
@@ -67,9 +70,32 @@ class AdminContactUsController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(ContactUsRequest $request, ContactUs $contact)
     {
-        //
+        $inputs = $request->all();
+
+        // contact read and answered
+        $inputs['is_read'] = 1;
+
+        // Send response to contact-email
+        $emailService = new EmailService();
+        $details = [
+            'title' => 'پاسخ مدیریت وب سایت باشگاه فرهنگی ورزشی پارس',
+            'subject' => $contact->subject,
+            'message' => $contact->message,
+            'response' => $inputs['response']
+        ];
+        $emailService->setDetails($details);
+        $emailService->setFrom('noreply@example.com', 'example');
+        $emailService->setSubject('پاسخ تماس');
+        $emailService->setTo($contact->email); // set send to location
+
+        $messagesService = new MessageService($emailService);
+        $messagesService->send(); // fire
+
+        toast('پاسخ با موفقیت ثبت و به ایمیل تماس گیرنده ارسال شد', 'success');
+        $contact->update($inputs);
+        return redirect()->route('admin.contact-us');
     }
 
     /**
@@ -77,8 +103,10 @@ class AdminContactUsController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(ContactUs $contact)
     {
-        //
+        toast('تماس با موفقیت پاگ شد', 'success');
+        $contact->delete($contact);
+        return redirect()->route('admin.contact-us');
     }
 }
