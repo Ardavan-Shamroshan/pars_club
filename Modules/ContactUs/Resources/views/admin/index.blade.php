@@ -60,24 +60,30 @@
                                     <table class="table text-md-nowrap dataTable no-footer" id="example1" role="grid" aria-describedby="example1_info">
                                         <thead>
                                         <tr role="row">
-                                            <th class="wd-15p border-bottom-0 sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="نام کوچک: activate to sort column descending" style="width: 101.667px;">نام تماس گیرنده</th>
-                                            <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="نام خانوادگی: activate to sort column ascending" style="width: 101.667px;">ایمیل</th>
-                                            <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="نام خانوادگی: activate to sort column ascending" style="width: 101.667px;">موضوع</th>
-                                            <th class="wd-10p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="حقوق: activate to sort column ascending" style="width: 54.4375px;">وضعیت</th>
-                                            <th class="wd-25p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="پست الکترونیک: activate to sort column ascending" style="width: 196.135px;">عملیات</th>
+                                            <th class="wd-15p border-bottom-0 sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="نام کوچک: activate to sort column descending" style="width: 71.667px;">نام تماس گیرنده</th>
+                                            <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="نام خانوادگی: activate to sort column ascending" style="width: 51.667px;">ایمیل</th>
+                                            <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="نام خانوادگی: activate to sort column ascending" style="width: 161.667px;">موضوع</th>
+                                            <th class="wd-10p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="حقوق: activate to sort column ascending" style="width: 104.4375px;">وضعیت</th>
+                                            <th class="wd-25p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="پست الکترونیک: activate to sort column ascending" style="width: 106.135px;">عملیات</th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
                                         @foreach($contacts as $contact)
                                             <tr>
-                                                <td>{{ $contact->name ?? '-' }}</td>
-                                                <td>{{ $contact->email ?? '-' }}</td>
+                                                <td><small>{{ $contact->name ?? '-' }}</small></td>
+                                                <td><small>{{ $contact->email ?? '-' }}</small></td>
                                                 <td>{{ $contact->subject ?? '-' }}</td>
+                                                <td>
+                                                    <small class="tag @if($contact->is_read == 1) bg-success-transparent text-success @else bg-warning-transparent text-warning  @endif">
+                                                        {{ $contact->read }}
+                                                    </small>
+                                                </td>
                                                 <td class="d-flex justify-content-start">
-                                                    <a href="{{ route('admin.contact-us.show', $contact) }}" class="btn-sm"><i class="fe fe-eye"></i> نمایش</a>
+                                                    <a href="{{ route('admin.contact-us.store') }}" class="btn-sm"><i class="fe fe-message-square"></i> پاسخ</a>
                                                     <a href="{{ route('admin.contact-us.edit', $contact) }}" class="btn-sm"><i class="fe fe-edit"></i> ویرایش</a>
-                                                    <form action="{{ route('admin.contact-us.destroy', $contact) }}" method="post">                                                        @csrf @method('delete')
+                                                    <form action="{{ route('admin.contact-us.destroy', $contact) }}" method="post">
+                                                        @csrf @method('delete')
                                                         <button type="submit" class="btn btn-sm btn-link delete">
                                                             <i class="fe fe-trash-2"></i> پاک کردن
                                                         </button>

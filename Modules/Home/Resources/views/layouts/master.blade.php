@@ -29,5 +29,8 @@
     @include('home::layouts.script')
     @yield('script')
 
+
+    {{-- sweetalert2 from realrashid.github.io --}}
+    @include('sweetalert::alert')
 </body>
 </html>

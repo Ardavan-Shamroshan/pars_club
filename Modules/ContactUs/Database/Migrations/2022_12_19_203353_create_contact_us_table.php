@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('subject');
             $table->string('message');
             $table->string('response')->nullable();
-            $table->enum('is_read', [0, 1])->default(0);
+            $table->tinyInteger('is_read')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

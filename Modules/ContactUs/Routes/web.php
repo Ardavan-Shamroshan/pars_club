@@ -29,4 +29,5 @@ Route::middleware('auth', 'admin')->prefix('admin')->group(function () {
 // contact us
 Route::prefix('contact-us')->group(function () {
     Route::get('/', [ContactUsController::class, 'index'])->name('contact-us');
+    Route::post('/store', [ContactUsController::class, 'store'])->name('contact-us.store');
 });

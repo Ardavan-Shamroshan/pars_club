@@ -246,7 +246,10 @@
                             <a class="dropdown-item" href="#"><i class="bx bxs-inbox"></i>صندوق ورودی</a>
                             <a class="dropdown-item" href="#"><i class="bx bx-envelope"></i>پیام ها</a>
                             <a class="dropdown-item" href="#"><i class="bx bx-slider-alt"></i> تنظیمات حساب</a>
-                            <a class="dropdown-item" href="{{ route('logout') }}"><i class="bx bx-log-out"></i> خروج از سیستم</a>
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button class="dropdown-item"><i class="bx bx-log-out"></i> خروج از سیستم</button>
+                            </form>
                         </div>
                     </div>
                 @endauth

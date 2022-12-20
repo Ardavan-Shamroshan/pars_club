@@ -24,36 +24,18 @@
                         </div>
                         <div class="info-panel">
                             <address>
-                                <strong>ورزش جام جهانی</strong><br>
-                                <i class="fa fa-map-marker"></i><strong>نشانی:</strong>fa795 folsom ave، suite 600<br>
-                                <i class="fa fa-plane"></i><strong>شهرستان:</strong>سان فرانسیسکو، 94107<br>
-                                <i class="fa fa-phone"></i> <abbr title="Phone">p:</abbr>(123) 456-7890
+                                <iframe src="{{ 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d435.065044839531!2d51.2150429!3d29.2670473!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fb40fd940e8d46d%3A0x70c51a775e324fc1!2z2qnZhNuM2YbbjNqpINiq2K7Ytdi124wg2K_Zhtiv2KfZhtm-2LLYtNqp24wg2b7Yp9ix2LM!5e0!3m2!1sen!2sde!4v1671474207426!5m2!1sen!2sde'}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <i class="fa fa-plane"></i><strong>نشانی:</strong>{{ $setting->address }}<br>
+                                <i class="fa fa-phone"></i><strong>تلفن:</strong>
+                                <abbr title="Phone"></abbr>{{ $setting->phone }}
+                                <br> <i class="fa fa-mobile"></i><strong>موبایل:</strong>
+                                <abbr title="Phone"></abbr>{{ $setting->mobile }}
+                                <br> <i class="fa fa-mail-bulk"></i><strong>ایمیل:</strong>
+                                <abbr title="Phone"></abbr>{{ $setting->email }}
                             </address>
                         </div>
                     </aside>
 
-                    <aside class="panel-box">
-                        <div class="titles no-margin">
-                            <h4>گوگل مپ</h4>
-                        </div>
-                        <div class="info-panel p-1">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d435.065044839531!2d51.2150429!3d29.2670473!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fb40fd940e8d46d%3A0x70c51a775e324fc1!2z2qnZhNuM2YbbjNqpINiq2K7Ytdi124wg2K_Zhtiv2KfZhtm-2LLYtNqp24wg2b7Yp9ix2LM!5e0!3m2!1sen!2sde!4v1671474207426!5m2!1sen!2sde"
-                                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </aside>
-                    <aside class="panel-box">
-                        <div class="titles no-margin">
-                            <h4>ایمیل تماس</h4>
-                        </div>
-                        <div class="info-panel">
-                            <address>
-                                <i class="fa fa-envelope"></i><strong>ایمیل:</strong>
-                                sales@sportscup.com<br>
-                                <i class="fa fa-envelope"></i><strong>ایمیل:</strong>
-                                sales@sportscup.com
-                            </address>
-                        </div>
-                    </aside>
                 </div>
 
                 <div class="col-md-8">
@@ -62,34 +44,73 @@
                             <h4>فرم تماس</h4>
                         </div>
                         <div class="info-panel">
-                            <form class="form-theme" action="php/send-mail.php">
+                            {{-- form --}}
+                            <form action="{{ route('contact-us.store') }}" id="form" method="post" enctype="multipart/form-data">
+                                @csrf
+
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <label>اسم شما *</label>
-                                        <input type="text" required="required" value="" maxlength="100" class="form-control" name="Name" id="name">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>آدرس ایمیل شما *</label>
-                                        <input type="email" required="required" value="" maxlength="100" class="form-control" name="Email" id="email">
+                                    <div class="col-12">
+                                        {{-- validation errors alert --}}
+                                        @if ($errors->any())
+                                            <div class="alert alert-solid-danger mg-b-0 rounded mb-2" role="alert">
+                                                <button aria-label="بستن" class="close text-left" data-dismiss="alert" type="button">
+                                                    <span aria-hidden="true">×</span></button>
+                                                <br>
+                                                <br>
+
+                                                @foreach($errors->all() as $error)
+                                                    <div>
+                                                        <span class="alert-inner--icon"><i class="fe fe-info"></i></span> {{ $error }}
+                                                    </div>
+                                                @endforeach
+
+                                            </div>
+                                        @endif
+
+                                        <div class="row">
+                                            @auth
+                                                <div class="col-md-6 my-3">
+                                                    <label class="font-weight-bold">اسم شما
+                                                        <span class="text-danger">*</span></label>
+                                                    <input type="text" value="{{ old('name', auth()->user()->fullname ?? auth()->user()->name) }}" class="form-control rounded" name="name" disabled>
+                                                </div>
+                                                <div class="col-md-6 my-3">
+                                                    <label class="font-weight-bold">آدرس ایمیل شما
+                                                        <span class="text-danger">*</span></label>
+                                                    <input type="email" value="{{ old('subject', auth()->user()->email) }}" class="form-control rounded" name="email" disabled>
+                                                </div>
+                                            @endauth
+                                            @guest
+                                                <div class="col-md-6 my-3">
+                                                    <label class="font-weight-bold">اسم شما
+                                                        <span class="text-danger">*</span></label>
+                                                    <input type="text" value="{{ old('name') }}" class="form-control rounded" name="name">
+                                                </div>
+                                                <div class="col-md-6 my-3">
+                                                    <label class="font-weight-bold">آدرس ایمیل شما
+                                                        <span class="text-danger">*</span></label>
+                                                    <input type="email" value="{{ old('email') }}" class="form-control rounded" name="email">
+                                                </div>
+                                            @endguest
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 my-3">
+                                                <label class="font-weight-bold">موضوع <span class="text-danger">*</span></label>
+                                                <input type="text" value="{{ old('subject') }}" class="form-control rounded" name="subject">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 my-3">
+                                                <label class="font-weight-bold">اظهار نظر
+                                                    <span class="text-danger">*</span></label>
+                                                <textarea rows="10" class="form-control rounded" name="message" style="height: 138px;">{{ old('message') }}</textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>موضوع *</label>
-                                        <input type="text" required="required" value="" maxlength="100" class="form-control" name="Email" id="email">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>اظهار نظر *</label>
-                                        <textarea maxlength="5000" rows="10" class="form-control" name="message" style="height: 138px;" required="required"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <input type="submit" value="ارسال پیام" class="btn btn-lg btn-primary">
-                                    </div>
-                                </div>
+
+                                {{-- submit --}}
+                                <button type="submit" class="btn btn-primary mb-3"><i class="fe fe-send"></i> ارسال پیام</button>
                             </form>
                             <div class="row">
                                 <div class="col-md-12">
@@ -97,42 +118,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section-newsletter">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="text-center">
-                            <h2>ایمیل خود را وارد کنید و<span class="text-resalt">مشترک</span> خبرنامه ما شوید.</h2>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپ</p>
-                        </div>
-                        <form id="newsletterForm" action="php/mailchip/newsletter-subscribe.php">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-envelope"></i>
-                                            </span>
-                                        <input class="form-control" placeholder="اسم شما" name="name" type="text" required="required">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-envelope"></i>
-                                            </span>
-                                        <input class="form-control" placeholder="ایمیل شما" name="email" type="email" required="required">
-                                        <span class="input-group-btn">
-                                                <button class="btn btn-primary" type="submit" name="subscribe">ثبت نام</button>
-                                            </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        <div id="result-newsletter"></div>
                     </div>
                 </div>
             </div>
