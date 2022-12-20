@@ -14,7 +14,7 @@ use Modules\Role\Http\Controllers\AdminRoleController;
 */
 
 // admin role
-Route::prefix('admin')->group(function () {
+Route::middleware('auth', 'admin')->prefix('admin')->group(function () {
     Route::prefix('role')->group(function () {
         Route::get('/', [AdminRoleController::class, 'index'])->name('admin.role');
         Route::get('/create', [AdminRoleController::class, 'create'])->name('admin.role.create');

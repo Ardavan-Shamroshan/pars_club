@@ -13,6 +13,6 @@
 
 use Modules\Admin\Http\Controllers\AdminController;
 
-Route::prefix('admin')->group(function () {
+Route::middleware('auth', 'admin')->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
 });

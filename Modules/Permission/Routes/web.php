@@ -14,7 +14,7 @@ use Modules\Permission\Http\Controllers\AdminPermissionController;
 */
 
 // admin permission
-Route::prefix('admin')->group(function () {
+Route::middleware('auth', 'admin')->prefix('admin')->group(function () {
     Route::prefix('permission')->group(function () {
         Route::get('/', [AdminPermissionController::class, 'index'])->name('admin.permission');
         Route::get('/create', [AdminPermissionController::class, 'create'])->name('admin.permission.create');

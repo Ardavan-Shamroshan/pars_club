@@ -4,6 +4,9 @@
 <meta name="author" content="iwthemes.com">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<!-- IMPORTANT!!! remember CSRF token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <link href="{{ asset('modules/home/assets/fontawesome/css/all.min.css') }}" rel="stylesheet" media="screen">
 
 <!-- CSS only -->
@@ -22,3 +25,7 @@
 {{--<link rel="apple-touch-icon" href="i{{ asset('modules/home/mg/icons/apple-touch-icon.png') }}">--}}
 {{--<link rel="apple-touch-icon" sizes="72x72" href="{{ asset('modules/home/img/icons/apple-touch-icon-72x72.png') }}">--}}
 {{--<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('modules/home/img/icons/apple-touch-icon-114x114.png') }}">--}}
+
+
+
+{!! htmlScriptTagJsApi() !!}

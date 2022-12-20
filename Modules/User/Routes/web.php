@@ -15,7 +15,7 @@
 use Modules\User\Http\Controllers\AdminUserController;
 
 
-Route::prefix('admin')->group(function () {
+Route::middleware('auth', 'admin')->prefix('admin')->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('/', [AdminUserController::class, 'index'])->name('admin.user');
         Route::get('/create', [AdminUserController::class, 'create'])->name('admin.user.create');

@@ -74,7 +74,7 @@ return [
     |
     */
 
-    'prefix' => '',
+    'prefix' => '_pars_manage',
 
     'domain' => null,
 

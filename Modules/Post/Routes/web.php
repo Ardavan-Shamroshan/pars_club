@@ -16,7 +16,7 @@ use Modules\Post\Http\Controllers\PostController;
 
 
 // admin post
-Route::prefix('admin')->group(function () {
+Route::middleware('auth', 'admin')->prefix('admin')->group(function () {
     Route::prefix('post')->group(function () {
         Route::get('/', [AdminPostController::class, 'index'])->name('admin.post');
         Route::get('/create', [AdminPostController::class, 'create'])->name('admin.post.create');

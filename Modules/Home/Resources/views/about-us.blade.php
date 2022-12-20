@@ -4,6 +4,15 @@
 @endsection
 @section('content')
 
+    <!-- breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fe fe-home"></i></a></li>
+            <li class="breadcrumb-item">درباره ما</li>
+        </ol>
+    </nav>
+    <!-- breadcrumb -->
+
     <!-- content -->
     <section class="content-info">
         <!-- content container -->

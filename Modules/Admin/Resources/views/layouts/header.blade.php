@@ -12,9 +12,9 @@
                 <a class="open-toggle" href="#"><i class="header-icon fe fe-align-left"></i></a>
                 <a class="close-toggle" href="#"><i class="header-icons fe fe-x"></i></a>
             </div>
-            <div class="main-header-center mr-3 d-sm-none d-md-none d-lg-block">
-                <input class="form-control" placeholder="هر چیزی را جستجو کنید ..." type="search">
-                <button class="btn" role="button"><i class="fas fa-search d-none d-md-block"></i></button>
+
+            <div class="main-header-center my-auto">
+                    <a href="{{ route('home') }}" class="text-decoration-underline">نمایش وبگاه</a>
             </div>
         </div>
         <div class="main-header-right">
@@ -22,7 +22,7 @@
                 <li class="">
                     <div class="dropdown  nav-itemd-none d-md-flex">
                         <a href="#" class="d-flex  nav-item country-flag1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="avatar country-Flag me-0 align-self-center bg-transparent"><img src="{{ asset('modules/admin/assets/img/flags/iran_flag.png') }}" alt="img"></span>
+                            <span class="avatar country-Flag me-0 align-self-center bg-transparent"><img src="{{ asset('modules/admin/assets/img/flags/Flag-of-Iran-01.png') }}" alt="img"></span>
                             <div class="my-auto">
                                 <strong class="me-2 ms-2 my-auto">فارسی</strong>
                             </div>
@@ -32,35 +32,6 @@
                                 <span class="avatar  m-e-c-3 align-self-center bg-transparent"><img src="{{ asset('modules/admin/assets/img/flags/us_flag.jpg') }}" alt="img"></span>
                                 <div class="d-flex">
                                     <span class="mt-2">انگلیسی</span>
-                                </div>
-                            </a><a href="#" class="dropdown-item d-flex ">
-                                <span class="avatar  m-e-c-3 align-self-center bg-transparent"><img src="{{ asset('modules/admin/assets/img/flags/french_flag.jpg') }}" alt="img"></span>
-                                <div class="d-flex">
-                                    <span class="mt-2">فرانسوی</span>
-                                </div>
-                            </a>
-                            <a href="#" class="dropdown-item d-flex">
-                                <span class="avatar  m-e-c-3 align-self-center bg-transparent"><img src="{{ asset('modules/admin/assets/img/flags/germany_flag.jpg') }}" alt="img"></span>
-                                <div class="d-flex">
-                                    <span class="mt-2">آلمان</span>
-                                </div>
-                            </a>
-                            <a href="#" class="dropdown-item d-flex">
-                                <span class="avatar  m-e-c-3 align-self-center bg-transparent"><img src="{{ asset('modules/admin/assets/img/flags/italy_flag.jpg') }}" alt="img"></span>
-                                <div class="d-flex">
-                                    <span class="mt-2">ایتالیا</span>
-                                </div>
-                            </a>
-                            <a href="#" class="dropdown-item d-flex">
-                                <span class="avatar  m-e-c-3 align-self-center bg-transparent"><img src="{{ asset('modules/admin/assets/img/flags/russia_flag.jpg') }}" alt="img"></span>
-                                <div class="d-flex">
-                                    <span class="mt-2">روسیه</span>
-                                </div>
-                            </a>
-                            <a href="#" class="dropdown-item d-flex">
-                                <span class="avatar  m-e-c-3 align-self-center bg-transparent"><img src="{{ asset('modules/admin/assets/img/flags/spain_flag.jpg') }}" alt="img"></span>
-                                <div class="d-flex">
-                                    <span class="mt-2">اسپانیا</span>
                                 </div>
                             </a>
                         </div>
@@ -265,7 +236,8 @@
                                         @endif
                                     </div>
                                     <div class="ms-3 my-auto">
-                                        <h6>{{ auth()->user()->fullname ?? auth()->user()->name ?? 'وارد نشده اید' }}</h6><span>مدیریت</span>
+                                        <h6>{{ auth()->user()->fullname ?? auth()->user()->name ?? 'وارد نشده اید' }}</h6>
+                                        <span>مدیریت</span>
                                     </div>
                                 </div>
                             </div>

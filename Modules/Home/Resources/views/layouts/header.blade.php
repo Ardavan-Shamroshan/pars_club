@@ -1,9 +1,10 @@
 <!-- header -->
 <header class="header-2 mb-1 bg-sky">
     <!-- header alert -->
-    <div class="header-alert p-2 bg-navy">
-        <a href="#" class="text-dark font-weight-bold"><span class="">اخبار رده های پایه تا جوانان تیم فوتبال پارس را دنبال کنید</span></a>
-    </div>
+{{--    <div class="header-alert p-2 bg-navy">--}}
+{{--        <a href="#" class="text-dark font-weight-bold"><span class="">اخبار رده های پایه تا جوانان تیم فوتبال پارس را دنبال کنید</span></a>--}}
+{{--        <a class="text-dark font-weight-bold"><span class="">اخبار رده های پایه تا جوانان تیم فوتبال پارس را از اینجا دنبال کنید</span></a>--}}
+{{--    </div>--}}
     <!-- header -->
     <div class="header-alert">
         <div class="container">
@@ -11,15 +12,19 @@
                 <div class="row justify-content-between">
                     <div class="col-6 py-2">
                         <a href="{{ route('home') }}" title="Return Home">
-                            <img src="{{ asset('modules/home/img/clubs-logos/club_logo.jpg') }}" alt="Logo" class="logo_img rounded-circle border" width="50">
+                            @if($setting->logo)
+                                <img src="{{ asset($setting->logo) }}" alt="Logo" class="logo_img rounded-circle border" width="50">
+                            @else
+                                <img src="{{ asset('modules/home/img/clubs-logos/club_logo.jpg') }}" alt="Logo" class="logo_img rounded-circle border" width="50">
+                            @endif
                         </a>
                     </div>
                     <div class="col-6 text-left py-2" style="background: linear-gradient(to right,rgba(37,169,224,1) 0,rgba(37,169,224,1) 30%,rgba(37,169,224,0) 100%);">
-                        <a href="{{ route('home') }}" class="d-flex justify-content-end gap-1" title="Return Home">
+                        <span class="d-flex justify-content-end gap-1" title="{{ $setting->title }}">
                             <p class="text-wrap text-white my-auto" style="width: 30%">مسابقه رایگان پیش‌بینی
-                                بازی‌های جام جهانی پارس</p>
+                                بازی‌های پارس</p>
                             <img src="{{ asset('modules/admin/assets/img/symbol.png') }}" alt="Logo" class="logo_img" width="50">
-                        </a>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -100,7 +105,7 @@
                                         <a href="{{ route('home.about-us') }}">درباره ما</a>
                                     </li>
                                     <li class="current">
-                                        <a href="#">تماس ما</a>
+                                        <a href="{{ route('contact-us') }}">تماس با ما</a>
                                     </li>
                                     <li class="current">
                                         <a href="teams.html">روابط عمومی</a>
