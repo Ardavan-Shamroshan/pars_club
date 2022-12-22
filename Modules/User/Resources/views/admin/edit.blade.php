@@ -105,7 +105,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label @error('password') tx-danger @enderror">کلمه عبور:
                                             <span class="tx-danger">*</span></label>
-                                        <input type="password" name="password" class="form-control @error('password') border-danger @enderror" value="{{ old('password', $user->password) }}">
+                                        <input type="password" name="password" class="form-control @error('password') border-danger @enderror" value="">
                                         @error('password') <small class="tx-danger">{{ $message }}</small> @enderror
                                     </div>
 
@@ -113,7 +113,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label @error('password_confirmation') tx-danger @enderror">تکرار کلمه عبور:
                                             <span class="tx-danger">*</span></label>
-                                        <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') border-danger @enderror" value="{{ old('password', $user->password) }}">
+                                        <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') border-danger @enderror" value="">
                                         @error('password_confirmation')
                                         <small class="tx-danger">{{ $message }}</small> @enderror
                                     </div>

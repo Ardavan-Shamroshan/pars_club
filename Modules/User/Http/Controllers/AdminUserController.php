@@ -81,7 +81,6 @@ class AdminUserController extends Controller
      */
     public function update(UserRequest $request, User $user) {
         $inputs = $request->all();
-
         // Hashing password
         $inputs['password'] = Hash::make($inputs['password']);
 

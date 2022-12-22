@@ -270,43 +270,43 @@
     <!-- end main news -->
 
     <!-- ads banner -->
-    <div class="ads-banner">
-        <div class="row my-2 shadow panel-box">
-            <div>
-                <div class="titles no-margin bg-light">
-                    <h4><i class="fe fe-link"></i>تبلیغات</h4>
-                </div>
-                <div class="col-12 pt-2 text-cener">
-                    <a rel="nofollow noopener" href="https://ck.yektanet.com/b/click?VERSION=2&amp;impression=6dgrYKYxe%2FA%2BbLRzf0bfLemo7ux%2BHCe0lH2wvTYocV%2BsGDe42UMfRuVNbOIlgHVMXoWeZuw%2FOP1aZGDEKetA1mU5RYsXmxGgaxZdEwaYMRGTvxLTS4HdNtIcsnv44ph3IojM2N95Ov0rIjYf5Kk283psac44xb5DuCnyi1AC6WWWcQLHIhWkIpMEE89mbx7QtKwXbQfIwC8ErixEN4cddFqS34a%2BNVmXFEnxHKRa1pxMe%2BzFR6J8QqwwuztxWnDC1bzKNnX5BiPKWLyClcV3P681d7d5FcWc2Q%2FQoAUw9WAc4SfF1VR9JgwSe11cwm7Xicji76NfWCyhDkus3McguJUARqi567sRZzafyrUpQqcqoAukzKq9yFH%2FuBu1SjdZGQBc3UYqju6v0e8YcW%2B2%2FPoQyUehAophkbSvuHeJAixN4AqW5kulwW77blaYzCxfWmXNN7apXx2ic5TWWFPTq3F1Mazjhq5PhZsvoStxIyI%3D%3APEdK5vgry0HZF%2F5PefALnnHfb1p3pbEgS4RMXr1P4a%2FCeFSs3CyLNVrKQyWt%2F2pOomPQtwTmGgaPbEVoZQ1lmf9XZ6wYb7J%2FOG50UIaxIiwkYs0TQEE40UnlDVj%2Bld%2FLZBniPv63W8ynabzt2KRC0yoGJEJW0knjgYf9Q8H2wvPt44ikyI%2Fwe0S64t9GPmd2%2FJhKzoqkepdKz5roIDNm2ocsXQYvTiBvboL%2F09GExc1L5t8SIiRa8jHy3XASOeBSHCSgmKa9b5ImAXW7HaOUqE3UszKL4Qn6%2Bvb%2BhH7mH%2FtNgW1Qgj5HvtOXyYn3ElzmM%2Bb6RcIXxzoV0vmpB4KHPQ%3D%3D&amp;redirect=https%3A%2F%2Ffaradars.org%2Flanding%2Fdsh55&amp;ab&amp;vts=1671025101.629" target="_blank" style="position: relative;display: inline-block;">
-                        <div style="background-color:transparent;">
-                            <img class="bnr-img yn-bnr__img" width="1200" height="10" onload="ynBnrImgOnLoad(13722);" data-src="https://ad-management-cdn.yektanet.com/media/banner_ads/faradars72890_7b05aa06-15a9-4dd6-a53a-a0a0adfe66e9__1ex2gqwOr6.gif" alt="" src="https://ad-management-cdn.yektanet.com/media/banner_ads/faradars72890_7b05aa06-15a9-4dd6-a53a-a0a0adfe66e9__1ex2gqwOr6.gif">
-                        </div>
-                    </a>
-                </div>
+{{--    <div class="ads-banner">--}}
+{{--        <div class="row my-2 shadow panel-box">--}}
+{{--            <div>--}}
+{{--                <div class="titles no-margin bg-light">--}}
+{{--                    <h4><i class="fe fe-link"></i>تبلیغات</h4>--}}
+{{--                </div>--}}
+{{--                <div class="col-12 pt-2 text-cener">--}}
+{{--                    <a rel="nofollow noopener" href="https://ck.yektanet.com/b/click?VERSION=2&amp;impression=6dgrYKYxe%2FA%2BbLRzf0bfLemo7ux%2BHCe0lH2wvTYocV%2BsGDe42UMfRuVNbOIlgHVMXoWeZuw%2FOP1aZGDEKetA1mU5RYsXmxGgaxZdEwaYMRGTvxLTS4HdNtIcsnv44ph3IojM2N95Ov0rIjYf5Kk283psac44xb5DuCnyi1AC6WWWcQLHIhWkIpMEE89mbx7QtKwXbQfIwC8ErixEN4cddFqS34a%2BNVmXFEnxHKRa1pxMe%2BzFR6J8QqwwuztxWnDC1bzKNnX5BiPKWLyClcV3P681d7d5FcWc2Q%2FQoAUw9WAc4SfF1VR9JgwSe11cwm7Xicji76NfWCyhDkus3McguJUARqi567sRZzafyrUpQqcqoAukzKq9yFH%2FuBu1SjdZGQBc3UYqju6v0e8YcW%2B2%2FPoQyUehAophkbSvuHeJAixN4AqW5kulwW77blaYzCxfWmXNN7apXx2ic5TWWFPTq3F1Mazjhq5PhZsvoStxIyI%3D%3APEdK5vgry0HZF%2F5PefALnnHfb1p3pbEgS4RMXr1P4a%2FCeFSs3CyLNVrKQyWt%2F2pOomPQtwTmGgaPbEVoZQ1lmf9XZ6wYb7J%2FOG50UIaxIiwkYs0TQEE40UnlDVj%2Bld%2FLZBniPv63W8ynabzt2KRC0yoGJEJW0knjgYf9Q8H2wvPt44ikyI%2Fwe0S64t9GPmd2%2FJhKzoqkepdKz5roIDNm2ocsXQYvTiBvboL%2F09GExc1L5t8SIiRa8jHy3XASOeBSHCSgmKa9b5ImAXW7HaOUqE3UszKL4Qn6%2Bvb%2BhH7mH%2FtNgW1Qgj5HvtOXyYn3ElzmM%2Bb6RcIXxzoV0vmpB4KHPQ%3D%3D&amp;redirect=https%3A%2F%2Ffaradars.org%2Flanding%2Fdsh55&amp;ab&amp;vts=1671025101.629" target="_blank" style="position: relative;display: inline-block;">--}}
+{{--                        <div style="background-color:transparent;">--}}
+{{--                            <img class="bnr-img yn-bnr__img" width="1200" height="10" onload="ynBnrImgOnLoad(13722);" data-src="https://ad-management-cdn.yektanet.com/media/banner_ads/faradars72890_7b05aa06-15a9-4dd6-a53a-a0a0adfe66e9__1ex2gqwOr6.gif" alt="" src="https://ad-management-cdn.yektanet.com/media/banner_ads/faradars72890_7b05aa06-15a9-4dd6-a53a-a0a0adfe66e9__1ex2gqwOr6.gif">--}}
+{{--                        </div>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
 
-                <div class="d-flex">
-                    <div class="col-6 pl-0">
-                        <div class="py-2">
-                            <div class="adds">
-                                <a href="https://yungcenter.com/product-category/acc-play-station/?utm_source=gamefa&amp;utm_campaign=banner" target="_blank" rel="nofollow" class="d-block">
-                                    <img width="600" height="60" src="https://gamefa.com/wp-content/uploads/2022/11/Expor.gif" class="img-fluid ads" alt="" decoding="async" loading="lazy">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class=" py-2">
-                            <div class="adds">
-                                <a href="https://www.rtl-theme.com/author/mohamad_javad_Taherian/?aff=mohamad_javad_Taherian" target="_blank">
-                                    <img src="{{ asset('modules/home/img/adds/banner.gif') }}" alt="" class="img-responsive ads">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--                <div class="d-flex">--}}
+{{--                    <div class="col-6 pl-0">--}}
+{{--                        <div class="py-2">--}}
+{{--                            <div class="adds">--}}
+{{--                                <a href="https://yungcenter.com/product-category/acc-play-station/?utm_source=gamefa&amp;utm_campaign=banner" target="_blank" rel="nofollow" class="d-block">--}}
+{{--                                    <img width="600" height="60" src="https://gamefa.com/wp-content/uploads/2022/11/Expor.gif" class="img-fluid ads" alt="" decoding="async" loading="lazy">--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-6">--}}
+{{--                        <div class=" py-2">--}}
+{{--                            <div class="adds">--}}
+{{--                                <a href="https://www.rtl-theme.com/author/mohamad_javad_Taherian/?aff=mohamad_javad_Taherian" target="_blank">--}}
+{{--                                    <img src="{{ asset('modules/home/img/adds/banner.gif') }}" alt="" class="img-responsive ads">--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     <!-- content -->
     <section class="content-info">
