@@ -78,7 +78,7 @@
                                                 <td>{{ $menu->parent->name ?? '-' }}</td>
                                                 <td>
                                                     <label for="{{ $menu->id }}">
-                                                        <input type="checkbox" id="{{ $menu->id }}" onchange="changeStatus({{ $menu->id }})" data-url="{{ route('admin.menu.status', $menu->id) }}" data-value="{{ $menu->status }}" @if($menu->status === 1) checked @endif>
+                                                        <input type="checkbox" id="{{ $menu->id }}" onchange="changeStatus({{ $menu->id }})" data-url="{{ route('admin.menu.status', $menu->id) }}" data-value="{{ $menu->status }}" @checked($menu->status == 1)>
                                                     </label>
                                                 </td>
                                                 <td class="d-flex justify-content-start">

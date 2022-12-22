@@ -101,17 +101,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-auto">
-                                <a class="carousel-control-prev text-dark" href="#prev" role="button" data-slide="prev">
-                                    <span class="aria-hidden=" true><i class="fe fe-chevron-left"></i></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next text-dark" href="#next" role="button" data-slide="next">
-                                    <span class="aria-hidden=" true><i class="fe fe-chevron-right"></i></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
 
-                            </div>
                         </div>
 
                     </div>

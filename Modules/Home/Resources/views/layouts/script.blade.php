@@ -5,3 +5,7 @@
 <script type="text/javascript" src="{{ asset('modules/home/assets/js/theme-main.js') }}"></script>
 <script src="{{ asset('modules/home/assets/plugins/bootstrap/js/bootstrap-rtl.js') }}"></script>
 
+<!-- Right-sidebar js -->
+<script src="{{ asset('modules/admin/assets/plugins/sidebar/sidebar-rtl.js') }}"></script>
+
+

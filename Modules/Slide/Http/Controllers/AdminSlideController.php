@@ -41,7 +41,7 @@ class AdminSlideController extends Controller
         // Image upload
         if ($request->hasFile('image')) {
             // Set image directory
-            $imageService->setExclusiveDirectory('modules' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'slide');
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'slide');
             // Create image in 3 indexes and save
             $result = $imageService->createIndexAndSave($request->file('image'));
             // If createIndexAndSize failed
@@ -89,7 +89,7 @@ class AdminSlideController extends Controller
             if (!empty($slide->image))
                 $imageService->deleteDirectoryAndFiles($slide->image['directory']);
             // Set image directory
-            $imageService->setExclusiveDirectory('modules' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'slide');
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'slide');
             // Create image in 3 indexes and save
             $result = $imageService->createIndexAndSave($request->file('image'));
             // If createIndexAndSize failed

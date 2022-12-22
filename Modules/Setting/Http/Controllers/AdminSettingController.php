@@ -72,7 +72,7 @@ class AdminSettingController extends Controller
             }
 
             // Set image directory
-            $imageService->setExclusiveDirectory('modules' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'setting');
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'setting');
             // Create image in 3 indexes and save
             $result = $imageService->fitAndSave($request->file('logo'), 1080, 1080);
             // If createIndexAndSize failed
@@ -88,7 +88,7 @@ class AdminSettingController extends Controller
                 if (!empty($setting->icon))
                     $imageService->deleteDirectoryAndFiles($setting->icon);
                 // Set image directory
-                $imageService->setExclusiveDirectory('modules' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'setting');
+                $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'setting');
                 // Create image in 3 indexes and save
                 $result = $imageService->fitAndSave($request->file('icon'), 1080, 1080);
                 // If createIndexAndSize failed

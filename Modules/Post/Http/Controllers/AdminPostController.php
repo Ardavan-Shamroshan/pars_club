@@ -53,7 +53,7 @@ class AdminPostController extends Controller
         // Image upload
         if ($request->hasFile('image')) {
             // Set image directory
-            $imageService->setExclusiveDirectory('modules' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'post');
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'post');
             // Create image in 3 indexes and save
             $result = $imageService->createIndexAndSave($request->file('image'));
             // If createIndexAndSize failed
@@ -109,7 +109,7 @@ class AdminPostController extends Controller
         if ($request->hasFile('image')) {
             if (!empty($post->image))
                 $imageService->deleteDirectoryAndFiles($post->image['directory']);
-            $imageService->setExclusiveDirectory('modules' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'post');
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'post');
             $result = $imageService->createIndexAndSave($request->file('image'));
             // If createIndexAndSize failed
             if ($result === false) {

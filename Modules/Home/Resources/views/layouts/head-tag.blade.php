@@ -27,5 +27,9 @@
 {{--<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('modules/home/img/icons/apple-touch-icon-114x114.png') }}">--}}
 
 
+<!--  Right-sidemenu css -->
+<link href="{{ asset('modules/admin/assets/plugins/sidebar/sidebar.css') }}" rel="stylesheet">
+
+
 
 {!! htmlScriptTagJsApi() !!}

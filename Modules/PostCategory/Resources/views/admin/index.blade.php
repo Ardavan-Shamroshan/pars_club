@@ -85,7 +85,7 @@
                                                 <td><a href="#" class="btn-sm">0 مورد</a></td>
                                                 <td>
                                                     <label for="{{ $category->id }}">
-                                                        <input type="checkbox" id="{{ $category->id }}" onchange="changeStatus({{ $category->id }})" data-url="{{ route('admin.postcategory.status', $category->id) }}" data-value="{{ $category->status }}" @if($category->status === 1) checked @endif>
+                                                        <input type="checkbox" id="{{ $category->id }}" onchange="changeStatus({{ $category->id }})" data-url="{{ route('admin.postcategory.status', $category->id) }}" data-value="{{ $category->status }}" @checked($category->status === 1)>
                                                     </label>
                                                 </td>
                                                 <td class="d-flex justify-content-start">

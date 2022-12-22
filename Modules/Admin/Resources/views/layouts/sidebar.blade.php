@@ -17,9 +17,7 @@
                             <img alt="{{ auth()->user()->fullname ?? auth()->user()->name }}" src="{{ (auth()->user()->profile_photo_url) }}" class="avatar avatar-xl brround">
                             <span class="avatar-status profile-status bg-green"></span>
                         @else
-                            <div class="profile-user avatar avatar-lg bg-info rounded-circle text-white mx-auto">
-                                <small>{{ auth()->user()->fullname[0] ?? 'م' }}</small>
-                            </div>
+                            <img alt="{{ auth()->user()->fullname ?? auth()->user()->name }}" src="{{ (auth()->user()->profile_photo_url) }}" class="avatar avatar-xl brround">
                             <span class="avatar-status profile-status bg-green"></span>
                         @endif
                     </div>

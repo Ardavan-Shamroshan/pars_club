@@ -222,7 +222,7 @@
                             @if(auth()->user()->profile_photo_path)
                                 <img alt="{{ auth()->user()->fullname ?? auth()->user()->name }}" src="{{ (auth()->user()->profile_photo_url) }}">
                             @else
-                                <small>{{ auth()->user()->fullname[0] ?? 'م' }}</small>
+                                <img alt="{{ auth()->user()->fullname ?? auth()->user()->name }}" src="{{ (auth()->user()->profile_photo_url) }}">
                             @endif
                         </a>
                         <div class="dropdown-menu">
@@ -232,7 +232,7 @@
                                         @if(auth()->user()->profile_photo_path)
                                             <img alt="{{ auth()->user()->fullname ?? auth()->user()->name }}" src="{{ (auth()->user()->profile_photo_url) }}">
                                         @else
-                                            <small>{{ auth()->user()->fullname[0] ?? 'م' }}</small>
+                                            <img alt="{{ auth()->user()->fullname ?? auth()->user()->name }}" src="{{ (auth()->user()->profile_photo_url) }}">
                                         @endif
                                     </div>
                                     <div class="ms-3 my-auto">
@@ -241,11 +241,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <a class="dropdown-item" href="#"><i class="bx bx-user-circle"></i>مشخصات</a>
-                            <a class="dropdown-item" href="#"><i class="bx bx-cog"></i> ویرایش نمایه</a>
-                            <a class="dropdown-item" href="#"><i class="bx bxs-inbox"></i>صندوق ورودی</a>
-                            <a class="dropdown-item" href="#"><i class="bx bx-envelope"></i>پیام ها</a>
-                            <a class="dropdown-item" href="#"><i class="bx bx-slider-alt"></i> تنظیمات حساب</a>
+                            <a class="dropdown-item" href="{{ route('profile.show') }}"><i class="bx bx-user-circle"></i>مشخصات</a>
+{{--                            <a class="dropdown-item" href="#"><i class="bx bx-cog"></i> ویرایش نمایه</a>--}}
+{{--                            <a class="dropdown-item" href="#"><i class="bx bxs-inbox"></i>صندوق ورودی</a>--}}
+{{--                            <a class="dropdown-item" href="#"><i class="bx bx-envelope"></i>پیام ها</a>--}}
+{{--                            <a class="dropdown-item" href="#"><i class="bx bx-slider-alt"></i> تنظیمات حساب</a>--}}
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
                                 <button class="dropdown-item"><i class="bx bx-log-out"></i> خروج از سیستم</button>

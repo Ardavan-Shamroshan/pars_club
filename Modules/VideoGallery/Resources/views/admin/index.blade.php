@@ -86,7 +86,7 @@
                                                 <td>{{ $video->title }}</td>
                                                 <td>
                                                     <label for="{{ $video->id }}">
-                                                        <input type="checkbox" id="{{ $video->id }}" onchange="changeStatus({{ $video->id }})" data-url="{{ route('admin.videogallery.status', $video->id) }}" data-value="{{ $video->status }}" @if($video->status === 1) checked @endif>
+                                                        <input type="checkbox" id="{{ $video->id }}" onchange="changeStatus({{ $video->id }})" data-url="{{ route('admin.videogallery.status', $video->id) }}" data-value="{{ $video->status }}" @checked($video->status == 1)>
                                                     </label>
                                                 </td>
                                                 <td class="d-flex justify-content-start">

@@ -14780,9 +14780,10 @@ header .mobile-nav:hover {
 }
 
 @media(min-width:1200px) {
-    header .mobile-nav {
+    header .right-toggle {
         display: none
     }
+
 }
 
 @media(min-width:1200px) {
@@ -15092,7 +15093,7 @@ iframe.big-video {
     background-position: center !important;
     background-repeat: no-repeat !important;
     position: relative;
-    height: 470px
+    height: auto
 }
 
 .hero-header.hero-bg:before {

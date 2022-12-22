@@ -104,10 +104,11 @@ class ImageToolsService
     }
 
     protected function checkDirectory($imageDirectory) {
-        if (!file_exists($imageDirectory)) mkdir($imageDirectory, 666, true);
-//        if (!file_exists($imageDirectory)) if (!mkdir($imageDirectory, 666, true) && !is_dir($imageDirectory)) {
-//            throw new \RuntimeException(sprintf('Directory "%s" was not created', $imageDirectory));
-        //    }
+        if (!file_exists($imageDirectory)) if (!mkdir($imageDirectory, 0755, true) && !is_dir($imageDirectory)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $imageDirectory));
+        }
+
+//        if (!file_exists($imageDirectory)) mkdir($imageDirectory, 666, true);
     }
 
     public function getImageAddress() {

@@ -107,12 +107,12 @@
                                                 <td>{{ jalaliDate($post->published_at, '%d %B، %Y') ?? '-' }}</td>
                                                 <td>
                                                     <label for="{{ $post->id }}-commentable">
-                                                        <input type="checkbox" id="{{ $post->id }}-commentable" onchange="commentable({{ $post->id }})" data-url="{{ route('admin.post.commentable', $post->id) }}" data-value="{{ $post->commentable }}" @if ($post->commentable === 1) checked @endif>
+                                                        <input type="checkbox" id="{{ $post->id }}-commentable" onchange="commentable({{ $post->id }})" data-url="{{ route('admin.post.commentable', $post->id) }}" data-value="{{ $post->commentable }}" @checked($post->commentable == 1)>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label for="{{ $post->id }}">
-                                                        <input type="checkbox" id="{{ $post->id }}" onchange="changeStatus({{ $post->id }})" data-url="{{ route('admin.post.status', $post->id) }}" data-value="{{ $post->status }}" @if($post->status === 1) checked @endif>
+                                                        <input type="checkbox" id="{{ $post->id }}" onchange="changeStatus({{ $post->id }})" data-url="{{ route('admin.post.status', $post->id) }}" data-value="{{ $post->status }}" @checked($post->status == 1)>
                                                     </label>
                                                 </td>
                                                 <td class="d-flex justify-content-start">

@@ -63,7 +63,7 @@
                                                 <td><a href="#">{{ $slide->url }}</a></td>
                                                 <td>
                                                     <label for="{{ $slide->id }}">
-                                                        <input type="checkbox" id="{{ $slide->id }}" onchange="changeStatus({{ $slide->id }})" data-url="{{ route('admin.slide.status', $slide) }}" data-value="{{ $slide->status }}" @if($slide->status === 1) checked @endif>
+                                                        <input type="checkbox" id="{{ $slide->id }}" onchange="changeStatus({{ $slide->id }})" data-url="{{ route('admin.slide.status', $slide) }}" data-value="{{ $slide->status }}" @checked($slide->status == 1)>
                                                     </label>
                                                 </td>
                                                 <td class="d-flex justify-content-start">
