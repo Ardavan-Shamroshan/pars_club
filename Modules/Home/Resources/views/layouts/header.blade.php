@@ -175,19 +175,19 @@
             <div class="tabs-menu ">
                 <!-- Tabs -->
                 <ul class="nav panel-tabs">
-                    <li><a href="{{ route('home') }}" class="active" data-bs-toggle="tab"><i class="ion ion-md-home tx-18 me-2"></i> خانه</a></li>
-                    <li><a href="{{ route('post') }}" data-bs-toggle="tab"><i class="ion ion-md-book tx-18  me-2"></i> مچله و خبرنامه</a></li>
-                    <li><a href="{{ route('home.about-us') }}" data-bs-toggle="tab"><i class="ion ion-md-football tx-18 me-2"></i> درباره ما</a></li>
-                    <li><a href="{{ route('contact-us') }}" data-bs-toggle="tab"><i class="ion ion-md-contacts tx-18 me-2"></i> تماس با ما</a></li>
+                    <li><a href="{{ route('home') }}" class="active"><i class="ion ion-md-home tx-18 me-2"></i> خانه</a></li>
+                    <li><a href="{{ route('post') }}"><i class="ion ion-md-book tx-18  me-2"></i> مجله و خبرنامه</a></li>
+                    <li><a href="{{ route('home.about-us') }}"><i class="ion ion-md-football tx-18 me-2"></i> درباره ما</a></li>
+                    <li><a href="{{ route('contact-us') }}"><i class="ion ion-md-contacts tx-18 me-2"></i> تماس با ما</a></li>
                         @admin
                             <ul class="d-flex w-100 p-0 gap-1">
-                                <li ><a href="" data-bs-toggle="tab"  class="bg-white"> پیشخوان</a></li>
+                                <li ><a href="" class="bg-white"> پیشخوان</a></li>
                             </ul>
                         @endadmin
                         @guest
                             <ul class="d-flex w-100 p-0 gap-1">
-                                <li ><a href="{{ route('login') }}" data-bs-toggle="tab"  class="bg-white"> ورورد</a></li>
-                                <li ><a href="{{ route('register') }}" data-bs-toggle="tab" class="bg-success text-white">عضویت</a></li>
+                                <li ><a href="{{ route('login') }}" class="bg-white"> ورورد</a></li>
+                                <li ><a href="{{ route('register') }}" lass="bg-success text-white">عضویت</a></li>
                             </ul>
                         @endguest
                     </ul>

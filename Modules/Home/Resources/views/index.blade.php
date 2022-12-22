@@ -332,6 +332,8 @@
                                     </div>
                                     <div class="col-md-8 pt-sm-2 col-8">
                                         <small>{{ $post->summary }}</small>
+                                    </div>
+                                    <div class="col-12">
                                         <span class="data-info d-flex justify-content-between mt-4">
                                             <small class="font-weight-bold">
                                                 <i class="fe fe-edit text-navy"></i>{{ $post->author->fullname ?? $post->author->name }}
@@ -381,7 +383,7 @@
 
                     </div>
 
-                    {{ $posts->links('vendor.pagination.bootstrap-5', ['elements' => $posts]) }}
+                    {{ $posts->links('vendor.pagination.bootstrap-4', ['elements' => $posts]) }}
 
                     <!-- slider -->
                     <div class="panel-box">
@@ -582,7 +584,7 @@
                 <!-- end center -->
                 <!-- left aside -->
                 <aside class="col-sm-12 col-lg-3 col-xl-3 dark-home py-2 rounded h-100">
-                    @include('home::layouts.left-sidebar')
+{{--                    @include('home::layouts.left-sidebar')--}}
                 </aside>
                 <!-- end left side -->
             </div>
@@ -629,7 +631,7 @@
 
         <!-- end gallery -->
 
-        <!-- news letter -->
+        <!-- newsletter -->
         {{--        <div class="section-newsletter no-margin rounded">--}}
         {{--            <div class="container">--}}
         {{--                <div class="row">--}}

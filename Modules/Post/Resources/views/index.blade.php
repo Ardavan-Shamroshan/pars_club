@@ -73,6 +73,9 @@
                                 </div>
                                 <div class="col-md-8 pt-sm-2 col-8">
                                     <small>{{ $post->summary }}</small>
+
+                                </div>
+                                <div class="col-12">
                                     <span class="data-info d-flex justify-content-between mt-4">
                                             <small class="font-weight-bold">
                                                 <i class="fe fe-edit text-navy"></i>{{ $post->author->fullname ?? $post->author->name }}
