@@ -57,7 +57,13 @@
                                 <div>
 
                                     <div class="form-group">
-                                        <label for="">نویسنده: {{ auth()->user()->fullname ?? auth()->user()->name ?? 'وارد نشده اید' }}</label>
+                                        <label>نویسنده:
+                                            @if(auth()->user()->profile_photo_path)
+                                                <img alt="{{ auth()->user()->fullname ?? auth()->user()->name }}" src="{{ (auth()->user()->profile_photo_url) }}" class="avatar avatar-xl brround">
+                                            @else
+                                                <img alt="{{ auth()->user()->fullname ?? auth()->user()->name }}" src="{{ (auth()->user()->profile_photo_url) }}" class="avatar avatar-xl brround">
+                                            @endif
+                                            {{ auth()->user()->fullname ?? auth()->user()->name ?? 'وارد نشده اید' }}</label>
                                     </div>
 
                                     {{-- category id --}}

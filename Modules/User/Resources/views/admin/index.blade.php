@@ -92,7 +92,8 @@
                                                     @if($user->profile_photo_path)
                                                         <img alt="{{ $user->fullname ?? $user->name }}" class="rounded-circle avatar-sm border mr-2" src="{{ $user->profile_photo_url }}">
                                                     @else
-                                                        <img class="rounded-circle avatar-sm mr-2" src="{{ asset('modules/admin/assets/img/faces/no-profile.jpg') }}" alt="{{ $user->fullname ?? $user->name }}">
+                                                        <img alt="{{ $user->fullname ?? $user->name }}" class="rounded-circle avatar-sm border mr-2" src="{{ $user->profile_photo_url }}">
+{{--                                                        <img class="rounded-circle avatar-sm mr-2" src="{{ asset('modules/admin/assets/img/faces/no-profile.jpg') }}" alt="{{ $user->fullname ?? $user->name }}">--}}
                                                     @endif
                                                     <small>{{ $user->fullname ?? $user->name ?? '-' }}</small>
                                                 </td>

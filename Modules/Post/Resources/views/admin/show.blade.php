@@ -28,7 +28,7 @@
 
                     <div>
                         <div class="tag tag-rounded tag-blue">
-                            <a href="#" class="text-white"><i class="fe fe-chevron-right"></i> مشاهده در وبگاه</a>
+                            <a href="{{ route('post.show', $post) }}" class="text-white"><i class="fe fe-chevron-right"></i> مشاهده در وبگاه</a>
                         </div>
                         <div class="dt-buttons btn-group flex-wrap">
                             <a class="btn buttons-pdf" id="print" tabindex="0" aria-controls="example" type="button">

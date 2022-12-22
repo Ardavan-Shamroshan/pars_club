@@ -165,7 +165,10 @@
                                                     <div class="col-sm-4">
                                                         <div class="checkbox">
                                                             <label class="font-weight-normal">
-                                                                <input type="checkbox" class="secondary_list" @if($user->getPermissionsViaRoles()->contains($permission)) checked disabled @endif @if($user->getAllPermissions()->contains($permission)) checked @endif data-id="{{ $permission->id }}" label="Permissions" name="permissions_show[]" entity="permissions" entity_primary="roles" attribute="name" model="Spatie\Permission\Models\Permission" pivot="1" number_columns="3" parentfieldname="" relation_type="MorphToMany" multiple value="{{ $permission->id }}">
+                                                                <input type="checkbox" class="secondary_list"
+                                                                        @checked($user->getPermissionsViaRoles()->contains($permission)) @disabled($user->getPermissionsViaRoles()->contains($permission))
+                                                                        @checked($user->getAllPermissions()->contains($permission)) @disabled($user->getAllPermissions()->contains($permission))
+                                                                       data-id="{{ $permission->id }}" label="Permissions" name="permissions_show[]" entity="permissions" entity_primary="roles" attribute="name" model="Spatie\Permission\Models\Permission" pivot="1" number_columns="3" parentfieldname="" relation_type="MorphToMany" multiple value="{{ $permission->id }}">
                                                                 {{ $permission->name }}
                                                             </label>
                                                         </div>
@@ -212,8 +215,6 @@
                         } else
                             permissionChk.prop('checked', true).attr("disabled", true);
                     });
-
-
                 }
             });
         }

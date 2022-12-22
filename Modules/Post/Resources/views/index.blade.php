@@ -1,6 +1,6 @@
 @extends('home::layouts.master')
 @section('title')
-    خبرنامه | داشبورد مدیریت
+    مجله و خبرنامه
 @endsection
 @section('content')
 

@@ -80,8 +80,8 @@
             </li>
 
             @admin
-            @if(auth()->user()->role('super admin') || auth()->user()->canany(['manage roles','manage permissions','manage users']))
-                <li class="side-item side-item-category">احراز هویت</li>
+            <li class="side-item side-item-category">احراز هویت</li>
+            @if(auth()->user()->hasRole('super admin') || auth()->user()->canany(['manage roles','manage permissions','manage users']))
                 @can('manage users')
                     <li class="slide">
                         <a class="side-menu__item" href={{ route('admin.user') }}>
@@ -103,6 +103,12 @@
                         </a>
                     </li>
                 @endcan
+            @else
+                <li class="m-4">
+                    <a class="side-menu__item" style="pointer-events: none">
+                        <span class="side-menu__label tx-gray-200"><span class="side-menu__icon"><i class="la la-lock tx-gray-200"></i></span> دسترسی ندارید</span>
+                    </a>
+                </li>
             @endif
             @endadmin
 

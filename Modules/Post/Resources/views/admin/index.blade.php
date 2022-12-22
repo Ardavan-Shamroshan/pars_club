@@ -92,7 +92,7 @@
                                         @foreach($posts as $post)
                                             <tr>
                                                 <td>
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#dataModal-{{ $post->id }}">{{ Str::limit($post->title, 50) ?? '-' }}</a>
+                                                   <a href="" data-bs-toggle="modal" data-bs-target="#dataModal-{{ $post->id }}">{{ Str::limit($post->title, 50) ?? '-' }}</a>
                                                 </td>
                                                 @if(is_null($post->label))
                                                     <td><small class="badge badge-light">بدون برچسب</small></td>
