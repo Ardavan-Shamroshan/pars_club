@@ -3,6 +3,7 @@
 namespace Modules\League\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TeamResultRequest extends FormRequest
 {
@@ -13,6 +14,7 @@ class TeamResultRequest extends FormRequest
      */
     public function rules() {
         return [
+            'league_team_id' => ['sometimes', Rule::exists('league_teams', 'id')],
             'matches' => ['sometimes'],
             'won' => ['sometimes'],
             'loss' => ['sometimes'],

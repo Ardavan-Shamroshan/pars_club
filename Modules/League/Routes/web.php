@@ -39,8 +39,10 @@ Route::middleware('auth', 'admin')->prefix('adminity')->group(function () {
     // team result
     Route::prefix('team-result')->group(function () {
         Route::get('/', [\Modules\League\Http\Controllers\AdminTeamResultController::class, 'index'])->name('admin.team-result');
+        Route::post('/store', [\Modules\League\Http\Controllers\AdminTeamResultController::class, 'store'])->name('admin.team-result.store');
         Route::get('/edit/{result}', [\Modules\League\Http\Controllers\AdminTeamResultController::class, 'edit'])->name('admin.team-result.edit');
         Route::put('/update/{result}', [\Modules\League\Http\Controllers\AdminTeamResultController::class, 'update'])->name('admin.team-result.update');
+        Route::delete('/destroy/{result}', [\Modules\League\Http\Controllers\AdminTeamResultController::class, 'destroy'])->name('admin.team-result.destroy');
 //        Route::get('/', Modules\League\Http\Controllers\TeamResult\AdminTeamResult::class)->name('admin.team-result');
     });
 

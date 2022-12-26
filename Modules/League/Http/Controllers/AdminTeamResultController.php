@@ -15,19 +15,18 @@ class AdminTeamResultController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
-    {
+    public function index() {
         $teams = LeagueTeam::query()->paginate(10);
         $teamsCount = LeagueTeam::query()->count();
-        return view('league::admin.team-result.index', ['teams' => $teams, 'teamsCount' => $teamsCount]);
+        $results = TeamResult::query()->orderBy('points', 'desc')->get();
+        return view('league::admin.team-result.index', compact('teamsCount', 'teams', 'results'));
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function create()
-    {
+    public function create() {
         return view('league::create');
     }
 
@@ -36,9 +35,11 @@ class AdminTeamResultController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(TeamResultRequest $request) {
+        $inputs = $request->all();
+        TeamResult::query()->create($inputs);
+        toast('تیم با موفقیت در جدول ثبت شد', 'success');
+        return redirect()->route('admin.team-result');
     }
 
     /**
@@ -46,8 +47,7 @@ class AdminTeamResultController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
-    {
+    public function show($id) {
         return view('league::show');
     }
 
@@ -56,11 +56,10 @@ class AdminTeamResultController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit(TeamResult $teamResult)
-    {
+    public function edit(TeamResult $result) {
         $teams = LeagueTeam::query()->paginate(10);
         $teamsCount = LeagueTeam::query()->count();
-        return view('league::admin.team-result.index', ['teams' => $teams, 'teamsCount' => $teamsCount])->with('teamResult', $teamResult);
+        return view('league::admin.team-result.index', ['teams' => $teams, 'teamsCount' => $teamsCount])->with('result', $result);
     }
 
     /**
@@ -69,8 +68,7 @@ class AdminTeamResultController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(TeamResultRequest $request, TeamResult $result)
-    {
+    public function update(TeamResultRequest $request, TeamResult $result) {
         $inputs = $request->all();
         $result->update($inputs);
         toast('جدول با موفقیت ویرایش شد', 'success');
@@ -82,8 +80,9 @@ class AdminTeamResultController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(TeamResult $result) {
+        $result->delete();
+        toast('تیم با موفقیت حذف شد', 'success');
+        return redirect()->route('admin.team-result');
     }
 }

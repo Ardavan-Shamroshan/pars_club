@@ -59,6 +59,7 @@
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('admin.league') }}">لیگ</a></li>
                     <li><a class="slide-item" href="{{ route('admin.league-team') }}">تیم ها</a></li>
+                    <li><a class="slide-item" href="{{ route('admin.team-result') }}">نتایج</a></li>
                 </ul>
             </li>
 
