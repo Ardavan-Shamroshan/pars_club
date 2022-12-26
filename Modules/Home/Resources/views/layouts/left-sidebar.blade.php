@@ -92,65 +92,17 @@
     {{--    </div>--}}
 
     <div class="club-ranking">
-        <h5><a href="group-list.html"><i class="fe fe-shield"></i> جدول لیگ های ایران</a></h5>
+        <h5><a href="group-list.html"><i class="fe fe-shield"></i> {{ $results[0]->team->league->name }}</a></h5>
         <div class="info-ranking">
             <ul>
+                @foreach($results as $result)
                 <li>
-                    <span class="position">1</span>
-                    <a href="single-team.html">
-                        <img src="{{ asset('modules/home/img/clubs-logos/rusia.png') }}" alt="">روسیه
-                    </a>
-                    <span class="points">90</span>
+                    <span class="position">{{ $loop->iteration }}</span>
+                    <span class="position">{{ $result->team->name }}</span>
+                    <span class="points">{{ $result->points }}</span>
                 </li>
-                <li>
-                    <span class="position">2</span>
-                    <a href="single-team.html">
-                        <img src="{{ asset('modules/home/img/clubs-logos/arabia.png') }}" alt="">عربستان سعودی
-                    </a>
-                    <span class="points">86</span>
-                </li>
-                <li>
-                    <span class="position">3</span>
-                    <a href="single-team.html">
-                        <img src="{{ asset('modules/home/img/clubs-logos/egy.png') }}" alt="">مصر
-                    </a>
-                    <span class="points">84</span>
-                </li>
-                <li>
-                    <span class="position">4</span>
-                    <a href="single-team.html">
-                        <img src="{{ asset('modules/home/img/clubs-logos/uru.png') }}" alt="">اروگوئه
-                    </a>
-                    <span class="points">70</span>
-                </li>
-                <li>
-                    <span class="position">5</span>
-                    <a href="single-team.html">
-                        <img src="{{ asset('modules/home/img/clubs-logos/por.png') }}" alt="">پرتغال
-                    </a>
-                    <span class="points">67</span>
-                </li>
-                <li>
-                    <span class="position">6</span>
-                    <a href="single-team.html">
-                        <img src="{{ asset('modules/home/img/clubs-logos/esp.png') }}" alt="">اسپانیا
-                    </a>
-                    <span class="points">60</span>
-                </li>
-                <li>
-                    <span class="position">5</span>
-                    <a href="single-team.html">
-                        <img src="{{ asset('modules/home/img/clubs-logos/mar.png') }}" alt="">مراکش
-                    </a>
-                    <span class="points">90</span>
-                </li>
-                <li>
-                    <span class="position">8</span>
-                    <a href="single-team.html">
-                        <img src="{{ asset('modules/home/img/clubs-logos/irn.png') }}" alt="">ایران
-                    </a>
-                    <span class="points">53</span>
-                </li>
+                @endforeach
+
             </ul>
         </div>
     </div>

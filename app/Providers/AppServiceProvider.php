@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Modules\League\Entities\TeamResult;
 use Modules\Post\Entities\Post;
 use Modules\PostCategory\Entities\PostCategory;
 use Modules\Setting\Entities\Setting;
@@ -52,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('setting', Setting::query()->first());
         });
 
-        // home left sidebar
+        // home right sidebar
         view()->composer('home::layouts.right-sidebar', function ($view) {
             // hot posts
             $view->with('hotPosts',  // hot posts
@@ -61,6 +62,16 @@ class AppServiceProvider extends ServiceProvider
                     ->where(['status' => 1], ['label' => 1])
                     ->latest()
                     ->take(8)
+                    ->get()
+            );
+        });
+
+        // home left sidebar
+        view()->composer('home::layouts.left-sidebar', function ($view) {
+            // team results
+            $view->with('results',
+                TeamResult::query()
+                    ->orderBy('points', 'desc')
                     ->get()
             );
         });
