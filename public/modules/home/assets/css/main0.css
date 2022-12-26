@@ -230,7 +230,7 @@ sup {
 }
 
 a {
-    color: #007bff;
+    color: #FFC500;
     text-decoration: none;
     background-color: transparent;
     -webkit-text-decoration-skip: objects
@@ -2119,8 +2119,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff
+    background-color: #FFC500;
+    border-color: #FFC500
 }
 
 .btn-primary:hover {
@@ -2134,8 +2134,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
-    background-color: #007bff;
-    border-color: #007bff
+    background-color: #FFC500;
+    border-color: #FFC500
 }
 
 .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
@@ -2334,16 +2334,16 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .btn-outline-primary {
-    color: #007bff;
+    color: #FFC500;
     background-color: transparent;
     background-image: none;
-    border-color: #007bff
+    border-color: #FFC500
 }
 
 .btn-outline-primary:hover {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff
+    background-color: #FFC500;
+    border-color: #FFC500
 }
 
 .btn-outline-primary:focus, .btn-outline-primary.focus {
@@ -2351,14 +2351,14 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .btn-outline-primary.disabled, .btn-outline-primary:disabled {
-    color: #007bff;
+    color: #FFC500;
     background-color: transparent
 }
 
 .btn-outline-primary:active, .btn-outline-primary.active, .show > .btn-outline-primary.dropdown-toggle {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff
+    background-color: #FFC500;
+    border-color: #FFC500
 }
 
 .btn-outline-secondary {
@@ -2559,7 +2559,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .btn-link {
     font-weight: 400;
-    color: #007bff;
+    color: #FFC500;
     border-radius: 0
 }
 
@@ -2728,7 +2728,7 @@ tbody.collapse.show {
 .dropdown-item.active, .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #007bff
+    background-color: #FFC500
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {
@@ -3018,11 +3018,11 @@ tbody.collapse.show {
 
 .custom-control-input:checked ~ .custom-control-indicator {
     color: #fff;
-    background-color: #007bff
+    background-color: #FFC500
 }
 
 .custom-control-input:focus ~ .custom-control-indicator {
-    box-shadow: 0 0 0 1px #fff, 0 0 0 3px #007bff
+    box-shadow: 0 0 0 1px #fff, 0 0 0 3px #FFC500
 }
 
 .custom-control-input:active ~ .custom-control-indicator {
@@ -3062,7 +3062,7 @@ tbody.collapse.show {
 }
 
 .custom-checkbox .custom-control-input:indeterminate ~ .custom-control-indicator {
-    background-color: #007bff;
+    background-color: #FFC500;
     background-image: url(data:image/svg+xml;charset=utf8;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA0IDQnPjxwYXRoIHN0cm9rZT0nI2ZmZicgZD0nTTAgMmg0Jy8+PC9zdmc+)
 }
 
@@ -3248,7 +3248,7 @@ tbody.collapse.show {
 
 .nav-pills .nav-link.active, .show > .nav-pills .nav-link {
     color: #fff;
-    background-color: #007bff
+    background-color: #FFC500
 }
 
 .nav-fill .nav-item {
@@ -3888,8 +3888,8 @@ tbody.collapse.show {
 .page-item.active .page-link {
     z-index: 2;
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff
+    background-color: #FFC500;
+    border-color: #FFC500
 }
 
 .page-item.disabled .page-link {
@@ -3905,7 +3905,7 @@ tbody.collapse.show {
     padding: .5rem .75rem;
     margin-left: -1px;
     line-height: 1.25;
-    color: #007bff;
+    color: #FFC500;
     background-color: #fff;
     border: 1px solid #ddd
 }
@@ -3979,7 +3979,7 @@ tbody.collapse.show {
 
 .badge-primary {
     color: #fff;
-    background-color: #007bff
+    background-color: #FFC500
 }
 
 .badge-primary[href]:focus, .badge-primary[href]:hover {
@@ -4243,7 +4243,7 @@ tbody.collapse.show {
     height: 1rem;
     line-height: 1rem;
     color: #fff;
-    background-color: #007bff;
+    background-color: #FFC500;
     transition: width .6s ease
 }
 
@@ -4321,8 +4321,8 @@ tbody.collapse.show {
 .list-group-item.active {
     z-index: 2;
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff
+    background-color: #FFC500;
+    border-color: #FFC500
 }
 
 .list-group-flush .list-group-item {
@@ -5125,7 +5125,7 @@ button.close {
 }
 
 .bg-primary {
-    background-color: #007bff !important
+    background-color: #FFC500 !important
 }
 
 a.bg-primary:focus, a.bg-primary:hover {
@@ -5221,7 +5221,7 @@ a.bg-dark:focus, a.bg-dark:hover {
 }
 
 .border-primary {
-    border-color: #007bff !important
+    border-color: #FFC500 !important
 }
 
 .border-secondary {
@@ -8348,7 +8348,7 @@ a.bg-dark:focus, a.bg-dark:hover {
 }
 
 .text-primary {
-    color: #007bff !important
+    color: #FFC500 !important
 }
 
 a.text-primary:focus, a.text-primary:hover {
@@ -9734,65 +9734,65 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, .h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a {
 }
 
 .btn-primary, .btn-primary:hover, .nav-tabs li.active a, .nav-tabs li a.active, .nav-tabs li a.active:hover, .nav-tabs li a:hover, .title-color, .title-aside, .pagination .active, .hero-video .info-hero h1:before, .item-boxed-img.small h4:before, .item-player .btn, .item-team .btn, .btn-iw.outline:hover, .info-slider h1:before, .btn.theme, .section-title.single-result .result-match, .clear-title:after {
-    background: #01d099 !important;
-    background-color: #01d099 !important
+    background: #FFC500 !important;
+    background-color: #FFC500 !important
 }
 
 blockquote > a, .text-resalt, .post-item h4 a:hover, .post-item p a, .links li i, .entry-title a, .sf-menu .sf-mega ul li a:hover, .sf-menu li li a:hover, .crumbs ul li a:hover, .crumbs li a, .page-error h1 i, .sitemap li a:hover, .pagination > li > a, .pagination > li > span, address i, .events-carousel h4 a, address a, .list li i, .testimonials li a:hover, .item-feature a:hover, .list-style li a i, .list-style li a:hover, .item-feature i, .item-boxed-img i, table.result-point tr td a:hover, .next-match i, .post-item .data-info a, .subtitle span, .item-boxed-service a, .breadcrumbs ul li a, .acc-trigger a:hover, .acc-trigger.active a, .acc-trigger.active a:hover, .sf-menu > li:hover > a, footer.footer-2 .links-footer ul li a:hover, .popover-header, .item-player .info-player h4 span, .portfolioFilter h5 i, .section-title-team h6 strong, .section-title-team h6 a, .recent-results .info-results ul li .head .date {
-    color: #01d099
+    color: #FFC500
 }
 
 .nav-tabs li a.active:after, .nav-tabs li.active a:after {
-    border: 6px solid #01d099;
+    border: 6px solid #FFC500;
     border-left-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent
 }
 
 .style-caption p, .item-clubs {
-    border-right: 5px solid #01d099
+    border-right: 5px solid #FFC500
 }
 
 .titles h4 {
-    border-left: 5px solid #01d099
+    border-left: 5px solid #FFC500
 }
 
 .pagination > .active > a, .pagination > .active:hover > a, .portfolioFilter .current:before, .portfolioFilter a:hover:before {
-    border-color: #01d099 !important
+    border-color: #FFC500 !important
 }
 
 .style-caption h1:before {
     border-top: 40px solid transparent;
     border-bottom: 40px solid transparent;
-    border-left: 40px solid #01d099
+    border-left: 40px solid #FFC500
 }
 
 .crumbs:before {
-    border-bottom: 20px solid #01d099
+    border-bottom: 20px solid #FFC500
 }
 
 .stats-info ul {
-    border-top-color: #01d099 !important
+    border-top-color: #FFC500 !important
 }
 
 .sf-menu li:hover > .sf-mega, .sf-menu li.sfHover > .sf-mega, .mainmenu, .sf-menu .sub-current, .header-2 {
-    /*border-bottom: 3px solid #01d099*/
+    /*border-bottom: 3px solid #FFC500*/
 }
 
 .header-2 .is-sticky {
-    border-bottom: 3px solid #01d099 !important
+    border-bottom: 3px solid #FFC500 !important
 }
 
 header, .overlay-player, .crumbs {
-    /*border-top: 3px solid #01d099*/
+    /*border-top: 3px solid #FFC500*/
 }
 
 .sf-arrows > li > .sf-with-ul:focus:after, .sf-arrows > li:hover > .sf-with-ul:after, .sf-arrows > .sfHover > .sf-with-ul:after {
-    border-top-color: #01d099
+    border-top-color: #FFC500
 }
 
 ul.sub-current .current > .sf-with-ul:focus:after, ul.sub-current .current:hover > .sf-with-ul:after, ul.sub-current .current .sfHover > .sf-with-ul:after {
-    border-left-color: #01d099
+    border-left-color: #FFC500
 }
 
 /*!Swipebox v1.3.0 | Constantin Saguin csag.co | MIT License | github.com/brutaldesign/swipebox*/
@@ -14805,7 +14805,7 @@ iframe.big-video {
 
 .btn-iw {
     padding: 10px 30px;
-    background: #01d099;
+    background: #FFC500;
     color: #fff;
     margin: 15px 10px;
     display: inline-block
@@ -14817,8 +14817,8 @@ iframe.big-video {
 }
 
 .btn-iw.skin {
-    color: #01d099;
-    border-color: #01d099
+    color: #FFC500;
+    border-color: #FFC500
 }
 
 .btn-iw.skin:hover {

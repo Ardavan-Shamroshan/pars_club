@@ -259,7 +259,7 @@ $(function() {
 			labels: ['اسفند', 'بهمن', 'دی', 'آذر', 'آبان', 'مهر'],
 			datasets: [{
 				data: [10, 24, 20, 25, 35, 50],
-				backgroundColor: '#007bff',
+				backgroundColor: '#FFC500',
 				borderWidth: 1,
 				fill: true
 			}, {
@@ -319,7 +319,7 @@ $(function() {
 			labels: ['اسفند', 'بهمن', 'دی', 'آذر', 'آبان', 'مهر'],
 			datasets: [{
 				data: [10, 24, 20, 25, 35, 50],
-				backgroundColor: '#007bff',
+				backgroundColor: '#FFC500',
 				borderWidth: 1,
 				fill: true
 			}, {
@@ -386,7 +386,7 @@ $(function() {
 				fill: false
 			}, {
 				data: [10, 20, 25, 55, 50, 45, 35, 30, 45, 35, 55, 40],
-				borderColor: '#007bff',
+				borderColor: '#FFC500',
 				borderWidth: 1,
 				fill: false
 			}]
@@ -447,7 +447,7 @@ $(function() {
 				backgroundColor: gradient1
 			}, {
 				data: [10, 20, 25, 55, 50, 45, 35, 37, 45, 35, 55, 40],
-				borderColor: '#007bff',
+				borderColor: '#FFC500',
 				borderWidth: 1,
 				backgroundColor: gradient2
 			}]

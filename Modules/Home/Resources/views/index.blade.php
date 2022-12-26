@@ -150,18 +150,6 @@
                 <div class="">
                     <div class="my-3 titles"><h4 class="border-0"><i class="fe fe-list"></i> مطالب پیشنهادی</h4>
                     </div>
-                    {{--                    <div class="filters px-3 my-3">--}}
-                    {{--                        <ul class="list-filter d-flex flex-wrap justify-content-start">--}}
-                    {{--                            <li class="bg-navy rounded-pill px-2 mx-1 my-sm-1  @if((str_contains(request()->getUri(), '?label=0'))) active @endif">--}}
-                    {{--                                <small><a href="{{ route('home', 'label=0') }}">پیشنهاد سردبیر</a></small></li>--}}
-                    {{--                            <li class="bg-navy rounded-pill px-2 mx-1 my-sm-1  @if((str_contains(request()->getUri(), '?label=1'))) active @endif">--}}
-                    {{--                                <small><a href="{{ route('home', 'label=1') }}">آخرین اخبار</a></small></li>--}}
-                    {{--                            <li class="bg-navy rounded-pill px-2 mx-1 my-sm-1  @if((str_contains(request()->getUri(), '?label=2'))) active @endif">--}}
-                    {{--                                <small><a href="{{ route('home', 'label=2') }}">نقل و انتقالات</a></small></li>--}}
-                    {{--                            <li class="bg-navy rounded-pill px-2 mx-1 my-sm-1  @if((str_contains(request()->getUri(), '?label=3'))) active @endif">--}}
-                    {{--                                <small><a href="{{ route('home', 'label=3') }}">ویدیو</a></small></li>--}}
-                    {{--                        </ul>--}}
-                    {{--                    </div>--}}
                     <div class="info-panel py-1">
                         <div class="panel panel-primary tabs-style-3 border-0">
                             <div class="tab-menu-heading">
@@ -304,12 +292,12 @@
         <div class="container my-2">
             <div class="row">
                 <!-- right aside -->
-                <aside class="col-sm-12 col-lg-4 col-xl-3 px-0 h-100">
+                <aside class="col-sm-12 col-lg-4 col-xl-3 h-100">
                     @include('home::layouts.right-sidebar')
                 </aside>
                 <!-- end right aside -->
                 <!-- center -->
-                <div class="col-lg-5 col-xl-6 col-sm-12 h-100">
+                <div class="col-lg-5 col-xl-6 col-sm-12 p-0 h-100">
                     <!-- last news -->
                     <div class="panel-box rounded">
                         <div class="titles bg-light">
@@ -583,8 +571,8 @@
                 </div>
                 <!-- end center -->
                 <!-- left aside -->
-                <aside class="col-sm-12 col-lg-3 col-xl-3 dark-home py-2 rounded h-100">
-{{--                    @include('home::layouts.left-sidebar')--}}
+                <aside class="col-sm-12 col-lg-4 col-xl-3 h-100">
+                    @include('home::layouts.left-sidebar')
                 </aside>
                 <!-- end left side -->
             </div>

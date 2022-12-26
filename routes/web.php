@@ -24,6 +24,6 @@ Route::middleware([
     'admin'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('admin::index');
+       return redirect()->route('admin');
     })->name('dashboard');
 });

@@ -64,7 +64,7 @@
                 </div>
                 <!-- end center -->
                 <!-- left aside -->
-                <aside class="col-sm-12 col-lg-3 col-xl-3 dark-home py-2 rounded h-100">
+                <aside class="col-sm-12 col-lg-4 col-xl-3 h-100">
                     @include('home::layouts.left-sidebar')
                 </aside>
                 <!-- end left side -->

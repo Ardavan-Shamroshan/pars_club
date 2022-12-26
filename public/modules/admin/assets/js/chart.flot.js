@@ -21,7 +21,7 @@ $(function() {
 				fillColor: '#285cf7',
 				barWidth: .5
 			},
-			highlightColor: '#007bff'
+			highlightColor: '#FFC500'
 		},
 		grid: {
 			borderWidth: 1,
@@ -118,7 +118,7 @@ $(function() {
 	var plot = $.plot($('#flotLine1'), [{
 		data: newCust,
 		label: 'مشتریان جدید',
-		color: '#007bff'
+		color: '#FFC500'
 	}, {
 		data: retCust,
 		label: 'مشتریان برگشتی',
@@ -216,7 +216,7 @@ $(function() {
 	}, {
 		data: retCust,
 		label: 'مشتریان برگشتی',
-		color: '#007bff'
+		color: '#FFC500'
 	}], {
 		series: {
 			lines: {
@@ -331,7 +331,7 @@ $(function() {
 		data: [
 			[1, 30]
 		],
-		color: '#007bff'
+		color: '#FFC500'
 	}, {
 		label: 'سری 3',
 		data: [

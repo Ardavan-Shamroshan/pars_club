@@ -2,12 +2,12 @@
 <div class="container">
     <header class="header-2 mb-1 bg-sky">
         <!-- header alert -->
-        {{--    <div class="header-alert p-2 bg-navy">--}}
-        {{--        <a href="#" class="text-dark font-weight-bold"><span class="">اخبار رده های پایه تا جوانان تیم فوتبال پارس را دنبال کنید</span></a>--}}
-        {{--        <a class="text-dark font-weight-bold"><span class="">اخبار رده های پایه تا جوانان تیم فوتبال پارس را از اینجا دنبال کنید</span></a>--}}
-        {{--    </div>--}}
+            <div class="header-alert p-2 bg-navy">
+                <a href="#" class="text-dark font-weight-bold"><span class="">اخبار رده های پایه تا جوانان تیم فوتبال پارس را دنبال کنید</span></a>
+                <a class="text-dark font-weight-bold"><span class="">اخبار رده های پایه تا جوانان تیم فوتبال پارس را از اینجا دنبال کنید</span></a>
+            </div>
         <!-- header -->
-        <div class="header-alert">
+        <div class="header-alert bg-dim">
             <div>
                 <div class="col-12">
                     <div class="row justify-content-between">
@@ -20,22 +20,22 @@
                                 @endif
                             </a>
                         </div>
-                        <div class="col-6 py-2" style="background: linear-gradient(to right,rgba(37,169,224,1) 0,rgba(37,169,224,1) 30%,rgba(37,169,224,0) 100%);">
-                            <div class="w-75 mr-auto">
-                            <span class="d-flex justify-content-end gap-1" title="{{ $setting->title }}">
-                            <p class="text-wrap text-white my-auto">مسابقه رایگان پیش‌بینی
-                                بازی‌های پارس</p>
-                            <img src="{{ asset('modules/admin/assets/img/symbol.png') }}" alt="Logo" class="logo_img" width="50">
-                        </span>
-                            </div>
-                        </div>
+{{--                        <div class="col-6 py-2" style="background: linear-gradient(to right,rgba(37,169,224,1) 0,rgba(37,169,224,1) 30%,rgba(37,169,224,0) 100%);">--}}
+{{--                            <div class="w-75 mr-auto">--}}
+{{--                            <span class="d-flex justify-content-end gap-1" title="{{ $setting->title }}">--}}
+{{--                            <p class="text-wrap text-white my-auto">مسابقه رایگان پیش‌بینی--}}
+{{--                                بازی‌های پارس</p>--}}
+{{--                            <img src="{{ asset('modules/admin/assets/img/symbol.png') }}" alt="Logo" class="logo_img" width="50">--}}
+{{--                        </span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- header-menu -->
-        <div class="bg-sky-secondary">
+        <div class="bg-sky-secondary bg-dim-light">
             <div class="container">
                 <div class="row justify-content-between align-items-center">
                     <div class="col col-xl-12 header-menu">
@@ -112,7 +112,7 @@
                                         </li>
                                         <li class="current">
                                             <a href="teams.html">روابط عمومی</a>
-                                            <ul class="sub-current">
+                                            <ul class="sub-current rounded">
                                                 <li>
                                                     <a href="teams.html">تبلیغات</a>
                                                 </li>
@@ -136,10 +136,10 @@
                                     @guest
                                         <ul class="sf-menu w-25 text-left">
                                             <li class="bg-white m-0">
-                                                <a href="{{ route('login') }}" class="text-dark-sky">ورود</a>
+                                                <a href="{{ route('login') }}" class="text-dark">ورود</a>
                                             </li>
-                                            <li class="bg-success m-0">
-                                                <a href="{{ route('register') }}" class="">عضویت</a>
+                                            <li class="bg-warning m-0">
+                                                <a href="{{ route('register') }}" class=" text-dark">عضویت</a>
                                             </li>
                                         </ul>
                                     @endguest

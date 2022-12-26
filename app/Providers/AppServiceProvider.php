@@ -37,6 +37,11 @@ class AppServiceProvider extends ServiceProvider
 
         // view composer
 
+        // home head-tag
+        view()->composer('home::layouts.head-tag', function ($view) {
+            $view->with('setting', Setting::query()->first());
+        });
+
         // home header
         view()->composer('home::layouts.header', function ($view) {
             // All active categories
