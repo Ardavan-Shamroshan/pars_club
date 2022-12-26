@@ -14,7 +14,7 @@ use Modules\Slide\Http\Controllers\AdminSlideController;
 */
 
 // admin slide
-Route::middleware('auth', 'admin')->prefix('admin')->group(function () {
+Route::middleware('auth', 'admin')->prefix('adminity')->group(function () {
     Route::prefix('slide')->group(function () {
         Route::get('/', [AdminSlideController::class, 'index'])->name('admin.slide');
         Route::get('/create', [AdminSlideController::class, 'create'])->name('admin.slide.create');

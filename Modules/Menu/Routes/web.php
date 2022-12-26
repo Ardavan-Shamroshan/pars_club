@@ -14,7 +14,7 @@ use Modules\Menu\Http\Controllers\AdminMenuController;
 */
 
 // admin menu
-Route::middleware('auth', 'admin')->prefix('admin')->group(function () {
+Route::middleware('auth', 'admin')->prefix('adminity')->group(function () {
     Route::prefix('menu')->group(function () {
         Route::get('/', [AdminMenuController::class, 'index'])->name('admin.menu');
         Route::get('/create', [AdminMenuController::class, 'create'])->name('admin.menu.create');

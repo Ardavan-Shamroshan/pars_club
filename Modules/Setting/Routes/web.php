@@ -14,7 +14,7 @@ use Modules\Setting\Http\Controllers\AdminSettingController;
 */
 
 // admin setting
-Route::middleware('auth', 'admin')->prefix('admin')->group(function () {
+Route::middleware('auth', 'admin')->prefix('adminity')->group(function () {
     Route::prefix('setting')->group(function () {
         Route::get('/', [AdminSettingController::class, 'index'])->name('admin.setting');
         Route::get('/show/{setting}', [AdminSettingController::class, 'show'])->name('admin.setting.show');

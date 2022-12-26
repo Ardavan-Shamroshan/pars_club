@@ -14,7 +14,7 @@ use Modules\Comment\Http\Controllers\AdminCommentController;
 */
 
 // admin comment
-Route::middleware('auth', 'admin')->prefix('admin')->group(function () {
+Route::middleware('auth', 'admin')->prefix('adminity')->group(function () {
     Route::prefix('comment')->group(function () {
         Route::get('/', [AdminCommentController::class, 'index'])->name('admin.comment');
         Route::get('/show/{comment}', [AdminCommentController::class, 'show'])->name('admin.comment.show');

@@ -15,7 +15,7 @@ use Modules\ContactUs\Http\Controllers\ContactUsController;
 */
 
 // admin contact us
-Route::middleware('auth', 'admin')->prefix('admin')->group(function () {
+Route::middleware('auth', 'admin')->prefix('adminity')->group(function () {
     Route::prefix('contact-us')->group(function () {
         Route::get('/', [AdminContactUsController::class, 'index'])->name('admin.contact-us');
         Route::put('/update/{contact}', [AdminContactUsController::class, 'update'])->name('admin.contact-us.update');

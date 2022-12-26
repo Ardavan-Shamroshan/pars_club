@@ -14,7 +14,7 @@ use Modules\VideoGallery\Http\Controllers\AdminVideoGalleryController;
 */
 
 // admin videogallery
-Route::middleware('auth', 'admin')->prefix('admin')->group(function () {
+Route::middleware('auth', 'admin')->prefix('adminity')->group(function () {
     Route::prefix('videogallery')->group(function () {
         Route::get('/', [AdminVideoGalleryController::class, 'index'])->name('admin.videogallery');
         Route::get('/show/{video}', [AdminVideoGalleryController::class, 'show'])->name('admin.videogallery.show');
