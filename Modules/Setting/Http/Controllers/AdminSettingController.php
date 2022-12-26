@@ -67,10 +67,7 @@ class AdminSettingController extends Controller
         // logo upload
         if ($request->hasFile('logo')) {
             if (!empty($setting->logo))
-            {
                 $imageService->deleteDirectoryAndFiles($setting->logo);
-            }
-
             // Set image directory
             $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'setting');
             // Create image in 3 indexes and save

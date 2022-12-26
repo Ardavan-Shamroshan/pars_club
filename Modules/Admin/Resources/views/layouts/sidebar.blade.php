@@ -51,6 +51,16 @@
                 </a>
             </li>
 
+
+            <li class="side-item side-item-category">باشگاه</li>
+            <li class="slide">
+                <a class="side-menu__item" data-bs-toggle="slide" href="#">
+                    <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-soccer-ball-o"></i></span> جداول و نتایج بازی ها</span><i class="angle fe fe-chevron-down"></i></a>
+                <ul class="slide-menu">
+                    <li><a class="slide-item" href="{{ route('admin.league') }}">لیگ</a></li>
+                </ul>
+            </li>
+
             <li class="side-item side-item-category">محتوا</li>
             <li class="slide">
                 <a class="side-menu__item" href="{{ route('admin.contact-us') }}">
@@ -70,14 +80,7 @@
                 </a>
             </li>
 
-            <li class="slide">
-                <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                    <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-pager"></i></span> پوسته</span><i class="angle fe fe-chevron-down"></i></a>
-                <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('admin.menu') }}">منو ها</a></li>
-                    <li><a class="slide-item" href="chart-flot.html">صفحه ساز</a></li>
-                </ul>
-            </li>
+
 
             @admin
             <li class="side-item side-item-category">احراز هویت</li>
