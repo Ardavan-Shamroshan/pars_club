@@ -5,6 +5,9 @@ namespace Modules\League\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\League\Entities\LeagueTeam;
+use Modules\League\Entities\TeamResult;
+use Modules\League\Http\Requests\TeamResultRequest;
 
 class AdminTeamResultController extends Controller
 {
@@ -14,7 +17,9 @@ class AdminTeamResultController extends Controller
      */
     public function index()
     {
-        return view('league::index');
+        $teams = LeagueTeam::query()->paginate(10);
+        $teamsCount = LeagueTeam::query()->count();
+        return view('league::admin.team-result.index', ['teams' => $teams, 'teamsCount' => $teamsCount]);
     }
 
     /**
@@ -51,9 +56,11 @@ class AdminTeamResultController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
+    public function edit(TeamResult $teamResult)
     {
-        return view('league::edit');
+        $teams = LeagueTeam::query()->paginate(10);
+        $teamsCount = LeagueTeam::query()->count();
+        return view('league::admin.team-result.index', ['teams' => $teams, 'teamsCount' => $teamsCount])->with('teamResult', $teamResult);
     }
 
     /**
@@ -62,9 +69,12 @@ class AdminTeamResultController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(TeamResultRequest $request, TeamResult $result)
     {
-        //
+        $inputs = $request->all();
+        $result->update($inputs);
+        toast('جدول با موفقیت ویرایش شد', 'success');
+        return redirect()->route('admin.team-result');
     }
 
     /**

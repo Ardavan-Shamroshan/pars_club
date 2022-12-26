@@ -11,10 +11,15 @@ class TeamResultRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            //
+            'matches' => ['sometimes'],
+            'won' => ['sometimes'],
+            'loss' => ['sometimes'],
+            'deal' => ['sometimes'],
+            'goal' => ['sometimes', 'string'],
+            'GD' => ['sometimes'],
+            'points' => ['sometimes'],
         ];
     }
 
@@ -23,8 +28,7 @@ class TeamResultRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 }

@@ -9,10 +9,19 @@ class TeamResult extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
-    
-    protected static function newFactory()
-    {
+    protected $fillable = [
+        'matches', 'won', 'loss', 'deal', 'goal', 'GD', 'points', 'league_team_id', 'slug'
+    ];
+
+    protected static function newFactory() {
         return \Modules\League\Database\factories\TeamResultFactory::new();
+    }
+
+    /**
+     * Relations
+     */
+    // league team
+    public function team() {
+        return $this->belongsTo(LeagueTeam::class, 'league_team_id');
     }
 }

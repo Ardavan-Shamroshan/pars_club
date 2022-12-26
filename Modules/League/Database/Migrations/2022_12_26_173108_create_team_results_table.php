@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('won')->default(0);
             $table->integer('deal')->default(0);
             $table->integer('loss')->default(0);
-            $table->integer('+/-')->comment('goal scored/gained')->nullable();
+            $table->string('goal')->comment('goal scored/gained')->nullable();
             $table->integer('GD')->comment('goal differences')->default(0);
             $table->integer('points')->default(0);
             $table->string('slug')->unique()->nullable();

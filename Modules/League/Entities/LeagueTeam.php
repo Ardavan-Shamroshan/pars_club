@@ -5,6 +5,7 @@ namespace Modules\League\Entities;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LeagueTeam extends Model
@@ -37,7 +38,13 @@ class LeagueTeam extends Model
     /**
      * Relations
      */
+    // league
     public function league() {
         return $this->belongsTo(League::class);
+    }
+
+    // team result
+    public function result() {
+        return $this->hasOne(TeamResult::class);
     }
 }
