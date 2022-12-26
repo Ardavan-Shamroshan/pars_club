@@ -2,7 +2,7 @@
 
 use Modules\League\Http\Controllers\AdminLeagueController;
 use Modules\League\Http\Controllers\AdminLeagueTeamController;
-use Modules\League\Http\Controllers\AdminTeamResultController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +35,12 @@ Route::middleware('auth', 'admin')->prefix('adminity')->group(function () {
         Route::put('/update/{team}', [AdminLeagueTeamController::class, 'update'])->name('admin.league-team.update');
         Route::delete('/destroy/{team}', [AdminLeagueTeamController::class, 'destroy'])->name('admin.league-team.destroy');
     });
+
+    // team result
+    Route::prefix('team-result')->group(function ()  {
+        Route::get('/', Modules\League\Http\Controllers\TeamResult\AdminTeamResult::class)->name('admin.team-result');
+    });
+
 });
 
 // league
