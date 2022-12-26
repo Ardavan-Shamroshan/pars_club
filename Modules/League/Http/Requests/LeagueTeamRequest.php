@@ -3,6 +3,7 @@
 namespace Modules\League\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LeagueTeamRequest extends FormRequest
 {
@@ -11,10 +12,19 @@ class LeagueTeamRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
-        return [
-            //
+    public function rules() {
+       if ($this->isMethod('post'))
+            return [
+                'name' => ['required', 'string'],
+                'league_id' => ['required', Rule::exists('leagues', 'id')],
+                'logo' => ['image', 'mimes:jpg,jpeg,bmp,png,gif'],
+                'slug' => [Rule::unique('leagues', 'slug')]
+            ];
+        else return [
+            'name' => ['required', 'string'],
+            'league_id' => ['required', Rule::exists('leagues', 'id')],
+            'logo' => ['image', 'mimes:jpg,jpeg,bmp,png,gif'],
+            'slug' => [Rule::unique('leagues', 'slug')->ignore($this->team->id)]
         ];
     }
 
@@ -23,8 +33,7 @@ class LeagueTeamRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 }

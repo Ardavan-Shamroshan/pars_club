@@ -13,12 +13,20 @@ class LeagueRequest extends FormRequest
      * @return array
      */
     public function rules() {
-        return [
-            'name' => ['required', 'string'],
-            'title' => ['required', 'string'],
-            'logo' => ['image', 'mimes:jpg,jpeg,bmp,png,gif'],
-            'slug' => [Rule::unique('leagues', 'slug')->ignore($this->league->id)]
-        ];
+        if ($this->isMethod('post'))
+            return [
+                'name' => ['required', 'string'],
+                'title' => ['required', 'string'],
+                'logo' => ['image', 'mimes:jpg,jpeg,bmp,png,gif'],
+                'slug' => [Rule::unique('leagues', 'slug')]
+            ];
+        else
+            return [
+                'name' => ['required', 'string'],
+                'title' => ['required', 'string'],
+                'logo' => ['image', 'mimes:jpg,jpeg,bmp,png,gif'],
+                'slug' => [Rule::unique('leagues', 'slug')->ignore($this->league->id)]
+            ];
     }
 
     /**

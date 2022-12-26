@@ -58,6 +58,7 @@
                     <span class="side-menu__label"><span class="side-menu__icon"><i class="la la-soccer-ball-o"></i></span> جداول و نتایج بازی ها</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('admin.league') }}">لیگ</a></li>
+                    <li><a class="slide-item" href="{{ route('admin.league-team') }}">تیم ها</a></li>
                 </ul>
             </li>
 
