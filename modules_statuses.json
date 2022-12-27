@@ -12,5 +12,6 @@
     "VideoGallery": true,
     "Setting": true,
     "ContactUs": true,
-    "League": true
+    "League": true,
+    "Auth": true
 }
