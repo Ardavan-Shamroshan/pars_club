@@ -51,6 +51,15 @@ class HomeController extends Controller
             ->take(15)
             ->get();
 
+        // banner post
+        // randomly chooses a single post from is-banner posts
+        $banner = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->where('is_banner', 1)
+            ->inRandomOrder()
+            ->first();
+
 
         // slides
         $slides = Slide::query()->where('status', 1)
@@ -66,7 +75,16 @@ class HomeController extends Controller
         // setting
         $setting = Setting::query()->first();
 
-        return view('home::index', compact('latestPosts', 'posts', 'slides', 'videos', 'setting', 'editorSuggests', 'hotPosts'));
+        return view('home::index', compact(
+            'latestPosts',
+            'posts',
+            'editorSuggests',
+            'hotPosts',
+            'banner',
+            'slides',
+            'videos',
+            'setting',
+        ));
     }
 
     /**

@@ -7,13 +7,13 @@
         <div class="main-col col-12 col-lg-6">
             <div class="main-col-card">
                 <div class="main-col-image">
-                    <a href="single.html">
-                        <img src="{{ asset('modules/home/assets/img/thumbnails/101 copy.jpg') }}" alt="img">
+                    <a href="{{ route('post.show', $banner) }}">
+                        <img src="{{ $banner->image['indexArray']['medium'] }}" alt="img">
                     </a>
                 </div>
                 <div class="main-col-title">
-                    <a href="single.html">
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+                    <a href="{{ route('post.show', $banner) }}">
+                        <p>{!! $banner->summary !!}</p>
                     </a>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                         <div class="main-news-card">
                             <div class="main-news-card-thumbnail">
                                 <a href="{{ route('post.show', $post) }}">
-                                    <img src="{{ asset($post->image['indexArray'][$post->image['currentImage']]) }}" alt="{{ $post->title }}">
+                                    <img src="{{ asset($post->image['indexArray']['medium']) }}" alt="{{ $post->title }}">
                                 </a>
                             </div>
                             <div class="col ps-3">
@@ -63,7 +63,7 @@
                                 <div class="six-news-card">
                                     <div class="six-news-thumbnail">
                                         <a href="{{ route('post.show', $suggest) }}">
-                                            <img src="{{ asset($suggest->image['indexArray']['large']) }}" alt="{{ $suggest->title }}">
+                                            <img src="{{ asset($suggest->image['indexArray']['medium']) }}" alt="{{ $suggest->title }}">
                                         </a>
                                     </div>
                                     <div class="six-news-top-title">
@@ -158,7 +158,7 @@
                     </div>
                     <div class="social-section-cols row gx-3">
                         <div class="col-6">
-                            <a href="#">
+                            <a href="https://instagram.com/fc_pars_borazjan">
                                 <div class="social-btns social-instagram">
                                     <i class="fa-brands fa-instagram"></i>
                                     <span>اینستاگرام</span>
@@ -166,29 +166,29 @@
                             </a>
                         </div>
                         <div class="col-6">
-                            <a href="#">
+                            <a href="https://t.me/fc_parseh_academy">
                                 <div class="social-btns social-telegram">
                                     <i class="fa-brands fa-telegram"></i>
                                     <span>تلگرام</span>
                                 </div>
                             </a>
                         </div>
-                        <div class="col-6">
-                            <a href="#">
-                                <div class="social-btns social-twitter">
-                                    <i class="fa-brands fa-twitter"></i>
-                                    <span>توییتر</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-6">
-                            <a href="#">
-                                <div class="social-btns social-rss">
-                                    <i class="fa-solid fa-rss"></i>
-                                    <span>آر اس اس</span>
-                                </div>
-                            </a>
-                        </div>
+{{--                        <div class="col-6">--}}
+{{--                            <a href="#">--}}
+{{--                                <div class="social-btns social-twitter">--}}
+{{--                                    <i class="fa-brands fa-twitter"></i>--}}
+{{--                                    <span>توییتر</span>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-6">--}}
+{{--                            <a href="#">--}}
+{{--                                <div class="social-btns social-rss">--}}
+{{--                                    <i class="fa-solid fa-rss"></i>--}}
+{{--                                    <span>آر اس اس</span>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
                 <div class="ad-section mt-3">

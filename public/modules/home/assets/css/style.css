@@ -97,7 +97,8 @@ textarea:focus{
 	box-shadow: none !important;
 	border-color: var(--border-focus) !important;
 }
-a{
+a {
+	cursor: pointer !important;
     text-decoration: none;
 	color: var(--text1);
 }
