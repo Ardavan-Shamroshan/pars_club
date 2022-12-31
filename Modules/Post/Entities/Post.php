@@ -38,7 +38,7 @@ class Post extends Model
     protected $casts = ['image' => 'array'];
 
     protected $fillable = [
-        'author_id', 'category_id', 'title', 'label', 'summary', 'body', 'image', 'slug', 'status', 'commentable', 'tags', 'published_at'
+        'author_id', 'category_id', 'title', 'label', 'summary', 'body', 'image', 'slug', 'is_banner', 'status', 'commentable', 'tags', 'published_at'
     ];
 
     /**

@@ -25,6 +25,7 @@ Route::middleware('auth', 'admin')->prefix('adminity')->group(function () {
         Route::get('/edit/{post:slug}', [AdminPostController::class, 'edit'])->name('admin.post.edit');
         Route::put('/update/{post}', [AdminPostController::class, 'update'])->name('admin.post.update');
         Route::delete('/destroy/{post}', [AdminPostController::class, 'destroy'])->name('admin.post.destroy');
+        Route::get('/isBanner/{post}', [AdminPostController::class, 'isBanner'])->name('admin.post.isBanner');
         Route::get('/status/{post}', [AdminPostController::class, 'status'])->name('admin.post.status');
         Route::get('/commentable/{post}', [AdminPostController::class, 'commentable'])->name('admin.post.commentable');
         Route::get('/clone/{post}', [AdminPostController::class, 'clone'])->name('admin.post.clone');

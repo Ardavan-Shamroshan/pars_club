@@ -152,6 +152,20 @@ class AdminPostController extends Controller
         return redirect()->route('admin.post');
     }
 
+    public function isBanner(Post $post) {
+        $post->is_banner = $post->is_banner == 0 ? 1 : 0;
+        $result = $post->save();
+
+        if ($result) {
+            if ($post->is_banner == 0)
+                return response()->json(['status' => true, 'checked' => false,
+                ]);
+            else
+                return response()->json(['status' => true, 'checked' => true,]);
+        } else
+            return response()->json(['status' => false]);
+    }
+
     public function status(Post $post) {
         $post->status = $post->status == 0 ? 1 : 0;
         $result = $post->save();

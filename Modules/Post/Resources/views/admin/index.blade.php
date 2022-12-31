@@ -82,6 +82,7 @@
                                             <th class="wd-15p border-bottom-0 sorting sorting_asc w-25" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="نام کوچک: activate to sort column descending" style="width: 101.667px;">عنوان</th>
                                             <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="برچسب: activate to sort column ascending" style="width: 101.667px;">برچسب</th>
                                             <th class="wd-15p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="اسلاگ: activate to sort column ascending" style="width: 101.667px;">تاریخ انتشار</th>
+                                            <th class="wd-10p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="امکان نظر دهی: activate to sort column ascending" style="width: 54.4375px;">بنر</th>
                                             <th class="wd-10p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="امکان نظر دهی: activate to sort column ascending" style="width: 54.4375px;">درج نظر</th>
                                             <th class="wd-10p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="وضعیت: activate to sort column ascending" style="width: 54.4375px;">وضعیت</th>
                                             <th class="wd-25p border-bottom-0 sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="عملیات: activate to sort column ascending" style="width: 196.135px;">عملیات</th>
@@ -105,6 +106,12 @@
                                                     </td>
                                                 @endif
                                                 <td>{{ jalaliDate($post->published_at, '%d %B، %Y') ?? '-' }}</td>
+                                                <td>
+                                                    <label for="{{ $post->id }}-banner">
+                                                        <input type="checkbox" id="{{ $post->id }}-banner" onchange="isbanner({{ $post->id }})" data-url="{{ route('admin.post.isBanner', $post->id) }}" data-value="{{ $post->is_banner }}" @checked($post->is_banner == 1)>
+                                                    </label>
+                                                </td>
+
                                                 <td>
                                                     <label for="{{ $post->id }}-commentable">
                                                         <input type="checkbox" id="{{ $post->id }}-commentable" onchange="commentable({{ $post->id }})" data-url="{{ route('admin.post.commentable', $post->id) }}" data-value="{{ $post->commentable }}" @checked($post->commentable == 1)>
