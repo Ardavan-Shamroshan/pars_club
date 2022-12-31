@@ -9887,7 +9887,7 @@ html.swipebox-html.swipebox-touch {
 }
 
 #swipebox-slider .slide-loading {
-    background: url(../../img/img-theme/ajax-loader.gif) no-repeat center center
+    background: url(../../../home/img/img-theme/ajax-loader.gif) no-repeat center center
 }
 
 #swipebox-bottom-bar, #swipebox-top-bar {
@@ -9922,7 +9922,7 @@ html.swipebox-html.swipebox-touch {
 }
 
 #swipebox-prev, #swipebox-next, #swipebox-close {
-    background-image: url(../../img/img-theme/icons.svg);
+    background-image: url(../../../home/img/img-theme/icons.svg);
     background-repeat: no-repeat;
     border: none !important;
     text-decoration: none !important;
@@ -15275,7 +15275,7 @@ footer {
 }
 
 footer.footer-2 {
-    background: url(../../img/locations/4.jpg);
+    background: url(../../../home/img/locations/4.jpg);
     background-size: cover;
     background-position: center;
     position: relative;
@@ -15507,11 +15507,11 @@ footer .links-footer ul.columns {
     border: none;
     text-indent: 100%;
     z-index: 9999;
-    background: url(../../img/img-theme/ui.totop.png) no-repeat left top
+    background: url(../../../home/img/img-theme/ui.totop.png) no-repeat left top
 }
 
 #toTopHover {
-    background: url(../../img/img-theme/ui.totop.png) no-repeat left -51px;
+    background: url(../../../home/img/img-theme/ui.totop.png) no-repeat left -51px;
     width: 51px;
     height: 51px;
     display: block;
@@ -15536,7 +15536,7 @@ footer .links-footer ul.columns {
 }
 
 .acc-trigger a {
-    background: url(../../img/img-theme/accordion-ico.png) no-repeat 14px 13px;
+    background: url(../../../home/img/img-theme/accordion-ico.png) no-repeat 14px 13px;
     display: block;
     padding: 11px 20px 11px 44px;
     text-decoration: none;
@@ -15803,7 +15803,7 @@ footer .links-footer ul.columns {
     margin-right: 2px;
     font-size: 14px;
     padding: 10px 0 0;
-    background: url(../../img/img-theme/line_tree1.gif) left repeat-y
+    background: url(../../../home/img/img-theme/line_tree1.gif) left repeat-y
 }
 
 @media (max-width: 991px) {
@@ -15817,7 +15817,7 @@ footer .links-footer ul.columns {
     width: 347px;
     padding-left: 25px;
     line-height: 35px;
-    background: url(../../img/img-theme/line_tree2.gif) 0 center no-repeat
+    background: url(../../../home/img/img-theme/line_tree2.gif) 0 center no-repeat
 }
 
 @media (max-width: 991px) {
@@ -15827,7 +15827,7 @@ footer .links-footer ul.columns {
 }
 
 .sitemap li.has_sub {
-    background: url(../../img/img-theme/line_tree2.gif) 0 17px no-repeat
+    background: url(../../../home/img/img-theme/line_tree2.gif) 0 17px no-repeat
 }
 
 .sitemap li a {
@@ -15868,7 +15868,7 @@ footer .links-footer ul.columns {
 .post-item {
     margin-bottom: 40px;
     padding: 0 10px 40px;
-    background: url(../../img/img-theme/border-pattern.gif) bottom left repeat-x
+    background: url(../../../home/img/img-theme/border-pattern.gif) bottom left repeat-x
 }
 
 .post-item:last-child {
@@ -17281,7 +17281,7 @@ table.career tr td img {
 
 .item-price:after {
     content: "";
-    background: url(../../img/img-theme/plan-shadow.png) no-repeat center top;
+    background: url(../../../home/img/img-theme/plan-shadow.png) no-repeat center top;
     background-size: 100% 38px;
     position: absolute;
     left: 0;

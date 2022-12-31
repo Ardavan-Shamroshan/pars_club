@@ -5,53 +5,39 @@
     </button>
     <ul class="mobile-menu-list">
         <li>
-            <a href="archive.html">
-                <span>صفحه آرشیو</span>
+            <a href="{{ route('post') }}">
+                <span>مجله و خبرنامه</span>
             </a>
         </li>
         <li>
             <a href="single.html">
-                <span>صفحه سینگل</span>
+                <span>ویدیو ها</span>
             </a>
         </li>
         <li>
-            <a href="tags-archive.html">
-                <span>صفحه آرشیو تگ ها</span>
-            </a>
-        </li>
-        <li>
-            <a href="pictures-single.html">
-                <span>صفحه سینگل عکس ها</span>
-            </a>
-        </li>
-        <li>
-            <a href="contact-us.html">
-                <span>تماس با ما</span>
-            </a>
-        </li>
-        <li>
-            <a href="about-us.html">
+            <a href="{{ route('home.about-us') }}">
                 <span>درباره ما</span>
             </a>
         </li>
         <li>
-            <a href="rules.html">
-                <span>قوانین</span>
+            <a href="pictures-single.html">
+                <span>تماس با ما</span>
             </a>
         </li>
+
         <li class="mobile-dropdown">
             <a class="mobile-dropdown-link">
-                <span>دراپ داون</span>
+                <span>روابط عمومی</span>
             </a>
             <ul class="mobile-dropdown-menu">
                 <li>
                     <a href="#">
-                        <span>لورم</span>
+                        <span>تبلیغات</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <span>لورم</span>
+                        <span>شرایط استفاده</span>
                     </a>
                 </li>
             </ul>

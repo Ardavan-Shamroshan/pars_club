@@ -19,284 +19,65 @@
             </div>
             <div class="col-12 mt-3">
                 <div class="main-news">
-                    <div class="main-news-card">
-                        <div class="main-news-card-thumbnail">
-                            <a href="single.html">
-                                <img src="{{ asset('modules/home/assets/img/thumbnails/1 (1) copy.jpg') }}" alt="img">
-                            </a>
-                        </div>
-                        <div class="col ps-3">
-                            <div class="main-news-top-title d-none d-sm-block">
-                                <p>خودروسازی</p>
-                            </div>
-                            <div class="main-news-card-title">
-                                <a href="single.html">
-                                    <p>رونمایی از خودروی جدید فراری در سال 2023</p>
+
+                    @foreach($posts as $post)
+                        <div class="main-news-card">
+                            <div class="main-news-card-thumbnail">
+                                <a href="{{ route('post.show', $post) }}">
+                                    <img src="{{ asset($post->image['indexArray'][$post->image['currentImage']]) }}" alt="{{ $post->title }}">
                                 </a>
                             </div>
-                            <div class="main-news-card-except">
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
+                            <div class="col ps-3">
+                                <div class="main-news-top-title d-none d-sm-block">
+                                    <p>
+                                        <a href="{{ route('postcategory', $post->category) }}">{{ $post->category->name ?? 'دسته بندی' }}</a>
+                                    </p>
+                                </div>
+                                <div class="main-news-card-title">
+                                    <a href="{{ route('post.show', $post) }}">
+                                        <p>{{ $post->title }}</p>
+                                    </a>
+                                </div>
+                                <div class="main-news-card-except">
+                                    <p>{!! $post->summary !!}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="main-news-card">
-                        <div class="main-news-card-thumbnail">
-                            <a href="single.html">
-                                <img src="{{ asset('modules/home/assets/img/thumbnails/100 copy.jpg') }}" alt="img">
-                            </a>
-                        </div>
-                        <div class="col ps-3">
-                            <div class="main-news-top-title d-none d-sm-block">
-                                <p>نجوم</p>
-                            </div>
-                            <div class="main-news-card-title">
-                                <a href="single.html">
-                                    <p>چرا باید از پیرامون اطراف خود با خبر باشیم ؟</p>
-                                </a>
-                            </div>
-                            <div class="main-news-card-except">
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="main-news-card">
-                        <div class="main-news-card-thumbnail">
-                            <a href="single.html">
-                                <img src="{{ asset('modules/home/assets/img/thumbnails/103 (1) copy.jpg') }}" alt="img">
-                            </a>
-                        </div>
-                        <div class="col ps-3">
-                            <div class="main-news-top-title d-none d-sm-block">
-                                <p>خودروسازی</p>
-                            </div>
-                            <div class="main-news-card-title">
-                                <a href="single.html">
-                                    <p>رونمایی از خودروی جدید فراری در سال 2023</p>
-                                </a>
-                            </div>
-                            <div class="main-news-card-except">
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="main-news-card">
-                        <div class="main-news-card-thumbnail">
-                            <a href="single.html">
-                                <img src="{{ asset('modules/home/assets/img/thumbnails/103 (1) copy.jpg') }}" alt="img">
-                            </a>
-                        </div>
-                        <div class="col ps-3">
-                            <div class="main-news-top-title d-none d-sm-block">
-                                <p>نجوم</p>
-                            </div>
-                            <div class="main-news-card-title">
-                                <a href="single.html">
-                                    <p>چرا باید از پیرامون اطراف خود با خبر باشیم ؟</p>
-                                </a>
-                            </div>
-                            <div class="main-news-card-except">
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="main-news-card">
-                        <div class="main-news-card-thumbnail">
-                            <a href="single.html">
-                                <img src="{{ asset('modules/home/assets/img/thumbnails/108 copy.jpg') }}" alt="img">
-                            </a>
-                        </div>
-                        <div class="col ps-3">
-                            <div class="main-news-top-title d-none d-sm-block">
-                                <p>خودروسازی</p>
-                            </div>
-                            <div class="main-news-card-title">
-                                <a href="single.html">
-                                    <p>رونمایی از خودروی جدید فراری در سال 2023</p>
-                                </a>
-                            </div>
-                            <div class="main-news-card-except">
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="main-news-card">
-                        <div class="main-news-card-thumbnail">
-                            <a href="single.html">
-                                <img src="{{ asset('modules/home/assets/img/thumbnails/103 (1) copy.jpg') }}" alt="img">
-                            </a>
-                        </div>
-                        <div class="col ps-3">
-                            <div class="main-news-top-title d-none d-sm-block">
-                                <p>نجوم</p>
-                            </div>
-                            <div class="main-news-card-title">
-                                <a href="single.html">
-                                    <p>چرا باید از پیرامون اطراف خود با خبر باشیم ؟</p>
-                                </a>
-                            </div>
-                            <div class="main-news-card-except">
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="main-news-card">
-                        <div class="main-news-card-thumbnail">
-                            <a href="single.html">
-                                <img src="{{ asset('modules/home/assets/img/thumbnails/105 copy.jpg') }}" alt="img">
-                            </a>
-                        </div>
-                        <div class="col ps-3">
-                            <div class="main-news-top-title d-none d-sm-block">
-                                <p>خودروسازی</p>
-                            </div>
-                            <div class="main-news-card-title">
-                                <a href="single.html">
-                                    <p>رونمایی از خودروی جدید فراری در سال 2023</p>
-                                </a>
-                            </div>
-                            <div class="main-news-card-except">
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="main-news-card">
-                        <div class="main-news-card-thumbnail">
-                            <a href="single.html">
-                                <img src="{{ asset('modules/home/assets/img/thumbnails/12 copy.jpg') }}" alt="img">
-                            </a>
-                        </div>
-                        <div class="col ps-3">
-                            <div class="main-news-top-title d-none d-sm-block">
-                                <p>نجوم</p>
-                            </div>
-                            <div class="main-news-card-title">
-                                <a href="single.html">
-                                    <p>چرا باید از پیرامون اطراف خود با خبر باشیم ؟</p>
-                                </a>
-                            </div>
-                            <div class="main-news-card-except">
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
+                        <hr class="mt-4">
+                    @endforeach
+
                     <div class="open-all-archive">
-                        <a href="archive.html">
+                        <a href="{{ route('post') }}">
                             <span>مشاهده آرشیو اخبار</span>
                         </a>
                     </div>
                 </div>
                 <div class="six-news mt-3">
+
+                    <div class="sport-col-title mb-2">
+                        <p><i class="fa-duotone fa-futbol"></i><span>پیشنهاد سردبیر</span></p>
+                    </div>
                     <div class="six-news-all row gx-3">
-                        <div class="col-12 col-lg-6 col-xl-4">
-                            <div class="six-news-card">
-                                <div class="six-news-thumbnail">
-                                    <a href="single.html">
-                                        <img src="{{ asset('modules/home/assets/img/thumbnails/108 copy.jpg') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="six-news-top-title">
-                                    <p>در یک نظرسنجی مطرح شد</p>
-                                </div>
-                                <div class="six-news-title">
-                                    <a href="single.html">
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6 col-xl-4">
-                            <div class="six-news-card">
-                                <div class="six-news-thumbnail">
-                                    <a href="single.html">
-                                        <img src="{{ asset('modules/home/assets/img/thumbnails/12 copy.jpg') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="six-news-top-title">
-                                    <p>در یک نظرسنجی مطرح شد</p>
-                                </div>
-                                <div class="six-news-title">
-                                    <a href="single.html">
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
-                                    </a>
+                        @foreach($editorSuggests as $suggest)
+                            <div class="col-12 col-lg-6 col-xl-4">
+                                <div class="six-news-card">
+                                    <div class="six-news-thumbnail">
+                                        <a href="{{ route('post.show', $suggest) }}">
+                                            <img src="{{ asset($suggest->image['indexArray']['large']) }}" alt="{{ $suggest->title }}">
+                                        </a>
+                                    </div>
+                                    <div class="six-news-top-title">
+                                        <p>{{ $suggest->category->name }}</p>
+                                    </div>
+                                    <div class="six-news-title">
+                                        <a href="{{ route('post.show', $suggest) }}">
+                                            <p>{{ $suggest->title }}</p>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-6 col-xl-4">
-                            <div class="six-news-card">
-                                <div class="six-news-thumbnail">
-                                    <a href="single.html">
-                                        <img src="{{ asset('modules/home/assets/img/thumbnails/11 copy.jpg') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="six-news-top-title">
-                                    <p>در یک نظرسنجی مطرح شد</p>
-                                </div>
-                                <div class="six-news-title">
-                                    <a href="single.html">
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6 col-xl-4">
-                            <div class="six-news-card">
-                                <div class="six-news-thumbnail">
-                                    <a href="single.html">
-                                        <img src="{{ asset('modules/home/assets/img/thumbnails/102 copy.jpg') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="six-news-top-title">
-                                    <p>در یک نظرسنجی مطرح شد</p>
-                                </div>
-                                <div class="six-news-title">
-                                    <a href="single.html">
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6 col-xl-4">
-                            <div class="six-news-card">
-                                <div class="six-news-thumbnail">
-                                    <a href="single.html">
-                                        <img src="{{ asset('modules/home/assets/img/thumbnails/104 copy.jpg') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="six-news-top-title">
-                                    <p>در یک نظرسنجی مطرح شد</p>
-                                </div>
-                                <div class="six-news-title">
-                                    <a href="single.html">
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6 col-xl-4">
-                            <div class="six-news-card">
-                                <div class="six-news-thumbnail">
-                                    <a href="single.html">
-                                        <img src="{{ asset('modules/home/assets/img/thumbnails/105 copy.jpg') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="six-news-top-title">
-                                    <p>در یک نظرسنجی مطرح شد</p>
-                                </div>
-                                <div class="six-news-title">
-                                    <a href="single.html">
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
@@ -311,96 +92,26 @@
                         </div>
                         <div class="new-box-news">
                             <ul>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-                                    </a>
-                                </li>
+
+                                <!-- latest posts -->
+                                @forelse($latestPosts as $latest)
+                                    <li>
+                                        <a href="{{ route('post.show', $latest) }}">
+                                            {{ $latest->title }}
+                                        </a>
+                                    </li>
+                                    @empty
+                                        <li>
+                                            @admin
+                                            <span>درحال حاظر خبری وجود ندارد.</span>
+                                            <a href="{{ route('admin.post') }}" class="btn-link">وارد کردن خبر </a>
+                                            @endadmin
+                                            @guest
+                                                <span class="text-muted">درحال حاظر خبری وجود ندارد.</span>
+                                            @endguest
+                                        </li>
+                                @endforelse
+
                             </ul>
                         </div>
                     </div>
@@ -409,40 +120,29 @@
                     <div class="news-box-card-mini">
                         <div class="news-box-header">
                             <i class="fa-duotone fa-newspaper"></i>
-                            <span>محبوب ترین ها</span>
+                            <span>مطالب داغ</span>
                         </div>
                         <div class="new-box-news">
                             <ul>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</span>
-                                    </a>
-                                </li>
+
+                                @forelse($hotPosts as $hot)
+                                    <li>
+                                        <a href="{{ route('post.show', $hot) }}">
+                                            <span>{{ $hot->title }}</span>
+                                        </a>
+                                    </li>
+                                @empty
+                                    <li>
+                                        @admin
+                                        <span>درحال حاظر خبری وجود ندارد.</span>
+                                        <a href="{{ route('admin.post') }}" class="btn-link">وارد کردن خبر </a>
+                                        @endadmin
+                                        @guest
+                                            <span class="text-muted">درحال حاظر خبری وجود ندارد.</span>
+                                        @endguest
+                                    </li>
+                                @endforelse
+
                             </ul>
                         </div>
                     </div>

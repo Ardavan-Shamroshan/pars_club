@@ -18,42 +18,39 @@ class HomeController extends Controller
      * @return Renderable
      */
     public function index() {
-        // recommended posts
-        $recommendedPosts = Post::query()
-            ->where('published_at', '<=', now())
-            ->where('status', 1)
-            ->where('label', 0)
-            ->get();
-
-        // transfer posts
-        $transferPosts = Post::query()
-            ->where('published_at', '<=', now())
-            ->where('status', 1)
-            ->where('label', 2)
-            ->get();
-
-        // video posts
-        $videoPosts = Post::query()
-            ->where('published_at', '<=', now())
-            ->where('status', 1)
-            ->whereNotIn('label', [0, 1, 2])
-            ->get();
-
-
-        // latest posts
-        $latestPosts = Post::query()
-            ->where('published_at', '<=', now())
-            ->where('status', 1)
-            ->latest()
-            ->take(5)
-            ->get();
-
         // posts
         $posts = Post::query()
             ->where('published_at', '<=', now())
             ->where('status', 1)
             ->latest()
             ->paginate(4);
+
+        // latest posts
+        $latestPosts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->latest()
+            ->take(15)
+            ->get();
+
+        // editor suggest
+        $editorSuggests = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->where('label', 0)
+            ->latest()
+            ->take(6)
+            ->get();
+
+        // hot posts
+        $hotPosts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->where('label', 1)
+            ->latest()
+            ->take(15)
+            ->get();
+
 
         // slides
         $slides = Slide::query()->where('status', 1)
@@ -69,7 +66,7 @@ class HomeController extends Controller
         // setting
         $setting = Setting::query()->first();
 
-        return view('home::index', compact('recommendedPosts', 'transferPosts', 'videoPosts', 'latestPosts', 'posts', 'slides', 'videos', 'setting'));
+        return view('home::index', compact('latestPosts', 'posts', 'slides', 'videos', 'setting', 'editorSuggests', 'hotPosts'));
     }
 
     /**

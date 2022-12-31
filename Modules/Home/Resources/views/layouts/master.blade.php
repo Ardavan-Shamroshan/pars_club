@@ -10,13 +10,13 @@
     <title>@yield('title', 'باشگاه فوتبال پارس برازجان')</title>
 </head>
 
-<body>
+<body onload=startTime()>
 
     {{-- get notification --}}
-    @include('home::layouts.get-notifications')
+    {{--    @include('home::layouts.get-notifications')--}}
 
     {{-- loader --}}
-{{--    @include('home::layouts.loader')--}}
+    {{--    @include('home::layouts.loader')--}}
 
     {{-- header --}}
     @include('home::layouts.header')
@@ -36,6 +36,8 @@
 
             @yield('content')
 
+            {{-- footer --}}
+            @include('home::layouts.footer')
         </div>
     </main>
     <!--Main Content End-->
