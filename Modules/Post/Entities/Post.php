@@ -72,7 +72,7 @@ class Post extends Model
                 $result = 'مطالب داغ';
                 break;
             case 2:
-                $result = 'نقل و انتقالات';
+                $result = 'ورزش جهان';
                 break;
             default:
                 $result = 'ویدیو';

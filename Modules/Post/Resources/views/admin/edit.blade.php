@@ -117,7 +117,7 @@
                                                 <option value="" @selected($post->label == '0')>بدون برچسب</option>
                                                 <option value="0" @selected($post->label == '0')>پیشنهاد سردبیر</option>
                                                 <option value="1" @selected($post->label == '1'))>مطالب داغ</option>
-                                                <option value="2" @selected($post->label == '2'))>نقل و انتقالات</option>
+                                                <option value="2" @selected($post->label == '2'))>ورزش جهان</option>
                                                 <option value="3" @selected($post->label == '3'))>ویدیو</option>
                                             </select>
                                         </div>

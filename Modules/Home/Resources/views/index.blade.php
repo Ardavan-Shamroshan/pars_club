@@ -100,16 +100,16 @@
                                             {{ $latest->title }}
                                         </a>
                                     </li>
-                                    @empty
-                                        <li>
-                                            @admin
-                                            <span>درحال حاظر خبری وجود ندارد.</span>
-                                            <a href="{{ route('admin.post') }}" class="btn-link">وارد کردن خبر </a>
-                                            @endadmin
-                                            @guest
-                                                <span class="text-muted">درحال حاظر خبری وجود ندارد.</span>
-                                            @endguest
-                                        </li>
+                                @empty
+                                    <li>
+                                        @admin
+                                        <span>درحال حاظر خبری وجود ندارد.</span>
+                                        <a href="{{ route('admin.post') }}" class="btn-link">وارد کردن خبر </a>
+                                        @endadmin
+                                        @guest
+                                            <span class="text-muted">درحال حاظر خبری وجود ندارد.</span>
+                                        @endguest
+                                    </li>
                                 @endforelse
 
                             </ul>
@@ -173,22 +173,22 @@
                                 </div>
                             </a>
                         </div>
-{{--                        <div class="col-6">--}}
-{{--                            <a href="#">--}}
-{{--                                <div class="social-btns social-twitter">--}}
-{{--                                    <i class="fa-brands fa-twitter"></i>--}}
-{{--                                    <span>توییتر</span>--}}
-{{--                                </div>--}}
-{{--                            </a>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-6">--}}
-{{--                            <a href="#">--}}
-{{--                                <div class="social-btns social-rss">--}}
-{{--                                    <i class="fa-solid fa-rss"></i>--}}
-{{--                                    <span>آر اس اس</span>--}}
-{{--                                </div>--}}
-{{--                            </a>--}}
-{{--                        </div>--}}
+                        {{--                        <div class="col-6">--}}
+                        {{--                            <a href="#">--}}
+                        {{--                                <div class="social-btns social-twitter">--}}
+                        {{--                                    <i class="fa-brands fa-twitter"></i>--}}
+                        {{--                                    <span>توییتر</span>--}}
+                        {{--                                </div>--}}
+                        {{--                            </a>--}}
+                        {{--                        </div>--}}
+                        {{--                        <div class="col-6">--}}
+                        {{--                            <a href="#">--}}
+                        {{--                                <div class="social-btns social-rss">--}}
+                        {{--                                    <i class="fa-solid fa-rss"></i>--}}
+                        {{--                                    <span>آر اس اس</span>--}}
+                        {{--                                </div>--}}
+                        {{--                            </a>--}}
+                        {{--                        </div>--}}
                     </div>
                 </div>
                 <div class="ad-section mt-3">
@@ -237,128 +237,61 @@
     </div>
     <div class="second-row mt-3">
         <div class="currency-section row gx-3">
-            <div class="currency-first-col col-12 col-lg-6">
-                <div class="currency-gold-price">
-                    <div class="currency-col-title">
-                        <p>
-                            <i class="fa-duotone fa-coin"></i>
-                            <span>قیمت طلا</span>
-                        </p>
-                    </div>
-                    <div class="currency-gold-table mt-3">
-                        <table class="table table-borderless">
-                            <thead>
-                            <tr>
-                                <th>قیمت طلا</th>
-                                <th>قیمت زنده</th>
-                                <th>تغییر</th>
-                                <th class="least">کمترین</th>
-                                <th class="most">بیشترین</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th>طلای 18 عیار
-                                </td>
-                                <td>13,919,000</td>
-                                <td class="price-change inc">
-                                    <i class="price-icon-inc fa-solid fa-chevron-up"></i>
-                                    <span class="currency-percent">(0.53%)</span>
-                                    <span>74,000</span>
-                                </td>
-                                <td class="least">37,740</td>
-                                <td class="most">38,199</td>
-                            </tr>
-                            <tr>
-                                <th>طلای 24 عیار
-                                </td>
-                                <td>13,919,000</td>
-                                <td class="price-change dec">
-                                    <i class="price-icon-inc fa-solid fa-chevron-down"></i>
-                                    <span class="currency-percent">(0.24%)</span>
-                                    <span>32,000</span>
-                                </td>
-                                <td class="least">37,740</td>
-                                <td class="most">38,199</td>
-                            </tr>
-                            <tr>
-                                <th>طلای دست دوم
-                                </td>
-                                <td>13,919,000</td>
-                                <td class="price-change dec">
-                                    <i class="price-icon-inc fa-solid fa-chevron-down"></i>
-                                    <span class="currency-percent">(0.23%)</span>
-                                    <span>32,000</span>
-                                </td>
-                                <td class="least">37,740</td>
-                                <td class="most">38,199</td>
-                            </tr>
-                            </tbody>
-                        </table>
+            @foreach($leagues as $league)
+                <div class="currency-first-col col-12 col-lg-6">
+                    <div class="currency-gold-price">
+                        <div class="currency-col-title">
+                            <p>
+                                <i class="fa-duotone fa-coin"></i>
+                                <span>{{ $league->name }}</span>
+                            </p>
+                        </div>
+                        <div class="currency-gold-table mt-3">
+                            <table class="table table-borderless">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>تیم</th>
+                                    <th>بازی</th>
+                                    <th>برد</th>
+                                    <th class="least">مساوی</th>
+                                    <th class="least">باخت</th>
+                                    <th class="most">تفاضل</th>
+                                    <th>امتیاز</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @forelse($league->teams as $team)
+                                    <tr>
+                                        @if($loop->iteration == 1 || $loop->iteration == 2)
+                                            <td style="border-right: 3px solid #28cb28;">
+                                                <span>{{ $loop->iteration }}</span>
+                                            </td>
+                                        @elseif($loop->iteration == count($league->teams) || $loop->iteration == (count($league->teams) - 1))
+                                            <td style="border-right: 3px solid #cc0000;">
+                                                <span>{{ $loop->iteration }}</span>
+                                            </td>
+                                        @else
+                                            <td>{{ $loop->iteration }}</td>
+                                        @endif
+                                        <td>{{ $team->name }}</td>
+                                        <td>{{ $team->result->matches }}</td>
+                                        <td>{{ $team->result->won }}</td>
+                                        <td>{{ $team->result->deal }}</td>
+                                        <td>{{ $team->result->loss }}</td>
+                                        <td>{{ $team->result->GD }}</td>
+                                        <td>{{ $team->result->points }}</td>
+                                    </tr>
+
+                                @empty
+                                @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="currency-second-col col-12 col-lg-6 mt-3 mt-lg-0">
-                <div class="currency-usd-price">
-                    <div class="currency-col-title">
-                        <p>
-                            <i class="fa-duotone fa-square-dollar"></i>
-                            <span>قیمت ارز</span>
-                        </p>
-                    </div>
-                    <div class="currency-usd-table mt-3">
-                        <table class="table table-borderless">
-                            <thead>
-                            <tr>
-                                <th>قیمت ارز</th>
-                                <th>قیمت زنده</th>
-                                <th>تغییر</th>
-                                <th class="least">کمترین</th>
-                                <th class="most">بیشترین</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th>دلار آمریکا
-                                </td>
-                                <td>32,600</td>
-                                <td class="price-change inc">
-                                    <i class="price-icon-inc fa-solid fa-chevron-up"></i>
-                                    <span class="currency-percent">(0.53%)</span>
-                                    <span>1,200</span>
-                                </td>
-                                <td class="least">31,900</td>
-                                <td class="most">32,800</td>
-                            </tr>
-                            <tr>
-                                <th>یورو
-                                </td>
-                                <td>37,200</td>
-                                <td class="price-change dec">
-                                    <i class="price-icon-inc fa-solid fa-chevron-down"></i>
-                                    <span class="currency-percent">(0.24%)</span>
-                                    <span>2,000</span>
-                                </td>
-                                <td class="least">37,000</td>
-                                <td class="most">38,199</td>
-                            </tr>
-                            <tr>
-                                <th>درهم امارات
-                                </td>
-                                <td>22,000</td>
-                                <td class="price-change dec">
-                                    <i class="price-icon-inc fa-solid fa-chevron-down"></i>
-                                    <span class="currency-percent">(0.24%)</span>
-                                    <span>2,400</span>
-                                </td>
-                                <td class="least">20,200</td>
-                                <td class="most">23,400</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </div>
     <div class="third-row mt-3">
@@ -368,7 +301,7 @@
                     <div class="sport-col-title">
                         <p>
                             <i class="fa-duotone fa-futbol"></i>
-                            <span>ورزشی</span>
+                            <span>اخبار ورزش جهان</span>
                         </p>
                         <a href="archive.html" class="main-see-all-link">
                             <span>مشاهده همه</span>
@@ -626,17 +559,17 @@
             </div>
             <div class="video-col col-12 col-lg-8 mt-3">
                 <div class="main-video-player">
-                    <video class="video-js" poster="{{ asset('modules/home/assets/img/thumbnails/12 copy.jpg') }}" width="100%" height="100%" disablePictureInPicture controls controlsList="nodownload noplaybackrate" data-setup="{}">
-                        <source src="{{ asset('modules/home/assets/videos/footage.mp4') }}" type="video/mp4">
+                    <video class="video-js" poster="{{ asset($setting->logo) }}" width="100%" height="100%" disablePictureInPicture controls controlsList="nodownload noplaybackrate" data-setup="{}">
+                        <source src="{{ asset($video->video) }}" type="video/mp4">
                     </video>
                 </div>
                 <div class="main-video-player-title mt-3">
                     <a href="single.html">
-                        <span>ازدواج آسان برای جوانان + فیلم</span>
+                        <span>{{ $video->title }}</span>
                     </a>
                 </div>
                 <div class="main-video-player-description">
-                    <p>ویدئویی در ارتباط با ازدواج آسان برای جوانان منتشر شده است.</p>
+                    <p>{!! $video->description  !!}</p>
                 </div>
             </div>
             <div class="archive-col col-12 col-lg-4 mt-3">

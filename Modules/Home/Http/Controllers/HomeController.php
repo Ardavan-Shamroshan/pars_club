@@ -5,6 +5,7 @@ namespace Modules\Home\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\League\Entities\League;
 use Modules\Post\Entities\Post;
 use Modules\Setting\Entities\Setting;
 use Modules\Setting\Http\Requests\SettingRequest;
@@ -51,6 +52,15 @@ class HomeController extends Controller
             ->take(15)
             ->get();
 
+        // transfer posts
+        $transferPosts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->where('label', 2)
+            ->latest()
+            ->take(15)
+            ->get();
+
         // banner post
         // randomly chooses a single post from is-banner posts
         $banner = Post::query()
@@ -61,16 +71,22 @@ class HomeController extends Controller
             ->first();
 
 
+        // leagues
+        $leagues = League::all();
+
+
         // slides
         $slides = Slide::query()->where('status', 1)
             ->latest()
             ->get();
 
-        // slides
-        $videos = VideoGallery::query()->where('status', 1)
+        // video
+        $video = VideoGallery::query()->where('status', 1)
             ->latest()
-            ->take(3)
-            ->get();
+            ->inRandomOrder()
+            ->first();
+
+
 
         // setting
         $setting = Setting::query()->first();
@@ -80,9 +96,11 @@ class HomeController extends Controller
             'posts',
             'editorSuggests',
             'hotPosts',
+            'transferPosts',
             'banner',
+            'leagues',
             'slides',
-            'videos',
+            'video',
             'setting',
         ));
     }

@@ -105,7 +105,7 @@
                                                 <option value="">بدون برچسب</option>
                                                 <option value="0">پیشنهاد سردبیر</option>
                                                 <option value="1">مطالب داغ</option>
-                                                <option value="2">نقل و انتقالات</option>
+                                                <option value="2">ورزش جهان</option>
                                                 <option value="3">ویدیو</option>
                                             </select>
                                         </div>

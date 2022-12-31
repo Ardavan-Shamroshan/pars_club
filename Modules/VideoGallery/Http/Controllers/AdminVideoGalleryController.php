@@ -113,18 +113,18 @@ class AdminVideoGalleryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy(VideoGallery $videogallery) {
-        $videogallery->delete();
+    public function destroy(VideoGallery $video) {
+        $video->delete();
         toast('داده مورد نظر با موفقیت حذف شد', 'success');
         return redirect()->route('admin.videogallery');
     }
 
-    public function status(VideoGallery $videogallery) {
-        $videogallery->status = $videogallery->status == 0 ? 1 : 0;
-        $result = $videogallery->save();
+    public function status(VideoGallery $video) {
+        $video->status = $video->status == 0 ? 1 : 0;
+        $result = $video->save();
 
         if ($result) {
-            if ($videogallery->status == 0)
+            if ($video->status == 0)
                 return response()->json(['status' => true, 'checked' => false,
                 ]);
             else
