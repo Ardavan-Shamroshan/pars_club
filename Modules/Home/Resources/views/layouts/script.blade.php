@@ -1,11 +1,10 @@
-<script type="text/javascript" src="{{ asset('modules/home/assets/js/jquery.js') }}"></script>
-<script type="text/javascript" src="{{ asset('modules/home/assets/js/popper.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('modules/home/assets/js/bootstrap.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('modules/home/assets/js/theme-scripts.js') }}"></script>
-<script type="text/javascript" src="{{ asset('modules/home/assets/js/theme-main.js') }}"></script>
-<script src="{{ asset('modules/home/assets/plugins/bootstrap/js/bootstrap-rtl.js') }}"></script>
-
-<!-- Right-sidebar js -->
-<script src="{{ asset('modules/admin/assets/plugins/sidebar/sidebar-rtl.js') }}"></script>
+<script src="{{ asset('modules/home/assets/ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js') }}"></script>
+<script src="{{ asset('modules/home/assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('modules/home/assets/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('modules/home/assets/js/video.min.js') }}"></script>
+<script src="{{ asset('modules/home/assets/js/all.min.js') }}"></script>
+<script src="{{ asset('modules/home/assets/js/themejs.js') }}"></script>
+<script src="{{ asset('modules/home/assets/js/getNotification.js') }}"></script>
+<script src="{{ asset('modules/home/assets/js/carousel.js') }}"></script>
 
 

@@ -19,7 +19,9 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function register() {
-        //
+//        $this->app->bind('path.public', function() {
+//            return base_path().'/../public_html';
+//        });
     }
 
     /**
@@ -54,7 +56,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // home right sidebar
-        view()->composer('home::layouts.right-sidebar', function ($view) {
+        view()->composer('home::layouts.mobile-menu', function ($view) {
             // hot posts
             $view->with('hotPosts',  // hot posts
                 Post::query()
@@ -67,7 +69,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // home left sidebar
-        view()->composer('home::layouts.left-sidebar', function ($view) {
+        view()->composer('home::layouts.get-notifications', function ($view) {
             // team results
             $view->with('results',
                 TeamResult::query()

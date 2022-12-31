@@ -9040,7 +9040,7 @@ a.text-dark:hover {
     position: absolute;
     background-color: #fff;
     display: none;
-    top: 45px;
+    top: 40px;
     right: 0;
     width: 160px;
     z-index: 99;
@@ -9064,7 +9064,7 @@ a.text-dark:hover {
     color: white;
     overflow: hidden;
     padding: 12px 15px;
-    background: #0057A2;
+    background: #181818;
     -webkit-transition: .3s all ease;
     -moz-transition: .3s all ease;
     -o-transition: .3s all ease;
@@ -10538,7 +10538,7 @@ footer.footer-2 .links-footer ul li a:hover,
 
 .header-2 .is-sticky {
     /* border-bottom: 3px solid #ffc500 !important; */
-    background-color: #0057a2;
+    background-color: #181818;
 }
 
 header,
@@ -18414,7 +18414,7 @@ table.career tr td img {
 }
 
 .bg-sky {
-    background: #0057a2;
+    background: #181818;
 }
 
 .text-dark-sky {
@@ -18631,4 +18631,11 @@ table.career tr td img {
 
 .breadcrumb-item:before {
     float: none !important
+}
+
+.bg-dim {
+    background-color: #181818 !important;
+}
+.bg-dim-light {
+    background-color: #282828 !important;
 }

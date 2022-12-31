@@ -26,9 +26,9 @@ class VideoToolsService
      */
     protected function provider() {
         // set properties
-        $this->getVideoDirectory() ?? $this->setVideoDirectory(date('Y') . DIRECTORY_SEPARATOR . date('m') . DIRECTORY_SEPARATOR . date('d'));
-        $this->getVideoName() ?? $this->setVideoName(time());
-        $this->getVideoFormat() ?? $this->setVideoFormat($this->video->extension());
+            $this->getVideoDirectory() ?? $this->setVideoDirectory(date('Y') . DIRECTORY_SEPARATOR . date('m') . DIRECTORY_SEPARATOR . date('d'));
+            $this->getVideoName() ?? $this->setVideoName(time());
+            $this->getVideoFormat() ?? $this->setVideoFormat($this->video->extension());
 
         // set final video directory
         $finalVideoDirectory = empty($this->getExclusiveDirectory()) ? $this->getVideoDirectory() : $this->getExclusiveDirectory() . DIRECTORY_SEPARATOR . $this->getVideoDirectory();
@@ -105,7 +105,7 @@ class VideoToolsService
     }
 
     protected function checkDirectory($videoDirectory) {
-        if (!file_exists($videoDirectory)) if (!mkdir($videoDirectory, 666, true) && !is_dir($videoDirectory)) {
+        if (!file_exists($videoDirectory)) if (!mkdir($videoDirectory, 0755, true) && !is_dir($videoDirectory)) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $videoDirectory));
         }
 

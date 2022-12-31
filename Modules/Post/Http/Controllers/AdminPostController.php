@@ -47,8 +47,8 @@ class AdminPostController extends Controller
         $realTimestampStart = substr($request->published_at, 0, 10);
         $inputs['published_at'] = date('Y-m-d H:i:s', (int)$realTimestampStart);
 
-        // $inputs['author_id'] = Auth::id();
-        $inputs['author_id'] = User::query()->first()->id;
+         $inputs['author_id'] = Auth::id();
+//        $inputs['author_id'] = User::query()->first()->id;
 
         // Image upload
         if ($request->hasFile('image')) {

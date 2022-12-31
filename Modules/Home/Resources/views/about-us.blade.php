@@ -20,7 +20,7 @@
             <div class="row">
                 <!-- right aside -->
                 <aside class="col-sm-12 col-lg-4 col-xl-3 px-0 h-100">
-                    @include('home::layouts.right-sidebar')
+                    @include('home::layouts.mobile-menu')
                 </aside>
                 <!-- end right aside -->
                 <!-- center -->
@@ -36,9 +36,7 @@
 
                             <div class="text-body">
 
-                            {!! $setting->description !!}
-
-
+                                {!! $setting->description !!}
 
                             </div>
 
@@ -65,13 +63,12 @@
                 <!-- end center -->
                 <!-- left aside -->
                 <aside class="col-sm-12 col-lg-4 col-xl-3 h-100">
-                    @include('home::layouts.left-sidebar')
+                    @include('home::layouts.get-notifications')
                 </aside>
                 <!-- end left side -->
             </div>
         </div>
         <!-- end content -->
-
 
     </section>
 

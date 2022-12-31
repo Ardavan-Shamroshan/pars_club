@@ -2,9 +2,18 @@
 
 namespace Modules\Auth\Http\Controllers;
 
+use App\Http\Services\Message\Email\EmailService;
+use App\Http\Services\Message\MessageService;
+use App\Http\Services\Message\SMS\SmsService;
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Str;
+use Modules\Auth\Entities\Otp;
 use Modules\Auth\Http\Requests\AuthRequest;
 
 class AuthController extends Controller
@@ -23,11 +32,11 @@ class AuthController extends Controller
         if (filter_var($inputs['id'], FILTER_VALIDATE_EMAIL)) {
             $type = 1; // 1 => email
             $user = User::where('email', $inputs['id'])->first();
-            if ($user === null)
+            if ($user === null) {
+                $newUser['name'] = $inputs['name'];
                 $newUser['email'] = $inputs['id'];
-        }
-
-        //check id is mobile or not
+            }
+        } //check id is mobile or not
         elseif (preg_match('/^(\+98|98|0)9\d{9}$/', $inputs['id'])) {
             $type = 0; // 0 => mobile;
 
@@ -38,12 +47,14 @@ class AuthController extends Controller
             $inputs['id'] = str_replace('+98', '', $inputs['id']);
             $user = User::where('mobile', $inputs['id'])->first();
 
-            if ($user === null)
+            if ($user === null) {
+                $newUser['name'] = $inputs['name'];
                 $newUser['mobile'] = $inputs['id'];
-
+            }
         } else {
             $errorText = 'شناسه ورودی شما نه شماره موبایل است نه ایمیل';
-            return redirect()->route('auth.login-register-form')->withErrors(['id' => $errorText]);
+            toast($errorText, 'error');
+            return redirect()->route('auth.login-register-form');
         }
 
         // user not registered before
@@ -71,7 +82,7 @@ class AuthController extends Controller
             $smsService = new SmsService();
             $smsService->setFrom(Config::get('sms.otp_from'));
             $smsService->setTo(['0' . $user->mobile]);
-            $smsService->setText("مرکز آپا دانشگاه چمران اهواز  \n  کد تایید : $otpCode");
+            $smsService->setText("باشگاه فرهنگی ورزشی پارس برازجان  \n  کد تایید : $otpCode");
             $smsService->setIsFlash(true);
             $messagesService = new MessageService($smsService);
             $messagesService->send();
@@ -80,40 +91,46 @@ class AuthController extends Controller
             $emailService = new EmailService();
             $details = [
                 'title' => 'ایمیل فعال سازی',
-                'body' => "کد فعال سازی شما : $otpCode",
+                'subject' => 'کد فعال سازی وب سایت باشگاه فرهنگی ورزشی پارس برازجان',
+                'message' => "کد فعال سازی شما : $otpCode",
+                'response' => ''
             ];
             $emailService->setDetails($details);
-            $emailService->setFrom('no-reply@gmail.com', 'Apa.scu.ac.ir');
+            $emailService->setFrom('no-reply@gmail.com', 'fcpars.ir');
             $emailService->setSubject('کد احراز هویت');
             $emailService->setTo($inputs['id']);
             $messagesService = new MessageService($emailService);
             $messagesService->send();
         }
 
-        return redirect()->route('auth.user.login-confirm-form', $token);
+        return redirect()->route('auth.login-confirm-form', $token);
     }
 
     public function loginConfirmForm($token) {
         $otp = Otp::query()->where('token', $token)->firstOrFail();
-        if ($otp === null)
-            return redirect()->route('auth.user.login-register-form')->withErrors(['id' => 'آدرس وارد شده نا معتبر می باشد']);
-        return view('app.user.auth.login-confirm', compact('token', 'otp'));
+        if ($otp === null) {
+            toast('آدرس وارد شده نا معتبر می باشد', 'error');
+            return redirect()->route('auth.login-register-form');
+        }
+        return view('auth::login-confirm', compact('token', 'otp'));
     }
 
-    public function loginConfirm($token, LoginRegisterRequest $request) {
+    public function loginConfirm($token, AuthRequest $request) {
         $inputs = $request->all();
         $otp = Otp::query()->where('token', $token)
             ->where('used', 0)
             ->where('created_at', '>=', Carbon::now()->subMinutes(5)->toDateTimeString())
             ->first();
 
-        if ($otp === null)
-            return redirect()->route('auth.user.login-register-form', $token)->withErrors(['id', 'کد وارد شده نامعتبر است']);
-
+        if ($otp === null) {
+            toast('کد وارد شده نامعتبر است', 'error');
+            return redirect()->route('auth.login-register-form', $token);
+        }
         // otp not match
-        if ($otp->otp_code !== $inputs['otp'])
-            return redirect()->route('auth.user.login-confirm-form', $token)->withErrors(['otp', 'کد وارد شده صحیح نمی باشد']);
-
+        if ($otp->otp_code !== $inputs['otp']) {
+            toast('کد وارد شده صحیح نمی باشد', 'error');
+            return redirect()->route('auth.login-confirm-form', $token);
+        }
 
         // everything is OK!
         $otp->update(['used' => 1]);
@@ -131,9 +148,10 @@ class AuthController extends Controller
 
     public function loginResendOtp($token) {
         $otp = Otp::query()->where('token', $token)->where('created_at', '<=', Carbon::now()->subMinutes(5)->toDateTimeString())->firstOrFail();
-        if ($otp === null)
-            return redirect()->route('auth.user.login-register-form', $token)->withErrors(['id' => 'آدرس وارد شده نا معتبر است']);
-
+        if ($otp === null) {
+            toast('آدرس وارد شده نا معتبر است', 'error');
+            return redirect()->route('auth.login-register-form', $token);
+        }
         $user = $otp->user()->first();
 
         // create otp code
@@ -154,7 +172,7 @@ class AuthController extends Controller
             $smsService = new SmsService();
             $smsService->setFrom(Config::get('sms.otp_from'));
             $smsService->setTo(['0' . $user->mobile]);
-            $smsService->setText("مرکز آپا دانشگاه چمران اهواز  \n  کد تایید : $otpCode");
+            $smsService->setText("باشگاه فرهنگی ورزشی پارس برازجان  \n  کد تایید : $otpCode");
             $smsService->setIsFlash(true);
             $messagesService = new MessageService($smsService);
             $messagesService->send();
@@ -163,17 +181,19 @@ class AuthController extends Controller
             $emailService = new EmailService();
             $details = [
                 'title' => 'ایمیل فعال سازی',
-                'body' => "کد فعال سازی شما : $otpCode",
+                'subject' => 'کد فعال سازی وب سایت باشگاه فرهنگی ورزشی پارس برازجان',
+                'message' => "کد فعال سازی شما : $otpCode",
+                'response' => ''
             ];
             $emailService->setDetails($details);
-            $emailService->setFrom('no-reply@gmail.com', 'Apa.scu.ac.ir');
+            $emailService->setFrom('no-reply@gmail.com', 'fcpars.ir');
             $emailService->setSubject('کد احراز هویت');
             $emailService->setTo($otp->login_id);
             $messagesService = new MessageService($emailService);
             $messagesService->send();
         }
 
-        return redirect()->route('auth.user.login-confirm-form', $token);
+        return redirect()->route('auth.login-confirm-form', $token);
     }
 
     public function logout() {

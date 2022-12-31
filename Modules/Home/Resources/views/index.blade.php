@@ -3,707 +3,1129 @@
     {{ $setting->title }}
 @endsection
 @section('content')
-
-    <!-- hero banner -->
-    <section>
-        <div class="hero-header hero-bg rounded-top" style="background:url({{ asset('modules/home/img/locations/5.jpg') }});">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 no-margin">
-                        <h1>{{ $setting->title }}</h1>
-                    </div>
-                    <div class="col-lg-12 text-center">
-                        <div class="box-start rounded">
-                            {{--                            <div class="row align-items-center">--}}
-                            {{--                                <div class="col-lg-4">--}}
-                            {{--                                    <div class="info-match">--}}
-                            {{--                                        <div class="row">--}}
-                            {{--                                            <div class="col">--}}
-                            {{--                                                <h4>--}}
-                            {{--                                                    <span>تاریخ شروع</span>30 jan 2018 </h4>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="col">--}}
-                            {{--                                                <h4>--}}
-                            {{--                                                    <span>luzhniki ورزشگاه</span>مسکو </h4>--}}
-                            {{--                                            </div>--}}
-                            {{--                                        </div>--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
-                            {{--                                <div class="col-lg-4">--}}
-                            {{--                                    <div class="horizontal-next-teams">--}}
-                            {{--                                        <div class="row align-items-center">--}}
-                            {{--                                            <div class="col">--}}
-                            {{--                                                <a href="single-team.html">--}}
-                            {{--                                                    <img src="{{ asset('modules/home/img/clubs-logos/colombia.png') }}" alt="">--}}
-                            {{--                                                    <span>کلمبیا</span>--}}
-                            {{--                                                </a>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="col">--}}
-                            {{--                                                <strong>در مقابل</strong>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="col">--}}
-                            {{--                                                <a href="single-team.html">--}}
-                            {{--                                                    <img src="{{ asset('modules/home/img/clubs-logos/rusia.png') }}" alt="">--}}
-                            {{--                                                    <span>rusia</span>--}}
-                            {{--                                                </a>--}}
-                            {{--                                            </div>--}}
-                            {{--                                        </div>--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
-                            {{--                                <div class="col-lg-4">--}}
-                            {{--                                    <div class="horizontal-next-counter">--}}
-                            {{--                                        <div id="event-one" class="counter"></div>--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
-
-                            @if($setting->logo)
-                                <img src="{{ asset($setting->logo) }}" alt="Logo" class="log_img rounded-circle border" width="150">
-                            @else
-                                <img src="{{ asset('modules/home/img/clubs-logos/club_logo.jpg') }}" alt="Logo" class="log_img rounded-circle border" width="150">
-                            @endif
-
-                        </div>
-                    </div>
+    <div class="first-row row g-3 mt-3">
+        <div class="main-col col-12 col-lg-6">
+            <div class="main-col-card">
+                <div class="main-col-image">
+                    <a href="single.html">
+                        <img src="{{ asset('modules/home/assets/img/thumbnails/101 copy.jpg') }}" alt="img">
+                    </a>
+                </div>
+                <div class="main-col-title">
+                    <a href="single.html">
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+                    </a>
                 </div>
             </div>
-        </div>
-
-    </section>
-
-
-    <!-- breaking news -->
-    <section>
-        <div class="col-12">
-            <div class="row">
-                <div class="bg-navy w-25 text-center">
-                    <h4>خبر فوری</h4>
-                </div>
-                <div class="bg-light w-75">
-                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="3000">
-                        <div class="row justify-content-around">
-                            <div class="col-10">
-                                <div class="carousel-inner my-2">
-
-                                    @forelse($latestPosts as $key => $latest)
-                                        <div class="carousel-item {{ $key != 0 ?: 'active'}}">
-                                            <a href="{{ route('post.show', $latest) }}" class="text-dark">
-                                                <span>{{ $latest->title }}</span>
-                                            </a>
-                                        </div>
-                                    @empty
-                                        <div class="carousel-item active">
-                                            <span href="#" class="text-muted">
-                                                <span><small>درحال حاضر خبری برای نمایش وجود ندارد! @admin <a href="{{ route('admin.post') }}" class="btn-link links links-footer text-primary">وارد کردن خبر</a> @endadmin</small></span>
-                                            </span>
-                                        </div>
-                                    @endforelse
-
-                                </div>
+            <div class="col-12 mt-3">
+                <div class="main-news">
+                    <div class="main-news-card">
+                        <div class="main-news-card-thumbnail">
+                            <a href="single.html">
+                                <img src="{{ asset('modules/home/assets/img/thumbnails/1 (1) copy.jpg') }}" alt="img">
+                            </a>
+                        </div>
+                        <div class="col ps-3">
+                            <div class="main-news-top-title d-none d-sm-block">
+                                <p>خودروسازی</p>
                             </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end breaking news -->
-
-    <!-- main news -->
-    <section class="container main-news h-100">
-        <div class="row shadow my-4">
-            <div class="col-md-8 col-sm-12">
-
-                <div class="panel-box">
-                    <div class="hero-header">
-                        <div id="hero-slider-2" class="hero-slider rounded">
-
-                            @forelse($recommendedPosts as $recommendedPost)
-                                <a href="{{ route('post.show', $recommendedPost) }}">
-                                    <div class="item-slider" style="background:url({{  asset(str_replace("\\", '/', $recommendedPost->image['indexArray']['large'])) }});">
-                                        <div class="container">
-                                            <div class="row align-items-center justify-content-center text-center">
-                                                <div class="col-lg-7">
-                                                    <div class="info-slider">
-                                                        <h1>{{ $recommendedPost->title }}</h1>
-                                                        <p class="small">{{ $recommendedPost->summary }}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
+                            <div class="main-news-card-title">
+                                <a href="single.html">
+                                    <p>رونمایی از خودروی جدید فراری در سال 2023</p>
                                 </a>
-                            @empty
-                                <a href="#">
-                                    <div class="item-slider relative" style="background:url({{ asset('modules/home/img/404-football.gif') }})"></div>
+                            </div>
+                            <div class="main-news-card-except">
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="main-news-card">
+                        <div class="main-news-card-thumbnail">
+                            <a href="single.html">
+                                <img src="{{ asset('modules/home/assets/img/thumbnails/100 copy.jpg') }}" alt="img">
+                            </a>
+                        </div>
+                        <div class="col ps-3">
+                            <div class="main-news-top-title d-none d-sm-block">
+                                <p>نجوم</p>
+                            </div>
+                            <div class="main-news-card-title">
+                                <a href="single.html">
+                                    <p>چرا باید از پیرامون اطراف خود با خبر باشیم ؟</p>
                                 </a>
-                            @endforelse
-
+                            </div>
+                            <div class="main-news-card-except">
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
+                            </div>
                         </div>
+                    </div>
+                    <hr>
+                    <div class="main-news-card">
+                        <div class="main-news-card-thumbnail">
+                            <a href="single.html">
+                                <img src="{{ asset('modules/home/assets/img/thumbnails/103 (1) copy.jpg') }}" alt="img">
+                            </a>
+                        </div>
+                        <div class="col ps-3">
+                            <div class="main-news-top-title d-none d-sm-block">
+                                <p>خودروسازی</p>
+                            </div>
+                            <div class="main-news-card-title">
+                                <a href="single.html">
+                                    <p>رونمایی از خودروی جدید فراری در سال 2023</p>
+                                </a>
+                            </div>
+                            <div class="main-news-card-except">
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="main-news-card">
+                        <div class="main-news-card-thumbnail">
+                            <a href="single.html">
+                                <img src="{{ asset('modules/home/assets/img/thumbnails/103 (1) copy.jpg') }}" alt="img">
+                            </a>
+                        </div>
+                        <div class="col ps-3">
+                            <div class="main-news-top-title d-none d-sm-block">
+                                <p>نجوم</p>
+                            </div>
+                            <div class="main-news-card-title">
+                                <a href="single.html">
+                                    <p>چرا باید از پیرامون اطراف خود با خبر باشیم ؟</p>
+                                </a>
+                            </div>
+                            <div class="main-news-card-except">
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="main-news-card">
+                        <div class="main-news-card-thumbnail">
+                            <a href="single.html">
+                                <img src="{{ asset('modules/home/assets/img/thumbnails/108 copy.jpg') }}" alt="img">
+                            </a>
+                        </div>
+                        <div class="col ps-3">
+                            <div class="main-news-top-title d-none d-sm-block">
+                                <p>خودروسازی</p>
+                            </div>
+                            <div class="main-news-card-title">
+                                <a href="single.html">
+                                    <p>رونمایی از خودروی جدید فراری در سال 2023</p>
+                                </a>
+                            </div>
+                            <div class="main-news-card-except">
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="main-news-card">
+                        <div class="main-news-card-thumbnail">
+                            <a href="single.html">
+                                <img src="{{ asset('modules/home/assets/img/thumbnails/103 (1) copy.jpg') }}" alt="img">
+                            </a>
+                        </div>
+                        <div class="col ps-3">
+                            <div class="main-news-top-title d-none d-sm-block">
+                                <p>نجوم</p>
+                            </div>
+                            <div class="main-news-card-title">
+                                <a href="single.html">
+                                    <p>چرا باید از پیرامون اطراف خود با خبر باشیم ؟</p>
+                                </a>
+                            </div>
+                            <div class="main-news-card-except">
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="main-news-card">
+                        <div class="main-news-card-thumbnail">
+                            <a href="single.html">
+                                <img src="{{ asset('modules/home/assets/img/thumbnails/105 copy.jpg') }}" alt="img">
+                            </a>
+                        </div>
+                        <div class="col ps-3">
+                            <div class="main-news-top-title d-none d-sm-block">
+                                <p>خودروسازی</p>
+                            </div>
+                            <div class="main-news-card-title">
+                                <a href="single.html">
+                                    <p>رونمایی از خودروی جدید فراری در سال 2023</p>
+                                </a>
+                            </div>
+                            <div class="main-news-card-except">
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="main-news-card">
+                        <div class="main-news-card-thumbnail">
+                            <a href="single.html">
+                                <img src="{{ asset('modules/home/assets/img/thumbnails/12 copy.jpg') }}" alt="img">
+                            </a>
+                        </div>
+                        <div class="col ps-3">
+                            <div class="main-news-top-title d-none d-sm-block">
+                                <p>نجوم</p>
+                            </div>
+                            <div class="main-news-card-title">
+                                <a href="single.html">
+                                    <p>چرا باید از پیرامون اطراف خود با خبر باشیم ؟</p>
+                                </a>
+                            </div>
+                            <div class="main-news-card-except">
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="open-all-archive">
+                        <a href="archive.html">
+                            <span>مشاهده آرشیو اخبار</span>
+                        </a>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <div class="">
-                    <div class="my-3 titles"><h4 class="border-0"><i class="fe fe-list"></i> مطالب پیشنهادی</h4>
-                    </div>
-                    <div class="info-panel py-1">
-                        <div class="panel panel-primary tabs-style-3 border-0">
-                            <div class="tab-menu-heading">
-                                <div class="tabs-menu ">
-                                    <!-- Tabs -->
-                                    <ul class="nav panel-tabs small">
-                                        <li class="">
-                                            <a href="#tab11" data-bs-toggle="tab" class="active px-2 py-1 "> آخرین اخبار</a>
-                                        </li>
-                                        <li class="">
-                                            <a href="#tab12" data-bs-toggle="tab" class="px-2 py-1"> پیشنهاد سردبیر</a>
-                                        </li>
-                                        <li class="">
-                                            <a href="#tab13" data-bs-toggle="tab" class="px-2 py-1"> نقل و انتقالات</a>
-                                        </li>
-                                        <li class="">
-                                            <a href="#tab14" data-bs-toggle="tab" class="px-2 py-1"> ویدیو</a>
-                                        </li>
-                                    </ul>
-
+                <div class="six-news mt-3">
+                    <div class="six-news-all row gx-3">
+                        <div class="col-12 col-lg-6 col-xl-4">
+                            <div class="six-news-card">
+                                <div class="six-news-thumbnail">
+                                    <a href="single.html">
+                                        <img src="{{ asset('modules/home/assets/img/thumbnails/108 copy.jpg') }}" alt="">
+                                    </a>
                                 </div>
-                            </div>
-                            <div class="panel-body tabs-menu-body p-0">
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tab11">
-                                        <ul class="list-news">
-                                            @forelse($latestPosts as $latestNews)
-                                                <li>
-                                                    <small><i class="fa fa-circle"></i><a href="{{ route('post.show', $latestNews) }}"> {{ $latestNews->title }} </a></small>
-                                                </li>
-                                            @empty
-                                                <li class="text-muted">
-                                                    <small>درحال حاضر خبری برای نمایش وجود ندارد! @admin
-                                                        <a href="{{ route('admin.post') }}" class="btn-link links links-footer text-primary">وارد کردن خبر</a> @endadmin
-                                                    </small>
-                                                </li>
-                                            @endforelse
-                                        </ul>
-                                    </div>
-
-                                    <div class="tab-pane" id="tab12">
-                                        <ul class="list-news">
-                                            @forelse($recommendedPosts as $recommendedNews)
-                                                <li>
-                                                    <small><i class="fa fa-circle"></i><a href="{{ route('post.show', $recommendedNews) }}"> {{ $recommendedNews->title }} </a></small>
-                                                </li>
-                                            @empty
-                                                <li class="text-muted">
-                                                    <small>درحال حاضر خبری برای نمایش وجود ندارد! @admin
-                                                        <a href="{{ route('admin.post') }}" class="btn-link links links-footer text-primary">وارد کردن خبر</a> @endadmin
-                                                    </small></li>
-                                            @endforelse
-                                        </ul>
-
-                                    </div>
-                                    <div class="tab-pane" id="tab13">
-                                        <ul class="list-news">
-                                            @forelse($transferPosts as $transfer)
-                                                <li>
-
-                                                    <small><i class="fa fa-circle"></i><a href="{{ route('post.show', $transfer) }}"> {{ $transfer->title }} </a></small>
-                                                </li>
-                                            @empty
-                                                <li class="text-muted">
-                                                    <small>درحال حاضر خبری برای نمایش وجود ندارد! @admin
-                                                        <a href="{{ route('admin.post') }}" class="btn-link links links-footer text-primary">وارد کردن خبر</a> @endadmin
-                                                    </small></li>
-                                            @endforelse
-                                        </ul>
-                                    </div>
-                                    <div class="tab-pane" id="tab14">
-                                        <ul class="list-news">
-
-                                            @forelse($videoPosts as $video)
-                                                <li>
-                                                    <small><i class="fa fa-circle"></i><a href="{{ route('post.show', $video) }}"> {{ $video->title }} </a></small>
-                                                </li>
-                                            @empty
-                                                <li class="text-muted">
-                                                    <small>درحال حاضر خبری برای نمایش وجود ندارد! @admin
-                                                        <a href="{{ route('admin.post') }}" class="btn-link links links-footer text-primary">وارد کردن خبر</a> @endadmin
-                                                    </small></li>
-                                            @endforelse
-
-                                        </ul>
-                                    </div>
+                                <div class="six-news-top-title">
+                                    <p>در یک نظرسنجی مطرح شد</p>
+                                </div>
+                                <div class="six-news-title">
+                                    <a href="single.html">
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-
+                        <div class="col-12 col-lg-6 col-xl-4">
+                            <div class="six-news-card">
+                                <div class="six-news-thumbnail">
+                                    <a href="single.html">
+                                        <img src="{{ asset('modules/home/assets/img/thumbnails/12 copy.jpg') }}" alt="">
+                                    </a>
+                                </div>
+                                <div class="six-news-top-title">
+                                    <p>در یک نظرسنجی مطرح شد</p>
+                                </div>
+                                <div class="six-news-title">
+                                    <a href="single.html">
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 col-xl-4">
+                            <div class="six-news-card">
+                                <div class="six-news-thumbnail">
+                                    <a href="single.html">
+                                        <img src="{{ asset('modules/home/assets/img/thumbnails/11 copy.jpg') }}" alt="">
+                                    </a>
+                                </div>
+                                <div class="six-news-top-title">
+                                    <p>در یک نظرسنجی مطرح شد</p>
+                                </div>
+                                <div class="six-news-title">
+                                    <a href="single.html">
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 col-xl-4">
+                            <div class="six-news-card">
+                                <div class="six-news-thumbnail">
+                                    <a href="single.html">
+                                        <img src="{{ asset('modules/home/assets/img/thumbnails/102 copy.jpg') }}" alt="">
+                                    </a>
+                                </div>
+                                <div class="six-news-top-title">
+                                    <p>در یک نظرسنجی مطرح شد</p>
+                                </div>
+                                <div class="six-news-title">
+                                    <a href="single.html">
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 col-xl-4">
+                            <div class="six-news-card">
+                                <div class="six-news-thumbnail">
+                                    <a href="single.html">
+                                        <img src="{{ asset('modules/home/assets/img/thumbnails/104 copy.jpg') }}" alt="">
+                                    </a>
+                                </div>
+                                <div class="six-news-top-title">
+                                    <p>در یک نظرسنجی مطرح شد</p>
+                                </div>
+                                <div class="six-news-title">
+                                    <a href="single.html">
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 col-xl-4">
+                            <div class="six-news-card">
+                                <div class="six-news-thumbnail">
+                                    <a href="single.html">
+                                        <img src="{{ asset('modules/home/assets/img/thumbnails/105 copy.jpg') }}" alt="">
+                                    </a>
+                                </div>
+                                <div class="six-news-top-title">
+                                    <p>در یک نظرسنجی مطرح شد</p>
+                                </div>
+                                <div class="six-news-title">
+                                    <a href="single.html">
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- end main news -->
-
-    <!-- ads banner -->
-{{--    <div class="ads-banner">--}}
-{{--        <div class="row my-2 shadow panel-box">--}}
-{{--            <div>--}}
-{{--                <div class="titles no-margin bg-light">--}}
-{{--                    <h4><i class="fe fe-link"></i>تبلیغات</h4>--}}
-{{--                </div>--}}
-{{--                <div class="col-12 pt-2 text-cener">--}}
-{{--                    <a rel="nofollow noopener" href="https://ck.yektanet.com/b/click?VERSION=2&amp;impression=6dgrYKYxe%2FA%2BbLRzf0bfLemo7ux%2BHCe0lH2wvTYocV%2BsGDe42UMfRuVNbOIlgHVMXoWeZuw%2FOP1aZGDEKetA1mU5RYsXmxGgaxZdEwaYMRGTvxLTS4HdNtIcsnv44ph3IojM2N95Ov0rIjYf5Kk283psac44xb5DuCnyi1AC6WWWcQLHIhWkIpMEE89mbx7QtKwXbQfIwC8ErixEN4cddFqS34a%2BNVmXFEnxHKRa1pxMe%2BzFR6J8QqwwuztxWnDC1bzKNnX5BiPKWLyClcV3P681d7d5FcWc2Q%2FQoAUw9WAc4SfF1VR9JgwSe11cwm7Xicji76NfWCyhDkus3McguJUARqi567sRZzafyrUpQqcqoAukzKq9yFH%2FuBu1SjdZGQBc3UYqju6v0e8YcW%2B2%2FPoQyUehAophkbSvuHeJAixN4AqW5kulwW77blaYzCxfWmXNN7apXx2ic5TWWFPTq3F1Mazjhq5PhZsvoStxIyI%3D%3APEdK5vgry0HZF%2F5PefALnnHfb1p3pbEgS4RMXr1P4a%2FCeFSs3CyLNVrKQyWt%2F2pOomPQtwTmGgaPbEVoZQ1lmf9XZ6wYb7J%2FOG50UIaxIiwkYs0TQEE40UnlDVj%2Bld%2FLZBniPv63W8ynabzt2KRC0yoGJEJW0knjgYf9Q8H2wvPt44ikyI%2Fwe0S64t9GPmd2%2FJhKzoqkepdKz5roIDNm2ocsXQYvTiBvboL%2F09GExc1L5t8SIiRa8jHy3XASOeBSHCSgmKa9b5ImAXW7HaOUqE3UszKL4Qn6%2Bvb%2BhH7mH%2FtNgW1Qgj5HvtOXyYn3ElzmM%2Bb6RcIXxzoV0vmpB4KHPQ%3D%3D&amp;redirect=https%3A%2F%2Ffaradars.org%2Flanding%2Fdsh55&amp;ab&amp;vts=1671025101.629" target="_blank" style="position: relative;display: inline-block;">--}}
-{{--                        <div style="background-color:transparent;">--}}
-{{--                            <img class="bnr-img yn-bnr__img" width="1200" height="10" onload="ynBnrImgOnLoad(13722);" data-src="https://ad-management-cdn.yektanet.com/media/banner_ads/faradars72890_7b05aa06-15a9-4dd6-a53a-a0a0adfe66e9__1ex2gqwOr6.gif" alt="" src="https://ad-management-cdn.yektanet.com/media/banner_ads/faradars72890_7b05aa06-15a9-4dd6-a53a-a0a0adfe66e9__1ex2gqwOr6.gif">--}}
-{{--                        </div>--}}
-{{--                    </a>--}}
-{{--                </div>--}}
-
-{{--                <div class="d-flex">--}}
-{{--                    <div class="col-6 pl-0">--}}
-{{--                        <div class="py-2">--}}
-{{--                            <div class="adds">--}}
-{{--                                <a href="https://yungcenter.com/product-category/acc-play-station/?utm_source=gamefa&amp;utm_campaign=banner" target="_blank" rel="nofollow" class="d-block">--}}
-{{--                                    <img width="600" height="60" src="https://gamefa.com/wp-content/uploads/2022/11/Expor.gif" class="img-fluid ads" alt="" decoding="async" loading="lazy">--}}
-{{--                                </a>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-6">--}}
-{{--                        <div class=" py-2">--}}
-{{--                            <div class="adds">--}}
-{{--                                <a href="https://www.rtl-theme.com/author/mohamad_javad_Taherian/?aff=mohamad_javad_Taherian" target="_blank">--}}
-{{--                                    <img src="{{ asset('modules/home/img/adds/banner.gif') }}" alt="" class="img-responsive ads">--}}
-{{--                                </a>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
-    <!-- content -->
-    <section class="content-info">
-        <!-- content container -->
-        <div class="container my-2">
-            <div class="row">
-                <!-- right aside -->
-                <aside class="col-sm-12 col-lg-4 col-xl-3 h-100">
-                    @include('home::layouts.right-sidebar')
-                </aside>
-                <!-- end right aside -->
-                <!-- center -->
-                <div class="col-lg-5 col-xl-6 col-sm-12 p-0 h-100">
-                    <!-- last news -->
-                    <div class="panel-box rounded">
-                        <div class="titles bg-light">
-                            <h4><i class="fe fe-bookmark"></i>آخرین اخبار</h4>
+        <div class="second-col col-12 col-lg-3">
+            <div class="news-list">
+                <div class="news-box col-12">
+                    <div class="news-box-card-mini">
+                        <div class="news-box-header">
+                            <i class="fa-duotone fa-newspaper"></i>
+                            <span>آخرین اخبار</span>
                         </div>
-
-                        @forelse($posts as $post)
-                            <div class="post-item">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h4 class="font-weight-bold">
-                                            <a href="{{ route('post.show', $post) }}">{{ $post->title }}</a>
-                                        </h4>
-                                    </div>
-                                    <div class="col-md-4 col-4">
-                                        <div class="img-hover rounded">
-                                            <img src="{{ asset($post->image['indexArray']['large']) }}" alt="{{ $post->title }}" class="img-responsive">
-                                            <div class="overlay"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8 pt-sm-2 col-8">
-                                        <small>{{ $post->summary }}</small>
-                                    </div>
-                                    <div class="col-12">
-                                        <span class="data-info d-flex justify-content-between mt-4">
-                                            <small class="font-weight-bold">
-                                                <i class="fe fe-edit text-navy"></i>{{ $post->author->fullname ?? $post->author->name }}
-                                            </small> <small class="font-weight-bold">
-                                                <i class="fe fe-clock text-navy"></i>{{ jalaliDate($post->published_at, 'H:i - Y/m/d') }}
-                                            </small>
-                                            <small class="font-weight-bold">
-                                                <i class="fe fe-message-circle text-navy"></i> {{ $post->comments()->count() }}
-                                            </small>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                            <div class="post-item">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h4 class="font-weight-bold">
-                                            <a href="#">عنوان خبر</a>
-                                        </h4>
-                                    </div>
-                                    <div class="col-md-4 col-4">
-                                        <div class="img-hover rounded">
-                                            <img src="{{ asset('modules/home/img/404-football.gif') }}" alt="عنوان" class="img-responsive">
-                                            <div class="overlay"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8 pt-sm-2 col-8">
-                                        <small>
-                                            درحال حاضر خبری برای نمایش وجود ندارد! @admin
-                                            <a href="{{ route('admin.post') }}" class="btn-link links links-footer text-primary">وارد کردن خبر</a> @endadmin
-                                        </small>
-                                        <span class="data-info d-flex justify-content-between mt-4">
-                                            <small class="font-weight-bold">
-                                                <i class="fe fe-edit text-navy"></i>نویسنده
-                                            </small> <small class="font-weight-bold">
-                                                <i class="fe fe-clock text-navy"></i>تاریخ انتشار
-                                            </small>
-                                            <small class="font-weight-bold">
-                                                <i class="fe fe-message-circle text-navy"></i> نظرات
-                                            </small>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforelse
-
-                    </div>
-
-                    {{ $posts->links('vendor.pagination.bootstrap-4', ['elements' => $posts]) }}
-
-                    <!-- slider -->
-                    <div class="panel-box">
-                        <div class="row">
-                            <div id="hero-slider" class="hero-slider">
-
-                                @forelse($slides as $slide)
-                                    <div class="item-slider" style="background:url({{ asset(str_replace("\\", '/', $slide->image['indexArray']['large'])) }}">
-                                        <div class="container">
-                                            <div class="row align-items-center">
-                                                <div class="col-lg-7">
-                                                    <div class="info-slider p-2">
-                                                        <h1>{{ $slide->title }}</h1>
-                                                        <p>{!! Str::limit($slide->body, 40) !!}</p>
-                                                        <a href="#" class="btn-iw outline">بیشتر بخوانید<i class="fe fe-chevron-left"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @empty
-                                    <div class="item-slider" style="background:url({{ asset('modules/home/img/404-football.gif') }}">
-                                        <div class="container">
-                                            <div class="row align-items-center">
-                                                <div class="col-lg-7">
-                                                    <div class="info-slider p-2">
-                                                        <h1>عنوان اسلاید</h1>
-                                                        <p>درحال حاضر اسلایدی برای نمایش وجود ندارد! @admin
-                                                            <a href="{{ route('admin.slide') }}" class="btn-link links links-footer text-primary">وارد کردن اسلاید</a> @endadmin
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforelse
-
-                            </div>
-
+                        <div class="new-box-news">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-
-                    {{--                    <!-- more news -->--}}
-                    {{--                    <div class="more-news">--}}
-                    {{--                        <div class="text-center mb-3">--}}
-                    {{--                            <button class="btn btn-primary px-5">بیشتر</button>--}}
-                    {{--                        </div>--}}
-
-                    {{--                        <div class="panel-box rounded pt-2">--}}
-
-                    {{--                            <div class="post-item">--}}
-                    {{--                                <div class="row">--}}
-                    {{--                                    <div class="col-12">--}}
-                    {{--                                        <h4 class="font-weight-bold"><a href="single-news.html">شکست در مرحله--}}
-                    {{--                                                گروهی</a>--}}
-                    {{--                                        </h4>--}}
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-md-4 col-4">--}}
-                    {{--                                        <div class="img-hover rounded">--}}
-                    {{--                                            <img src="{{ asset('modules/home/img/blog/1.jpg') }}" alt="" class="img-responsive">--}}
-                    {{--                                            <div class="overlay"><a href="single-news.html"></a></div>--}}
-                    {{--                                        </div>--}}
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-md-8 pt-sm-2 col-8">--}}
-                    {{--                                        <small>در حالی که آشنا با همکار, کشور اروپایی فرانسه, hareide اذعان می کند--}}
-                    {{--                                            که در--}}
-                    {{--                                            آمریکای جنوبی به سمت پرو.--}}
-                    {{--                                        </small>--}}
-                    {{--                                        <span class="data-info d-flex justify-content-between mt-4">--}}
-                    {{--                                                                    <small class="font-weight-bold">--}}
-                    {{--                                                                        <i class="fa fa-pencil text-navy"></i>--}}
-                    {{--                                                                        اردوان شام روشن--}}
-                    {{--                                                                    </small>--}}
-                    {{--                                                                    <small class="font-weight-bold">--}}
-                    {{--                                                                        <i class="fa fa-clock-o text-navy"></i>--}}
-                    {{--                                                                        ۱۹:۴۸ - ۱۴۰۱/۰۹/۰۱--}}
-                    {{--                                                                    </small>--}}
-                    {{--                                                                    <small class="font-weight-bold">--}}
-                    {{--                                                                        <i class="fa fa-commenting-o text-navy"></i> 2--}}
-                    {{--                                                                    </small>--}}
-                    {{--                                                                </span>--}}
-
-                    {{--                                    </div>--}}
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
-
-                    {{--                            <div class="post-item">--}}
-                    {{--                                <div class="row">--}}
-                    {{--                                    <div class="col-12">--}}
-                    {{--                                        <h4 class="font-weight-bold"><a href="single-news.html">روسیه 2018 پتانسیل--}}
-                    {{--                                                های--}}
-                    {{--                                                کلاسیک بازی-یو پی است</a></h4>--}}
-
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-md-4 col-4">--}}
-                    {{--                                        <div class="img-hover rounded">--}}
-                    {{--                                            <img src="{{ asset('modules/home/img/blog/2.jpg') }}" alt="" class="img-responsive">--}}
-                    {{--                                            <div class="overlay"><a href="single-news.html"></a></div>--}}
-                    {{--                                        </div>--}}
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-md-8 pt-sm-2 col-8">--}}
-                    {{--                                        <small>هدف ما این است که بسیار روشن آن تغییر نکرد و پس از قرعه کشی. ما باید--}}
-                    {{--                                            از--}}
-                    {{--                                            واجد شرایط برای مرحله حذفی.--}}
-                    {{--                                        </small>--}}
-                    {{--                                        <span class="data-info d-flex justify-content-between mt-4">--}}
-                    {{--                                            <small class="font-weight-bold"><i class="fa fa-pencil text-navy"></i>--}}
-                    {{--                                                                        اردوان شام روشن--}}
-                    {{--                                            </small>--}}
-                    {{--                                            <small class="font-weight-bold">--}}
-                    {{--                                                                        <i class="fa fa-clock-o text-navy"></i>--}}
-                    {{--                                                                        ۱۹:۴۸ - ۱۴۰۱/۰۹/۰۱--}}
-                    {{--                                            </small>--}}
-                    {{--                                            <small class="font-weight-bold">--}}
-                    {{--                                                                        <i class="fa fa-commenting-o text-navy"></i> 2--}}
-                    {{--                                            </small>--}}
-                    {{--                                        </span>--}}
-
-                    {{--                                    </div>--}}
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
-
-                    {{--                            <div class="post-item">--}}
-                    {{--                                <div class="row">--}}
-                    {{--                                    <div class="col-12">--}}
-                    {{--                                        <h4 class="font-weight-bold"><a href="single-news.html">جام جهانی رقابت--}}
-                    {{--                                                reprised</a></h4>--}}
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-md-4 col-4">--}}
-                    {{--                                        <div class="img-hover rounded">--}}
-                    {{--                                            <img src="{{ asset('modules/home/img/blog/3.jpg') }}" alt="" class="img-responsive">--}}
-                    {{--                                            <div class="overlay"><a href="single-news.html"></a></div>--}}
-                    {{--                                        </div>--}}
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-md-8 pt-sm-2 col-8">--}}
-
-                    {{--                                        <small>فضای نمایشگاه در manezhnaya مربع شامل 11 ارقام است که نماد اصلی سایت--}}
-                    {{--                                            های--}}
-                    {{--                                            مورد علاقه.--}}
-                    {{--                                        </small>--}}
-                    {{--                                        <span class="data-info d-flex justify-content-between mt-4">--}}
-                    {{--                                                                    <small class="font-weight-bold">--}}
-                    {{--                                                                        <i class="fa fa-pencil text-navy"></i>--}}
-                    {{--                                                                        محسن اعتباری--}}
-                    {{--                                                                    </small>--}}
-                    {{--                                                                    <small class="font-weight-bold">--}}
-                    {{--                                                                        <i class="fa fa-clock-o text-navy"></i>--}}
-                    {{--                                                                        ۱۹:۴۸ - ۱۴۰۱/۰۹/۰۱--}}
-                    {{--                                                                    </small>--}}
-                    {{--                                                                    <small class="font-weight-bold">--}}
-                    {{--                                                                        <i class="fa fa-commenting-o text-navy"></i> 2--}}
-                    {{--                                                                    </small>--}}
-                    {{--                                                                </span>--}}
-
-                    {{--                                    </div>--}}
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
-
-                    {{--                            <div class="post-item">--}}
-                    {{--                                <div class="row">--}}
-                    {{--                                    <div class="col-12">--}}
-                    {{--                                        <h4 class="font-weight-bold"><a href="single-news.html">همه مجموعه ای برای--}}
-                    {{--                                                سفر--}}
-                    {{--                                                خود را به روسیه ؟</a>--}}
-                    {{--                                        </h4>--}}
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-md-4 col-4">--}}
-                    {{--                                        <div class="img-hover rounded">--}}
-                    {{--                                            <img src="{{ asset('modules/home/img/blog/4.jpg') }}" alt="" class="img-responsive">--}}
-                    {{--                                            <div class="overlay"><a href="single-news.html"></a></div>--}}
-                    {{--                                        </div>--}}
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-md-8 pt-sm-2 col-8">--}}
-
-                    {{--                                        <small>کلمبیا بازی ژاپن در 19 ژوئن در موردوویا عرصه که در آن ستون بندی و--}}
-                    {{--                                            ریخته--}}
-                    {{--                                            گری عملیات.</small>--}}
-                    {{--                                        <span class="data-info d-flex justify-content-between mt-4">--}}
-                    {{--                                                                    <small class="font-weight-bold">--}}
-                    {{--                                                                        <i class="fa fa-pencil text-navy"></i>--}}
-                    {{--                                                                        اردوان شام روشن--}}
-                    {{--                                                                    </small> <small class="font-weight-bold">--}}
-                    {{--                                                                        <i class="fa fa-clock-o text-navy"></i>--}}
-                    {{--                                                                        ۱۹:۴۸ - ۱۴۰۱/۰۹/۰۱--}}
-                    {{--                                                                    </small>--}}
-                    {{--                                                                    <small class="font-weight-bold">--}}
-                    {{--                                                                        <i class="fa fa-commenting-o text-navy"></i> 2--}}
-                    {{--                                                                    </small>--}}
-                    {{--                                                                </span>--}}
-                    {{--                                    </div>--}}
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
-                    {{--                        </div>--}}
-
-                    {{--                    </div>--}}
-
                 </div>
-                <!-- end center -->
-                <!-- left aside -->
-                <aside class="col-sm-12 col-lg-4 col-xl-3 h-100">
-                    @include('home::layouts.left-sidebar')
-                </aside>
-                <!-- end left side -->
-            </div>
-        </div>
-        <!-- end content -->
-
-        <!-- gallery -->
-        <div class="col-12">
-            <div class="panel-box">
-                <div class="titles no-margin">
-                    <h4><i class="fe fe-video"></i>گالری ویدیو</h4>
-                </div>
-                <div class="pt-2">
-                    <div class="row">
-                        @forelse($videos as $video)
-                            <div class="video-item mx-auto border mb-3 rounded">
-                                <video controls class="rounded-top" width="350" src="{{ asset($video->video) }}">
-                                    <div class="info-panel">
-                                        <h4>{{ $video->title }}</h4>
-                                        <p>{{ $video->description }}</p>
-                                    </div>
-                                </video>
-                                <div class="video-caption p-2">{{ $video->title }}</div>
-                            </div>
-                        @empty
-                            <div class="video-item mx-auto border my-3 rounded">
-                                <video controls class="rounded-top">
-                                    <div class="info-panel">
-                                        <h4>عنوان ویدیو</h4>
-                                        <p>توضیحات ویدیو</p>
-                                    </div>
-                                </video>
-                                <div class="video-caption text-mute text-center"><small>
-                                        درحال حاضر ویدیویی برای نمایش وجود ندارد! @admin
-                                        <a href="{{ route('admin.videogallery') }}" class="btn-link links links-footer text-primary">وارد کردن ویدیو</a> @endadmin
-                                    </small></div>
-                            </div>
-                        @endforelse
-
+                <div class="news-box col-12 mt-3">
+                    <div class="news-box-card-mini">
+                        <div class="news-box-header">
+                            <i class="fa-duotone fa-newspaper"></i>
+                            <span>محبوب ترین ها</span>
+                        </div>
+                        <div class="new-box-news">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- end gallery -->
-
-        <!-- newsletter -->
-        {{--        <div class="section-newsletter no-margin rounded">--}}
-        {{--            <div class="container">--}}
-        {{--                <div class="row">--}}
-        {{--                    <div class="col-md-12">--}}
-        {{--                        <div class="text-center">--}}
-        {{--                            <h2>ایمیل خود را وارد کنید و<span class="text-resalt"> مشترک </span> خبرنامه ما شوید. </h2>--}}
-        {{--                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان--}}
-        {{--                                گرافیک است. چاپ</p>--}}
-        {{--                        </div>--}}
-        {{--                        <form id="newsletterForm" action="php/mailchip/newsletter-subscribe.php">--}}
-        {{--                            <div class="row">--}}
-        {{--                                <div class="col-md-6">--}}
-        {{--                                    <div class="input-group">--}}
-        {{--                                            <span class="input-group-addon">--}}
-        {{--                                                <i class="fa fa-envelope"></i>--}}
-        {{--                                            </span>--}}
-        {{--                                        <input class="form-control" placeholder="اسم شما" name="name" type="text" required="required">--}}
-        {{--                                    </div>--}}
-        {{--                                </div>--}}
-        {{--                                <div class="col-md-6">--}}
-        {{--                                    <div class="input-group">--}}
-        {{--                                            <span class="input-group-addon">--}}
-        {{--                                                <i class="fa fa-envelope"></i>--}}
-        {{--                                            </span>--}}
-        {{--                                        <input class="form-control" placeholder="ایمیل شما" name="email" type="email" required="required">--}}
-        {{--                                        <span class="input-group-btn">--}}
-        {{--                                                <button class="btn btn-primary" type="submit" name="subscribe">ثبت--}}
-        {{--                                                    نام</button>--}}
-        {{--                                            </span>--}}
-        {{--                                    </div>--}}
-        {{--                                </div>--}}
-        {{--                            </div>--}}
-        {{--                        </form>--}}
-        {{--                        <div id="result-newsletter"></div>--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-        {{--        </div>--}}
-
-    </section>
-
-@endsection
-@section('script')
-    <!--- Tabs JS-->
-    <script src="{{ asset('modules/admin/assets/plugins/tabs/jquery.multipurpose_tabcontent.js') }}"></script>
-    <script src="{{ asset('modules/admin/assets/js/tabs.js') }}"></script>
-    <script>
-        $(document).ready(function () {
-            $(".box").on("click", function () {
-                $(this).siblings().toggleClass("hidden");
-                $(this).toggleClass("full");
-                $(".captionBox").toggleClass("hiddenText");
-                $(this).children().animate({
-                    opacity: "1"
-                }, 500, function () {
-                });
-            });
-
-            if ($(window).width() < 768) {
-                $(".box").on("click", function () {
-                    $("#gridGallery").toggleClass("mobileFunction");
-                });
-            }
-
-            if ($(window).width() >= 768) {
-
-                $(".box").hover(function () {
-                    $(this).siblings().toggleClass("opacity");
-                });
-
-            }
-
-            $(".horizontal").click(function () {
-                $(this).toggleClass("full");
-                $(".captionBox").toggleClass("hiddenText");
-                $(this).children().animate({
-                    opacity: "1"
-                }, 500, function () {
-                });
-            });
-
-            $(".horizontal").hover(function () {
-                $(this).siblings().toggleClass("opacity");
-            });
-
-        });</script>
+        <div class="third-col col-12 col-lg-3">
+            <div class="other-sections">
+                <div class="social-section">
+                    <div class="social-section-header">
+                        <i class="fa-duotone fa-hashtag"></i>
+                        <span>راه های ارتباطی</span>
+                    </div>
+                    <div class="social-section-cols row gx-3">
+                        <div class="col-6">
+                            <a href="#">
+                                <div class="social-btns social-instagram">
+                                    <i class="fa-brands fa-instagram"></i>
+                                    <span>اینستاگرام</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#">
+                                <div class="social-btns social-telegram">
+                                    <i class="fa-brands fa-telegram"></i>
+                                    <span>تلگرام</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#">
+                                <div class="social-btns social-twitter">
+                                    <i class="fa-brands fa-twitter"></i>
+                                    <span>توییتر</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#">
+                                <div class="social-btns social-rss">
+                                    <i class="fa-solid fa-rss"></i>
+                                    <span>آر اس اس</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ad-section mt-3">
+                    <div class="ad-title">
+                        <i class="fa-duotone fa-bullhorn"></i>
+                        <span>تبلیغات</span>
+                    </div>
+                    <div class="ad-image">
+                        <a href="#">
+                            <img src="{{ asset('modules/home/assets/img/ad/ad 1.jpg') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="ad-image">
+                        <a href="#">
+                            <img src="{{ asset('modules/home/assets/img/ad/ad 2.jpg') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="ad-image">
+                        <a href="#">
+                            <img src="{{ asset('modules/home/assets/img/ad/ad 3.jpg') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="ad-image">
+                        <a href="#">
+                            <img src="{{ asset('modules/home/assets/img/ad/ad 1.jpg') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="ad-image">
+                        <a href="#">
+                            <img src="{{ asset('modules/home/assets/img/ad/ad 2.jpg') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="ad-image">
+                        <a href="#">
+                            <img src="{{ asset('modules/home/assets/img/ad/ad 3.jpg') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="ad-image">
+                        <a href="#">
+                            <img src="{{ asset('modules/home/assets/img/ad/ad 1.jpg') }}" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="second-row mt-3">
+        <div class="currency-section row gx-3">
+            <div class="currency-first-col col-12 col-lg-6">
+                <div class="currency-gold-price">
+                    <div class="currency-col-title">
+                        <p>
+                            <i class="fa-duotone fa-coin"></i>
+                            <span>قیمت طلا</span>
+                        </p>
+                    </div>
+                    <div class="currency-gold-table mt-3">
+                        <table class="table table-borderless">
+                            <thead>
+                            <tr>
+                                <th>قیمت طلا</th>
+                                <th>قیمت زنده</th>
+                                <th>تغییر</th>
+                                <th class="least">کمترین</th>
+                                <th class="most">بیشترین</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th>طلای 18 عیار
+                                </td>
+                                <td>13,919,000</td>
+                                <td class="price-change inc">
+                                    <i class="price-icon-inc fa-solid fa-chevron-up"></i>
+                                    <span class="currency-percent">(0.53%)</span>
+                                    <span>74,000</span>
+                                </td>
+                                <td class="least">37,740</td>
+                                <td class="most">38,199</td>
+                            </tr>
+                            <tr>
+                                <th>طلای 24 عیار
+                                </td>
+                                <td>13,919,000</td>
+                                <td class="price-change dec">
+                                    <i class="price-icon-inc fa-solid fa-chevron-down"></i>
+                                    <span class="currency-percent">(0.24%)</span>
+                                    <span>32,000</span>
+                                </td>
+                                <td class="least">37,740</td>
+                                <td class="most">38,199</td>
+                            </tr>
+                            <tr>
+                                <th>طلای دست دوم
+                                </td>
+                                <td>13,919,000</td>
+                                <td class="price-change dec">
+                                    <i class="price-icon-inc fa-solid fa-chevron-down"></i>
+                                    <span class="currency-percent">(0.23%)</span>
+                                    <span>32,000</span>
+                                </td>
+                                <td class="least">37,740</td>
+                                <td class="most">38,199</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="currency-second-col col-12 col-lg-6 mt-3 mt-lg-0">
+                <div class="currency-usd-price">
+                    <div class="currency-col-title">
+                        <p>
+                            <i class="fa-duotone fa-square-dollar"></i>
+                            <span>قیمت ارز</span>
+                        </p>
+                    </div>
+                    <div class="currency-usd-table mt-3">
+                        <table class="table table-borderless">
+                            <thead>
+                            <tr>
+                                <th>قیمت ارز</th>
+                                <th>قیمت زنده</th>
+                                <th>تغییر</th>
+                                <th class="least">کمترین</th>
+                                <th class="most">بیشترین</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th>دلار آمریکا
+                                </td>
+                                <td>32,600</td>
+                                <td class="price-change inc">
+                                    <i class="price-icon-inc fa-solid fa-chevron-up"></i>
+                                    <span class="currency-percent">(0.53%)</span>
+                                    <span>1,200</span>
+                                </td>
+                                <td class="least">31,900</td>
+                                <td class="most">32,800</td>
+                            </tr>
+                            <tr>
+                                <th>یورو
+                                </td>
+                                <td>37,200</td>
+                                <td class="price-change dec">
+                                    <i class="price-icon-inc fa-solid fa-chevron-down"></i>
+                                    <span class="currency-percent">(0.24%)</span>
+                                    <span>2,000</span>
+                                </td>
+                                <td class="least">37,000</td>
+                                <td class="most">38,199</td>
+                            </tr>
+                            <tr>
+                                <th>درهم امارات
+                                </td>
+                                <td>22,000</td>
+                                <td class="price-change dec">
+                                    <i class="price-icon-inc fa-solid fa-chevron-down"></i>
+                                    <span class="currency-percent">(0.24%)</span>
+                                    <span>2,400</span>
+                                </td>
+                                <td class="least">20,200</td>
+                                <td class="most">23,400</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="third-row mt-3">
+        <div class="sport-section row gx-3">
+            <div class="sport-first-col col-12 col-md-8 col-lg-9">
+                <div class="sport-news-section">
+                    <div class="sport-col-title">
+                        <p>
+                            <i class="fa-duotone fa-futbol"></i>
+                            <span>ورزشی</span>
+                        </p>
+                        <a href="archive.html" class="main-see-all-link">
+                            <span>مشاهده همه</span>
+                        </a>
+                    </div>
+                    <div class="sport-news mt-3">
+                        <div class="sport-news-card">
+                            <div class="sport-news-card-thumbnail">
+                                <a href="single.html">
+                                    <img src="{{ asset('modules/home/assets/img/thumbnails/101 copy.jpg') }}" alt="img">
+                                </a>
+                            </div>
+                            <div class="col ps-3">
+                                <div class="sport-news-top-title d-none d-sm-block">
+                                    <p>نقل و انتقالات اروپا</p>
+                                </div>
+                                <div class="sport-news-card-title">
+                                    <a href="single.html">
+                                        <p>پیوستن ارلینگ هالند به منچستر سیتی</p>
+                                    </a>
+                                </div>
+                                <div class="sport-news-card-except">
+                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="sport-news-card">
+                            <div class="sport-news-card-thumbnail">
+                                <a href="single.html">
+                                    <img src="{{ asset('modules/home/assets/img/thumbnails/100 copy.jpg') }}" alt="img">
+                                </a>
+                            </div>
+                            <div class="col ps-3">
+                                <div class="sport-news-top-title d-none d-sm-block">
+                                    <p>لیگ ملت های والیبال</p>
+                                </div>
+                                <div class="sport-news-card-title">
+                                    <a href="single.html">
+                                        <p>پیروزی تیم ملی ایران برابر لهستان</p>
+                                    </a>
+                                </div>
+                                <div class="sport-news-card-except">
+                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="sport-news-card">
+                            <div class="sport-news-card-thumbnail">
+                                <a href="single.html">
+                                    <img src="{{ asset('modules/home/assets/img/thumbnails/108 copy.jpg') }}" alt="img">
+                                </a>
+                            </div>
+                            <div class="col ps-3">
+                                <div class="sport-news-top-title d-none d-sm-block">
+                                    <p>نقل و انتقالات اروپا</p>
+                                </div>
+                                <div class="sport-news-card-title">
+                                    <a href="single.html">
+                                        <p>پیوستن ارلینگ هالند به منچستر سیتی</p>
+                                    </a>
+                                </div>
+                                <div class="sport-news-card-except">
+                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="sport-news-card">
+                            <div class="sport-news-card-thumbnail">
+                                <a href="single.html">
+                                    <img src="{{ asset('modules/home/assets/img/thumbnails/108 copy.jpg') }}" alt="img">
+                                </a>
+                            </div>
+                            <div class="col ps-3">
+                                <div class="sport-news-top-title d-none d-sm-block">
+                                    <p>لیگ ملت های والیبال</p>
+                                </div>
+                                <div class="sport-news-card-title">
+                                    <a href="single.html">
+                                        <p>پیروزی تیم ملی ایران برابر لهستان</p>
+                                    </a>
+                                </div>
+                                <div class="sport-news-card-except">
+                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sport-second-col col-12 col-md-4 col-lg-3 mt-3 mt-lg-0">
+                <div class="sport-dates">
+                    <div class="sport-dates-header">
+                        <i class="fa-duotone fa-whistle"></i>
+                        <span>مهم ترین بازی ها</span>
+                    </div>
+                    <div class="sport-dates-body">
+                        <div class="sport-dates-time">
+                            <span>یکشنبه</span>
+                            <span>19</span>
+                            <span>تیر</span>
+                        </div>
+                        <div class="sport-dates-card">
+                            <div class="sport-dates-teams">
+                                <div class="sport-date-team-1">
+                                    <img src="{{ asset('modules/home/assets/img/flags/flag-for-spain-svgrepo-com.svg') }}" alt="">
+                                    <span>اسپانیا</span>
+                                </div>
+                                <span>-</span>
+                                <div class="sport-date-team-2">
+                                    <span>پرتغال</span>
+                                    <img src="{{ asset('modules/home/assets/img/flags/flag-for-portugal-svgrepo-com.svg') }}" alt="">
+                                </div>
+                            </div>
+                            <div class="sport-dates-league">
+                                <span>لیگ ملت های اروپا</span>
+                            </div>
+                            <div class="sport-dates-time-clock">
+                                <span>30</span>
+                                <span>:</span>
+                                <span>22</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="sport-dates-card">
+                            <div class="sport-dates-teams">
+                                <div class="sport-date-team-1">
+                                    <img src="{{ asset('modules/home/assets/img/flags/france-svgrepo-com.svg') }}" alt="">
+                                    <span>فرانسه</span>
+                                </div>
+                                <span>-</span>
+                                <div class="sport-date-team-2">
+                                    <span>ایتالیا</span>
+                                    <img src="{{ asset('modules/home/assets/img/flags/italy-svgrepo-com.svg') }}" alt="">
+                                </div>
+                            </div>
+                            <div class="sport-dates-league">
+                                <span>لیگ ملت های اروپا</span>
+                            </div>
+                            <div class="sport-dates-time-clock">
+                                <span>30</span>
+                                <span>:</span>
+                                <span>22</span>
+                            </div>
+                        </div>
+                        <div class="sport-dates-time">
+                            <span>سه شنبه</span>
+                            <span>21</span>
+                            <span>تیر</span>
+                        </div>
+                        <div class="sport-dates-card">
+                            <div class="sport-dates-teams">
+                                <div class="sport-date-team-1">
+                                    <img src="{{ asset('modules/home/assets/img/flags/flag-for-spain-svgrepo-com.svg') }}" alt="">
+                                    <span>اسپانیا</span>
+                                </div>
+                                <span>-</span>
+                                <div class="sport-date-team-2">
+                                    <span>پرتغال</span>
+                                    <img src="{{ asset('modules/home/assets/img/flags/flag-for-portugal-svgrepo-com.svg') }}" alt="">
+                                </div>
+                            </div>
+                            <div class="sport-dates-league">
+                                <span>لیگ ملت های اروپا</span>
+                            </div>
+                            <div class="sport-dates-time-clock">
+                                <span>30</span>
+                                <span>:</span>
+                                <span>22</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="sport-dates-card">
+                            <div class="sport-dates-teams">
+                                <div class="sport-date-team-1">
+                                    <img src="{{ asset('modules/home/assets/img/flags/flag-for-spain-svgrepo-com.svg') }}" alt="">
+                                    <span>اسپانیا</span>
+                                </div>
+                                <span>-</span>
+                                <div class="sport-date-team-2">
+                                    <span>پرتغال</span>
+                                    <img src="{{ asset('modules/home/assets/img/flags/flag-for-portugal-svgrepo-com.svg') }}" alt="">
+                                </div>
+                            </div>
+                            <div class="sport-dates-league">
+                                <span>لیگ ملت های اروپا</span>
+                            </div>
+                            <div class="sport-dates-time-clock">
+                                <span>30</span>
+                                <span>:</span>
+                                <span>22</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="sport-dates-card">
+                            <div class="sport-dates-teams">
+                                <div class="sport-date-team-1">
+                                    <img src="{{ asset('modules/home/assets/img/flags/flag-for-spain-svgrepo-com.svg') }}" alt="">
+                                    <span>اسپانیا</span>
+                                </div>
+                                <span>-</span>
+                                <div class="sport-date-team-2">
+                                    <span>پرتغال</span>
+                                    <img src="{{ asset('modules/home/assets/img/flags/flag-for-portugal-svgrepo-com.svg') }}" alt="">
+                                </div>
+                            </div>
+                            <div class="sport-dates-league">
+                                <span>لیگ ملت های اروپا</span>
+                            </div>
+                            <div class="sport-dates-time-clock">
+                                <span>30</span>
+                                <span>:</span>
+                                <span>22</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="sport-dates-card">
+                            <div class="sport-dates-teams">
+                                <div class="sport-date-team-1">
+                                    <img src="{{ asset('modules/home/assets/img/flags/flag-for-spain-svgrepo-com.svg') }}" alt="">
+                                    <span>اسپانیا</span>
+                                </div>
+                                <span>-</span>
+                                <div class="sport-date-team-2">
+                                    <span>پرتغال</span>
+                                    <img src="{{ asset('modules/home/assets/img/flags/flag-for-portugal-svgrepo-com.svg') }}" alt="">
+                                </div>
+                            </div>
+                            <div class="sport-dates-league">
+                                <span>لیگ ملت های اروپا</span>
+                            </div>
+                            <div class="sport-dates-time-clock">
+                                <span>30</span>
+                                <span>:</span>
+                                <span>22</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fourth-row mt-3">
+        <div class="video-section d-flex flex-wrap">
+            <div class="video-col-title">
+                <p>
+                    <i class="fa-duotone fa-circle-play"></i>
+                    <span>ویدیو</span>
+                </p>
+                <a href="archive.html" class="main-see-all-link">
+                    <span>مشاهده همه</span>
+                </a>
+            </div>
+            <div class="video-col col-12 col-lg-8 mt-3">
+                <div class="main-video-player">
+                    <video class="video-js" poster="{{ asset('modules/home/assets/img/thumbnails/12 copy.jpg') }}" width="100%" height="100%" disablePictureInPicture controls controlsList="nodownload noplaybackrate" data-setup="{}">
+                        <source src="{{ asset('modules/home/assets/videos/footage.mp4') }}" type="video/mp4">
+                    </video>
+                </div>
+                <div class="main-video-player-title mt-3">
+                    <a href="single.html">
+                        <span>ازدواج آسان برای جوانان + فیلم</span>
+                    </a>
+                </div>
+                <div class="main-video-player-description">
+                    <p>ویدئویی در ارتباط با ازدواج آسان برای جوانان منتشر شده است.</p>
+                </div>
+            </div>
+            <div class="archive-col col-12 col-lg-4 mt-3">
+                <div class="main-video-arcive-card">
+                    <div class="main-video-arcive-card-thumbnail">
+                        <a href="single.html">
+                            <img src="{{ asset('modules/home/assets/img/thumbnails/108 copy.jpg') }}" alt="">
+                            <div class="video-arcive-card-thumbnail-hover">
+                                <i class="fa-solid fa-eye"></i>
+                                <span class="video-view-count">158 بازدید</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="main-video-arcive-card-title">
+                        <a href="single.html">
+                            <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="main-video-arcive-card">
+                    <div class="main-video-arcive-card-thumbnail">
+                        <a href="single.html">
+                            <img src="{{ asset('modules/home/assets/img/thumbnails/11 copy.jpg') }}" alt="">
+                            <div class="video-arcive-card-thumbnail-hover">
+                                <i class="fa-solid fa-eye"></i>
+                                <span class="video-view-count">158 بازدید</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="main-video-arcive-card-title">
+                        <a href="single.html">
+                            <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="main-video-arcive-card">
+                    <div class="main-video-arcive-card-thumbnail">
+                        <a href="single.html">
+                            <img src="{{ asset('modules/home/assets/img/thumbnails/102 copy.jpg') }}" alt="">
+                            <div class="video-arcive-card-thumbnail-hover">
+                                <i class="fa-solid fa-eye"></i>
+                                <span class="video-view-count">158 بازدید</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="main-video-arcive-card-title">
+                        <a href="single.html">
+                            <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="main-video-arcive-card">
+                    <div class="main-video-arcive-card-thumbnail">
+                        <a href="single.html">
+                            <img src="{{ asset('modules/home/assets/img/thumbnails/14 copy.jpg') }}" alt="">
+                            <div class="video-arcive-card-thumbnail-hover">
+                                <i class="fa-solid fa-eye"></i>
+                                <span class="video-view-count">158 بازدید</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="main-video-arcive-card-title">
+                        <a href="single.html">
+                            <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="main-video-arcive-card">
+                    <div class="main-video-arcive-card-thumbnail">
+                        <a href="single.html">
+                            <img src="{{ asset('modules/home/assets/img/thumbnails/11 copy.jpg') }}" alt="">
+                            <div class="video-arcive-card-thumbnail-hover">
+                                <i class="fa-solid fa-eye"></i>
+                                <span class="video-view-count">158 بازدید</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="main-video-arcive-card-title">
+                        <a href="single.html">
+                            <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fifth-row mt-3">
+        <div class="photo-section d-flex flex-wrap">
+            <div class="photo-col-title">
+                <p>
+                    <i class="fa-duotone fa-images"></i>
+                    <span>عکس های روز</span>
+                </p>
+                <a href="archive.html" class="main-see-all-link">
+                    <span>مشاهده همه</span>
+                </a>
+            </div>
+            <div class="photo-sec-all mt-lg-0 owl-carousel owl-theme">
+                <div class="photo-sec-col col-12">
+                    <div class="photo-sec-card">
+                        <div class="photo-sec-thumbnail">
+                            <a href="pictures-single.html">
+                                <img src="{{ asset('modules/home/assets/img/thumbnails/103 copy.jpg') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="photo-sec-title">
+                            <a href="pictures-single.html">
+                                <i class="fa-duotone fa-image"></i>
+                                <span>عکس منتخب از مردم در تیر ماه 1401</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-sec-col col-12">
+                    <div class="photo-sec-card">
+                        <div class="photo-sec-thumbnail">
+                            <a href="pictures-single.html">
+                                <img src="{{ asset('modules/home/assets/img/thumbnails/103 (1) copy.jpg') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="photo-sec-title">
+                            <a href="pictures-single.html">
+                                <i class="fa-duotone fa-image"></i>
+                                <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-sec-col col-12">
+                    <div class="photo-sec-card">
+                        <div class="photo-sec-thumbnail">
+                            <a href="pictures-single.html">
+                                <img src="{{ asset('modules/home/assets/img/thumbnails/11 copy.jpg') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="photo-sec-title">
+                            <a href="pictures-single.html">
+                                <i class="fa-duotone fa-image"></i>
+                                <span>عکس منتخب از مردم در تیر ماه 1401</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-sec-col col-12">
+                    <div class="photo-sec-card">
+                        <div class="photo-sec-thumbnail">
+                            <a href="pictures-single.html">
+                                <img src="{{ asset('modules/home/assets/img/thumbnails/102 copy.jpg') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="photo-sec-title">
+                            <a href="pictures-single.html">
+                                <i class="fa-duotone fa-image"></i>
+                                <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-sec-col col-12">
+                    <div class="photo-sec-card">
+                        <div class="photo-sec-thumbnail">
+                            <a href="pictures-single.html">
+                                <img src="{{ asset('modules/home/assets/img/thumbnails/100 copy.jpg') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="photo-sec-title">
+                            <a href="pictures-single.html">
+                                <i class="fa-duotone fa-image"></i>
+                                <span>عکس منتخب از مردم در تیر ماه 1401</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-sec-col col-12">
+                    <div class="photo-sec-card">
+                        <div class="photo-sec-thumbnail">
+                            <a href="pictures-single.html">
+                                <img src="{{ asset('modules/home/assets/img/thumbnails/11 copy.jpg') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="photo-sec-title">
+                            <a href="pictures-single.html">
+                                <i class="fa-duotone fa-image"></i>
+                                <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

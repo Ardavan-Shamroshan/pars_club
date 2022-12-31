@@ -33,22 +33,56 @@
                                                     <a href="{{ route('home') }}"><img src="{{ asset('modules/home/img/clubs-logos/club_logo.jpg') }}" class="sign-favicon-a" alt="logo" width="100">
                                                         <img src="{{ asset('modules/admin/assets/img/brand/favicon-white.png') }}" class="sign-favicon-b ht-40" alt="logo">
                                                     </a>
-{{--                                                    <h1 class="main-logo1 ms-1 me-0 my-auto tx-28 ps-1">باشگاه فرهنگی ورزشی پارس برازجان</h1>--}}
+                                                    {{--                                                    <h1 class="main-logo1 ms-1 me-0 my-auto tx-28 ps-1">باشگاه فرهنگی ورزشی پارس برازجان</h1>--}}
                                                 </div>
                                                 <div class="card-sigin">
                                                     <div class="main-signup-header">
                                                         <h2>کد تایید را وارد کن!</h2>
-                                                        <h5 class="fw-semibold mb-4">کد تایید برای ایمیل *** ارسال شد</h5>
-                                                        <form action="{{ route('auth.login-register') }}" method="post">
+                                                        <h5 class="fw-semibold mb-4">
+                                                            @if($otp->type === 0)
+                                                               <small> کد تایید برای شماره {{ $otp->login_id }} پیامک شد</small>
+                                                            @else
+                                                              <small>  کد تایید برای ایمیل {{ $otp->login_id }} ارسال شد</small>
+                                                               <small class="tag tag-section tx-12"> اگر ایمیل را مشاهده نکردید، تب <span class="mx-1"><i class="fe fe-alert-octagon"></i>spam</span> را چک کنید </small>
+                                                            @endif
+                                                        </h5>
+
+
+                                                        {{-- validation errors alert --}}
+                                                        @if ($errors->any())
+                                                            <div class="alert alert-solid-danger mg-b-0 rounded mb-2" role="alert">
+                                                                <button aria-label="بستن" class="close" data-dismiss="alert" type="button">
+                                                                    <span aria-hidden="true">×</span></button>
+
+                                                                @foreach($errors->all() as $error)
+                                                                    <div><span class="alert-inner--icon"><i class="fe fe-info"></i></span> {{ $error }}
+                                                                    </div>
+                                                                @endforeach
+
+                                                            </div>
+                                                        @endif
+
+
+                                                        <form action="{{ route('auth.login-confirm', $token) }}"  method="post">
                                                             @csrf
 
                                                             <div class="form-group">
-                                                               <input class="form-control" placeholder="کد تایید را وارد کن" type="text">
+                                                                <input class="form-control" placeholder="کد تایید را وارد کن" name="otp" type="text">
                                                             </div>
                                                             <button type="submit" class="btn btn-main-primary btn-block">تایید</button>
+
+
+                                                            <div id="resend-otp" class="d-none mt-3">
+                                                                <a href="{{ route('auth.login-resend-otp', $token) }}" class="text-decoration-none text-primary">دریافت مجدد کد تایید</a>
+                                                            </div>
+
+                                                            <div id="timer" class="mt-4"></div>
+
                                                         </form>
                                                         <div class="main-signin-footer mt-5">
-                                                            <p>ورود شما به معنای پذیرش <a href="#"> پذیرش شرایط باشگاه پارس  </a> و <a href="#"> قوانین حریم‌ خصوصی  </a> است</p>
+                                                            <p>ورود شما به معنای پذیرش
+                                                                <a href="#"> پذیرش شرایط باشگاه پارس </a> و
+                                                                <a href="#"> قوانین حریم‌ خصوصی </a> است</p>
                                                         </div>
                                                         <div class="main-signin-footer mt-5">
                                                             <a href="{{ route('home') }}">بازگشت<i class="fe fe-arrow-left"></i></a>
@@ -67,51 +101,48 @@
             </div>
             <!-- container -->
 
-
         </div>
-
 
     </div>
     <!-- class -->
 
-
 @endsection
 
 @section('script')
-{{--    @php--}}
-{{--        // 5 minutes after otp code created_at time MINUS now() time "all times are im timestamp" and *1000 to get times in ms--}}
-{{--        $timer = ((new \Carbon\Carbon($otp->created_at))->addMinutes(5)->timestamp - \Carbon\Carbon::now()->timestamp) * 1000--}}
-{{--    @endphp--}}
+    @php
+        // 5 minutes after otp code created_at time MINUS now() time "all times are im timestamp" and *1000 to get times in ms
+        $timer = ((new \Carbon\Carbon($otp->created_at))->addMinutes(5)->timestamp - \Carbon\Carbon::now()->timestamp) * 1000
+    @endphp
 
-{{--    <script>--}}
+    <script>
 
-{{--        var countDownDate = new Date().getTime() + {{ $timer }};--}}
-{{--        var timer = $('#timer');--}}
-{{--        var resend_otp = $('#resend-otp');--}}
+        var countDownDate = new Date().getTime() + {{ $timer }};
+        var timer = $('#timer');
+        var resend_otp = $('#resend-otp');
 
-{{--        var x = setInterval(function () {--}}
-{{--            var now = new Date().getTime(); // current time--}}
-{{--            var distance = countDownDate - now; // period time between otp created time and current time--}}
+        var x = setInterval(function () {
+            var now = new Date().getTime(); // current time
+            var distance = countDownDate - now; // period time between otp created time and current time
 
-{{--            // extract seconds and minutes from timestamp format--}}
-{{--            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));--}}
-{{--            var seconds = Math.floor((distance % (1000 * 60)) / 1000);--}}
-{{--            // convert numbers(seconds and minutes) in minimum two digits => 02:56, 00:32--}}
-{{--            minutes = minutes.toLocaleString(undefined, {minimumIntegerDigits: 2})--}}
-{{--            seconds = seconds.toLocaleString(undefined, {minimumIntegerDigits: 2})--}}
+            // extract seconds and minutes from timestamp format
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            // convert numbers(seconds and minutes) in minimum two digits => 02:56, 00:32
+            minutes = minutes.toLocaleString(undefined, {minimumIntegerDigits: 2})
+            seconds = seconds.toLocaleString(undefined, {minimumIntegerDigits: 2})
 
-{{--            if (minutes === 0)--}}
-{{--                timer.html(seconds + ' : ' + minutes + ' تا  ارسال مجدد کد تایید');--}}
-{{--            else--}}
-{{--                timer.html(seconds + ' : ' + minutes + ' تا  ارسال مجدد کد تایید');--}}
+            if (minutes === 0)
+                timer.html(seconds + ' : ' + minutes + ' تا  ارسال مجدد کد تایید');
+            else
+                timer.html(seconds + ' : ' + minutes + ' تا  ارسال مجدد کد تایید');
 
-{{--            if (distance < 0) {--}}
-{{--                clearInterval(x);--}}
-{{--                timer.addClass('d-none');--}}
-{{--                resend_otp.removeClass('d-none');--}}
-{{--            }--}}
-{{--        }, 1000);--}}
+            if (distance < 0) {
+                clearInterval(x);
+                timer.addClass('d-none');
+                resend_otp.removeClass('d-none');
+            }
+        }, 1000);
 
-{{--    </script>--}}
+    </script>
 
 @endsection

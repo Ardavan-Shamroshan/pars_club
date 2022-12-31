@@ -17,13 +17,13 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-//Route::middleware([
-//    'auth:sanctum',
-//    config('jetstream.auth_session'),
-//    'verified',
-//    'admin'
-//])->group(function () {
-//    Route::get('/dashboard', function () {
-//       return redirect()->route('admin');
-//    })->name('dashboard');
-//});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    'admin'
+])->group(function () {
+    Route::get('/dashboard', function () {
+       return redirect()->route('admin');
+    })->name('dashboard');
+});

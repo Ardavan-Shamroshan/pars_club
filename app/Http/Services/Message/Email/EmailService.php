@@ -3,10 +3,10 @@
 namespace App\Http\Services\Message\Email;
 
 use Illuminate\Support\Facades\Mail;
-use App\Http\Interfaces\MessageInterface;
+use App\Http\Interfaces\messageInterface;
 
 
-class EmailService implements MessageInterface
+class EmailService implements messageInterface
 {
 
     private $details;

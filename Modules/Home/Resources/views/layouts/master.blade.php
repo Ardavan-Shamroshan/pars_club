@@ -12,18 +12,33 @@
 
 <body>
 
+    {{-- get notification --}}
+    @include('home::layouts.get-notifications')
+
+    {{-- loader --}}
+{{--    @include('home::layouts.loader')--}}
+
     {{-- header --}}
     @include('home::layouts.header')
 
-    <div id="layout" class="container">
+    <!--Mobile Menu Start-->
+    @include('home::layouts.mobile-menu')
+    <!--Mobile Menu End-->
+    <!--Main Content Start-->
+    <div id="main-overlay" class="main-overlay"></div>
+    <main>
+        <div class="back-to-top">
+            <button>
+                <i class="fa-solid fa-chevron-up"></i>
+            </button>
+        </div>
+        <div class="container">
 
-        @yield('content')
+            @yield('content')
 
-        {{-- footer --}}
-        @include('home::layouts.footer')
-
-        @include('home::layouts.copyright')
-    </div>
+        </div>
+    </main>
+    <!--Main Content End-->
 
     {{-- script --}}
     @include('home::layouts.script')

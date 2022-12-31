@@ -14,11 +14,12 @@ class AuthRequest extends FormRequest
      */
     public function rules() {
         $route = Route::current();
-        if ($route->getName() === 'auth.login-register')
+        if ($route->getName() === 'auth.login-register') {
             return [
                 'id' => ['required', 'min:11', 'max:64', 'regex:/^[a-zA-Z0-9_.@\+]*$/'],
                 'name' => ['required', 'string'],
             ];
+        }
         elseif ($route->getName() === 'auth.login-confirm')
             return [
                 'otp' => ['required', 'min:6', 'max:6'],

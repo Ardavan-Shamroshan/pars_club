@@ -40,7 +40,7 @@ class AdminVideoGalleryController extends Controller
         // Video upload
         if ($request->hasFile('video')) {
             // Set video directory
-            $videoService->setExclusiveDirectory('gallery' . DIRECTORY_SEPARATOR . 'video');
+            $videoService->setExclusiveDirectory('modules' . DIRECTORY_SEPARATOR . 'gallery' . DIRECTORY_SEPARATOR . 'video');
             // Save video in the exclusive directory
             $result = $videoService->save($request->file('video'));
 
