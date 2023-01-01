@@ -5,6 +5,10 @@ namespace Modules\Comment\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Modules\Comment\Entities\Comment;
+use Modules\Comment\Http\Requests\CommentRequest;
+use Modules\Post\Entities\Post;
 
 class CommentController extends Controller
 {
@@ -12,8 +16,7 @@ class CommentController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
-    {
+    public function index() {
         return view('comment::index');
     }
 
@@ -21,8 +24,7 @@ class CommentController extends Controller
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function create()
-    {
+    public function create() {
         return view('comment::create');
     }
 
@@ -31,9 +33,14 @@ class CommentController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(CommentRequest $request, Post $post) {
+        $inputs = $request->all();
+        $inputs['author_id'] = Auth::id();
+        $inputs['commentable_id'] = $post->id;
+        $inputs['commentable_type'] = 'Modules\Post\Entities\Post';
+        Comment::query()->create($inputs);
+        toast('دیدگاه با موفقیت ثبت شد، برای تایید آن اندکی صبر کنید', 'success');
+        return redirect()->route('post.show', $post);
     }
 
     /**
@@ -41,8 +48,7 @@ class CommentController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
-    {
+    public function show($id) {
         return view('comment::show');
     }
 
@@ -51,8 +57,7 @@ class CommentController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         return view('comment::edit');
     }
 
@@ -62,8 +67,7 @@ class CommentController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -72,8 +76,22 @@ class CommentController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
+    public function answer(CommentRequest $request, Comment $comment) {
+        $inputs = $request->all();
+        $inputs['author_id'] = Auth::id();
+        $inputs['parent_id'] = $comment->id;
+        $inputs['commentable_id'] = $comment->commentable_id;
+        $inputs['commentable_type'] = $comment->commentable_type;
+
+        dd($inputs);
+
+        Comment::query()->create($inputs);
+        toast('پاسخ با موفقیت ثبت شد، برای تایید آن اندکی صبر کنید', 'success');
+        return redirect()->route('admin.comment');
+    }
+
 }

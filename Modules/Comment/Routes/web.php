@@ -1,6 +1,7 @@
 <?php
 
 use Modules\Comment\Http\Controllers\AdminCommentController;
+use Modules\Comment\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +27,6 @@ Route::middleware('auth', 'admin')->prefix('adminity')->group(function () {
 
 // comment
 Route::prefix('comment')->group(function () {
-    Route::get('/', [CommentController::class, 'index'])->name('comment');
+    Route::post('/store/{post:slug}', [CommentController::class, 'store'])->name('comment.store');
+    Route::post('/answer/{comment}', [CommentController::class, 'answer'])->name('comment.answer');
 });

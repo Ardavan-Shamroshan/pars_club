@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Modules\Comment\Entities\Comment;
 use Modules\Comment\Http\Requests\CommentRequest;
 use Modules\Post\Entities\Post;
@@ -103,8 +104,7 @@ class AdminCommentController extends Controller
     public function answer(CommentRequest $request, Comment $comment) {
         if ($comment->parent == null) {
             $inputs = $request->all();
-//            $inputs['author_id'] = Auth::id();
-            $inputs['author_id'] = User::query()->first()->id;
+            $inputs['author_id'] = Auth::id();
             $inputs['parent_id'] = $comment->id;
             $inputs['commentable_id'] = $comment->commentable_id;
             $inputs['commentable_type'] = $comment->commentable_type;

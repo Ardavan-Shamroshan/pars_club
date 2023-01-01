@@ -71,8 +71,6 @@ class PostController extends Controller
      * @return Renderable
      */
     public function show(Post $post) {
-
-
         // latest posts
         $latestPosts = Post::query()
             ->where('published_at', '<=', now())
