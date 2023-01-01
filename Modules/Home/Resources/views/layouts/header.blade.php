@@ -59,7 +59,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="pictures-single.html">
+                        <a href="{{ route('contact-us') }}">
                             <span>تماس با ما</span>
                         </a>
                     </li>
