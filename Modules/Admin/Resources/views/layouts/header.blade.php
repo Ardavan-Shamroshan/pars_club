@@ -60,52 +60,36 @@
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
-                        <span class=" pulse-danger"></span></a>
+
+                        @if((empty(auth()->user()->notifications()->whereNull('read_at')->get())))
+                            <span class=" pulse-danger"></span></a>
+                        @endif
+
                     <div class="dropdown-menu">
                         <div class="menu-header-content bg-primary text-right">
                             <div class="d-flex">
                                 <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">پیام ها</h6>
                                 <span class="badge rounded-pill bg-warning ms-auto my-auto float-end">علامت گذاری همه</span>
                             </div>
-                            <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">شما 4 پیام خوانده نشده دارید</p>
+                            <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">شما {{ auth()->user()->notifications()->whereNull('read_at')->count() }} پیام خوانده نشده دارید</p>
                         </div>
                         <div class="main-message-list chat-scroll">
-                            <a href="#" class="p-3 d-flex border-bottom">
-                                <div class="  drop-img  cover-image " data-bs-image-src="{{ asset('modules/admin/assets/img/faces/1.jpg') }}">
+
+                            @foreach(auth()->user()->notifications()->whereNull('read_at')->get() as $notification)
+                            <a href="{{ route('admin.notification.read-all', 'comment') }}" class="p-3 d-flex border-bottom">
+                                <div class="drop-img cover-image" data-bs-image-src="{{ auth()->user()->profile_photo_url }}">
                                     <span class="avatar-status bg-teal"></span>
                                 </div>
                                 <div class="wd-90p">
                                     <div class="d-flex">
-                                        <h5 class="mb-1 name">پتی کروزر</h5>
+                                        <h5 class="mb-1 name"><small>{{ auth()->user()->fullname ?? auth()->user()->name ?? '-' }}</small></h5>
                                     </div>
-                                    <p class="mb-0 desc">متاسفم اما مطمئن نیستم که چگونه به شما در این زمینه کمک کنم ......</p>
-                                    <p class="time mb-0 text-left float-right mr-2 mt-2">15 مهر 3:55 بعد از ظهر</p>
+                                    <p class="mb-0 desc">{{ $notification['data']['comment'] }}</p>
+                                    <p class="time mb-0 text-left float-right mr-2 mt-2">{{ jalaliDate($notification['data']['user']['created_at'], 'Y M d H:i') }}</p>
                                 </div>
                             </a>
-                            <a href="#" class="p-3 d-flex border-bottom">
-                                <div class="drop-img cover-image" data-bs-image-src="{{ asset('modules/admin/assets/img/faces/2.jpg') }}">
-                                    <span class="avatar-status bg-teal"></span>
-                                </div>
-                                <div class="wd-90p">
-                                    <div class="d-flex">
-                                        <h5 class="mb-1 name">جیمی چانگا</h5>
-                                    </div>
-                                    <p class="mb-0 desc">همه آماده! اکنون وقت آن است که اکنون به سراغ شما بروم ......</p>
-                                    <p class="time mb-0 text-left float-right mr-2 mt-2">مهر 06 01:12 صبح</p>
-                                </div>
-                            </a>
-                            <a href="#" class="p-3 d-flex border-bottom">
-                                <div class="drop-img cover-image" data-bs-image-src="{{ asset('modules/admin/assets/img/faces/9.jpg') }}">
-                                    <span class="avatar-status bg-teal"></span>
-                                </div>
-                                <div class="wd-90p">
-                                    <div class="d-flex">
-                                        <h5 class="mb-1 name">گراهام کراکر</h5>
-                                    </div>
-                                    <p class="mb-0 desc">آیا آماده تحویل کالا هستید ...</p>
-                                    <p class="time mb-0 text-left float-right mr-2 mt-2">25 مهر 10:35 صبح</p>
-                                </div>
-                            </a>
+                            @endforeach
+
                         </div>
                         <div class="text-center dropdown-footer">
                             <a href="#">مشاهده همه</a>

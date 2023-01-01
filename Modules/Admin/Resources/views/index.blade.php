@@ -1,8 +1,7 @@
 @extends('admin::layouts.master')
-
 @section('title')داشبورد مدیریت@endsection
-
 @section('content')
+
 
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">

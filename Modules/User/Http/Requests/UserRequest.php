@@ -37,7 +37,7 @@ class UserRequest extends FormRequest
                 'last_name' => ['nullable', 'max:120', 'min:1'],
                 'mobile' => ['nullable', 'digits:11', 'unique:users'],
                 'email' => ['required', 'string', 'email', Rule::unique('users', 'email')->ignore($this->user->id)],
-                'password' => ['confirmed'],
+                'password' => ['sometimes','confirmed'],
 //                'password' => [Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised(), 'confirmed'],
 //                'password_confirmation' => [Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised(),],
                 'password_confirmation' => [],

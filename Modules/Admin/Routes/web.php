@@ -12,7 +12,11 @@
 */
 
 use Modules\Admin\Http\Controllers\AdminController;
+use Modules\Admin\Http\Controllers\NotificationController;
 
 Route::middleware('auth', 'admin')->prefix('adminity')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
+    // Notification read all
+    Route::get('/notification/read-all', [NotificationController::class, 'readAll'])->name('admin.notification.read-all');
+
 });

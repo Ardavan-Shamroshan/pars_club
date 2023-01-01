@@ -2,6 +2,7 @@
 
 namespace Modules\Post\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -71,6 +72,7 @@ class PostController extends Controller
      * @return Renderable
      */
     public function show(Post $post) {
+
         // latest posts
         $latestPosts = Post::query()
             ->where('published_at', '<=', now())

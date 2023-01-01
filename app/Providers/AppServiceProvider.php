@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Modules\Admin\Entities\Notification;
 use Modules\League\Entities\TeamResult;
 use Modules\Post\Entities\Post;
 use Modules\PostCategory\Entities\PostCategory;
@@ -39,6 +40,11 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // view composer
+
+        // admin header
+        view()->composer('admin::layouts.header', function ($view) {
+            $view->with('notifications', Notification::query()->whereNull('read_at')->get());
+        });
 
         // home head-tag
         view()->composer('home::layouts.head-tag', function ($view) {

@@ -12,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Modules\Admin\Entities\Notification;
 use Modules\User\Filter\UserFilter;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -109,5 +110,12 @@ class User extends Authenticatable
         return Attribute::make(
             get: fn() => $this->activation == 1,
         );
+    }
+
+    /**
+     * Relations
+     */
+    public function notifications() {
+        return $this->morphMany(Notification::class, 'notifiable');
     }
 }

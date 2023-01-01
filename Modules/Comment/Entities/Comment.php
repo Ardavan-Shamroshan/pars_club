@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
+use Modules\Admin\Entities\Notification;
 use Modules\Comment\Filters\CommentFilter;
-use Modules\Comment\Filters\PostFilter;
 
 class Comment extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Notifiable;
 
     protected $fillable = [
         'body',
@@ -33,14 +34,14 @@ class Comment extends Model
     /**
      * Filter
      */
-    public function scopeFilter(Builder $builder, $request)
-    {
+    public function scopeFilter(Builder $builder, $request) {
         return (new CommentFilter($request))->filter($builder);
     }
 
     /**
      * Relations
      */
+
 
     // Author
     public function author() {
