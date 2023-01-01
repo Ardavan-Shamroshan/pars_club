@@ -61,9 +61,10 @@
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
 
-                        @if((empty(auth()->user()->notifications()->whereNull('read_at')->get())))
+                        @if((auth()->user()->notifications()->whereNull('read_at')->count() != 0))
                             <span class=" pulse-danger"></span></a>
-                        @endif
+                    @endif
+
 
                     <div class="dropdown-menu">
                         <div class="menu-header-content bg-primary text-right">

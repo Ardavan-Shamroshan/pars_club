@@ -6,6 +6,7 @@
 <script src="{{ asset('modules/home/assets/js/themejs.js') }}"></script>
 <script src="{{ asset('modules/home/assets/js/getNotification.js') }}"></script>
 <script src="{{ asset('modules/home/assets/js/carousel.js') }}"></script>
+<script src="{{ asset('modules/home/assets/js/tooltip.js') }}"></script>
 
 
 <script type="text/javascript">

@@ -241,23 +241,18 @@
 
                                 {{-- answer form --}}
                                 <div class="comments-reply-form">
-                                    <form action="#">
+                                    <form action="{{ route('comment.answer', $comment) }}" method="post">
+                                         @csrf
                                         <div class="col-12 d-flex flex-wrap">
-                                            <div class="col-12 col-lg-6 p-3">
-                                                <input type="text" placeholder="نام و نام خانوادگی">
-                                            </div>
-                                            <div class="col-12 col-lg-6 pt-0 pt-lg-3 p-3">
-                                                <input type="email" placeholder="ایمیل">
-                                            </div>
                                         </div>
                                         <div class="col-12 px-3">
-                                            <textarea name="comments" class="reply-comments" cols="30" rows="10" placeholder="دیدگاه ها خود را در این قسمت بنویسید"></textarea>
+                                            <textarea name="body" class="reply-comments" cols="30" rows="10" placeholder="دیدگاه ها خود را در این قسمت بنویسید"></textarea>
                                         </div>
                                         <div class="col-12 px-3 d-flex justify-content-end">
                                             <button class="reply-submit" type="submit">
                                                 <span>ارسال</span>
                                             </button>
-                                            <button class="reply-cancel" type="reset">
+                                            <button class="btn btn-outline-danger reply-cancel" type="reset">
                                                 <span>انصراف</span>
                                             </button>
                                         </div>
@@ -266,7 +261,7 @@
 
                                 {{-- replies --}}
                                 @if($comment->answers)
-                                    @foreach($comment->answers as $answer)
+                                    @foreach($comment->answers()->where('approved', 1)->get() as $answer)
                                         <div class="comments-reply-card">
                                             <div class="comments-reply-card-icon col-1">
                                                 <svg class="svg-inline--fa fa-arrow-turn-up" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="arrow-turn-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
@@ -307,6 +302,74 @@
                                         </div>
                                     @endforeach
                                 @endif
+                                {{-- only because template --}}
+                            @else
+                                <div class="comments-user-name-date d-none">
+                                    <div class="comments-user-name">
+                                        <p>
+                                            <svg class="svg-inline--fa fa-user" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                                                <g class="fa-duotone-group">
+                                                    <path class="fa-secondary" fill="currentColor" d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"></path>
+                                                    <path class="fa-primary" fill="currentColor" d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
+                                                </g>
+                                            </svg><!-- <i class="fa-duotone fa-user"></i> -->
+                                        </p>
+                                    </div>
+                                    <div class="comments-date">
+                                        <svg class="svg-inline--fa fa-clock d-none d-lg-block" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                            <path fill="currentColor" d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path>
+                                        </svg><!-- <i class="fa-solid fa-clock d-none d-lg-block"></i> -->
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="comments-content d-none"></div>
+                                {{-- answer button --}}
+                                <div class="comments-replybtn-like d-none">
+                                    <div class="comments-reply-btn">
+                                        <button>
+                                            <svg class="svg-inline--fa fa-message-dots" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="message-dots" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                                <g class="fa-duotone-group">
+                                                    <path class="fa-secondary" fill="currentColor" d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.1c0 9.749 11.25 15.45 19.12 9.7l124.9-93.7h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM127.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S145.7 239.1 127.1 239.1zM255.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S273.7 239.1 255.1 239.1zM383.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S401.7 239.1 383.1 239.1z"></path>
+                                                    <path class="fa-primary" fill="currentColor" d="M127.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S145.7 239.1 127.1 239.1zM255.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S273.7 239.1 255.1 239.1zM383.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S401.7 239.1 383.1 239.1z"></path>
+                                                </g>
+                                            </svg><!-- <i class="fa-duotone fa-message-dots"></i> -->
+                                            <span>پاسخ دهید</span>
+                                        </button>
+                                    </div>
+                                    <div class="comments-like-btn d-none">
+                                        <button btn-tooltip="پسندیدن">
+                                            <span style="display: block;">1</span>
+                                            <svg class="svg-inline--fa fa-heart" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                                <path fill="currentColor" d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"></path>
+                                            </svg><!-- <i class="fa-solid fa-heart"></i> -->
+                                            <div class="tooltip-div"><span>پسندیدن</span></div>
+                                        </button>
+                                    </div>
+                                </div>
+                                {{-- answer form --}}
+                                <div class="comments-reply-form d-none">
+                                    <form action="#">
+                                        <div class="col-12 d-flex flex-wrap">
+                                            <div class="col-12 col-lg-6 p-3">
+                                                <input type="text" placeholder="نام و نام خانوادگی">
+                                            </div>
+                                            <div class="col-12 col-lg-6 pt-0 pt-lg-3 p-3">
+                                                <input type="email" placeholder="ایمیل">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 px-3">
+                                            <textarea name="comments" class="reply-comments" cols="30" rows="10" placeholder="دیدگاه ها خود را در این قسمت بنویسید"></textarea>
+                                        </div>
+                                        <div class="col-12 px-3 d-flex justify-content-end">
+                                            <button class="reply-submit" type="submit">
+                                                <span>ارسال</span>
+                                            </button>
+                                            <button class="reply-cancel" type="reset">
+                                                <span>انصراف</span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                             @endif
 
                         </div>

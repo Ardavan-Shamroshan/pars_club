@@ -2,6 +2,7 @@
 
 namespace Modules\Admin\Entities;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -9,7 +10,7 @@ class Notification extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     protected $casts = ['data' => 'array'];
 
@@ -26,6 +27,6 @@ class Notification extends Model
      */
 
     public function user() {
-        return $this->morphMany(Notification::class, 'notifiable');
+        return $this->morphMany(User::class, 'notifiable');
     }
 }

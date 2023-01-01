@@ -98,17 +98,28 @@ class CommentController extends Controller
 
     public function answer(CommentRequest $request, Comment $comment) {
         $inputs = $request->all();
+        $inputs = $request->all();
         $inputs['author_id'] = Auth::id();
         $inputs['parent_id'] = $comment->id;
         $inputs['commentable_id'] = $comment->commentable_id;
         $inputs['commentable_type'] = $comment->commentable_type;
+        $comment = Comment::query()->create($inputs);
 
-        dd($inputs);
+        // get all admin users
+        $adminUsers = User::query()->where('user_type', 1)->get();
+        // define details of new comment notification
+        $details = [
+            'user' => Auth::user(),
+            'comment' => $comment->body,
+            'message' => 'دیدگاه جدید وارد شده است'
+        ];
+        // send notification for all admin users
+        foreach ($adminUsers as $admin) {
+            $admin->notify(new NewComment($details));
+        }
 
-
-        Comment::query()->create($inputs);
         toast('پاسخ با موفقیت ثبت شد، برای تایید آن اندکی صبر کنید', 'success');
-        return redirect()->route('admin.comment');
+        return redirect()->route('post.show', $comment->commentable);
     }
 
 }
