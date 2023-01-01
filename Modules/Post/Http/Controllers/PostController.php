@@ -45,10 +45,7 @@ class PostController extends Controller
             ->take(15)
             ->get();
 
-
-
-        $categories = PostCategory::query()->where('status', 1)->get();
-        return view('post::index', compact('posts', 'categories', 'latestPost', 'hotPosts', 'latestPosts'));
+        return view('post::index', compact('posts', 'latestPost', 'hotPosts', 'latestPosts'));
     }
 
     /**
@@ -74,15 +71,37 @@ class PostController extends Controller
      * @return Renderable
      */
     public function show(Post $post) {
-        // related posts
-        $relatedPosts = Post::query()
+
+
+        // latest posts
+        $latestPosts = Post::query()
             ->where('published_at', '<=', now())
             ->where('status', 1)
+            ->latest()
+            ->take(15)
+            ->get();
+
+
+        // hot posts
+        $hotPosts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->where('label', 1)
+            ->latest()
+            ->take(15)
+            ->get();
+
+
+        // editor suggest
+        $editorSuggests = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->where('label', 0)
             ->latest()
             ->take(3)
             ->get();
 
-        return view('post::show', compact('post', 'relatedPosts'));
+        return view('post::show', compact('post', 'editorSuggests', 'latestPosts', 'hotPosts'));
     }
 
     /**
