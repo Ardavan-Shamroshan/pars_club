@@ -143,268 +143,281 @@
 
                 </div>
             </div>
-            <div class="single-comment-section mt-3">
-                <div class="single-comment-section-header">
-                    <span>نظرات خود را بنویسید</span>
-                </div>
-                <div class="single-comment-section-form">
-                    <form action="#">
-                        <div class="col-12 d-flex flex-wrap">
-                            <div class="col-12 col-lg-6 p-3">
-                                <input id="comment-name" type="text" placeholder="نام و نام خانوادگی">
-                            </div>
-                            <div class="col-12 col-lg-6 pt-0 pt-lg-3 p-3">
-                                <input id="comment-email" type="email" placeholder="ایمیل">
-                            </div>
-                        </div>
-                        <div class="col-12 px-3">
-                            <textarea name="comments" id="single-comments" class="single-comments" cols="30" rows="10" placeholder="نظرات خود را در این قسمت بنویسید"></textarea>
-                        </div>
-                        <div class="col-12 px-3 d-flex justify-content-end">
-                            <button id="comment-submit" class="comment-submit" type="submit">
-                                <span>ارسال</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="single-user-comments mt-3">
-                <div class="single-user-comments-title">
-                    <span>نظرات کاربران</span>
-                </div>
-                <div class="single-user-comments-card">
-                    <div class="comments-user-name-date">
-                        <div class="comments-user-name">
-                            <p>
-                                <svg class="svg-inline--fa fa-user" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                    <g class="fa-duotone-group">
-                                        <path class="fa-secondary" fill="currentColor" d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"></path>
-                                        <path class="fa-primary" fill="currentColor" d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
-                                    </g>
-                                </svg><!-- <i class="fa-duotone fa-user"></i> -->
-                                <span>محمدرضا</span>
-                            </p>
-                        </div>
-                        <div class="comments-date">
-                            <svg class="svg-inline--fa fa-clock d-none d-lg-block" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor" d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path>
-                            </svg><!-- <i class="fa-solid fa-clock d-none d-lg-block"></i> -->
-                            <p>
-                                <span>دوشنبه</span>
-                                <span>12</span>
-                                <span>تیر</span>
-                                <span>1401</span>
-                                <span class="d-none d-lg-block">-</span>
-                                <span class="d-none d-lg-block">14:25</span>
-                            </p>
-                        </div>
+
+
+            @if($post->commentable)
+
+                @guest
+                    <div class="single-user-comments-title mt-3">
+                        <span>دیدگاه ها</span>
                     </div>
-                    <div class="comments-content">
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+                    <div class="alert alert-warning  d-flex align-items-center gap-2 mt-3" role="alert">
+                        <span><i class="fa-duotone fa-info-circle"></i></span>
+                        <span>جهت ارسال نظر و دیدگاه خود باید ابتدا وارد سایت شوید. جهت ورود به سایت  <a href="{{ route('auth.login-register') }}" class="alert-link btn-link"> اینجا </a> را کلیک کنید
+                       </span>
                     </div>
-                    <div class="comments-replybtn-like">
-                        <div class="comments-reply-btn">
-                            <button>
-                                <svg class="svg-inline--fa fa-message-dots" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="message-dots" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                    <g class="fa-duotone-group">
-                                        <path class="fa-secondary" fill="currentColor" d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.1c0 9.749 11.25 15.45 19.12 9.7l124.9-93.7h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM127.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S145.7 239.1 127.1 239.1zM255.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S273.7 239.1 255.1 239.1zM383.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S401.7 239.1 383.1 239.1z"></path>
-                                        <path class="fa-primary" fill="currentColor" d="M127.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S145.7 239.1 127.1 239.1zM255.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S273.7 239.1 255.1 239.1zM383.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S401.7 239.1 383.1 239.1z"></path>
-                                    </g>
-                                </svg><!-- <i class="fa-duotone fa-message-dots"></i> -->
-                                <span>پاسخ دهید</span>
-                            </button>
+                @endguest
+                @auth
+                    <div class="single-comment-section mt-3">
+                        <div class="single-comment-section-header">
+                            <span>دیدگاه خود را بنویسید</span>
                         </div>
-                        <div class="comments-like-btn">
-                            <button btn-tooltip="پسندیدن">
-                                <span style="display: none;">0</span>
-                                <svg class="svg-inline--fa fa-heart" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                    <path fill="currentColor" d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"></path>
-                                </svg><!-- <i class="fa-solid fa-heart"></i> -->
-                                <div class="tooltip-div"><span>پسندیدن</span></div>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="comments-reply-form">
-                        <form action="#">
-                            <div class="col-12 d-flex flex-wrap">
-                                <div class="col-12 col-lg-6 p-3">
-                                    <input type="text" placeholder="نام و نام خانوادگی">
+                        <div class="single-comment-section-form">
+                            <form action="#" method="post">
+                                @csrf
+
+                                <div class="col-12 px-3">
+                                    <textarea name="body" id="single-comments" class="single-comments" cols="30" rows="10" placeholder="دیدگاه خود را در این قسمت بنویسید"></textarea>
                                 </div>
-                                <div class="col-12 col-lg-6 pt-0 pt-lg-3 p-3">
-                                    <input type="email" placeholder="ایمیل">
+                                <div class="col-12 px-3 d-flex justify-content-end">
+                                    <button id="comment-submit" class="comment-submit" type="submit">
+                                        <span>ارسال</span>
+                                    </button>
                                 </div>
-                            </div>
-                            <div class="col-12 px-3">
-                                <textarea name="comments" class="reply-comments" cols="30" rows="10" placeholder="نظرات خود را در این قسمت بنویسید"></textarea>
-                            </div>
-                            <div class="col-12 px-3 d-flex justify-content-end">
-                                <button class="reply-submit" type="submit">
-                                    <span>ارسال</span>
-                                </button>
-                                <button class="reply-cancel" type="reset">
-                                    <span>انصراف</span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="single-user-comments-card">
-                    <div class="comments-user-name-date">
-                        <div class="comments-user-name">
-                            <p>
-                                <svg class="svg-inline--fa fa-user" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                    <g class="fa-duotone-group">
-                                        <path class="fa-secondary" fill="currentColor" d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"></path>
-                                        <path class="fa-primary" fill="currentColor" d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
-                                    </g>
-                                </svg><!-- <i class="fa-duotone fa-user"></i> -->
-                                <span>محمدرضا</span>
-                            </p>
-                        </div>
-                        <div class="comments-date">
-                            <svg class="svg-inline--fa fa-clock d-none d-lg-block" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor" d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path>
-                            </svg><!-- <i class="fa-solid fa-clock d-none d-lg-block"></i> -->
-                            <p>
-                                <span>دوشنبه</span>
-                                <span>12</span>
-                                <span>تیر</span>
-                                <span>1401</span>
-                                <span class="d-none d-lg-block">-</span>
-                                <span class="d-none d-lg-block">14:25</span>
-                            </p>
+                            </form>
                         </div>
                     </div>
-                    <div class="comments-content">
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+                @endauth
+
+                <div class="single-user-comments mt-3">
+                    <div class="single-user-comments-title">
+                        <span>دیدگاه کاربران</span>
                     </div>
-                    <div class="comments-replybtn-like">
-                        <div class="comments-reply-btn">
-                            <button>
-                                <svg class="svg-inline--fa fa-message-dots" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="message-dots" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                    <g class="fa-duotone-group">
-                                        <path class="fa-secondary" fill="currentColor" d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.1c0 9.749 11.25 15.45 19.12 9.7l124.9-93.7h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM127.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S145.7 239.1 127.1 239.1zM255.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S273.7 239.1 255.1 239.1zM383.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S401.7 239.1 383.1 239.1z"></path>
-                                        <path class="fa-primary" fill="currentColor" d="M127.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S145.7 239.1 127.1 239.1zM255.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S273.7 239.1 255.1 239.1zM383.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S401.7 239.1 383.1 239.1z"></path>
-                                    </g>
-                                </svg><!-- <i class="fa-duotone fa-message-dots"></i> -->
-                                <span>پاسخ دهید</span>
-                            </button>
-                        </div>
-                        <div class="comments-like-btn">
-                            <button btn-tooltip="پسندیدن">
-                                <span style="display: block;">1</span>
-                                <svg class="svg-inline--fa fa-heart" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                    <path fill="currentColor" d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"></path>
-                                </svg><!-- <i class="fa-solid fa-heart"></i> -->
-                                <div class="tooltip-div"><span>پسندیدن</span></div>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="comments-reply-form">
-                        <form action="#">
-                            <div class="col-12 d-flex flex-wrap">
-                                <div class="col-12 col-lg-6 p-3">
-                                    <input type="text" placeholder="نام و نام خانوادگی">
-                                </div>
-                                <div class="col-12 col-lg-6 pt-0 pt-lg-3 p-3">
-                                    <input type="email" placeholder="ایمیل">
-                                </div>
+                    <div class="single-user-comments-card">
+                        <div class="comments-user-name-date">
+                            <div class="comments-user-name">
+                                <p>
+                                    <svg class="svg-inline--fa fa-user" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                                        <g class="fa-duotone-group">
+                                            <path class="fa-secondary" fill="currentColor" d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"></path>
+                                            <path class="fa-primary" fill="currentColor" d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
+                                        </g>
+                                    </svg><!-- <i class="fa-duotone fa-user"></i> -->
+                                    <span>محمدرضا</span>
+                                </p>
                             </div>
-                            <div class="col-12 px-3">
-                                <textarea name="comments" class="reply-comments" cols="30" rows="10" placeholder="نظرات خود را در این قسمت بنویسید"></textarea>
+                            <div class="comments-date">
+                                <svg class="svg-inline--fa fa-clock d-none d-lg-block" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                    <path fill="currentColor" d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path>
+                                </svg><!-- <i class="fa-solid fa-clock d-none d-lg-block"></i> -->
+                                <p>
+                                    <span>دوشنبه</span>
+                                    <span>12</span>
+                                    <span>تیر</span>
+                                    <span>1401</span>
+                                    <span class="d-none d-lg-block">-</span>
+                                    <span class="d-none d-lg-block">14:25</span>
+                                </p>
                             </div>
-                            <div class="col-12 px-3 d-flex justify-content-end">
-                                <button class="reply-submit" type="submit">
-                                    <span>ارسال</span>
-                                </button>
-                                <button class="reply-cancel" type="reset">
-                                    <span>انصراف</span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="comments-reply-card">
-                        <div class="comments-reply-card-icon col-1">
-                            <svg class="svg-inline--fa fa-arrow-turn-up" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="arrow-turn-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
-                                <g class="fa-duotone-group">
-                                    <path class="fa-secondary" fill="currentColor" d="M224 109.3V432c0 44.13-35.89 80-80 80H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h112C152.8 448 160 440.8 160 432V109.3l31.1-32L224 109.3z"></path>
-                                    <path class="fa-primary" fill="currentColor" d="M214.6 9.375c-12.5-12.5-32.75-12.5-45.25 0l-127.1 128c-12.5 12.5-12.5 32.75 0 45.25s32.75 12.5 45.25 0l105.4-105.4l105.4 105.4C303.6 188.9 311.8 192 319.1 192s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 0-45.25L214.6 9.375z"></path>
-                                </g>
-                            </svg><!-- <i class="fa-duotone fa-arrow-turn-up"></i> -->
                         </div>
-                        <div class="comments-reply-content-card col-11">
-                            <div class="comments-user-name-date">
-                                <div class="comments-user-name">
-                                    <p>
-                                        <svg class="svg-inline--fa fa-user" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                            <g class="fa-duotone-group">
-                                                <path class="fa-secondary" fill="currentColor" d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"></path>
-                                                <path class="fa-primary" fill="currentColor" d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
-                                            </g>
-                                        </svg><!-- <i class="fa-duotone fa-user"></i> -->
-                                        <span>محمدرضا</span>
-                                    </p>
-                                </div>
-                                <div class="comments-date">
-                                    <svg class="svg-inline--fa fa-clock d-none d-lg-block" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                        <path fill="currentColor" d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path>
-                                    </svg><!-- <i class="fa-solid fa-clock d-none d-lg-block"></i> -->
-                                    <p>
-                                        <span>دوشنبه</span>
-                                        <span>12</span>
-                                        <span>تیر</span>
-                                        <span>1401</span>
-                                        <span class="d-none d-lg-block">-</span>
-                                        <span class="d-none d-lg-block">14:25</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <hr>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد</p>
-                        </div>
-                    </div>
-                    <div class="comments-reply-card">
-                        <div class="comments-reply-card-icon col-1">
-                            <svg class="svg-inline--fa fa-arrow-turn-up" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="arrow-turn-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
-                                <g class="fa-duotone-group">
-                                    <path class="fa-secondary" fill="currentColor" d="M224 109.3V432c0 44.13-35.89 80-80 80H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h112C152.8 448 160 440.8 160 432V109.3l31.1-32L224 109.3z"></path>
-                                    <path class="fa-primary" fill="currentColor" d="M214.6 9.375c-12.5-12.5-32.75-12.5-45.25 0l-127.1 128c-12.5 12.5-12.5 32.75 0 45.25s32.75 12.5 45.25 0l105.4-105.4l105.4 105.4C303.6 188.9 311.8 192 319.1 192s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 0-45.25L214.6 9.375z"></path>
-                                </g>
-                            </svg><!-- <i class="fa-duotone fa-arrow-turn-up"></i> -->
-                        </div>
-                        <div class="comments-reply-content-card col-11">
-                            <div class="comments-user-name-date">
-                                <div class="comments-user-name">
-                                    <p>
-                                        <svg class="svg-inline--fa fa-user" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                            <g class="fa-duotone-group">
-                                                <path class="fa-secondary" fill="currentColor" d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"></path>
-                                                <path class="fa-primary" fill="currentColor" d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
-                                            </g>
-                                        </svg><!-- <i class="fa-duotone fa-user"></i> -->
-                                        <span>محمدرضا</span>
-                                    </p>
-                                </div>
-                                <div class="comments-date">
-                                    <svg class="svg-inline--fa fa-clock d-none d-lg-block" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                        <path fill="currentColor" d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path>
-                                    </svg><!-- <i class="fa-solid fa-clock d-none d-lg-block"></i> -->
-                                    <p>
-                                        <span>دوشنبه</span>
-                                        <span>12</span>
-                                        <span>تیر</span>
-                                        <span>1401</span>
-                                        <span class="d-none d-lg-block">-</span>
-                                        <span class="d-none d-lg-block">14:25</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <hr>
+                        <div class="comments-content">
                             <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
                         </div>
+                        <div class="comments-replybtn-like">
+                            <div class="comments-reply-btn">
+                                <button>
+                                    <svg class="svg-inline--fa fa-message-dots" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="message-dots" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                        <g class="fa-duotone-group">
+                                            <path class="fa-secondary" fill="currentColor" d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.1c0 9.749 11.25 15.45 19.12 9.7l124.9-93.7h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM127.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S145.7 239.1 127.1 239.1zM255.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S273.7 239.1 255.1 239.1zM383.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S401.7 239.1 383.1 239.1z"></path>
+                                            <path class="fa-primary" fill="currentColor" d="M127.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S145.7 239.1 127.1 239.1zM255.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S273.7 239.1 255.1 239.1zM383.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S401.7 239.1 383.1 239.1z"></path>
+                                        </g>
+                                    </svg><!-- <i class="fa-duotone fa-message-dots"></i> -->
+                                    <span>پاسخ دهید</span>
+                                </button>
+                            </div>
+                            <div class="comments-like-btn">
+                                <button btn-tooltip="پسندیدن">
+                                    <span style="display: none;">0</span>
+                                    <svg class="svg-inline--fa fa-heart" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                        <path fill="currentColor" d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"></path>
+                                    </svg><!-- <i class="fa-solid fa-heart"></i> -->
+                                    <div class="tooltip-div"><span>پسندیدن</span></div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="comments-reply-form">
+                            <form action="#">
+                                <div class="col-12 d-flex flex-wrap">
+                                    <div class="col-12 col-lg-6 p-3">
+                                        <input type="text" placeholder="نام و نام خانوادگی">
+                                    </div>
+                                    <div class="col-12 col-lg-6 pt-0 pt-lg-3 p-3">
+                                        <input type="email" placeholder="ایمیل">
+                                    </div>
+                                </div>
+                                <div class="col-12 px-3">
+                                    <textarea name="comments" class="reply-comments" cols="30" rows="10" placeholder="دیدگاه ها خود را در این قسمت بنویسید"></textarea>
+                                </div>
+                                <div class="col-12 px-3 d-flex justify-content-end">
+                                    <button class="reply-submit" type="submit">
+                                        <span>ارسال</span>
+                                    </button>
+                                    <button class="reply-cancel" type="reset">
+                                        <span>انصراف</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="single-user-comments-card">
+                        <div class="comments-user-name-date">
+                            <div class="comments-user-name">
+                                <p>
+                                    <svg class="svg-inline--fa fa-user" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                                        <g class="fa-duotone-group">
+                                            <path class="fa-secondary" fill="currentColor" d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"></path>
+                                            <path class="fa-primary" fill="currentColor" d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
+                                        </g>
+                                    </svg><!-- <i class="fa-duotone fa-user"></i> -->
+                                    <span>محمدرضا</span>
+                                </p>
+                            </div>
+                            <div class="comments-date">
+                                <svg class="svg-inline--fa fa-clock d-none d-lg-block" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                    <path fill="currentColor" d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path>
+                                </svg><!-- <i class="fa-solid fa-clock d-none d-lg-block"></i> -->
+                                <p>
+                                    <span>دوشنبه</span>
+                                    <span>12</span>
+                                    <span>تیر</span>
+                                    <span>1401</span>
+                                    <span class="d-none d-lg-block">-</span>
+                                    <span class="d-none d-lg-block">14:25</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="comments-content">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+                        </div>
+                        <div class="comments-replybtn-like">
+                            <div class="comments-reply-btn">
+                                <button>
+                                    <svg class="svg-inline--fa fa-message-dots" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="message-dots" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                        <g class="fa-duotone-group">
+                                            <path class="fa-secondary" fill="currentColor" d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.1c0 9.749 11.25 15.45 19.12 9.7l124.9-93.7h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM127.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S145.7 239.1 127.1 239.1zM255.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S273.7 239.1 255.1 239.1zM383.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S401.7 239.1 383.1 239.1z"></path>
+                                            <path class="fa-primary" fill="currentColor" d="M127.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S145.7 239.1 127.1 239.1zM255.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S273.7 239.1 255.1 239.1zM383.1 239.1c-17.75 0-32-14.25-32-31.1s14.25-31.1 32-31.1s32 14.25 32 31.1S401.7 239.1 383.1 239.1z"></path>
+                                        </g>
+                                    </svg><!-- <i class="fa-duotone fa-message-dots"></i> -->
+                                    <span>پاسخ دهید</span>
+                                </button>
+                            </div>
+                            <div class="comments-like-btn">
+                                <button btn-tooltip="پسندیدن">
+                                    <span style="display: block;">1</span>
+                                    <svg class="svg-inline--fa fa-heart" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                        <path fill="currentColor" d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"></path>
+                                    </svg><!-- <i class="fa-solid fa-heart"></i> -->
+                                    <div class="tooltip-div"><span>پسندیدن</span></div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="comments-reply-form">
+                            <form action="#">
+                                <div class="col-12 d-flex flex-wrap">
+                                    <div class="col-12 col-lg-6 p-3">
+                                        <input type="text" placeholder="نام و نام خانوادگی">
+                                    </div>
+                                    <div class="col-12 col-lg-6 pt-0 pt-lg-3 p-3">
+                                        <input type="email" placeholder="ایمیل">
+                                    </div>
+                                </div>
+                                <div class="col-12 px-3">
+                                    <textarea name="comments" class="reply-comments" cols="30" rows="10" placeholder="دیدگاه ها خود را در این قسمت بنویسید"></textarea>
+                                </div>
+                                <div class="col-12 px-3 d-flex justify-content-end">
+                                    <button class="reply-submit" type="submit">
+                                        <span>ارسال</span>
+                                    </button>
+                                    <button class="reply-cancel" type="reset">
+                                        <span>انصراف</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="comments-reply-card">
+                            <div class="comments-reply-card-icon col-1">
+                                <svg class="svg-inline--fa fa-arrow-turn-up" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="arrow-turn-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
+                                    <g class="fa-duotone-group">
+                                        <path class="fa-secondary" fill="currentColor" d="M224 109.3V432c0 44.13-35.89 80-80 80H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h112C152.8 448 160 440.8 160 432V109.3l31.1-32L224 109.3z"></path>
+                                        <path class="fa-primary" fill="currentColor" d="M214.6 9.375c-12.5-12.5-32.75-12.5-45.25 0l-127.1 128c-12.5 12.5-12.5 32.75 0 45.25s32.75 12.5 45.25 0l105.4-105.4l105.4 105.4C303.6 188.9 311.8 192 319.1 192s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 0-45.25L214.6 9.375z"></path>
+                                    </g>
+                                </svg><!-- <i class="fa-duotone fa-arrow-turn-up"></i> -->
+                            </div>
+                            <div class="comments-reply-content-card col-11">
+                                <div class="comments-user-name-date">
+                                    <div class="comments-user-name">
+                                        <p>
+                                            <svg class="svg-inline--fa fa-user" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                                                <g class="fa-duotone-group">
+                                                    <path class="fa-secondary" fill="currentColor" d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"></path>
+                                                    <path class="fa-primary" fill="currentColor" d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
+                                                </g>
+                                            </svg><!-- <i class="fa-duotone fa-user"></i> -->
+                                            <span>محمدرضا</span>
+                                        </p>
+                                    </div>
+                                    <div class="comments-date">
+                                        <svg class="svg-inline--fa fa-clock d-none d-lg-block" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                            <path fill="currentColor" d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path>
+                                        </svg><!-- <i class="fa-solid fa-clock d-none d-lg-block"></i> -->
+                                        <p>
+                                            <span>دوشنبه</span>
+                                            <span>12</span>
+                                            <span>تیر</span>
+                                            <span>1401</span>
+                                            <span class="d-none d-lg-block">-</span>
+                                            <span class="d-none d-lg-block">14:25</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد</p>
+                            </div>
+                        </div>
+                        <div class="comments-reply-card">
+                            <div class="comments-reply-card-icon col-1">
+                                <svg class="svg-inline--fa fa-arrow-turn-up" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="arrow-turn-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
+                                    <g class="fa-duotone-group">
+                                        <path class="fa-secondary" fill="currentColor" d="M224 109.3V432c0 44.13-35.89 80-80 80H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h112C152.8 448 160 440.8 160 432V109.3l31.1-32L224 109.3z"></path>
+                                        <path class="fa-primary" fill="currentColor" d="M214.6 9.375c-12.5-12.5-32.75-12.5-45.25 0l-127.1 128c-12.5 12.5-12.5 32.75 0 45.25s32.75 12.5 45.25 0l105.4-105.4l105.4 105.4C303.6 188.9 311.8 192 319.1 192s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 0-45.25L214.6 9.375z"></path>
+                                    </g>
+                                </svg><!-- <i class="fa-duotone fa-arrow-turn-up"></i> -->
+                            </div>
+                            <div class="comments-reply-content-card col-11">
+                                <div class="comments-user-name-date">
+                                    <div class="comments-user-name">
+                                        <p>
+                                            <svg class="svg-inline--fa fa-user" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                                                <g class="fa-duotone-group">
+                                                    <path class="fa-secondary" fill="currentColor" d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"></path>
+                                                    <path class="fa-primary" fill="currentColor" d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
+                                                </g>
+                                            </svg><!-- <i class="fa-duotone fa-user"></i> -->
+                                            <span>محمدرضا</span>
+                                        </p>
+                                    </div>
+                                    <div class="comments-date">
+                                        <svg class="svg-inline--fa fa-clock d-none d-lg-block" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                            <path fill="currentColor" d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path>
+                                        </svg><!-- <i class="fa-solid fa-clock d-none d-lg-block"></i> -->
+                                        <p>
+                                            <span>دوشنبه</span>
+                                            <span>12</span>
+                                            <span>تیر</span>
+                                            <span>1401</span>
+                                            <span class="d-none d-lg-block">-</span>
+                                            <span class="d-none d-lg-block">14:25</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
+
         </div>
 
         @include('post::layouts.sidebar', ['latestPosts' => $latestPosts, 'hotPosts' => $hotPosts])
