@@ -59,7 +59,7 @@
                                 <tr class="text-wrap">
                                     <th class="font-weight-bold">متن :</th>
                                     <td>
-                                        {!! html_entity_decode($post->body) ?? '-' !!}
+                                        <?= html_entity_decode($post->body) ?? '-' ?>
                                         @foreach(explode(',', $post->tags) as $tag)
                                             <small class="badge badge-light"><i class="fe fe-hash"></i> {{ $tag }}
                                             </small>

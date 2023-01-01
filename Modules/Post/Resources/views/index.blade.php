@@ -51,7 +51,7 @@
                                     </a>
                                 </div>
                                 <div class="archive-news-card-except">
-                                    <p>{!! $post->summary !!}</p>
+                                    <p><?= $post->summary ?></p>
                                 </div>
                             </div>
                         </div>

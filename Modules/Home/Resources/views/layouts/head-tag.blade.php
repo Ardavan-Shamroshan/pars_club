@@ -18,4 +18,4 @@
 <link rel="stylesheet" href="{{ asset('modules/home/assets/css/owl.theme.default.min.css') }}">
 <link rel="stylesheet" href="{{ asset('modules/home/assets/css/video-js.css') }}">
 
-{!! htmlScriptTagJsApi() !!}
+<?= htmlScriptTagJsApi() ?>

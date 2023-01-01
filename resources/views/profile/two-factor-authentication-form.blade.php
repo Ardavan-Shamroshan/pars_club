@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="mt-4">
-                    {!! $this->user->twoFactorQrCodeSvg() !!}
+                    <?= $this->user->twoFactorQrCodeSvg() ?>
                 </div>
 
                 <div class="mt-4 max-w-xl text-sm text-gray-600">

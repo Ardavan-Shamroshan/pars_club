@@ -118,7 +118,7 @@
                                                                             <li class="d-flex justify-content-start gap-3 bg-light m-0 p-3">
                                                                                 <div class="font-weight-bold">متن تماس :</div>
                                                                                 <div>
-                                                                                    {!! $contact->message ?? '-' !!}
+                                                                                    <?= $contact->message ?? '-' ?>
                                                                                 </div>
                                                                             </li>
                                                                             <li class="d-flex justify-content-start gap-3 m-0 p-3">
@@ -137,7 +137,7 @@
 
                                                                                 <div>
                                                                                     @if($contact->is_read == 1)
-                                                                                        {!!  $contact->response !!}
+                                                                                        <?=  $contact->response ?>
                                                                                     @else
                                                                                         <small class="tag bg-warning-transparent text-warning">
                                                                                             {{ $contact->read }}
@@ -206,7 +206,7 @@
                                                                                         <div class="d-flex">
                                                                                             <h5 class="mb-1 name text-body">{{ $contact->name }}</h5>
                                                                                         </div>
-                                                                                        <p class="mb-0 desc tx-gray-600 my-2">{!! $contact->message !!}</p>
+                                                                                        <p class="mb-0 desc tx-gray-600 my-2"><?= $contact->message ?></p>
                                                                                         <p class="time mb-0 text-left float-right mr-2 mt-2 tx-gray-500">{{ jalaliDate($contact->created_at, '%d %B، %Y') }}</p>
                                                                                     </div>
                                                                                 </a>

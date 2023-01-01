@@ -13,7 +13,7 @@
                 </div>
                 <div class="main-col-title">
                     <a href="{{ route('post.show', $banner) }}">
-                        <p>{!! $banner->summary !!}</p>
+                        <p><?= $banner->summary ?></p>
                     </a>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                                     </a>
                                 </div>
                                 <div class="main-news-card-except">
-                                    <p>{!! $post->summary !!}</p>
+                                    <p><?= $post->summary ?></p>
                                 </div>
                             </div>
                         </div>
@@ -569,7 +569,7 @@
                     </a>
                 </div>
                 <div class="main-video-player-description">
-                    <p>{!! $video->description  !!}</p>
+                    <p><?= $video->description  ?></p>
                 </div>
             </div>
             <div class="archive-col col-12 col-lg-4 mt-3">

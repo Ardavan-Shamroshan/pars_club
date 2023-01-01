@@ -4,6 +4,6 @@
     <h1>Hello World</h1>
 
     <p>
-        This view is loaded from module: {!! config('league.name') !!}
+        This view is loaded from module: <?= config('league.name') ?>
     </p>
 @endsection

@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="single-abstract mt-3">
-                    <p>{!! $post->summary !!}.</p>
+                    <p><?= $post->summary ?>.</p>
                 </div>
                 <div class="single-image mt-3">
                     <img src="{{ asset($post->image['indexArray']['medium']) }}" alt="{{ $post->title }}">
@@ -53,7 +53,7 @@
 
                 <hr>
                 <div class="single-content mt-3">
-                    {!! $post->body !!}
+                    <?= $post->body ?>
                 </div>
                 <hr>
 

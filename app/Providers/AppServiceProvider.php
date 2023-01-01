@@ -47,7 +47,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // home head-tag
-        view()->composer('home::layouts.head-tag', function ($view) {
+        view()->composer(['home::layouts.head-tag', 'home::layouts.footer'], function ($view) {
             $view->with('setting', Setting::query()->first());
         });
 
@@ -74,14 +74,5 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
-        // home left sidebar
-        view()->composer('home::layouts.get-notifications', function ($view) {
-            // team results
-            $view->with('results',
-                TeamResult::query()
-                    ->orderBy('points', 'desc')
-                    ->get()
-            );
-        });
     }
 }

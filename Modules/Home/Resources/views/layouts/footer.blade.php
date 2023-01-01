@@ -70,7 +70,7 @@
             </ul>
         </div>
         <hr>
-      @include('home::layouts.copyright')
+      @include('home::layouts.copyright', ['copyright' => $setting->copyright])
     </div>
 </footer>
 <!--Footer End-->

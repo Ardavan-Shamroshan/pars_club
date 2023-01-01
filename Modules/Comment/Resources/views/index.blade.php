@@ -4,6 +4,6 @@
     <h1>Hello World</h1>
 
     <p>
-        This view is loaded from module: {!! config('comment.name') !!}
+        This view is loaded from module: <?= config('comment.name') ?>
     </p>
 @endsection
