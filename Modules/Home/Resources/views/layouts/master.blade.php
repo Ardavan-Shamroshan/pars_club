@@ -32,13 +32,13 @@
                 <i class="fa-solid fa-chevron-up"></i>
             </button>
         </div>
+
         <div class="container">
-
             @yield('content')
-
-            {{-- footer --}}
-            @include('home::layouts.footer')
         </div>
+
+        {{-- footer --}}
+        @include('home::layouts.footer')
     </main>
     <!--Main Content End-->
 

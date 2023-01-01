@@ -1,140 +1,182 @@
 @extends('home::layouts.master')
+@section('head-tag')
+    <link rel="stylesheet" href="{{ asset('modules/home/assets/css/archive.css') }}">
+@endsection
 @section('title')
     مجله و خبرنامه
 @endsection
 @section('content')
 
-    <!-- breadcrumb -->
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fe fe-home"></i></a></li>
-            <li class="breadcrumb-item"><a href="{{ route('post') }}">مجله و خبرنامه</a></li>
-            @if(isset($postcategory))
-                <li class="breadcrumb-item">دسته {{ $postcategory->name }}</li>
-            @endif
-        </ol>
-    </nav>
-    <!-- breadcrumb -->
-
-    <div class="container paddin-mini">
-        <div class="row">
-
-            <!-- right aside -->
-            <aside class="col-sm-12 col-lg-4 col-xl-3 px-0 h-100">
-
-                <div class="panel-box">
-                    <div class="titles no-margin">
-                        <h4><i class="fe fe-list"></i>دسته بندی ها</h4>
-                    </div>
-                    <div class="info-panel">
-                        <ul class="list-news">
-
-                            @forelse($categories as $category)
-                                <li><i class="fa fa-circle"></i><a href="{{ route('postcategory', $category) }}">{{ $category->name }}</a></li>
-                            @empty
-                                <small>
-                                    درحال حاضر دسته بندی برای نمایش وجود ندارد! @admin<a href="{{ route('admin.postcategory') }}" class="btn-link links links-footer text-primary">وارد کردن دسته بندی</a> @endadmin
-                                </small>
-                            @endforelse
-
-                        </ul>
-                    </div>
+    <div class="first-row row g-3 mt-3">
+        <div class="archive-main-col col-12 col-lg-9">
+            <div class="archive-breadcrumb">
+                <div class="archive-bread-crumb">
+                    <a href="{{ route('home') }}"> <span class="breadcrumb-selected">خانه</span></a>
+                    <a><span>مجله و خبرنامه</span></a>
                 </div>
-
-                @include('home::layouts.right-sidebar')
-
-            </aside>
-
-            <div class="col-lg-5 col-xl-6 col-sm-12 ">
-
-                <!-- last news -->
-                <div class="panel-box rounded">
-                    <div class="titles bg-light">
-                      @if(isset($postcategory))
-                            <h4><i class="fe fe-bookmark"></i>  اخبار دسته بندی <a class="text-primary" href="{{ route('postcategory', $postcategory) }}">{{ $postcategory->name }}</a></h4>
-                        @else
-                            <h4><i class="fe fe-bookmark"></i> آخرین اخبار</h4>
-                      @endif
-                    </div>
-
-                    @forelse($posts as $post)
-                        <div class="post-item">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h4 class="font-weight-bold">
-                                        <a href="{{ route('post.show', $post) }}">{{ $post->title }}</a>
-                                    </h4>
-                                </div>
-                                <div class="col-md-4 col-4">
-                                    <div class="img-hover rounded">
-                                        <img src="{{ asset($post->image['indexArray']['large']) }}" alt="{{ $post->title }}" class="img-responsive">
-                                        <div class="overlay"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-8 pt-sm-2 col-8">
-                                    <small>{{ $post->summary }}</small>
-
-                                </div>
-                                <div class="col-12">
-                                    <span class="data-info d-flex justify-content-between mt-4">
-                                            <small class="font-weight-bold">
-                                                <i class="fe fe-edit text-navy"></i>{{ $post->author->fullname ?? $post->author->name }}
-                                            </small> <small class="font-weight-bold">
-                                                <i class="fe fe-clock text-navy"></i>{{ jalaliDate($post->published_at, 'H:i - Y/m/d') }}
-                                            </small>
-                                            <small class="font-weight-bold">
-                                                <i class="fe fe-message-circle text-navy"></i> {{ $post->comments()->count() }}
-                                            </small>
-                                        </span>
-                                </div>
-                            </div>
-                        </div>
-                    @empty
-                        <div class="post-item">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h4 class="font-weight-bold">
-                                        <a href="#">عنوان خبر</a>
-                                    </h4>
-                                </div>
-                                <div class="col-md-4 col-4">
-                                    <div class="img-hover rounded">
-                                        <img src="{{ asset('modules/home/img/404-football.gif') }}" alt="عنوان" class="img-responsive">
-                                        <div class="overlay"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-8 pt-sm-2 col-8">
-                                    <small>
-                                        درحال حاضر خبری برای نمایش وجود ندارد! @admin
-                                        <a href="{{ route('admin.post') }}" class="btn-link links links-footer text-primary">وارد کردن خبر</a> @endadmin
-                                    </small>
-                                    <span class="data-info d-flex justify-content-between mt-4">
-                                            <small class="font-weight-bold">
-                                                <i class="fe fe-edit text-navy"></i>نویسنده
-                                            </small> <small class="font-weight-bold">
-                                                <i class="fe fe-clock text-navy"></i>تاریخ انتشار
-                                            </small>
-                                            <small class="font-weight-bold">
-                                                <i class="fe fe-message-circle text-navy"></i> نظرات
-                                            </small>
-                                        </span>
-                                </div>
-                            </div>
-                        </div>
-                    @endforelse
-
-                </div>
-
-                {{ $posts->links('vendor.pagination.bootstrap-5', ['elements' => $posts]) }}
-
             </div>
 
-            <!-- left aside -->
-            <aside class="col-sm-12 col-lg-4 col-xl-3 h-100">
-                @include('home::layouts.left-sidebar')
-            </aside>
-            <!-- end left side -->
-        </div>
-    </div>
+            <div class="archive-section mt-3">
+                <div class="archive-top-news">
+                    <div class="archive-top-news-thumbnail">
+                        <a href="{{ route('post.show', $latestPost) }}">
+                            <img src="{{ asset($latestPost->image['indexArray']['medium']) }}" alt="{{ $latestPost->title }}">
+                        </a>
+                    </div>
+                    <div class="archive-top-news-title">
+                        <a href="{{ route('post.show', $latestPost) }}">
+                            <h2>{{ $latestPost->title }}</h2>
+                        </a>
+                    </div>
+                </div>
 
+                <hr>
+
+                <div class="archive-news">
+                    @forelse($posts as $post)
+                        <div class="archive-news-card">
+                            <div class="archive-news-card-thumbnail">
+                                <a href="{{ route('post.show', $post) }}">
+                                    <img src="{{ asset($post->image['indexArray']['medium']) }}" alt="{{ $post->title }}">
+                                </a>
+                            </div>
+                            <div class="col ps-3">
+                                <div class="archive-news-top-title d-none d-md-block">
+                                    <p>{{ $post->category->name }}</p>
+                                </div>
+                                <div class="archive-news-card-title mt-1 mt-sm-0">
+                                    <a href="{{ route('post.show', $post) }}">
+
+                                        <p>{{ $post->title }}</p>
+                                    </a>
+                                </div>
+                                <div class="archive-news-card-except">
+                                    <p>{!! $post->summary !!}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    @empty
+                    @endforelse
+                </div>
+            </div>
+
+
+            {{ $posts->links('vendor.pagination.morn-news') }}
+
+        </div>
+
+
+        <div class="archive-second-col col-12 col-lg-3">
+            <div class="news-list">
+                <div class="social-section">
+                    <div class="social-section-header">
+                        <i class="fa-duotone fa-hashtag"></i>
+                        <span>راه های ارتباطی</span>
+                    </div>
+                    <div class="social-section-cols row gx-3">
+                        <div class="col-6">
+                            <a href="https://instagram.com/fc_pars_borazjan">
+                                <div class="social-btns social-instagram">
+                                    <i class="fa-brands fa-instagram"></i>
+                                    <span>اینستاگرام</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="https://t.me/fc_parseh_academy">
+                                <div class="social-btns social-telegram">
+                                    <i class="fa-brands fa-telegram"></i>
+                                    <span>تلگرام</span>
+                                </div>
+                            </a>
+                        </div>
+                        {{--                        <div class="col-6">--}}
+                        {{--                            <a href="#">--}}
+                        {{--                                <div class="social-btns social-twitter">--}}
+                        {{--                                    <i class="fa-brands fa-twitter"></i>--}}
+                        {{--                                    <span>توییتر</span>--}}
+                        {{--                                </div>--}}
+                        {{--                            </a>--}}
+                        {{--                        </div>--}}
+                        {{--                        <div class="col-6">--}}
+                        {{--                            <a href="#">--}}
+                        {{--                                <div class="social-btns social-rss">--}}
+                        {{--                                    <i class="fa-solid fa-rss"></i>--}}
+                        {{--                                    <span>آر اس اس</span>--}}
+                        {{--                                </div>--}}
+                        {{--                            </a>--}}
+                        {{--                        </div>--}}
+                    </div>
+                </div>
+                <div class="news-box col-12 mt-3">
+                    <div class="news-box-card-mini">
+                        <div class="news-box-header">
+                            <i class="fa-duotone fa-newspaper"></i>
+                            <span>آخرین اخبار</span>
+                        </div>
+                        <div class="new-box-news">
+                            <ul>
+
+                                <!-- latest posts -->
+                                @forelse($latestPosts as $latest)
+                                    <li>
+                                        <a href="{{ route('post.show', $latest) }}">
+                                            {{ $latest->title }}
+                                        </a>
+                                    </li>
+                                @empty
+                                    <li>
+                                        @admin
+                                        <span>درحال حاظر خبری وجود ندارد.</span>
+                                        <a href="{{ route('admin.post') }}" class="btn-link">وارد کردن خبر </a>
+                                        @endadmin
+                                        @guest
+                                            <span class="text-muted">درحال حاظر خبری وجود ندارد.</span>
+                                        @endguest
+                                    </li>
+                                @endforelse
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-box col-12 mt-3">
+                    <div class="news-box-card-mini">
+                        <div class="news-box-header">
+                            <i class="fa-duotone fa-newspaper"></i>
+                            <span>مطالب داغ</span>
+                        </div>
+                        <div class="new-box-news">
+                            <ul>
+
+                                @forelse($hotPosts as $hot)
+                                    <li>
+                                        <a href="{{ route('post.show', $hot) }}">
+                                            <span>{{ $hot->title }}</span>
+                                        </a>
+                                    </li>
+                                @empty
+                                    <li>
+                                        @admin
+                                        <span>درحال حاظر خبری وجود ندارد.</span>
+                                        <a href="{{ route('admin.post') }}" class="btn-link">وارد کردن خبر </a>
+                                        @endadmin
+                                        @guest
+                                            <span class="text-muted">درحال حاظر خبری وجود ندارد.</span>
+                                        @endguest
+                                    </li>
+                                @endforelse
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
 @endsection

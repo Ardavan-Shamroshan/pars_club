@@ -87,7 +87,6 @@ class HomeController extends Controller
             ->first();
 
 
-
         // setting
         $setting = Setting::query()->first();
 

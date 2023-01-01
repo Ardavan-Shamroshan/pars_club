@@ -15,9 +15,40 @@ class PostController extends Controller
      * @return Renderable
      */
     public function index() {
-        $posts = Post::query()->where('published_at', '<=', now())->where('status', 1)->paginate(10);
+        $posts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->latest()
+            ->paginate(10);
+
+        // get the latest Post
+        $latestPost = $posts[0];
+
+        // Posts without key:0
+        $posts->forget(0);
+
+        // latest posts
+        $latestPosts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->latest()
+            ->take(15)
+            ->get();
+
+
+        // hot posts
+        $hotPosts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->where('label', 1)
+            ->latest()
+            ->take(15)
+            ->get();
+
+
+
         $categories = PostCategory::query()->where('status', 1)->get();
-        return view('post::index', compact('posts', 'categories'));
+        return view('post::index', compact('posts', 'categories', 'latestPost', 'hotPosts', 'latestPosts'));
     }
 
     /**

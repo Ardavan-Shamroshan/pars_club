@@ -11,8 +11,8 @@
                 <span id="txt" class="small"></span>
             </div>
             <div class="top-header-social">
-                <a href="#"><i class="fa-brands fa-telegram"></i><span>تلگرام</span></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i><span>اینستاگرام</span></a>
+                <a href="https://t.me/fc_parseh_academy"><i class="fa-brands fa-telegram"></i><span>تلگرام</span></a>
+                <a href="https://instagram.com/fc_pars_borazjan"><i class="fa-brands fa-instagram"></i><span>اینستاگرام</span></a>
                 <a href="#"><i class="fa-brands fa-twitter"></i><span>توییتر</span></a>
             </div>
         </div>
