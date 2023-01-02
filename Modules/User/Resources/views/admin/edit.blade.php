@@ -5,7 +5,6 @@
 @section('head-tag')
     <link rel="stylesheet" href="{{ asset('modules/admin/assets/plugins/jalalidatepicker/persian-datepicker.min.css') }}">
 @endsection
-
 @section('content')
     <!-- breadcrumb -->
     <nav aria-label="breadcrumb">
@@ -101,23 +100,29 @@
                                         <small class="tx-gray-600">اگر خالی رها کنید، بصورت خودکار از روی ایمیل تولید خواهد شد.</small>
                                     </div>
 
+                                    @if($user->user_type == 1)
+                                        <div class="alert alert-link" role="alert">
+                                            <span class="alert-inner--icon"><i class="fe fe-info"></i></span>
+                                            <span class="alert-inner--text"><strong>توجه!</strong> برای تغییر کلمه عبور  <a href="{{ route('profile.show') }}" class="text-decoration-underline">اینجا</a> را کلیک کنید</span>
+                                        </div>
+                                    @endif
+
                                     {{-- password --}}
-                                    <div class="form-group mb-4">
-                                        <label class="form-label @error('password') tx-danger @enderror">کلمه عبور:
-                                            <span class="tx-danger">*</span></label>
-                                        <input type="password" name="password" class="form-control @error('password') border-danger @enderror" value="">
-                                        @error('password') <small class="tx-danger">{{ $message }}</small> @enderror
-                                    </div>
+                                    {{--                                    <div class="form-group mb-4">--}}
+                                    {{--                                        <label class="form-label @error('password') tx-danger @enderror">کلمه عبور:--}}
+                                    {{--                                            <span class="tx-danger">*</span></label>--}}
+                                    {{--                                        <input type="password" name="password" class="form-control @error('password') border-danger @enderror" value="">--}}
+                                    {{--                                        @error('password') <small class="tx-danger">{{ $message }}</small> @enderror--}}
+                                    {{--                                    </div>--}}
 
                                     {{-- password confirmation --}}
-                                    <div class="form-group mb-4">
-                                        <label class="form-label @error('password_confirmation') tx-danger @enderror">تکرار کلمه عبور:
-                                            <span class="tx-danger">*</span></label>
-                                        <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') border-danger @enderror" value="">
-                                        @error('password_confirmation')
-                                        <small class="tx-danger">{{ $message }}</small> @enderror
-                                    </div>
-
+                                    {{--                                    <div class="form-group mb-4">--}}
+                                    {{--                                        <label class="form-label @error('password_confirmation') tx-danger @enderror">تکرار کلمه عبور:--}}
+                                    {{--                                            <span class="tx-danger">*</span></label>--}}
+                                    {{--                                        <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') border-danger @enderror" value="">--}}
+                                    {{--                                        @error('password_confirmation')--}}
+                                    {{--                                        <small class="tx-danger">{{ $message }}</small> @enderror--}}
+                                    {{--                                    </div>--}}
 
                                     <div class="alert alert-primary" role="alert">
                                         <span class="alert-inner--icon"><i class="fe fe-check-square"></i></span>
@@ -165,10 +170,7 @@
                                                     <div class="col-sm-4">
                                                         <div class="checkbox">
                                                             <label class="font-weight-normal">
-                                                                <input type="checkbox" class="secondary_list"
-                                                                        @checked($user->getPermissionsViaRoles()->contains($permission)) @disabled($user->getPermissionsViaRoles()->contains($permission))
-                                                                        @checked($user->getAllPermissions()->contains($permission)) @disabled($user->getAllPermissions()->contains($permission))
-                                                                       data-id="{{ $permission->id }}" label="Permissions" name="permissions_show[]" entity="permissions" entity_primary="roles" attribute="name" model="Spatie\Permission\Models\Permission" pivot="1" number_columns="3" parentfieldname="" relation_type="MorphToMany" multiple value="{{ $permission->id }}">
+                                                                <input type="checkbox" class="secondary_list" @checked($user->getPermissionsViaRoles()->contains($permission)) @disabled($user->getPermissionsViaRoles()->contains($permission)) @checked($user->getAllPermissions()->contains($permission)) @disabled($user->getAllPermissions()->contains($permission)) data-id="{{ $permission->id }}" label="Permissions" name="permissions_show[]" entity="permissions" entity_primary="roles" attribute="name" model="Spatie\Permission\Models\Permission" pivot="1" number_columns="3" parentfieldname="" relation_type="MorphToMany" multiple value="{{ $permission->id }}">
                                                                 {{ $permission->name }}
                                                             </label>
                                                         </div>
@@ -204,7 +206,7 @@
 
         function fetchRecords(id) {
             $.ajax({
-                url: '/admin/user/get-permissions/' + id,
+                url: '/adminity/user/get-permissions/' + id,
                 type: 'get',
                 dataType: 'json',
                 success: function (response) {

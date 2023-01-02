@@ -213,7 +213,7 @@
 
         function fetchRecords(id) {
             $.ajax({
-                url: '/admin/user/get-permissions/' + id,
+                url: '/adminity/user/get-permissions/' + id,
                 type: 'get',
                 dataType: 'json',
                 success: function (response) {
