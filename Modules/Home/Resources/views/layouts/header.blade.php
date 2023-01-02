@@ -49,7 +49,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="single.html">
+                        <a href="{{ route('videogallery') }}">
                             <span>ویدیو ها</span>
                         </a>
                     </li>

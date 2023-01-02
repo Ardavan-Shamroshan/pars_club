@@ -518,7 +518,7 @@
                     </video>
                 </div>
                 <div class="main-video-player-title mt-3">
-                    <a href="single.html">
+                    <a href="{{ route('videogallery.show', $latestVideo) }}">
                         <span>{{ $latestVideo->title }}</span>
                     </a>
                 </div>
@@ -532,7 +532,7 @@
                 @forelse($videos as $video)
                 <div class="main-video-arcive-card">
                     <div class="main-video-arcive-card-thumbnail border">
-                        <a href="single.html">
+                        <a href="{{ route('videogallery.show', $video) }}">
                             <img src="{{ asset('modules/home/img/video.jpg') }}" alt="{{ $video->title }}" width="10">
                             <div class="video-arcive-card-thumbnail-hover">
                                 <i class="fa-solid fa-eye"></i>
@@ -541,7 +541,7 @@
                         </a>
                     </div>
                     <div class="main-video-arcive-card-title">
-                        <a href="single.html">
+                        <a href="{{ route('videogallery.show', $video) }}">
                             <span>{{ $video->title }}</span>
                         </a>
                     </div>
@@ -549,7 +549,7 @@
                 @empty
                     <div class="main-video-arcive-card">
                         <div class="main-video-arcive-card-thumbnail">
-                            <a href="single.html">
+                            <a href="#">
                                 <img src="{{ asset('modules/home/img/404-football.gif') }}" alt="'video'">
                                 <div class="video-arcive-card-thumbnail-hover">
                                     <i class="fa-solid fa-eye"></i>
@@ -558,7 +558,7 @@
                             </a>
                         </div>
                         <div class="main-video-arcive-card-title">
-                            <a href="single.html">
+                            <a href="#">
                                 <span>عنوان ویدیو</span>
                             </a>
                         </div>

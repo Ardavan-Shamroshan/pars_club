@@ -43,8 +43,16 @@ class VideoGalleryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id) {
-        return view('videogallery::show');
+    public function show(VideoGallery $video) {
+
+        // latest videos
+        $latestVideos = VideoGallery::query()
+            ->where('status', 1)
+            ->latest()
+            ->take(3)
+            ->get();
+
+        return view('videogallery::show', compact('latestVideos', 'video'));
     }
 
     /**

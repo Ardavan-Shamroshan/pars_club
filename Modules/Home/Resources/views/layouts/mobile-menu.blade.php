@@ -10,7 +10,7 @@
             </a>
         </li>
         <li>
-            <a href="single.html">
+            <a href="{{ route('videogallery') }}">
                 <span>ویدیو ها</span>
             </a>
         </li>
@@ -20,7 +20,7 @@
             </a>
         </li>
         <li>
-            <a href="pictures-single.html">
+            <a href="{{ route('contact-us') }}">
                 <span>تماس با ما</span>
             </a>
         </li>
