@@ -35,5 +35,7 @@ Route::middleware('auth', 'admin')->prefix('adminity')->group(function () {
 // post
 Route::prefix('post')->group(function () {
     Route::get('/',  [PostController::class, 'index'])->name('post');
+    Route::get('/club-news',  [PostController::class, 'clubNews'])->name('post.club-news');
+    Route::get('/world-news',  [PostController::class, 'worldNews'])->name('post.world-news');
     Route::get('/show/{post:slug}', [PostController::class, 'show'])->name('post.show');
 });

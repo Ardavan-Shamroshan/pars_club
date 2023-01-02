@@ -23,8 +23,9 @@ class HomeController extends Controller
         $posts = Post::query()
             ->where('published_at', '<=', now())
             ->where('status', 1)
+            ->whereNot('label', 2)
             ->latest()
-            ->paginate(4);
+            ->paginate(5);
 
         // latest posts
         $latestPosts = Post::query()
@@ -66,7 +67,6 @@ class HomeController extends Controller
         // leagues
         $leagues = League::all();
 
-
         // world news
         $worldNews = Post::query()
             ->where('published_at', '<=', now())
@@ -83,10 +83,17 @@ class HomeController extends Controller
             ->get();
 
         // video
-        $video = VideoGallery::query()->where('status', 1)
-            ->latest()
-            ->inRandomOrder()
-            ->first();
+        $videos = VideoGallery::query()->where('status', 1)
+            ->orderBy('created_at')
+            ->take(6)
+            ->get();
+
+        // get the latest Video
+        $latestVideo = $videos[0];
+
+        // Videos without key:0
+        $videos->forget(0);
+
 
 
         // setting
@@ -101,7 +108,8 @@ class HomeController extends Controller
             'banner',
             'leagues',
             'slides',
-            'video',
+            'latestVideo',
+            'videos',
             'setting',
         ));
     }

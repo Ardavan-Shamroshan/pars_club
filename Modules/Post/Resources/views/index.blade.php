@@ -12,7 +12,15 @@
             <div class="archive-breadcrumb">
                 <div class="archive-bread-crumb">
                     <a href="{{ route('home') }}"> <span class="breadcrumb-selected">خانه</span></a>
-                    <a><span>مجله و خبرنامه</span></a>
+                    @if(isset($worldNews))
+                        <a href="{{ route('post') }}"> <span class="breadcrumb-selected">مجله و خبرنامه</span></a>
+                        <a><span>{{ $worldNews }}</span></a>
+                    @elseif(isset($clubNews))
+                        <a href="{{ route('post') }}"> <span class="breadcrumb-selected">مجله و خبرنامه</span></a>
+                        <a><span>{{ $clubNews }}</span></a>
+                    @else
+                        <a><span>مجله و خبرنامه</span></a>
+                    @endif
                 </div>
             </div>
 
@@ -42,7 +50,7 @@
                             </div>
                             <div class="col ps-3">
                                 <div class="archive-news-top-title d-none d-md-block">
-                                    <p>{{ $post->category->name }}</p>
+                                    <p>{{ $post->category->name }} - {{ jalaliDate($post->published_at, '', true) }}</p>
                                 </div>
                                 <div class="archive-news-card-title mt-1 mt-sm-0">
                                     <a href="{{ route('post.show', $post) }}">

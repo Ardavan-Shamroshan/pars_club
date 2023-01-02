@@ -50,11 +50,89 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     * @return Renderable
+     * Show the club posts except world-news posts".
+     *
      */
-    public function create() {
-        return view('post::create');
+    public function clubNews() {
+        $posts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+
+            ->whereNot('label', 2)
+            ->orWhereNull('label')
+
+            ->latest()
+            ->paginate(10);
+
+
+        // get the latest Post
+        $latestPost = $posts[0];
+
+        // Posts without key:0
+        $posts->forget(0);
+
+        // latest posts
+        $latestPosts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->latest()
+            ->take(15)
+            ->get();
+
+
+        // hot posts
+        $hotPosts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->where('label', 1)
+            ->latest()
+            ->take(15)
+            ->get();
+
+
+        return view('post::index', compact('posts', 'latestPost', 'hotPosts', 'latestPosts'))
+            ->with('clubNews', 'آرشیو اخبار');
+    }
+
+    /**
+     * Show the posts with label 2 "ورزش جهان".
+     *
+     */
+    public function worldNews() {
+        $posts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->where('label', 2)
+            ->latest()
+            ->paginate(10);
+
+        // get the latest Post
+        $latestPost = $posts[0];
+
+        // Posts without key:0
+        $posts->forget(0);
+
+        // latest posts
+        $latestPosts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->latest()
+            ->take(15)
+            ->get();
+
+
+        // hot posts
+        $hotPosts = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->where('label', 1)
+            ->latest()
+            ->take(15)
+            ->get();
+
+
+        return view('post::index', compact('posts', 'latestPost', 'hotPosts', 'latestPosts'))
+            ->with('worldNews', 'ورزش جهان');
     }
 
     /**

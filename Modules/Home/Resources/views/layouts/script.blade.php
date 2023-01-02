@@ -29,3 +29,11 @@
     }
 </script>
 
+<script>
+    function init() {
+        var player = videojs('my-player', {
+            autoplay: true,
+            muted: true
+        });
+    }
+</script>

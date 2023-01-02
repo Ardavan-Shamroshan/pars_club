@@ -47,7 +47,7 @@
                     @endforeach
 
                     <div class="open-all-archive">
-                        <a href="{{ route('post') }}">
+                        <a href="{{ route('post.club-news') }}">
                             <span>مشاهده آرشیو اخبار</span>
                         </a>
                     </div>
@@ -303,7 +303,7 @@
                             <i class="fa-duotone fa-futbol"></i>
                             <span>اخبار ورزش جهان</span>
                         </p>
-                        <a href="{{ route() }}" class="main-see-all-link">
+                        <a href="{{ route('post.world-news') }}" class="main-see-all-link">
                             <span>مشاهده همه</span>
                         </a>
                     </div>
@@ -513,100 +513,58 @@
             </div>
             <div class="video-col col-12 col-lg-8 mt-3">
                 <div class="main-video-player">
-                    <video class="video-js" poster="{{ asset($setting->logo) }}" width="100%" height="100%" disablePictureInPicture controls controlsList="nodownload noplaybackrate" data-setup="{}">
-                        <source src="{{ asset($video->video) }}" type="video/mp4">
+                    <video class="video-js" poster="{{ asset('modules/home/img/clubs-logos/club_logo.jpg') }}" width="100%" height="100%" controls controlsList="nodownload noplaybackrate" data-setup="{}">
+                        <source src="{{ asset($latestVideo->video) }}" type="video/mp4">
                     </video>
                 </div>
                 <div class="main-video-player-title mt-3">
                     <a href="single.html">
-                        <span>{{ $video->title }}</span>
+                        <span>{{ $latestVideo->title }}</span>
                     </a>
                 </div>
                 <div class="main-video-player-description">
-                    <p><?= $video->description ?></p>
+                    <p><?= $latestVideo->description ?></p>
                 </div>
             </div>
             <div class="archive-col col-12 col-lg-4 mt-3">
+
+
+                @forelse($videos as $video)
                 <div class="main-video-arcive-card">
-                    <div class="main-video-arcive-card-thumbnail">
+                    <div class="main-video-arcive-card-thumbnail border">
                         <a href="single.html">
-                            <img src="{{ asset('modules/home/assets/img/thumbnails/108 copy.jpg') }}" alt="">
+                            <img src="{{ asset('modules/home/img/video.jpg') }}" alt="{{ $video->title }}" width="10">
                             <div class="video-arcive-card-thumbnail-hover">
                                 <i class="fa-solid fa-eye"></i>
-                                <span class="video-view-count">158 بازدید</span>
+                                <span class="video-view-count"></span>
                             </div>
                         </a>
                     </div>
                     <div class="main-video-arcive-card-title">
                         <a href="single.html">
-                            <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
+                            <span>{{ $video->title }}</span>
                         </a>
                     </div>
                 </div>
-                <div class="main-video-arcive-card">
-                    <div class="main-video-arcive-card-thumbnail">
-                        <a href="single.html">
-                            <img src="{{ asset('modules/home/assets/img/thumbnails/11 copy.jpg') }}" alt="">
-                            <div class="video-arcive-card-thumbnail-hover">
-                                <i class="fa-solid fa-eye"></i>
-                                <span class="video-view-count">158 بازدید</span>
-                            </div>
-                        </a>
+                @empty
+                    <div class="main-video-arcive-card">
+                        <div class="main-video-arcive-card-thumbnail">
+                            <a href="single.html">
+                                <img src="{{ asset('modules/home/img/404-football.gif') }}" alt="'video'">
+                                <div class="video-arcive-card-thumbnail-hover">
+                                    <i class="fa-solid fa-eye"></i>
+                                    <span class="video-view-count"></span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="main-video-arcive-card-title">
+                            <a href="single.html">
+                                <span>عنوان ویدیو</span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="main-video-arcive-card-title">
-                        <a href="single.html">
-                            <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="main-video-arcive-card">
-                    <div class="main-video-arcive-card-thumbnail">
-                        <a href="single.html">
-                            <img src="{{ asset('modules/home/assets/img/thumbnails/102 copy.jpg') }}" alt="">
-                            <div class="video-arcive-card-thumbnail-hover">
-                                <i class="fa-solid fa-eye"></i>
-                                <span class="video-view-count">158 بازدید</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="main-video-arcive-card-title">
-                        <a href="single.html">
-                            <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="main-video-arcive-card">
-                    <div class="main-video-arcive-card-thumbnail">
-                        <a href="single.html">
-                            <img src="{{ asset('modules/home/assets/img/thumbnails/14 copy.jpg') }}" alt="">
-                            <div class="video-arcive-card-thumbnail-hover">
-                                <i class="fa-solid fa-eye"></i>
-                                <span class="video-view-count">158 بازدید</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="main-video-arcive-card-title">
-                        <a href="single.html">
-                            <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="main-video-arcive-card">
-                    <div class="main-video-arcive-card-thumbnail">
-                        <a href="single.html">
-                            <img src="{{ asset('modules/home/assets/img/thumbnails/11 copy.jpg') }}" alt="">
-                            <div class="video-arcive-card-thumbnail-hover">
-                                <i class="fa-solid fa-eye"></i>
-                                <span class="video-view-count">158 بازدید</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="main-video-arcive-card-title">
-                        <a href="single.html">
-                            <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
-                        </a>
-                    </div>
-                </div>
+                @endforelse
+
             </div>
         </div>
     </div>
