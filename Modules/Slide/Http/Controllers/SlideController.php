@@ -5,6 +5,8 @@ namespace Modules\Slide\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Slide\Entities\Slide;
+use Modules\VideoGallery\Entities\VideoGallery;
 
 class SlideController extends Controller
 {
@@ -12,17 +14,19 @@ class SlideController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
-    {
-        return view('slide::index');
+    public function index() {
+        $slides = Slide::query()
+            ->where('status', 1)
+            ->latest()
+            ->get();
+        return view('slide::index', compact('slides'));
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function create()
-    {
+    public function create() {
         return view('slide::create');
     }
 
@@ -31,8 +35,7 @@ class SlideController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -41,9 +44,15 @@ class SlideController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
-    {
-        return view('slide::show');
+    public function show(Slide $slide) {
+        // latest videos
+        $latestVideos = VideoGallery::query()
+            ->where('status', 1)
+            ->latest()
+            ->take(3)
+            ->get();
+
+        return view('slide::show', compact('latestVideos', 'slide'));
     }
 
     /**
@@ -51,8 +60,7 @@ class SlideController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         return view('slide::edit');
     }
 
@@ -62,8 +70,7 @@ class SlideController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -72,8 +79,7 @@ class SlideController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
 }

@@ -528,24 +528,23 @@
             </div>
             <div class="archive-col col-12 col-lg-4 mt-3">
 
-
                 @forelse($videos as $video)
-                <div class="main-video-arcive-card">
-                    <div class="main-video-arcive-card-thumbnail border">
-                        <a href="{{ route('videogallery.show', $video) }}">
-                            <img src="{{ asset('modules/home/img/video.jpg') }}" alt="{{ $video->title }}" width="10">
-                            <div class="video-arcive-card-thumbnail-hover">
-                                <i class="fa-solid fa-eye"></i>
-                                <span class="video-view-count"></span>
-                            </div>
-                        </a>
+                    <div class="main-video-arcive-card">
+                        <div class="main-video-arcive-card-thumbnail border">
+                            <a href="{{ route('videogallery.show', $video) }}">
+                                <img src="{{ asset('modules/home/img/video.jpg') }}" alt="{{ $video->title }}" width="10">
+                                <div class="video-arcive-card-thumbnail-hover">
+                                    <i class="fa-solid fa-eye"></i>
+                                    <span class="video-view-count"></span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="main-video-arcive-card-title">
+                            <a href="{{ route('videogallery.show', $video) }}">
+                                <span>{{ $video->title }}</span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="main-video-arcive-card-title">
-                        <a href="{{ route('videogallery.show', $video) }}">
-                            <span>{{ $video->title }}</span>
-                        </a>
-                    </div>
-                </div>
                 @empty
                     <div class="main-video-arcive-card">
                         <div class="main-video-arcive-card-thumbnail">
@@ -568,6 +567,7 @@
             </div>
         </div>
     </div>
+
     <div class="fifth-row mt-3">
         <div class="photo-section d-flex flex-wrap">
             <div class="photo-col-title">
@@ -575,101 +575,44 @@
                     <i class="fa-duotone fa-images"></i>
                     <span>عکس های روز</span>
                 </p>
-                <a href="archive.html" class="main-see-all-link">
+                <a href="{{ route('slide') }}" class="main-see-all-link">
                     <span>مشاهده همه</span>
                 </a>
             </div>
             <div class="photo-sec-all mt-lg-0 owl-carousel owl-theme">
-                <div class="photo-sec-col col-12">
-                    <div class="photo-sec-card">
-                        <div class="photo-sec-thumbnail">
-                            <a href="pictures-single.html">
-                                <img src="{{ asset('modules/home/assets/img/thumbnails/103 copy.jpg') }}" alt="">
-                            </a>
-                        </div>
-                        <div class="photo-sec-title">
-                            <a href="pictures-single.html">
-                                <i class="fa-duotone fa-image"></i>
-                                <span>عکس منتخب از مردم در تیر ماه 1401</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="photo-sec-col col-12">
-                    <div class="photo-sec-card">
-                        <div class="photo-sec-thumbnail">
-                            <a href="pictures-single.html">
-                                <img src="{{ asset('modules/home/assets/img/thumbnails/103 (1) copy.jpg') }}" alt="">
-                            </a>
-                        </div>
-                        <div class="photo-sec-title">
-                            <a href="pictures-single.html">
-                                <i class="fa-duotone fa-image"></i>
-                                <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
-                            </a>
+                @forelse($slides as $slide)
+                    <div class="photo-sec-col col-12">
+                        <div class="photo-sec-card">
+                            <div class="photo-sec-thumbnail">
+                                <a href="pictures-single.html">
+                                    <img src="{{ asset($slide->image['indexArray']['large']) }}" alt="{{ $slide->title }}">
+                                </a>
+                            </div>
+                            <div class="photo-sec-title">
+                                <a href="pictures-single.html">
+                                    <i class="fa-duotone fa-image"></i>
+                                    <span>{{ $slide->title }}</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="photo-sec-col col-12">
-                    <div class="photo-sec-card">
-                        <div class="photo-sec-thumbnail">
-                            <a href="pictures-single.html">
-                                <img src="{{ asset('modules/home/assets/img/thumbnails/11 copy.jpg') }}" alt="">
-                            </a>
-                        </div>
-                        <div class="photo-sec-title">
-                            <a href="pictures-single.html">
-                                <i class="fa-duotone fa-image"></i>
-                                <span>عکس منتخب از مردم در تیر ماه 1401</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="photo-sec-col col-12">
-                    <div class="photo-sec-card">
-                        <div class="photo-sec-thumbnail">
-                            <a href="pictures-single.html">
-                                <img src="{{ asset('modules/home/assets/img/thumbnails/102 copy.jpg') }}" alt="">
-                            </a>
-                        </div>
-                        <div class="photo-sec-title">
-                            <a href="pictures-single.html">
-                                <i class="fa-duotone fa-image"></i>
-                                <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
-                            </a>
+                @empty
+                    <div class="photo-sec-col col-12">
+                        <div class="photo-sec-card">
+                            <div class="photo-sec-thumbnail">
+                                <a href="pictures-single.html">
+                                    <img src="{{ asset('modules/home/img/404-football.gif') }}" alt="img">
+                                </a>
+                            </div>
+                            <div class="photo-sec-title">
+                                <a href="pictures-single.html">
+                                    <i class="fa-duotone fa-image"></i>
+                                    <span>عنوان اسلاید</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="photo-sec-col col-12">
-                    <div class="photo-sec-card">
-                        <div class="photo-sec-thumbnail">
-                            <a href="pictures-single.html">
-                                <img src="{{ asset('modules/home/assets/img/thumbnails/100 copy.jpg') }}" alt="">
-                            </a>
-                        </div>
-                        <div class="photo-sec-title">
-                            <a href="pictures-single.html">
-                                <i class="fa-duotone fa-image"></i>
-                                <span>عکس منتخب از مردم در تیر ماه 1401</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="photo-sec-col col-12">
-                    <div class="photo-sec-card">
-                        <div class="photo-sec-thumbnail">
-                            <a href="pictures-single.html">
-                                <img src="{{ asset('modules/home/assets/img/thumbnails/11 copy.jpg') }}" alt="">
-                            </a>
-                        </div>
-                        <div class="photo-sec-title">
-                            <a href="pictures-single.html">
-                                <i class="fa-duotone fa-image"></i>
-                                <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 <?php
 
 use Modules\Slide\Http\Controllers\AdminSlideController;
+use Modules\Slide\Http\Controllers\SlideController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,6 @@ Route::middleware('auth', 'admin')->prefix('adminity')->group(function () {
 
 // slide
 Route::prefix('slide')->group(function () {
-    Route::get('/', 'SlideController@index');
+    Route::get('/', [SlideController::class, 'index'])->name('slide');
+    Route::get('/show/{slide}', [SlideController::class, 'show'])->name('slide.show');
 });

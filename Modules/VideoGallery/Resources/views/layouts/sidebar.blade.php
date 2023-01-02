@@ -28,7 +28,7 @@
             <div class="news-box-card-mini">
                 <div class="news-box-header">
                     <i class="fa-duotone fa-newspaper"></i>
-                    <span>آخرین اخبار</span>
+                    <span>آخرین ویدیو ها</span>
                 </div>
                 <div class="new-box-news">
 

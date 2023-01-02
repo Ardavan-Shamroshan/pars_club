@@ -77,11 +77,6 @@ class HomeController extends Controller
             ->get();
 
 
-        // slides
-        $slides = Slide::query()->where('status', 1)
-            ->latest()
-            ->get();
-
         // video
         $videos = VideoGallery::query()->where('status', 1)
             ->orderBy('created_at')
@@ -94,8 +89,12 @@ class HomeController extends Controller
         // Videos without key:0
         $videos->forget(0);
 
-
-
+        // slides
+        $slides = Slide::query()
+            ->where('status', 1)
+            ->latest()
+            ->take(10)
+            ->get();
         // setting
         $setting = Setting::query()->first();
 
@@ -107,9 +106,9 @@ class HomeController extends Controller
             'worldNews',
             'banner',
             'leagues',
-            'slides',
             'latestVideo',
             'videos',
+            'slides',
             'setting',
         ));
     }
