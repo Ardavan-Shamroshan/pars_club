@@ -507,7 +507,7 @@
                     <i class="fa-duotone fa-circle-play"></i>
                     <span>ویدیو</span>
                 </p>
-                <a href="archive.html" class="main-see-all-link">
+                <a href="{{ route('videogallery') }}" class="main-see-all-link">
                     <span>مشاهده همه</span>
                 </a>
             </div>

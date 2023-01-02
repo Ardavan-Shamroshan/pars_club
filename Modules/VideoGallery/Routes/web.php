@@ -1,6 +1,7 @@
 <?php
 
 use Modules\VideoGallery\Http\Controllers\AdminVideoGalleryController;
+use Modules\VideoGallery\Http\Controllers\VideoGalleryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +31,6 @@ Route::middleware('auth', 'admin')->prefix('adminity')->group(function () {
 
 // videogallery
 Route::prefix('videogallery')->group(function () {
-    Route::get('/', 'VideoGalleryController@index');
+    Route::get('/', [VideoGalleryController::class, 'index'])->name('videogallery');
+    Route::get('/show/{video}', [VideoGalleryController::class, 'show'])->name('videogallery.show');
 });

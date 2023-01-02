@@ -5,6 +5,7 @@ namespace Modules\VideoGallery\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\VideoGallery\Entities\VideoGallery;
 
 class VideoGalleryController extends Controller
 {
@@ -12,17 +13,19 @@ class VideoGalleryController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
-    {
-        return view('videogallery::index');
+    public function index() {
+        $videos = VideoGallery::query()
+            ->where('status', 1)
+            ->get();
+
+        return view('videogallery::index', compact('videos'));
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function create()
-    {
+    public function create() {
         return view('videogallery::create');
     }
 
@@ -31,8 +34,7 @@ class VideoGalleryController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -41,8 +43,7 @@ class VideoGalleryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
-    {
+    public function show($id) {
         return view('videogallery::show');
     }
 
@@ -51,8 +52,7 @@ class VideoGalleryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         return view('videogallery::edit');
     }
 
@@ -62,8 +62,7 @@ class VideoGalleryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -72,8 +71,7 @@ class VideoGalleryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
 }
