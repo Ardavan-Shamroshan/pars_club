@@ -31,6 +31,9 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot() {
+//        Auth::loginUsingId(1);
+
+
         // create @admin, @endadmin directives
         Blade::directive('admin', function () {
             return "<?php if(auth()->guard()->check() && auth()->user()->user_type == 1): ?>";

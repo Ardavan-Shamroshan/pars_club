@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Modules\Post\Entities\Post;
 use Modules\Post\Http\Requests\PostRequest;
 use Modules\PostCategory\Entities\PostCategory;
@@ -101,8 +102,8 @@ class AdminPostController extends Controller
         $realTimestampStart = substr($request->published_at, 0, 10);
         $inputs['published_at'] = date('Y-m-d H:i:s', (int)$realTimestampStart);
 
-
          $inputs['author_id'] = Auth::id();
+
 
         // Image upload
         if ($request->hasFile('image')) {

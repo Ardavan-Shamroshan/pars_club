@@ -108,17 +108,16 @@
                                         <input type="text" name="slug" class="form-control" value="{{ old('slug', $post->slug) }}">
                                         <small class="tx-gray-600">اگر خالی رها کنید، بصورت خودکار از روی عنوان تولید خواهد شد.</small>
                                     </div>
-
                                     {{-- label --}}
                                     <div class="form-group mb-4">
                                         <label class="form-label">برچسب:</label>
                                         <div class="SumoSelect" tabindex="0" role="button" aria-expanded="true">
                                             <select class="testselect2 SumoUnder" tabindex="-1" name="label">
-                                                <option value="" @selected($post->label == '0')>بدون برچسب</option>
+                                                <option value="" @selected($post->label == null)>بدون برچسب</option>
                                                 <option value="0" @selected($post->label == '0')>پیشنهاد سردبیر</option>
-                                                <option value="1" @selected($post->label == '1'))>مطالب داغ</option>
-                                                <option value="2" @selected($post->label == '2'))>ورزش جهان</option>
-                                                <option value="3" @selected($post->label == '3'))>ویدیو</option>
+                                                <option value="1" @selected($post->label == '1')>مطالب داغ</option>
+                                                <option value="2" @selected($post->label == '2')>ورزش جهان</option>
+                                                <option value="3" @selected($post->label == '3')>ویدیو</option>
                                             </select>
                                         </div>
                                     </div>
@@ -127,11 +126,9 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">تگ:</label>
                                         <input type="hidden" class="form-control form-control-sm @error('tags') border border-danger @enderror" name="tags" id="tags" value="{{ old('tags', $post->tags) }}">
-                                        <select id="select_tags" class="select2 form-control form-control-sm @error('tags') border border-danger @enderror" name="tags" multiple></select>
-                                        <small class="tx-gray-600">تگ های خود را وارد کنید و با زدن دکمه
-                                            <span class="badge badge-light border shadow-base">Enter</span> تگ را ایجاد کنید</small>
+                                        <select id="select_tags" class="select2 form-control form-control-sm browser-default @error('tags') border border-danger @enderror" multiple="multiple"></select>
+                                        <small class="tx-gray-600">تگ های خود را وارد کنید و با زدن دکمه<span class="badge badge-light border shadow-base">Enter</span> تگ را ایجاد کنید</small>
                                     </div>
-
 
                                     {{-- summary --}}
                                     <div class="form-group mb-4">
@@ -262,17 +259,20 @@
             var default_tags = tags_input.val();
             var default_data = null;
 
-            console.log(tags_input, select_tags, default_tags, default_data)
-
             if (tags_input.val() !== null && tags_input.val().length > 0)
                 default_data = default_tags.split(',');
 
             select_tags.select2({
                 tags: true,
-                data: default_data,
                 theme: "classic",
-                dir: "rtl"
+                dir: "rtl",
+                placeholder: 'لطفا تگ های دسته بندی خود را وارد نمایید',
+                data: default_data,
+
             });
+
+
+            // select_tags.children('option').attr('selected', false).trigger('change');
             select_tags.children('option').attr('selected', true).trigger('change');
             $('#form').submit(function () {
                 if (select_tags.val() !== null && select_tags.val().length > 0) {

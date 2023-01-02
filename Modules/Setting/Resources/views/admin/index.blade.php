@@ -89,7 +89,7 @@
                                                                         </li>
                                                                         <li class="d-flex justify-content-start gap-3 bg-light m-0 p-3">
                                                                             <div class="font-weight-bold">متن درباره ما :</div>
-                                                                            <div class=""><?= $setting->description ?? '-' ?>
+                                                                            <div class=""><?= html_entity_decode($setting->description) ?? '-' ?>
                                                                             </div>
                                                                         </li>
 

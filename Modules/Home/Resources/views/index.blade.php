@@ -303,94 +303,48 @@
                             <i class="fa-duotone fa-futbol"></i>
                             <span>اخبار ورزش جهان</span>
                         </p>
-                        <a href="archive.html" class="main-see-all-link">
+                        <a href="{{ route() }}" class="main-see-all-link">
                             <span>مشاهده همه</span>
                         </a>
                     </div>
                     <div class="sport-news mt-3">
-                        <div class="sport-news-card">
-                            <div class="sport-news-card-thumbnail">
-                                <a href="single.html">
-                                    <img src="{{ asset('modules/home/assets/img/thumbnails/101 copy.jpg') }}" alt="img">
-                                </a>
-                            </div>
-                            <div class="col ps-3">
-                                <div class="sport-news-top-title d-none d-sm-block">
-                                    <p>نقل و انتقالات اروپا</p>
-                                </div>
-                                <div class="sport-news-card-title">
-                                    <a href="single.html">
-                                        <p>پیوستن ارلینگ هالند به منچستر سیتی</p>
+
+                        @forelse($worldNews as $world)
+                            <div class="sport-news-card">
+                                <div class="sport-news-card-thumbnail">
+                                    <a href="{{ route('post.show', $world) }}">
+                                        <img src="{{ asset($world->image['indexArray']['medium']) }}" alt="{{ $world->title }}">
                                     </a>
                                 </div>
-                                <div class="sport-news-card-except">
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
+                                <div class="col ps-3">
+                                    <div class="sport-news-top-title d-none d-sm-block">
+                                        <p>{{ $world->category->name }}</p>
+                                    </div>
+                                    <div class="sport-news-card-title">
+                                        <a href="{{ route('post.show', $world) }}">
+                                            <p>{{ $world->title }}</p>
+                                        </a>
+                                    </div>
+                                    <div class="sport-news-card-except">
+                                        <p><?= html_entity_decode($world->summary) ?></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="sport-news-card">
-                            <div class="sport-news-card-thumbnail">
-                                <a href="single.html">
-                                    <img src="{{ asset('modules/home/assets/img/thumbnails/100 copy.jpg') }}" alt="img">
-                                </a>
-                            </div>
-                            <div class="col ps-3">
-                                <div class="sport-news-top-title d-none d-sm-block">
-                                    <p>لیگ ملت های والیبال</p>
+                            <hr>
+                        @empty
+                            <div class="sport-news-card">
+                                <div class="sport-news-card-thumbnail">
+                                    <a href="#"><img src="{{ asset('modules/home/img/404-football.gif') }}" alt="img"></a>
                                 </div>
-                                <div class="sport-news-card-title">
-                                    <a href="single.html">
-                                        <p>پیروزی تیم ملی ایران برابر لهستان</p>
-                                    </a>
-                                </div>
-                                <div class="sport-news-card-except">
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
+                                <div class="col ps-3">
+                                    <div class="sport-news-top-title d-none d-sm-block"><p>دسته خبر</p></div>
+                                    <div class="sport-news-card-title"><a href="#"><p>عنوان خبر</p></a></div>
+                                    <div class="sport-news-card-except"><p>خلاصه خبر</p></div>
                                 </div>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="sport-news-card">
-                            <div class="sport-news-card-thumbnail">
-                                <a href="single.html">
-                                    <img src="{{ asset('modules/home/assets/img/thumbnails/108 copy.jpg') }}" alt="img">
-                                </a>
-                            </div>
-                            <div class="col ps-3">
-                                <div class="sport-news-top-title d-none d-sm-block">
-                                    <p>نقل و انتقالات اروپا</p>
-                                </div>
-                                <div class="sport-news-card-title">
-                                    <a href="single.html">
-                                        <p>پیوستن ارلینگ هالند به منچستر سیتی</p>
-                                    </a>
-                                </div>
-                                <div class="sport-news-card-except">
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="sport-news-card">
-                            <div class="sport-news-card-thumbnail">
-                                <a href="single.html">
-                                    <img src="{{ asset('modules/home/assets/img/thumbnails/108 copy.jpg') }}" alt="img">
-                                </a>
-                            </div>
-                            <div class="col ps-3">
-                                <div class="sport-news-top-title d-none d-sm-block">
-                                    <p>لیگ ملت های والیبال</p>
-                                </div>
-                                <div class="sport-news-card-title">
-                                    <a href="single.html">
-                                        <p>پیروزی تیم ملی ایران برابر لهستان</p>
-                                    </a>
-                                </div>
-                                <div class="sport-news-card-except">
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربرد</p>
-                                </div>
-                            </div>
-                        </div>
+                            <hr>
+                        @endforelse
+
                     </div>
                 </div>
             </div>
@@ -569,7 +523,7 @@
                     </a>
                 </div>
                 <div class="main-video-player-description">
-                    <p><?= $video->description  ?></p>
+                    <p><?= $video->description ?></p>
                 </div>
             </div>
             <div class="archive-col col-12 col-lg-4 mt-3">

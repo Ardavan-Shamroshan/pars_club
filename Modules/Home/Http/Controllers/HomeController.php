@@ -52,14 +52,6 @@ class HomeController extends Controller
             ->take(15)
             ->get();
 
-        // transfer posts
-        $transferPosts = Post::query()
-            ->where('published_at', '<=', now())
-            ->where('status', 1)
-            ->where('label', 2)
-            ->latest()
-            ->take(15)
-            ->get();
 
         // banner post
         // randomly chooses a single post from is-banner posts
@@ -73,6 +65,16 @@ class HomeController extends Controller
 
         // leagues
         $leagues = League::all();
+
+
+        // world news
+        $worldNews = Post::query()
+            ->where('published_at', '<=', now())
+            ->where('status', 1)
+            ->where('label', 2)
+            ->latest()
+            ->take(15)
+            ->get();
 
 
         // slides
@@ -95,7 +97,7 @@ class HomeController extends Controller
             'posts',
             'editorSuggests',
             'hotPosts',
-            'transferPosts',
+            'worldNews',
             'banner',
             'leagues',
             'slides',
