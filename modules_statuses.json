@@ -13,5 +13,13 @@
     "Setting": true,
     "ContactUs": true,
     "League": true,
-    "Auth": true
+    "Auth": true,
+    "Product": true,
+    "ProductCategory": true,
+    "Brand": true,
+    "Discount": true,
+    "Delivery": true,
+    "Payment": true,
+    "AdminPaymentController": true,
+    "Order": true
 }
