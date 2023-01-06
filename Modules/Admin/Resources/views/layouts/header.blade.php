@@ -14,7 +14,7 @@
             </div>
 
             <div class="main-header-center my-auto">
-                    <a href="{{ route('home') }}" class="text-decoration-underline">نمایش وبگاه</a>
+                <a href="{{ route('home') }}" class="text-decoration-underline">نمایش وبگاه</a>
             </div>
         </div>
         <div class="main-header-right">
@@ -60,11 +60,10 @@
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
-
-                        @if((auth()->user()->notifications()->whereNull('read_at')->count() != 0))
-                            <span class=" pulse-danger"></span></a>
-                    @endif
-
+                        @if((auth()->user()->notifications()->where('type', \Modules\ContactUs\Notifications\NewComment::class)->whereNull('read_at')->count() != 0))
+                            <span class=" pulse-danger"></span>
+                        @endif
+                    </a>
 
                     <div class="dropdown-menu">
                         <div class="menu-header-content bg-primary text-right">
@@ -72,119 +71,67 @@
                                 <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">پیام ها</h6>
                                 <span class="badge rounded-pill bg-warning ms-auto my-auto float-end">علامت گذاری همه</span>
                             </div>
-                            <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">شما {{ auth()->user()->notifications()->whereNull('read_at')->count() }} پیام خوانده نشده دارید</p>
+                            <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">شما {{ auth()->user()->notifications()->where('type', \Modules\ContactUs\Notifications\NewComment::class)->whereNull('read_at')->count() }} پیام خوانده نشده دارید</p>
                         </div>
                         <div class="main-message-list chat-scroll">
-
-                            @foreach(auth()->user()->notifications()->whereNull('read_at')->get() as $notification)
-                            <a href="{{ route('admin.notification.read-all', 'comment') }}" class="p-3 d-flex border-bottom">
-                                <div class="drop-img cover-image" data-bs-image-src="{{ auth()->user()->profile_photo_url }}">
-                                    <span class="avatar-status bg-teal"></span>
-                                </div>
-                                <div class="wd-90p">
-                                    <div class="d-flex">
-                                        <h5 class="mb-1 name"><small>{{ auth()->user()->fullname ?? auth()->user()->name ?? '-' }}</small></h5>
+                            @foreach(auth()->user()->notifications()->where('type', \Modules\ContactUs\Notifications\NewComment::class)->whereNull('read_at')->get() as $notification)
+                                <a href="{{ route('admin.notification.read-all', 'comment') }}" class="p-3 d-flex border-bottom">
+                                    <div class="drop-img cover-image" data-bs-image-src="{{ auth()->user()->profile_photo_url }}">
+                                        <span class="avatar-status bg-teal"></span>
                                     </div>
-                                    <p class="mb-0 desc">{{ $notification['data']['comment'] }}</p>
-                                    <p class="time mb-0 text-left float-right mr-2 mt-2">{{ jalaliDate($notification['data']['user']['created_at'], 'Y M d H:i') }}</p>
-                                </div>
-                            </a>
+                                    <div class="wd-90p">
+                                        <div class="d-flex">
+                                            <h5 class="mb-1 name">
+                                                <small>{{ auth()->user()->fullname ?? auth()->user()->name ?? '-' }}</small>
+                                            </h5>
+                                        </div>
+                                        <p class="mb-0 desc">{{ $notification['data']['comment'] }}</p>
+                                        <p class="time mb-0 text-left float-right mr-2 mt-2">{{ jalaliDate($notification['data']['user']['created_at'], 'Y M d H:i') }}</p>
+                                    </div>
+                                </a>
                             @endforeach
-
                         </div>
                         <div class="text-center dropdown-footer">
                             <a href="#">مشاهده همه</a>
                         </div>
                     </div>
                 </div>
+
                 <div class="dropdown nav-item main-header-notification">
                     <a class="new nav-link" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                         </svg>
-                        <span class=" pulse"></span></a>
+                        @if((auth()->user()->notifications()->where('type', \Modules\ContactUs\Notifications\NewContact::class)->whereNull('read_at')->count() != 0))
+                            <span class=" pulse"></span>
+                        @endif
+                    </a>
+
                     <div class="dropdown-menu">
                         <div class="menu-header-content bg-primary text-right">
                             <div class="d-flex">
-                                <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">اطلاعیه</h6>
+                                <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">تماس ها</h6>
                                 <span class="badge rounded-pill bg-warning ms-auto my-auto float-end">علامت گذاری همه</span>
                             </div>
-                            <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">شما 4 اعلان خوانده نشده دارید</p>
+                            <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">شما {{ auth()->user()->notifications()->where('type', \Modules\ContactUs\Notifications\NewContact::class)->whereNull('read_at')->count() }} پیام خوانده نشده دارید</p>
                         </div>
                         <div class="main-notification-list Notification-scroll">
-                            <a class="d-flex p-3 border-bottom" href="#">
-                                <div class="notifyimg bg-pink">
-                                    <i class="la la-file-alt text-white"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <h5 class="notification-label mb-1">پرونده های جدید موجود است</h5>
-                                    <div class="notification-subtext">10 ساعت پیش</div>
-                                </div>
-                                <div class="mr-auto">
-                                    <i class="las la-angle-left text-left text-muted"></i>
-                                </div>
-                            </a>
-                            <a class="d-flex p-3" href="#">
-                                <div class="notifyimg bg-purple">
-                                    <i class="la la-gem text-white"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <h5 class="notification-label mb-1">به روزرسانی های موجود</h5>
-                                    <div class="notification-subtext">2 روز قبل</div>
-                                </div>
-                                <div class="mr-auto">
-                                    <i class="las la-angle-left text-left text-muted"></i>
-                                </div>
-                            </a>
-                            <a class="d-flex p-3 border-bottom" href="#">
-                                <div class="notifyimg bg-success">
-                                    <i class="la la-shopping-basket text-white"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <h5 class="notification-label mb-1">سفارش جدید دریافت شد</h5>
-                                    <div class="notification-subtext">1 ساعت پیش</div>
-                                </div>
-                                <div class="mr-auto">
-                                    <i class="las la-angle-left text-left text-muted"></i>
-                                </div>
-                            </a>
-                            <a class="d-flex p-3 border-bottom" href="#">
-                                <div class="notifyimg bg-warning">
-                                    <i class="la la-envelope-open text-white"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <h5 class="notification-label mb-1">بررسی جدید دریافت شد</h5>
-                                    <div class="notification-subtext">1 روز پیش</div>
-                                </div>
-                                <div class="mr-auto">
-                                    <i class="las la-angle-left text-left text-muted"></i>
-                                </div>
-                            </a>
-                            <a class="d-flex p-3 border-bottom" href="#">
-                                <div class="notifyimg bg-danger">
-                                    <i class="la la-user-check text-white"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <h5 class="notification-label mb-1">22 ثبت نام تایید شده</h5>
-                                    <div class="notification-subtext">2 ساعت پیش</div>
-                                </div>
-                                <div class="mr-auto">
-                                    <i class="las la-angle-left text-left text-muted"></i>
-                                </div>
-                            </a>
-                            <a class="d-flex p-3 border-bottom" href="#">
-                                <div class="notifyimg bg-primary">
-                                    <i class="la la-check-circle text-white"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <h5 class="notification-label mb-1">پروژه تصویب شده است</h5>
-                                    <div class="notification-subtext">4 ساعت پیش</div>
-                                </div>
-                                <div class="mr-auto">
-                                    <i class="las la-angle-left text-left text-muted"></i>
-                                </div>
-                            </a>
+
+                            @foreach(auth()->user()->notifications()->where('type', \Modules\ContactUs\Notifications\NewContact::class)->whereNull('read_at')->get() as $contactNotification)
+                                <a href="{{ route('admin.notification.read-all', 'contact-us') }}" class="p-3 d-flex border-bottom">
+                                        <i class="la la-envelope-open"></i>
+                                    <div class="ms-3">
+                                        <div class="notification-subtext">{{ $contactNotification['data']['name'] }}</div>
+                                        <h5 class="notification-label mb-1">{{ $contactNotification['data']['subject'] }}</h5>
+                                        <div class="notification-subtext">{{ jalaliDate($contactNotification->created_at, '', true) }}</div>
+                                    </div>
+                                    <div class="mr-auto">
+                                        <i class="las la-angle-left text-left text-muted"></i>
+                                    </div>
+                                </a>
+                            @endforeach
+
                         </div>
                         <div class="dropdown-footer">
                             <a href="#">مشاهده همه</a>
@@ -227,10 +174,10 @@
                                 </div>
                             </div>
                             <a class="dropdown-item" href="{{ route('profile.show') }}"><i class="bx bx-user-circle"></i>مشخصات</a>
-{{--                            <a class="dropdown-item" href="#"><i class="bx bx-cog"></i> ویرایش نمایه</a>--}}
-{{--                            <a class="dropdown-item" href="#"><i class="bx bxs-inbox"></i>صندوق ورودی</a>--}}
-{{--                            <a class="dropdown-item" href="#"><i class="bx bx-envelope"></i>پیام ها</a>--}}
-{{--                            <a class="dropdown-item" href="#"><i class="bx bx-slider-alt"></i> تنظیمات حساب</a>--}}
+                            {{--                            <a class="dropdown-item" href="#"><i class="bx bx-cog"></i> ویرایش نمایه</a>--}}
+                            {{--                            <a class="dropdown-item" href="#"><i class="bx bxs-inbox"></i>صندوق ورودی</a>--}}
+                            {{--                            <a class="dropdown-item" href="#"><i class="bx bx-envelope"></i>پیام ها</a>--}}
+                            {{--                            <a class="dropdown-item" href="#"><i class="bx bx-slider-alt"></i> تنظیمات حساب</a>--}}
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
                                 <button class="dropdown-item"><i class="bx bx-log-out"></i> خروج از سیستم</button>

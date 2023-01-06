@@ -2,12 +2,14 @@
 
 namespace Modules\ContactUs\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\ContactUs\Entities\ContactUs;
 use Modules\ContactUs\Http\Requests\ContactUsRequest;
+use Modules\ContactUs\Notifications\NewContact;
 use Modules\Setting\Entities\Setting;
 
 class ContactUsController extends Controller
@@ -42,18 +44,29 @@ class ContactUsController extends Controller
             $inputs['name'] = Auth::user()->fullname ?? Auth::user()->name;
             $inputs['email'] = Auth::user()->email;
             $inputs['is_read'] = 0;
-            alert()->success('تماس شما با موفقیت فرستاده شد.', 'صندوق ایمیل خود را برای دریافت پاسخ بررسی کنید');
-            ContactUs::query()->create($inputs);
-            return redirect()->route('home');
+        }
+        // guest user contact
+        else
+            $inputs['is_read'] = 0;
+
+        $contact = ContactUs::query()->create($inputs);
+
+        // get all admin users
+        $adminUsers = User::query()->where('user_type', 1)->get();
+        // define details of new comment notification
+        $details = [
+            'name' => $contact->name,
+            'email' => $contact->email,
+            'subject' => $contact->subject,
+            'message' => 'تمایس جدیدی دارید'
+        ];
+        // send notification for all admin users
+        foreach ($adminUsers as $admin) {
+            $admin->notify(new NewContact($details));
         }
 
-        // guest user contact
-        else {
-            $inputs['is_read'] = 0;
-            alert()->success('تماس شما با موفقیت فرستاده شد.', 'صندوق ایمیل خود را برای دریافت پاسخ بررسی کنید');
-            ContactUs::query()->create($inputs);
-            return redirect()->route('home');
-        }
+        alert()->success('تماس شما با موفقیت فرستاده شد.', 'صندوق ایمیل خود را برای دریافت پاسخ بررسی کنید');
+        return redirect()->route('home');
     }
 
     /**

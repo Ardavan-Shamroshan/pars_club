@@ -45,6 +45,11 @@
                     </li>
                     <li>
                         <a href="{{ route('post') }}">
+                            <span>مجله و خبرنامه</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('post') }}">
                             <span>گالری عکس</span>
                         </a>
                     </li>
@@ -138,15 +143,20 @@
                                 <!-- <div id="overlay" class="overlay"></div> -->
                                 <ul class="top-header-menu-list">
                                     <li>
-                                        <a href="#">
+                                        <a href="{{ route('home') }}">
                                             <i class="fa-solid fa-house grid-ic"></i>
                                             <span>خانه</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
-                                            <i class="fa-solid fa-gear grid-ic"></i>
-                                            <span>تنظیمات</span>
+                                        <a href="{{ route('post') }}">
+                                            <span>مجله و خبرنامه</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('auth.logout') }}">
+                                            <i class="fa-solid fa-power-off grid-ic"></i>
+                                            <span>خروج</span>
                                         </a>
                                     </li>
                                     <li>
@@ -155,24 +165,24 @@
                                             <span>حساب کاربری</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa-solid fa-bookmark grid-ic"></i>
-                                            <span>علاقه مندی ها</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa-solid fa-language grid-ic"></i>
-                                            <span>زبان</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa-solid fa-donate grid-ic"></i>
-                                            <span>حمایت مالی</span>
-                                        </a>
-                                    </li>
+                                    {{--                                    <li>--}}
+                                    {{--                                        <a href="#">--}}
+                                    {{--                                            <i class="fa-solid fa-bookmark grid-ic"></i>--}}
+                                    {{--                                            <span>علاقه مندی ها</span>--}}
+                                    {{--                                        </a>--}}
+                                    {{--                                    </li>--}}
+                                    {{--                                    <li>--}}
+                                    {{--                                        <a href="#">--}}
+                                    {{--                                            <i class="fa-solid fa-language grid-ic"></i>--}}
+                                    {{--                                            <span>زبان</span>--}}
+                                    {{--                                        </a>--}}
+                                    {{--                                    </li>--}}
+                                    {{--                                    <li>--}}
+                                    {{--                                        <a href="#">--}}
+                                    {{--                                            <i class="fa-solid fa-donate grid-ic"></i>--}}
+                                    {{--                                            <span>حمایت مالی</span>--}}
+                                    {{--                                        </a>--}}
+                                    {{--                                    </li>--}}
                                     <li>
                                         <a href="#">
                                             <i class="fa-solid fa-store grid-ic"></i>
