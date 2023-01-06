@@ -62,7 +62,7 @@
                                 </a>
                             </div>
                             <div class="main-video-arcive-card-title">
-                                <a href="single.html">
+                                <a href="#">
                                     <span>عنوان ویدیو</span>
                                 </a>
                             </div>

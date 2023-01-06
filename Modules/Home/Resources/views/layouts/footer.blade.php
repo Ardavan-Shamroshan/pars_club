@@ -4,19 +4,7 @@
         <div class="footer-social">
             <ul class="d-flex flex-wrap">
                 <li>
-                    <a href="#">
-                        <i class="fa-brands fa-facebook"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa-brands fa-twitter"></i>
-                    </a>
+                    <a href="https://instagram.com/fc_pars_borazjan"><i class="fa-brands fa-instagram"></i></a>
                 </li>
                 <li>
                     <a href="#">
@@ -24,53 +12,45 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="mailto:{{ $setting->email }}">
                         <i class="fa-brands fa-google"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="fa-brands fa-telegram"></i>
-                    </a>
+                    <a href="https://t.me/fc_parseh_academy"><i class="fa-brands fa-telegram"></i></a>
                 </li>
             </ul>
         </div>
         <div class="footer-nav-menu mt-4">
             <ul class="d-flex flex-wrap">
                 <li>
-                    <a href="#">
-                        <span>صفحه اصلی</span>
+                    <a href="{{ route('home') }}">
+                        <span>خانه</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span>جامعه</span>
+                    <a href="{{ route('post') }}">
+                        <span>مجله و خبرنامه</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span>اقتصاد</span>
+                    <a href="{{ route('videogallery') }}">
+                        <span>ویدیو ها</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span>بین الملل</span>
+                    <a href="{{ route('home.about-us') }}">
+                        <span>درباره ما</span>
                     </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span>سیاست</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span>علم و پیشرفت</span>
+                </li><li>
+                    <a href="{{ route('contact-us') }}">
+                        <span>ارتباط با ما</span>
                     </a>
                 </li>
             </ul>
         </div>
         <hr>
-      @include('home::layouts.copyright', ['copyright' => $setting->copyright])
+        @include('home::layouts.copyright', ['copyright' => $setting->copyright])
     </div>
 </footer>
 <!--Footer End-->

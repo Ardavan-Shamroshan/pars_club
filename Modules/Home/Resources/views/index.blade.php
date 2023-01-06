@@ -5,18 +5,21 @@
 @section('content')
     <div class="first-row row g-3 mt-3">
         <div class="main-col col-12 col-lg-6">
-            <div class="main-col-card">
-                <div class="main-col-image">
-                    <a href="{{ route('post.show', $banner) }}">
-                        <img src="{{ $banner->image['indexArray']['medium'] }}" alt="img">
-                    </a>
+            @if($banner)
+                <div class="main-col-card">
+                    <div class="main-col-image">
+                        <a href="{{ route('post.show', $banner) }}">
+                            <img src="{{ $banner->image['indexArray']['medium'] }}" alt="img">
+                        </a>
+                    </div>
+                    <div class="main-col-title">
+                        <a href="{{ route('post.show', $banner) }}">
+                            <p><?= $banner->summary ?></p>
+                        </a>
+                    </div>
                 </div>
-                <div class="main-col-title">
-                    <a href="{{ route('post.show', $banner) }}">
-                        <p><?= $banner->summary ?></p>
-                    </a>
-                </div>
-            </div>
+            @endif
+
             <div class="col-12 mt-3">
                 <div class="main-news">
 
@@ -584,12 +587,12 @@
                     <div class="photo-sec-col col-12">
                         <div class="photo-sec-card">
                             <div class="photo-sec-thumbnail">
-                                <a href="pictures-single.html">
+                                <a href="#">
                                     <img src="{{ asset($slide->image['indexArray']['large']) }}" alt="{{ $slide->title }}">
                                 </a>
                             </div>
                             <div class="photo-sec-title">
-                                <a href="pictures-single.html">
+                                <a href="#">
                                     <i class="fa-duotone fa-image"></i>
                                     <span>{{ $slide->title }}</span>
                                 </a>
@@ -600,12 +603,12 @@
                     <div class="photo-sec-col col-12">
                         <div class="photo-sec-card">
                             <div class="photo-sec-thumbnail">
-                                <a href="pictures-single.html">
+                                <a href="#">
                                     <img src="{{ asset('modules/home/img/404-football.gif') }}" alt="img">
                                 </a>
                             </div>
                             <div class="photo-sec-title">
-                                <a href="pictures-single.html">
+                                <a href="#">
                                     <i class="fa-duotone fa-image"></i>
                                     <span>عنوان اسلاید</span>
                                 </a>

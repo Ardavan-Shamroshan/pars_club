@@ -45,7 +45,7 @@
                     </li>
                     <li>
                         <a href="{{ route('post') }}">
-                            <span>مجله و خبرنامه</span>
+                            <span>گالری عکس</span>
                         </a>
                     </li>
                     <li>
@@ -69,12 +69,12 @@
                         </a>
                         <ul class="top-dropdown-menu">
                             <li>
-                                <a href="contact-us.html">
+                                <a href="#">
                                     <span>تبلیغات</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="about-us.html">
+                                <a href="#">
                                     <span>شرایط استفاده</span>
                                 </a>
                             </li>
