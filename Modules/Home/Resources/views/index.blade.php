@@ -587,12 +587,12 @@
                     <div class="photo-sec-col col-12">
                         <div class="photo-sec-card">
                             <div class="photo-sec-thumbnail">
-                                <a href="#">
+                                <a href="{{ route('slide.show', $slide,) }}">
                                     <img src="{{ asset($slide->image['indexArray']['large']) }}" alt="{{ $slide->title }}">
                                 </a>
                             </div>
                             <div class="photo-sec-title">
-                                <a href="#">
+                                <a href="{{ route('slide.show', $slide,) }}">
                                     <i class="fa-duotone fa-image"></i>
                                     <span>{{ $slide->title }}</span>
                                 </a>
